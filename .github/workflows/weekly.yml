@@ -1,0 +1,50 @@
+name: Weekly report (draft PR)
+
+on:
+  schedule:
+    # 00:00 UTC every Monday = 08:00 Ulaanbaatar (UTC+8, no DST)
+    - cron: "0 0 * * 1"
+  workflow_dispatch: {}   # lets you also run it manually from the Actions tab
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  build-draft:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Collect news
+        run: python scripts/collect.py
+
+      - name: Generate report (draft + self-review loop + translation)
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python scripts/generate.py
+
+      - name: Open a review pull request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: "Weekly report draft"
+          branch: report/draft
+          delete-branch: true
+          title: "Weekly report — ready for review"
+          body: |
+            An automated draft is ready. To publish:
+            1. Read the report JSON in the "Files changed" tab.
+            2. Fix any wording directly in the JSON if needed (edit the "en" / "mn" text fields).
+            3. Click "Merge pull request". The site rebuilds and goes live automatically.
+          add-paths: |
+            reports/*.json
+          # Uncomment and set your colleague's GitHub username so she is
+          # auto-requested as reviewer and gets an email each week:
+          # reviewers: her-github-username

@@ -1,0 +1,91 @@
+# ============================================================
+#  UN Mongolia Weekly — central configuration
+#  Edit this file to change sources, agencies, themes, model.
+#  You almost never need to touch the Python scripts.
+# ============================================================
+
+site:
+  title: "UN Mongolia Weekly"
+  subtitle: "Media Insights"
+  # Public URL once GitHub Pages is on (used only for nice links / sharing):
+  base_url: ""
+
+# How many days back each weekly run looks:
+lookback_days: 7
+
+# ---- Model & self-review loop ----
+model: "claude-sonnet-5"          # cheap + strong. Fallback: "claude-haiku-4-5-20251001"
+max_output_tokens: 8000
+review:
+  confidence_threshold: 90        # stop the self-review loop at/above this score
+  max_iterations: 3               # hard cap so it never loops forever
+
+# ---- What counts as "about Mongolia" (domestic layer) ----
+mongolia_terms:
+  - Mongolia
+  - Mongolian
+  - Ulaanbaatar
+  - Ulan Bator
+  - dzud
+  - Gobi
+  - Oyu Tolgoi
+  - Erdenet
+  - khural       # parliament
+  - tugrik       # currency
+
+# ---- The "external but relevant to Mongolia" layer ----
+regional_terms:
+  - "Mongolia China trade"
+  - "Mongolia Russia"
+  - "Mongolia coal exports"
+  - "Mongolia mining"
+  - "Mongolia border transit"
+  - "Central Asia dzud"
+
+# ---- News sources (all free / public, no key needed) ----
+sources:
+  reliefweb:
+    enabled: true
+    country: "Mongolia"          # OCHA ReliefWeb country filter
+  gdelt:
+    enabled: true
+    # GDELT gives broad coverage; queries run separately and are merged:
+    queries:
+      - "Mongolia"
+      - "Ulaanbaatar"
+      - "Mongolia mining"
+      - "Mongolia dzud"
+    max_records: 60
+  rss_feeds:
+    # Add or remove feeds freely. Items are keyword-filtered for relevance.
+    - name: "UN News"
+      url: "https://news.un.org/feed/subscribe/en/news/all/rss.xml"
+    # Example Mongolian outlets (verify the exact feed URL before enabling):
+    # - name: "Montsame"
+    #   url: "https://montsame.mn/en/rss"
+    # - name: "The UB Post"
+    #   url: "https://theubposts.com/feed/"
+
+# ---- UN agencies used for tagging + the filter chips ----
+agencies:
+  - UNDP
+  - UNICEF
+  - WHO
+  - WFP
+  - IOM
+  - UNFPA
+  - FAO
+  - UNESCO
+  - ILO
+  - UN Women
+  - OHCHR
+  - UNEP
+
+# ---- Thematic sections (order = display order) ----
+themes:
+  - "Humanitarian & Protection"
+  - "Politics & Governance"
+  - "Economy & Development"
+  - "Climate & Environment"
+  - "Health"
+  - "Regional Dynamics"

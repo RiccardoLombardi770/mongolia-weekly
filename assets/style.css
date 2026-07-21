@@ -1,0 +1,79 @@
+:root{
+  --paper:#faf8f3; --ink:#1c1a17; --muted:#6b665e; --line:#e2ddd2;
+  --accent:#4a3f2f; --card:#ffffff; --tag:#efe9dd;
+  --serif:"Source Serif 4",Georgia,serif;
+  --display:"Playfair Display",Georgia,serif;
+  --sans:"Inter",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--serif);
+  font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased;}
+
+/* language toggle: show one language at a time */
+.lang-en .mn{display:none}
+.lang-mn .en{display:none}
+
+/* ---------- sidebar / archive ---------- */
+#sidebar{position:fixed;top:0;left:0;width:230px;height:100vh;overflow-y:auto;
+  background:#f3efe6;border-right:1px solid var(--line);padding:26px 20px;transition:transform .25s ease;}
+.side-brand{font-family:var(--display);font-size:19px;font-weight:700;margin-bottom:22px;line-height:1.2}
+.side-label{font-family:var(--sans);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+#sidebar nav{display:flex;flex-direction:column;gap:2px}
+#sidebar nav a{font-family:var(--sans);font-size:13px;color:var(--muted);text-decoration:none;padding:6px 10px;border-radius:6px}
+#sidebar nav a:hover{background:#e9e3d6;color:var(--ink)}
+#sidebar nav a.active{background:var(--ink);color:var(--paper)}
+
+#menu-btn{position:fixed;top:14px;left:14px;z-index:20;display:none;width:40px;height:40px;
+  background:var(--card);border:1px solid var(--line);border-radius:8px;cursor:pointer;padding:11px 9px}
+#menu-btn span{display:block;height:2px;background:var(--ink);margin:3px 0}
+
+/* ---------- main column ---------- */
+main{margin-left:230px;max-width:820px;padding:48px 40px 80px}
+.masthead{text-align:center;border-bottom:3px double var(--ink);padding-bottom:22px;margin-bottom:34px;position:relative}
+.lang-toggle{position:absolute;top:0;right:0;display:inline-flex;border:1px solid var(--line);border-radius:7px;overflow:hidden;font-family:var(--sans)}
+.lang-toggle button{border:0;background:transparent;padding:5px 12px;font-size:12px;color:var(--muted);cursor:pointer}
+.lang-toggle button.active{background:var(--ink);color:var(--paper)}
+.masthead .title{font-family:var(--display);font-weight:700;font-size:44px;line-height:1.05;letter-spacing:.5px}
+.masthead .tagline{font-family:var(--sans);font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-top:12px}
+
+/* insights */
+.insights{background:#f3efe6;border:1px solid var(--line);border-radius:12px;padding:20px 24px;margin-bottom:34px}
+.insights h2{font-family:var(--display);font-weight:500;font-size:20px;margin:0 0 10px}
+.insights ul{margin:0;padding-left:20px}
+.insights li{margin:5px 0}
+
+/* filter */
+.filter{display:flex;flex-direction:column;gap:8px;margin-bottom:28px}
+.filter-label{font-family:var(--sans);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-family:var(--sans);font-size:13px;padding:5px 13px;border:1px solid var(--line);
+  background:var(--card);border-radius:20px;color:var(--muted);cursor:pointer}
+.chip:hover{border-color:var(--ink);color:var(--ink)}
+.chip.active{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+
+/* themes + cards */
+.theme{margin-bottom:38px}
+.theme-head{font-family:var(--display);font-weight:500;font-size:26px;margin:0 0 16px;
+  padding-bottom:8px;border-bottom:1px solid var(--line)}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 20px}
+.card.slim{padding:14px 18px;font-size:15px}
+.card p{margin:0 0 12px}
+.card-foot{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-family:var(--sans);font-size:12px}
+.card-foot a,.card-foot>span:first-child{color:var(--accent);font-weight:500;text-decoration:none}
+.card-foot a:hover{text-decoration:underline}
+.tag{background:var(--tag);color:var(--accent);padding:2px 8px;border-radius:10px;font-size:11px;letter-spacing:.5px}
+.theme.hidden,.card.hidden{display:none}
+
+.disclaimer{font-family:var(--sans);font-size:12px;line-height:1.6;color:var(--muted);
+  border-top:1px solid var(--line);padding-top:20px;margin-top:20px}
+
+@media(max-width:760px){
+  #menu-btn{display:block}
+  #sidebar{transform:translateX(-100%);z-index:15}
+  #sidebar.open{transform:translateX(0)}
+  main{margin-left:0;padding:70px 20px 60px}
+  .masthead .title{font-size:32px}
+  .lang-toggle{position:static;display:inline-flex;margin-bottom:16px}
+  .cards{grid-template-columns:1fr}
+}
