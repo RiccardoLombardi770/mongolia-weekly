@@ -15,7 +15,8 @@ lookback_days: 7
 
 # ---- Model & self-review loop ----
 model: "claude-sonnet-5"          # cheap + strong. Fallback: "claude-haiku-4-5-20251001"
-max_output_tokens: 8000
+max_output_tokens: 16000
+max_items_to_model: 120           # trim the candidate list before drafting (cost + reliability)
 review:
   confidence_threshold: 90        # stop the self-review loop at/above this score
   max_iterations: 3               # hard cap so it never loops forever

@@ -43,9 +43,11 @@ def call(system, user):
 
 def parse_json(text):
     """Pull a JSON object out of a model reply, tolerating stray prose/fences."""
-    text = re.sub(r"^```(?:json)?|```$", "", text.strip(), flags=re.MULTILINE).strip()
-    start, end = text.find("{"), text.rfind("}")
-    return json.loads(text[start:end + 1])
+    cleaned = re.sub(r"^```(?:json)?|```$", "", text.strip(), flags=re.MULTILINE).strip()
+    start, end = cleaned.find("{"), cleaned.rfind("}")
+    if start == -1 or end == -1:
+        raise ValueError("No JSON object in model reply. First 400 chars:\n" + text[:400])
+    return json.loads(cleaned[start:end + 1])
 
 
 # ---------- prompts (tune these to change tone / structure) ----------
@@ -109,7 +111,17 @@ Return ONLY the translated JSON with the same shape."""
 
 def draft(raw):
     user = "Here are this week's candidate articles as JSON:\n\n" + json.dumps(raw, ensure_ascii=False)
-    return parse_json(call(DRAFT_SYSTEM, user))
+    last_err = None
+    for attempt in range(2):
+        system = DRAFT_SYSTEM
+        if attempt == 1:
+            system += "\n\nIMPORTANT: reply with the JSON object ONLY. No preamble, no explanation, no code fences."
+        try:
+            return parse_json(call(system, user))
+        except (ValueError, json.JSONDecodeError) as e:
+            last_err = e
+            print(f"  draft attempt {attempt + 1}: could not parse JSON, retrying...")
+    raise last_err
 
 
 def review_loop(report):
@@ -162,6 +174,16 @@ def main():
     if n == 0:
         print("No news collected this run; skipping report generation (no PR will open).")
         return
+
+    # Trim to keep input manageable, cheaper, and reliable.
+    cap = CONFIG.get("max_items_to_model", 120)
+    items = raw.get("items", [])[:cap]
+    for it in items:
+        it["snippet"] = (it.get("snippet") or "")[:300]
+    raw["items"] = items
+    raw["count"] = len(items)
+    print(f"  using {len(items)} items after trimming")
+
     report_en = draft(raw)
     report_en = review_loop(report_en)
     report = translate(report_en)
