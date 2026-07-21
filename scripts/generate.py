@@ -157,7 +157,11 @@ def translate(report_en):
 
 def main():
     raw = json.loads(RAW.read_text(encoding="utf-8"))
-    print(f"Generating report from {raw.get('count', 0)} items...")
+    n = raw.get("count", 0)
+    print(f"Generating report from {n} items...")
+    if n == 0:
+        print("No news collected this run; skipping report generation (no PR will open).")
+        return
     report_en = draft(raw)
     report_en = review_loop(report_en)
     report = translate(report_en)
