@@ -44,27 +44,35 @@ regional_terms:
 
 # ---- News sources (all free / public, no key needed) ----
 sources:
-  reliefweb:
+  # Primary, reliable workhorse: Google News RSS (one feed per query).
+  google_news:
     enabled: true
-    country: "Mongolia"          # OCHA ReliefWeb country filter
-  gdelt:
-    enabled: true
-    # GDELT gives broad coverage; queries run separately and are merged:
+    hl: "en-US"
+    gl: "US"
     queries:
-      - "Mongolia"
+      - "Mongolia humanitarian"
+      - "Mongolia economy"
+      - "Mongolia politics government"
+      - "Mongolia dzud winter herders"
+      - "Mongolia mining coal exports"
+      - "Mongolia China Russia"
       - "Ulaanbaatar"
-      - "Mongolia mining"
-      - "Mongolia dzud"
-    max_records: 60
+  # Extra RSS feeds (keyword-filtered for relevance).
   rss_feeds:
-    # Add or remove feeds freely. Items are keyword-filtered for relevance.
     - name: "UN News"
       url: "https://news.un.org/feed/subscribe/en/news/all/rss.xml"
-    # Example Mongolian outlets (verify the exact feed URL before enabling):
-    # - name: "Montsame"
-    #   url: "https://montsame.mn/en/rss"
-    # - name: "The UB Post"
-    #   url: "https://theubposts.com/feed/"
+    # ReliefWeb via its public RSS (no appname needed). Verify the exact URL
+    # on reliefweb.int/country/mongolia before enabling:
+    # - name: "ReliefWeb Mongolia"
+    #   url: "https://reliefweb.int/country/mng/rss.xml"
+  # Best-effort extra. GDELT rate-limits shared cloud IPs, so it often returns
+  # nothing on GitHub — that's fine, the sources above carry the report.
+  gdelt:
+    enabled: true
+    queries:
+      - "Mongolia"
+      - "Mongolia dzud"
+    max_records: 40
 
 # ---- UN agencies used for tagging + the filter chips ----
 agencies:
