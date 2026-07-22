@@ -6,7 +6,7 @@
 <title>{{ site.title }} — {{ label }}</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{{ root }}style.css">
 </head>
 <body class="lang-en">
@@ -15,6 +15,13 @@
 
 <aside id="sidebar">
   <div class="side-brand">{{ site.title }}</div>
+
+  <div class="side-label"><span class="en">Sections</span><span class="mn">Хэсэг</span></div>
+  <nav class="side-nav">
+    <a href="{{ root }}index.html" class="active"><span class="en">The week</span><span class="mn">Долоо хоног</span></a>
+    <a href="{{ root }}media/index.html"><span class="en">{{ site.media_page_title }}</span><span class="mn">Хэвлэлд</span></a>
+  </nav>
+
   <div class="side-label"><span class="en">Archive</span><span class="mn">Архив</span></div>
   <nav>
     {% for w in archive %}
@@ -56,7 +63,7 @@
 
   {% for section in report.sections %}
   <section class="theme" data-theme>
-    <h3 class="theme-head"><span class="en">{{ section.theme }}</span><span class="mn">{{ section.theme_mn }}</span></h3>
+    <h3 class="theme-head"><span class="en">{{ section.category }}</span><span class="mn">{{ section.category_mn }}</span></h3>
     <div class="cards">
       {% for item in section['items'] %}
       <article class="card" data-agencies="{{ item.agencies | join('|') }}">
@@ -64,6 +71,7 @@
         <div class="card-foot">
           {% if item.url %}<a href="{{ item.url }}" target="_blank" rel="noopener">{{ item.source }}</a>{% else %}<span>{{ item.source }}</span>{% endif %}
           {% for ag in item.agencies %}<span class="tag">{{ ag }}</span>{% endfor %}
+          {% for t in item.tags %}<span class="tag soft">{{ t }}</span>{% endfor %}
         </div>
       </article>
       {% endfor %}
@@ -88,7 +96,7 @@
   {% endif %}
 
   <footer class="disclaimer">
-    <span class="en">Disclaimer: this monitor is a curated snapshot drawn from open-source media and institutional reports for internal situational awareness, generated using AI tools. The UN cannot vouch for the accuracy of third-party reports; inclusion does not imply endorsement or verification by the United Nations.</span>
+    <span class="en">Disclaimer: this monitor is a curated snapshot drawn from open-source media and institutional reports for internal situational awareness, generated using AI tools. The United Nations cannot vouch for the accuracy of third-party reports; inclusion does not imply endorsement or verification by the United Nations.</span>
     <span class="mn">Тайлбар: энэхүү тойм нь нээлттэй эх сурвалжийн мэдээлэлд тулгуурлан хиймэл оюун ухааны хэрэгсэл ашиглан бэлтгэсэн дотоод хэрэглээний танилцуулга юм. НҮБ гуравдагч талын мэдээллийн үнэн зөвийг баталгаажуулахгүй.</span>
   </footer>
 </main>

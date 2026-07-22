@@ -1,9 +1,12 @@
 """
 collect.py — gather the week's news from free public sources.
 
-No AI here, no API key. It queries Google News RSS (the reliable workhorse),
-any extra RSS feeds, and GDELT (best-effort), filters for relevance to
-Mongolia, deduplicates, and writes data/raw_news.json.
+No AI here, no API key. Sources come from the office's shared workbook
+(sources/sources.xlsx, sheet "sources"); if that file is missing it falls back
+to the list in config.yaml. It queries Google News RSS, any extra RSS feeds,
+and GDELT (best-effort), filters for relevance to Mongolia, deduplicates, and
+writes data/raw_news.json. Anything that fails is recorded in "issues" so it
+shows up in the Monday pull request instead of failing silently.
 
 Run locally:   python scripts/collect.py
 Output:        data/raw_news.json
@@ -16,14 +19,20 @@ import datetime as dt
 import urllib.parse
 import xml.etree.ElementTree as ET
 
+import sys
+
 import requests
 import yaml
+
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+import sources_loader as SL  # noqa: E402
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 CONFIG = yaml.safe_load((ROOT / "config.yaml").read_text(encoding="utf-8"))
 OUT = ROOT / "data" / "raw_news.json"
 
-HEADERS = {"User-Agent": "un-mongolia-weekly/1.0 (situational awareness)"}
+HEADERS = {"User-Agent": "mongolia-weekly/2.0 (situational awareness)"}
+ISSUES = []
 TIMEOUT = 30
 
 
@@ -47,15 +56,14 @@ def _parse_rss(content):
     return out
 
 
-def fetch_google_news():
-    cfg = CONFIG["sources"].get("google_news", {})
-    if not cfg.get("enabled"):
-        return []
-    hl, gl = cfg.get("hl", "en-US"), cfg.get("gl", "US")
+def fetch_google_news(queries):
+    """queries come from the shared workbook (sources sheet, type google_news)."""
     items = []
-    for query in cfg.get("queries", []):
+    for entry in queries:
+        query, lang = entry["query"], entry.get("language", "en")
+        hl, gl, ceid = ("mn-MN", "MN", "MN:mn") if lang == "mn" else ("en-US", "US", "US:en")
         q = urllib.parse.quote(query)
-        url = f"https://news.google.com/rss/search?q={q}&hl={hl}&gl={gl}&ceid={gl}:en"
+        url = f"https://news.google.com/rss/search?q={q}&hl={hl}&gl={gl}&ceid={ceid}"
         try:
             r = requests.get(url, headers=HEADERS, timeout=TIMEOUT)
             r.raise_for_status()
@@ -65,16 +73,18 @@ def fetch_google_news():
                 if " - " in title:
                     title, source = title.rsplit(" - ", 1)
                 items.append({"title": title, "url": link, "source": source,
-                              "published": pub, "snippet": desc[:600]})
+                              "published": pub, "snippet": desc[:600],
+                              "suggested_category": entry.get("category", "")})
         except Exception as e:
+            ISSUES.append(f"[sources] Google News search '{query}' failed: {e}")
             print(f"  [google-news:{query}] skipped: {e}")
         time.sleep(1)  # be polite
     return items
 
 
-def fetch_rss():
+def fetch_rss(feeds):
     items = []
-    for feed in CONFIG["sources"].get("rss_feeds", []):
+    for feed in feeds:
         try:
             r = requests.get(feed["url"], headers=HEADERS, timeout=TIMEOUT)
             r.raise_for_status()
@@ -82,8 +92,10 @@ def fetch_rss():
                 if not (_is_relevant(title) or _is_relevant(desc)):
                     continue
                 items.append({"title": title, "url": link, "source": feed["name"],
-                              "published": pub, "snippet": desc[:600]})
+                              "published": pub, "snippet": desc[:600],
+                              "suggested_category": feed.get("category", "")})
         except Exception as e:
+            ISSUES.append(f"[sources] feed '{feed['name']}' failed: {e}")
             print(f"  [rss:{feed['name']}] skipped: {e}")
     return items
 
@@ -133,18 +145,25 @@ def dedupe(items):
 
 def main():
     print("Collecting news...")
+    data, issues = SL.load_workbook_data()
+    ISSUES.extend(issues)
+    queries, feeds = SL.news_sources(data)
+    print(f"  {len(queries)} search(es) and {len(feeds)} feed(s) from the workbook")
+
     all_items = []
-    all_items += fetch_google_news()
-    all_items += fetch_rss()
+    all_items += fetch_google_news(queries)
+    all_items += fetch_rss(feeds)
     all_items += fetch_gdelt()
     all_items = dedupe(all_items)
 
     OUT.parent.mkdir(parents=True, exist_ok=True)   # <-- the fix: ensure data/ exists
     payload = {"collected_at": dt.datetime.now(dt.timezone.utc).isoformat(),
                "lookback_days": CONFIG["lookback_days"],
-               "count": len(all_items), "items": all_items}
+               "count": len(all_items), "issues": ISSUES, "items": all_items}
     OUT.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"Collected {len(all_items)} items -> {OUT.relative_to(ROOT)}")
+    for i in ISSUES[:15]:
+        print("  !", i)
 
 
 if __name__ == "__main__":

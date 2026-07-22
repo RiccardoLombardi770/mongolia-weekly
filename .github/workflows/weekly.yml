@@ -14,15 +14,16 @@ jobs:
   build-draft:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
 
       - name: Install dependencies
         run: pip install -r requirements.txt
 
+      # ---------- the weekly news report ----------
       - name: Collect news
         run: python scripts/collect.py
 
@@ -31,20 +32,38 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: python scripts/generate.py
 
+      # ---------- the "In the Media" page ----------
+      # Each step is allowed to fail without taking the report down with it.
+      - name: Update the index of our own publications
+        continue-on-error: true
+        run: python scripts/index_un.py
+
+      - name: Collect media mentions
+        continue-on-error: true
+        run: python scripts/collect_mentions.py
+
+      - name: Analyse mentions (tone, source matching, translation)
+        continue-on-error: true
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python scripts/generate_mentions.py
+
+      # ---------- open the review PR ----------
+      - name: Write the pull request summary
+        run: python scripts/pr_body.py
+
       - name: Open a review pull request
-        uses: peter-evans/create-pull-request@v6
+        uses: peter-evans/create-pull-request@v7
         with:
-          commit-message: "Weekly report draft"
+          commit-message: "Weekly draft: report + media mentions"
           branch: report/draft
           delete-branch: true
-          title: "Weekly report — ready for review"
-          body: |
-            An automated draft is ready. To publish:
-            1. Read the report JSON in the "Files changed" tab.
-            2. Fix any wording directly in the JSON if needed (edit the "en" / "mn" text fields).
-            3. Click "Merge pull request". The site rebuilds and goes live automatically.
+          title: "Mongolia Weekly — ready for review"
+          body-path: data/pr_body.md
           add-paths: |
             reports/*.json
-          # Uncomment and set your colleague's GitHub username so she is
-          # auto-requested as reviewer and gets an email each week:
+            mentions/*.json
+            index/*.json
+          # Set your colleague's GitHub username so she is auto-requested as
+          # reviewer and gets an email every Monday:
           # reviewers: her-github-username

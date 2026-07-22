@@ -1,27 +1,34 @@
 # ============================================================
-#  UN Mongolia Weekly — central configuration
-#  Edit this file to change sources, agencies, themes, model.
-#  You almost never need to touch the Python scripts.
+#  Mongolia Weekly — central configuration
+#  Most day-to-day changes (sources, outlets, names, glossary)
+#  now live in sources/sources.xlsx, not here.
 # ============================================================
 
 site:
-  title: "UN Mongolia Weekly"
-  subtitle: "Media Insights"
-  # Public URL once GitHub Pages is on (used only for nice links / sharing):
+  title: "Mongolia Weekly"
+  subtitle: "Media and news monitoring — UN Mongolia"
+  media_page_title: "In the Media"
   base_url: ""
 
-# How many days back each weekly run looks:
 lookback_days: 7
 
 # ---- Model & self-review loop ----
-model: "claude-sonnet-5"          # cheap + strong. Fallback: "claude-haiku-4-5-20251001"
+model: "claude-sonnet-5"
 max_output_tokens: 16000
-max_items_to_model: 120           # trim the candidate list before drafting (cost + reliability)
+max_items_to_model: 120
 review:
-  confidence_threshold: 90        # stop the self-review loop at/above this score
-  max_iterations: 3               # hard cap so it never loops forever
+  confidence_threshold: 90
+  max_iterations: 3
 
-# ---- What counts as "about Mongolia" (domestic layer) ----
+# ---- The shared workbook (single source of truth for sources) ----
+# The colleague edits this file in Excel and re-uploads it to GitHub.
+# To move to a Google Sheet later, just set workbook_csv_urls below
+# (File > Share > Publish to web > CSV, one URL per sheet).
+workbook:
+  path: "sources/sources.xlsx"
+  csv_urls: {}      # e.g. sources: "https://docs.google.com/.../pub?gid=0&single=true&output=csv"
+
+# ---- What counts as "about Mongolia" ----
 mongolia_terms:
   - Mongolia
   - Mongolian
@@ -31,10 +38,9 @@ mongolia_terms:
   - Gobi
   - Oyu Tolgoi
   - Erdenet
-  - khural       # parliament
-  - tugrik       # currency
+  - khural
+  - tugrik
 
-# ---- The "external but relevant to Mongolia" layer ----
 regional_terms:
   - "Mongolia China trade"
   - "Mongolia Russia"
@@ -43,9 +49,8 @@ regional_terms:
   - "Mongolia border transit"
   - "Central Asia dzud"
 
-# ---- News sources (all free / public, no key needed) ----
+# ---- Fallback sources, used only if the workbook is missing/empty ----
 sources:
-  # Primary, reliable workhorse: Google News RSS (one feed per query).
   google_news:
     enabled: true
     hl: "en-US"
@@ -58,16 +63,9 @@ sources:
       - "Mongolia mining coal exports"
       - "Mongolia China Russia"
       - "Ulaanbaatar"
-  # Extra RSS feeds (keyword-filtered for relevance).
   rss_feeds:
     - name: "UN News"
       url: "https://news.un.org/feed/subscribe/en/news/all/rss.xml"
-    # ReliefWeb via its public RSS (no appname needed). Verify the exact URL
-    # on reliefweb.int/country/mongolia before enabling:
-    # - name: "ReliefWeb Mongolia"
-    #   url: "https://reliefweb.int/country/mng/rss.xml"
-  # Best-effort extra. GDELT rate-limits shared cloud IPs, so it often returns
-  # nothing on GitHub — that's fine, the sources above carry the report.
   gdelt:
     enabled: true
     queries:
@@ -75,7 +73,7 @@ sources:
       - "Mongolia dzud"
     max_records: 40
 
-# ---- UN agencies used for tagging + the filter chips ----
+# ---- UN agencies used for tagging + filter chips ----
 agencies:
   - UNDP
   - UNICEF
@@ -90,11 +88,82 @@ agencies:
   - OHCHR
   - UNEP
 
-# ---- Thematic sections (order = display order) ----
-themes:
-  - "Humanitarian & Protection"
-  - "Politics & Governance"
-  - "Economy & Development"
-  - "Climate & Environment"
+# ---- The four categories (order = display order) ----
+categories:
+  - "Economy and Development"
+  - "Politics, Governance and Diplomacy"
+  - "Environment and Climate Change"
+  - "Social and Humanitarian"
+
+# Secondary tags a story can also carry (shown on the card, not a section)
+secondary_tags:
+  - "Mining"
+  - "Trade"
   - "Health"
-  - "Regional Dynamics"
+  - "Education"
+  - "Gender"
+  - "Migration"
+  - "Air quality"
+  - "Dzud"
+  - "Regional relations"
+
+# ---- UN Editorial Manual style ----
+style:
+  un_editorial: true
+  # Deterministic linter fixes what can be fixed mechanically; the rest is
+  # handled in the prompts. Set to false to disable the linter only.
+  linter: true
+  # These are never auto-changed; they are flagged in the pull request
+  # so the office decides case by case.
+  flag_only_terms:
+    - Taiwan
+    - Kosovo
+    - Palestine
+    - Palestinian
+    - Western Sahara
+    - Crimea
+    - Nagorno-Karabakh
+    - Abkhazia
+    - South Ossetia
+
+# ============================================================
+#  MEDIA MONITORING ("In the Media" page)
+# ============================================================
+media_monitoring:
+  enabled: true
+  # How far back the index of our own publications reaches, in days.
+  un_index_days: 180
+  # Fetch the full article text (needed for tone + source matching).
+  fetch_full_text: true
+  fetch_timeout: 25
+  max_articles_to_fetch: 60
+  # Back-link matching: below this confidence the source is shown as
+  # "not identified" rather than guessed.
+  match_min_confidence: 60
+  # Model adjudication of the top-N deterministic candidates.
+  match_candidates: 3
+  tone_labels: ["Supportive", "Neutral", "Critical"]
+  mention_types:
+    - "Statement cited"
+    - "Data or report cited"
+    - "Event coverage"
+    - "Direct criticism"
+    - "Passing reference"
+  prominence_levels: ["Headline", "Lead paragraph", "Body", "Passing"]
+  # Fallback UN domains if the workbook has no un_sites sheet.
+  un_domains:
+    - mongolia.un.org
+    - un.org
+    - unicef.org
+    - undp.org
+    - who.int
+    - wfp.org
+    - iom.int
+    - unfpa.org
+    - fao.org
+    - unesco.org
+    - ilo.org
+    - unwomen.org
+    - ohchr.org
+    - unep.org
+    - reliefweb.int

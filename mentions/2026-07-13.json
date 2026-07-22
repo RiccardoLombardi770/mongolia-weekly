@@ -1,0 +1,246 @@
+{
+  "week_start": "2026-07-13",
+  "week_end": "2026-07-19",
+  "generated_at": "2026-07-20T00:12:00Z",
+  "confidence": 93,
+  "overview": {
+    "en": "Illustrative sample only — this page fills with real mentions after the first Monday run. 6 mentions across 6 outlets; 2 supportive, 3 neutral, 1 critical; the underlying United Nations publication was identified for 4 of them.",
+    "mn": "Зөвхөн жишээ загвар. Эхний ажиллагааны дараа бодит мэдээллээр солигдоно."
+  },
+  "issues": [
+    "[roster] no names filled in yet"
+  ],
+  "style_flags": [],
+  "mentions": [
+    {
+      "id": "m001",
+      "outlet": "Example News Agency",
+      "outlet_domain": "example-agency.mn",
+      "known_outlet": true,
+      "language": "mn",
+      "published": "2026-07-16",
+      "title": "НҮБ-ын тайланд Монголын бэлчээрийн доройтлыг онцоллоо",
+      "url": "https://example-agency.mn/example",
+      "summary": {
+        "en": "The state news agency reports the findings of a United Nations assessment on pasture degradation, quoting the figure of 76 per cent of rangeland affected. (Illustrative sample.)",
+        "mn": "Төрийн мэдээллийн агентлаг НҮБ-ын үнэлгээний дүнг иш татав. (Жишээ загвар.)"
+      },
+      "tone": "Neutral",
+      "tone_note": {
+        "en": "reports our figures without comment",
+        "mn": "тоо баримтыг тайлбаргүй нийтэлсэн"
+      },
+      "mention_type": "Data or report cited",
+      "prominence": "Headline",
+      "agencies": [
+        "FAO",
+        "UNDP"
+      ],
+      "officials": [],
+      "un_source": {
+        "matched": true,
+        "method": "explicit_link",
+        "confidence": 100,
+        "title": "Rangeland health assessment 2026",
+        "url": "https://mongolia.un.org/en/example",
+        "date": "2026-07-14",
+        "agency": "UNDP",
+        "reason": "",
+        "evidence": [
+          "the article links directly to this page"
+        ]
+      }
+    },
+    {
+      "id": "m002",
+      "outlet": "Example Daily",
+      "outlet_domain": "example-daily.mn",
+      "known_outlet": true,
+      "language": "mn",
+      "published": "2026-07-17",
+      "title": "Хүүхдийн тэтгэмжийн шинэчлэл: НҮБ юу зөвлөж байна вэ?",
+      "url": "https://example-daily.mn/example",
+      "summary": {
+        "en": "An analysis of the child benefit reform draws on UNICEF recommendations, presenting them favourably against the government's current design. (Illustrative sample.)",
+        "mn": "Хүүхдийн мөнгөний шинэчлэлийн талаарх шинжилгээ. (Жишээ загвар.)"
+      },
+      "tone": "Supportive",
+      "tone_note": {
+        "en": "presents our recommendations as the benchmark",
+        "mn": "зөвлөмжийг жишиг болгон авч үзсэн"
+      },
+      "mention_type": "Data or report cited",
+      "prominence": "Lead paragraph",
+      "agencies": [
+        "UNICEF"
+      ],
+      "officials": [],
+      "un_source": {
+        "matched": true,
+        "method": "inferred",
+        "confidence": 78,
+        "title": "Child benefit reform options for Mongolia",
+        "url": "https://www.unicef.org/mongolia/example",
+        "date": "2026-06-30",
+        "agency": "UNICEF",
+        "reason": "the article repeats the 41,300 figure and the three reform options in the same order",
+        "evidence": [
+          "shared figures: 41300, 2026",
+          "published 17 day(s) before the article"
+        ]
+      }
+    },
+    {
+      "id": "m003",
+      "outlet": "Example Post",
+      "outlet_domain": "example-post.mn",
+      "known_outlet": true,
+      "language": "en",
+      "published": "2026-07-15",
+      "title": "Air quality plan slips again as heating season nears",
+      "url": "https://example-post.mn/example",
+      "summary": {
+        "en": "A critical piece on the pace of the air quality programme, arguing that international partners including the United Nations have set targets without a delivery mechanism. (Illustrative sample.)",
+        "mn": "Агаарын чанарын хөтөлбөрийн явцыг шүүмжилсэн нийтлэл. (Жишээ загвар.)"
+      },
+      "tone": "Critical",
+      "tone_note": {
+        "en": "questions whether our targets are matched by delivery",
+        "mn": "зорилтын хэрэгжилтэд эргэлзсэн"
+      },
+      "mention_type": "Direct criticism",
+      "prominence": "Body",
+      "agencies": [
+        "UNEP",
+        "WHO"
+      ],
+      "officials": [],
+      "un_source": {
+        "matched": false,
+        "method": "none",
+        "confidence": 34,
+        "title": "",
+        "url": "",
+        "date": "",
+        "agency": "",
+        "reason": "no candidate publication shares the figures or dates used in the article",
+        "evidence": []
+      }
+    },
+    {
+      "id": "m004",
+      "outlet": "Example Online",
+      "outlet_domain": "example-online.mn",
+      "known_outlet": true,
+      "language": "mn",
+      "published": "2026-07-14",
+      "title": "Зудын эрсдэлийн урьдчилсан мэдээ",
+      "url": "https://example-online.mn/example",
+      "summary": {
+        "en": "Coverage of the joint early warning briefing on dzud risk, reporting the forecast and the preparedness measures announced. (Illustrative sample.)",
+        "mn": "Зудын эрт сэрэмжлүүлгийн уулзалтын мэдээлэл. (Жишээ загвар.)"
+      },
+      "tone": "Neutral",
+      "tone_note": {
+        "en": "straight reporting of the briefing",
+        "mn": "уулзалтыг шууд мэдээлсэн"
+      },
+      "mention_type": "Event coverage",
+      "prominence": "Headline",
+      "agencies": [
+        "WFP",
+        "FAO"
+      ],
+      "officials": [],
+      "un_source": {
+        "matched": true,
+        "method": "explicit_link",
+        "confidence": 95,
+        "title": "",
+        "url": "https://reliefweb.int/example",
+        "date": "",
+        "agency": "reliefweb.int",
+        "reason": "",
+        "evidence": [
+          "the article links to this United Nations page (not yet in our index)"
+        ]
+      }
+    },
+    {
+      "id": "m005",
+      "outlet": "Example Wire",
+      "outlet_domain": "example-wire.com",
+      "known_outlet": true,
+      "language": "en",
+      "published": "2026-07-18",
+      "title": "Mongolia coal exports steady as border capacity expands",
+      "url": "https://example-wire.com/example",
+      "summary": {
+        "en": "A market report on coal shipments that cites United Nations trade data in a single sentence. (Illustrative sample.)",
+        "mn": "Нүүрсний экспортын тухай мэдээлэл. (Жишээ загвар.)"
+      },
+      "tone": "Neutral",
+      "tone_note": {
+        "en": "single factual citation",
+        "mn": "нэг удаагийн иш татлага"
+      },
+      "mention_type": "Passing reference",
+      "prominence": "Passing",
+      "agencies": [],
+      "officials": [],
+      "un_source": {
+        "matched": false,
+        "method": "none",
+        "confidence": 18,
+        "title": "",
+        "url": "",
+        "date": "",
+        "agency": "",
+        "reason": "the data cited is global and not traceable to a country publication",
+        "evidence": []
+      }
+    },
+    {
+      "id": "m006",
+      "outlet": "Example Times",
+      "outlet_domain": "example-times.mn",
+      "known_outlet": true,
+      "language": "mn",
+      "published": "2026-07-19",
+      "title": "Жендэрийн тэгш байдлын илтгэл хэлэлцэв",
+      "url": "https://example-times.mn/example",
+      "summary": {
+        "en": "Report on a parliamentary hearing where the United Nations Resident Coordinator presented findings on gender equality. (Illustrative sample.)",
+        "mn": "НҮБ-ын суурин зохицуулагчийн илтгэлийн тухай. (Жишээ загвар.)"
+      },
+      "tone": "Supportive",
+      "tone_note": {
+        "en": "presents the findings approvingly",
+        "mn": "дүгнэлтийг эерэгээр хүлээж авсан"
+      },
+      "mention_type": "Statement cited",
+      "prominence": "Lead paragraph",
+      "agencies": [
+        "UN Women",
+        "UNFPA"
+      ],
+      "officials": [
+        "Resident Coordinator"
+      ],
+      "un_source": {
+        "matched": true,
+        "method": "inferred",
+        "confidence": 66,
+        "title": "Gender equality snapshot, Mongolia 2026",
+        "url": "https://mongolia.un.org/en/example2",
+        "date": "2026-07-08",
+        "agency": "UNRCO",
+        "reason": "the two statistics quoted appear only in this publication",
+        "evidence": [
+          "shared figures: 62, 2026",
+          "published 11 day(s) before the article"
+        ]
+      }
+    }
+  ]
+}

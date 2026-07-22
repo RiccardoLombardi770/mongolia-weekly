@@ -2,33 +2,43 @@
 generate.py — turn raw_news.json into a structured, reviewed report.
 
 Pipeline:
-  1. DRAFT   — Claude writes the English report as structured JSON.
-  2. REVIEW  — a critic pass scores it 0-100 and lists issues;
-               Claude revises; repeat until score >= threshold
-               or max_iterations is reached (the self-review loop).
-  3. TRANSLATE — the final English is translated into Mongolian.
-  4. SAVE    — reports/<week_start>.json  (source of truth for the site)
+  1. DRAFT     — Claude writes the English report as structured JSON, sorted
+                 into the four categories set in config.yaml.
+  2. REVIEW    — a critic pass scores it 0-100 and lists issues; Claude
+                 revises; repeat until the score reaches the threshold or
+                 max_iterations is hit (the self-review loop).
+  3. STYLE     — the deterministic UN Editorial Manual linter runs over the
+                 English, and flags politically sensitive names for the human
+                 reviewer instead of deciding them itself.
+  4. TRANSLATE — the final English becomes Mongolian, using the office
+                 glossary from the shared workbook.
+  5. SAVE      — reports/<week_start>.json (source of truth for the site)
 
 Needs the ANTHROPIC_API_KEY environment variable.
-Run locally:   python scripts/generate.py
 """
 
 import json
 import os
 import re
+import sys
 import pathlib
 import datetime as dt
 
 import yaml
 from anthropic import Anthropic
 
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+import sources_loader as SL                          # noqa: E402
+from un_style import lint_object, STYLE_PROMPT       # noqa: E402
+
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 CONFIG = yaml.safe_load((ROOT / "config.yaml").read_text(encoding="utf-8"))
 RAW = ROOT / "data" / "raw_news.json"
 
-client = Anthropic()  # reads ANTHROPIC_API_KEY from the environment
+client = Anthropic()
 MODEL = CONFIG["model"]
 MAXTOK = CONFIG["max_output_tokens"]
+CATEGORIES = CONFIG["categories"]
 
 
 # ---------- helpers ----------
@@ -53,10 +63,30 @@ def parse_json(text):
 # ---------- prompts (tune these to change tone / structure) ----------
 
 STRUCTURE_NOTE = f"""
-Themes (use only those with real content this week, in this order):
-{json.dumps(CONFIG['themes'], ensure_ascii=False)}
+CATEGORIES — every item goes in exactly one. Use only categories with real content
+this week, in this order:
+{json.dumps(CATEGORIES, ensure_ascii=False)}
 
-UN agencies for tagging each item (0-3 that would plausibly care):
+What belongs where:
+- "Economy and Development": macroeconomy, budget, currency, trade, mining and
+  commodities, investment, infrastructure, employment, development finance and
+  development cooperation projects.
+- "Politics, Governance and Diplomacy": parliament and government, elections, law
+  and justice, public administration, corruption, foreign policy, bilateral and
+  multilateral relations, treaties and summits.
+- "Environment and Climate Change": climate policy and finance, emissions, air
+  quality, water, desertification and land degradation, biodiversity, mining's
+  environmental dimension, disaster risk and preparedness.
+- "Social and Humanitarian": dzud and its effects on herder households, food
+  security, health, education, social protection, gender, migration and
+  displacement, human rights, humanitarian response and needs.
+If a story straddles two categories, choose the one carrying its main news value
+and record the other as a secondary tag.
+
+SECONDARY TAGS (0-2 per item, drawn only from this list, shown on the card):
+{json.dumps(CONFIG.get('secondary_tags', []), ensure_ascii=False)}
+
+UN AGENCIES for tagging each item (0-3 that would plausibly care):
 {json.dumps(CONFIG['agencies'], ensure_ascii=False)}
 
 Return ONLY valid JSON with this exact shape:
@@ -64,47 +94,63 @@ Return ONLY valid JSON with this exact shape:
   "week_start": "YYYY-MM-DD", "week_end": "YYYY-MM-DD",
   "insights": ["4-6 short bullet strings summarising the week"],
   "sections": [
-    {{"theme": "<one of the themes>",
+    {{"category": "<one of the categories>",
       "items": [
         {{"text": "one curated paragraph, ~2-4 sentences, source named in-line",
           "source": "<outlet>", "url": "<link>",
-          "agencies": ["WFP", "IOM"]}}
+          "agencies": ["WFP", "IOM"], "tags": ["Dzud"]}}
       ]}}
   ],
   "also_noted": [
     {{"text": "weaker/minor item, one sentence", "source": "<outlet>",
-      "url": "<link>", "agencies": []}}
+      "url": "<link>", "agencies": [], "tags": []}}
   ]
 }}
 """
 
-DRAFT_SYSTEM = f"""You are a senior analyst producing a weekly media-insights brief for
-the UN Resident Coordinator's Office in Mongolia. Audience: UN staff needing situational
-awareness. Cover Mongolia domestically PLUS external developments that matter to Mongolia
-(China/Russia ties, coal/commodity prices, mining, regional climate/dzud).
+DRAFT_SYSTEM = f"""You are a senior analyst producing a weekly media brief on Mongolia for
+the United Nations Resident Coordinator's Office in Mongolia. Audience: United Nations staff
+needing situational awareness. The brief covers Mongolia broadly — it is not limited to
+United Nations activity — and includes external developments that matter to Mongolia
+(relations with China and the Russian Federation, coal and commodity prices, mining,
+regional climate and dzud conditions).
 
 Rules:
-- Curate, don't dump. Group by theme; write one tight paragraph per item in the measured,
+- Curate, don't dump. Group by category; write one tight paragraph per item in the measured,
   neutral register of an institutional brief. Always name the source outlet.
 - Do NOT pad. If an item is weak, minor, or thinly sourced, put it in "also_noted", never in
   a main section. Better a short brief than a padded one.
 - Never invent facts, numbers, quotes, or sources. If the material is thin, say less.
-- Tag each item with the UN agencies most likely to care (0-3), for the reader's filter.
+- Tag each item with the United Nations agencies most likely to care (0-3), for the reader's
+  filter.
+{STYLE_PROMPT}
 {STRUCTURE_NOTE}"""
 
-REVIEW_SYSTEM = """You are a rigorous editor reviewing a UN media brief before human sign-off.
-Check: (1) every item names a source; (2) nothing looks invented or exaggerated beyond the
-inputs; (3) weak/minor items are in also_noted, not main sections; (4) neutral institutional
-tone; (5) agency tags are plausible; (6) no padding.
-Return ONLY JSON: {"confidence": <0-100>, "issues": ["specific, actionable fixes"]}.
+REVIEW_SYSTEM = f"""You are a rigorous editor reviewing a United Nations media brief before
+human sign-off. Check: (1) every item names a source; (2) nothing looks invented or
+exaggerated beyond the inputs; (3) weak or minor items are in also_noted, not main sections;
+(4) neutral institutional tone; (5) every item sits in the right category, and the category
+name is exactly one of {json.dumps(CATEGORIES, ensure_ascii=False)}; (6) agency tags are
+plausible; (7) no padding; (8) UN Editorial Manual style is respected — UN short-form country
+names, "14 July 2026" dates, "per cent", British spellings with -ize endings.
+Return ONLY JSON: {{"confidence": <0-100>, "issues": ["specific, actionable fixes"]}}.
 Score honestly; 90+ means genuinely ready for a human reviewer."""
 
-REVISE_SYSTEM = DRAFT_SYSTEM + "\nRevise the draft to resolve the listed issues. Return the full corrected JSON only."
+REVISE_SYSTEM = DRAFT_SYSTEM + \
+    "\nRevise the draft to resolve the listed issues. Return the full corrected JSON only."
 
-TRANSLATE_SYSTEM = """You are a professional English-to-Mongolian (Cyrillic) translator.
-Translate every human-readable string (insights, theme names, item text) into natural
-Mongolian. Keep source names, URLs, agency codes and the JSON structure/keys unchanged.
-Return ONLY the translated JSON with the same shape."""
+
+def translate_system(glossary):
+    gloss = ""
+    if glossary:
+        pairs = "\n".join(f"  {k} = {v}" for k, v in list(glossary.items())[:80])
+        gloss = ("\nUse this office glossary verbatim; do not re-translate these terms:\n"
+                 + pairs)
+    return ("You are a professional English-to-Mongolian (Cyrillic) translator working for a "
+            "United Nations office. Translate every human-readable string (insights, category "
+            "names, item text) into natural, formal Mongolian. Keep source names, URLs, agency "
+            "acronyms, tags and the JSON structure and keys unchanged. Return ONLY the "
+            "translated JSON with the same shape." + gloss)
 
 
 # ---------- pipeline ----------
@@ -141,9 +187,67 @@ def review_loop(report):
     return report
 
 
-def translate(report_en):
-    mn = parse_json(call(TRANSLATE_SYSTEM, json.dumps(report_en, ensure_ascii=False)))
-    # Merge EN + MN into one bilingual document the site can toggle.
+# Safety net: the prompt asks for the four categories, but if the model returns a
+# near-miss or an old theme name we route it rather than dumping it in Also noted.
+FALLBACK_MAP = {
+    "humanitarian": "Social and Humanitarian",
+    "protection": "Social and Humanitarian",
+    "health": "Social and Humanitarian",
+    "social": "Social and Humanitarian",
+    "human rights": "Social and Humanitarian",
+    "education": "Social and Humanitarian",
+    "migration": "Social and Humanitarian",
+    "politics": "Politics, Governance and Diplomacy",
+    "governance": "Politics, Governance and Diplomacy",
+    "diplomacy": "Politics, Governance and Diplomacy",
+    "foreign": "Politics, Governance and Diplomacy",
+    "regional": "Politics, Governance and Diplomacy",
+    "security": "Politics, Governance and Diplomacy",
+    "economy": "Economy and Development",
+    "economic": "Economy and Development",
+    "development": "Economy and Development",
+    "trade": "Economy and Development",
+    "mining": "Economy and Development",
+    "finance": "Economy and Development",
+    "climate": "Environment and Climate Change",
+    "environment": "Environment and Climate Change",
+    "energy": "Environment and Climate Change",
+    "disaster": "Environment and Climate Change",
+}
+
+
+def normalise_categories(report):
+    """Route anything the model wrote outside the four categories."""
+    fixed, unknown = [], []
+    for s in report.get("sections", []):
+        name = (s.get("category") or s.get("theme") or "").strip()
+        low = name.lower()
+        match = next((c for c in CATEGORIES if c.lower() == low), None)
+        if not match:
+            match = next((c for c in CATEGORIES if low and low in c.lower()), None)
+        if not match:
+            for key, target in FALLBACK_MAP.items():
+                if key in low:
+                    match = target
+                    unknown.append(f"{name} -> {target}")
+                    break
+        if match:
+            s["category"] = match
+            fixed.append(s)
+        else:
+            unknown.append(f"{name or '(unnamed)'} -> Also noted")
+            report.setdefault("also_noted", []).extend(s.get("items", []))
+    # merge duplicates and apply the configured display order
+    merged = {}
+    for s in fixed:
+        merged.setdefault(s["category"], {"category": s["category"], "items": []})
+        merged[s["category"]]["items"] += s.get("items", [])
+    report["sections"] = [merged[c] for c in CATEGORIES if c in merged]
+    return report, unknown
+
+
+def translate(report_en, glossary):
+    mn = parse_json(call(translate_system(glossary), json.dumps(report_en, ensure_ascii=False)))
     out = {
         "week_start": report_en["week_start"], "week_end": report_en["week_end"],
         "generated_at": dt.datetime.now(dt.timezone.utc).isoformat(),
@@ -151,19 +255,23 @@ def translate(report_en):
         "insights": [{"en": e, "mn": m} for e, m in
                      zip(report_en["insights"], mn.get("insights", report_en["insights"]))],
         "sections": [], "also_noted": [],
+        "style_flags": report_en.get("style_flags", []),
+        "issues": report_en.get("issues", []),
     }
     for s_en, s_mn in zip(report_en["sections"], mn.get("sections", report_en["sections"])):
         out["sections"].append({
-            "theme": s_en["theme"], "theme_mn": s_mn.get("theme", s_en["theme"]),
+            "category": s_en["category"],
+            "category_mn": s_mn.get("category", s_en["category"]),
             "items": [{"en": ie["text"], "mn": im.get("text", ie["text"]),
-                       "source": ie["source"], "url": ie["url"], "agencies": ie.get("agencies", [])}
+                       "source": ie.get("source", ""), "url": ie.get("url", ""),
+                       "agencies": ie.get("agencies", []), "tags": ie.get("tags", [])}
                       for ie, im in zip(s_en["items"], s_mn.get("items", s_en["items"]))],
         })
     for ie, im in zip(report_en.get("also_noted", []),
                       mn.get("also_noted", report_en.get("also_noted", []))):
-        out["also_noted"].append({"en": ie["text"], "mn": im.get("text", ie["text"]),
-                                  "source": ie["source"], "url": ie["url"],
-                                  "agencies": ie.get("agencies", [])})
+        out["also_noted"].append({"en": ie.get("text", ""), "mn": im.get("text", ie.get("text", "")),
+                                  "source": ie.get("source", ""), "url": ie.get("url", ""),
+                                  "agencies": ie.get("agencies", []), "tags": ie.get("tags", [])})
     return out
 
 
@@ -175,7 +283,6 @@ def main():
         print("No news collected this run; skipping report generation (no PR will open).")
         return
 
-    # Trim to keep input manageable, cheaper, and reliable.
     cap = CONFIG.get("max_items_to_model", 120)
     items = raw.get("items", [])[:cap]
     for it in items:
@@ -186,9 +293,29 @@ def main():
 
     report_en = draft(raw)
     report_en = review_loop(report_en)
-    report = translate(report_en)
+    report_en, unknown = normalise_categories(report_en)
+    if unknown:
+        print(f"  moved items from unrecognised categor(ies) to Also noted: {unknown}")
+
+    data, wb_issues = SL.load_workbook_data()
+    report_en["issues"] = list(raw.get("issues", [])) + wb_issues
+    if unknown:
+        report_en["issues"].append(
+            "the model produced categor(ies) outside the four configured, rerouted as: "
+            + "; ".join(unknown))
+
+    if CONFIG.get("style", {}).get("linter", True):
+        report_en, changes, flags = lint_object(
+            report_en, protected=SL.protected_names(data),
+            flag_terms=CONFIG.get("style", {}).get("flag_only_terms", []))
+        report_en["style_flags"] = [{"term": t, "context": c} for t, c in flags]
+        print(f"  style linter applied {len(changes)} correction(s), "
+              f"{len(flags)} term(s) flagged for review")
+
+    report = translate(report_en, SL.glossary(data))
 
     out_path = ROOT / "reports" / f"{report['week_start']}.json"
+    out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"Saved {out_path.relative_to(ROOT)} (confidence {report['confidence']})")
 

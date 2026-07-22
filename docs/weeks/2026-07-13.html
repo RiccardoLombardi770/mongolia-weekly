@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>UN Mongolia Weekly — 13–19 Jul 2026</title>
+<title>Mongolia Weekly — 13–19 Jul 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../style.css">
 </head>
 <body class="lang-en">
@@ -14,11 +14,16 @@
 <button id="menu-btn" aria-label="Toggle archive"><span></span><span></span><span></span></button>
 
 <aside id="sidebar">
-  <div class="side-brand">UN Mongolia Weekly</div>
+  <div class="side-brand">Mongolia Weekly</div>
+
+  <div class="side-label"><span class="en">Sections</span><span class="mn">Хэсэг</span></div>
+  <nav class="side-nav">
+    <a href="../index.html" class="active"><span class="en">The week</span><span class="mn">Долоо хоног</span></a>
+    <a href="../media/index.html"><span class="en">In the Media</span><span class="mn">Хэвлэлд</span></a>
+  </nav>
+
   <div class="side-label"><span class="en">Archive</span><span class="mn">Архив</span></div>
   <nav>
-    
-    <a href="../weeks/2026-07-14.html" class="">14–21 Jul 2026</a>
     
     <a href="../weeks/2026-07-13.html" class="active">13–19 Jul 2026</a>
     
@@ -31,8 +36,8 @@
       <button data-lang="en" class="active">EN</button>
       <button data-lang="mn">MN</button>
     </div>
-    <div class="title">UN Mongolia Weekly</div>
-    <div class="tagline">Media Insights · 13–19 Jul 2026</div>
+    <div class="title">Mongolia Weekly</div>
+    <div class="tagline">Media and news monitoring — UN Mongolia · 13–19 Jul 2026</div>
   </header>
 
   
@@ -84,22 +89,7 @@
 
   
   <section class="theme" data-theme>
-    <h3 class="theme-head"><span class="en">Humanitarian & Protection</span><span class="mn">Хүмүүнлэг ба хамгаалал</span></h3>
-    <div class="cards">
-      
-      <article class="card" data-agencies="WFP|IOM|FAO">
-        <p><span class="en">Herder families in Zavkhan province are reporting early winter stress as fodder reserves thin, prompting local authorities to pre-position feed. Aid actors are monitoring pasture indicators closely. (Illustrative sample.)</span><span class="mn">Завхан аймгийн малчин өрхүүд тэжээлийн нөөц багассанаар өвлийн эхэн үеийн хүндрэлийг мэдээлж байна. (Жишээ загвар.)</span></p>
-        <div class="card-foot">
-          <a href="https://example.org/1" target="_blank" rel="noopener">Montsame</a>
-          <span class="tag">WFP</span><span class="tag">IOM</span><span class="tag">FAO</span>
-        </div>
-      </article>
-      
-    </div>
-  </section>
-  
-  <section class="theme" data-theme>
-    <h3 class="theme-head"><span class="en">Economy & Development</span><span class="mn">Эдийн засаг ба хөгжил</span></h3>
+    <h3 class="theme-head"><span class="en">Economy and Development</span><span class="mn">Эдийн засаг ба хөгжил</span></h3>
     <div class="cards">
       
       <article class="card" data-agencies="UNDP">
@@ -107,6 +97,7 @@
         <div class="card-foot">
           <a href="https://example.org/2" target="_blank" rel="noopener">Reuters</a>
           <span class="tag">UNDP</span>
+          
         </div>
       </article>
       
@@ -114,13 +105,30 @@
   </section>
   
   <section class="theme" data-theme>
-    <h3 class="theme-head"><span class="en">Regional Dynamics</span><span class="mn">Бүс нутгийн харилцаа</span></h3>
+    <h3 class="theme-head"><span class="en">Politics, Governance and Diplomacy</span><span class="mn">Бүс нутгийн харилцаа</span></h3>
     <div class="cards">
       
       <article class="card" data-agencies="">
         <p><span class="en">Cross-border transit discussions with China resumed after winter delays, with both sides signalling interest in smoother mineral logistics. (Illustrative sample.)</span><span class="mn">Хилийн дамжин өнгөрөх тээврийн хэлэлцээ өвлийн саатлын дараа сэргэж, эрдэс баялгийн логистикийг сайжруулах сонирхлоо талууд илэрхийллээ. (Жишээ загвар.)</span></p>
         <div class="card-foot">
           <a href="https://example.org/3" target="_blank" rel="noopener">South China Morning Post</a>
+          
+          
+        </div>
+      </article>
+      
+    </div>
+  </section>
+  
+  <section class="theme" data-theme>
+    <h3 class="theme-head"><span class="en">Social and Humanitarian</span><span class="mn">Хүмүүнлэг ба хамгаалал</span></h3>
+    <div class="cards">
+      
+      <article class="card" data-agencies="WFP|IOM|FAO">
+        <p><span class="en">Herder families in Zavkhan province are reporting early winter stress as fodder reserves thin, prompting local authorities to pre-position feed. Aid actors are monitoring pasture indicators closely. (Illustrative sample.)</span><span class="mn">Завхан аймгийн малчин өрхүүд тэжээлийн нөөц багассанаар өвлийн эхэн үеийн хүндрэлийг мэдээлж байна. (Жишээ загвар.)</span></p>
+        <div class="card-foot">
+          <a href="https://example.org/1" target="_blank" rel="noopener">Montsame</a>
+          <span class="tag">WFP</span><span class="tag">IOM</span><span class="tag">FAO</span>
           
         </div>
       </article>
@@ -146,7 +154,7 @@
   
 
   <footer class="disclaimer">
-    <span class="en">Disclaimer: this monitor is a curated snapshot drawn from open-source media and institutional reports for internal situational awareness, generated using AI tools. The UN cannot vouch for the accuracy of third-party reports; inclusion does not imply endorsement or verification by the United Nations.</span>
+    <span class="en">Disclaimer: this monitor is a curated snapshot drawn from open-source media and institutional reports for internal situational awareness, generated using AI tools. The United Nations cannot vouch for the accuracy of third-party reports; inclusion does not imply endorsement or verification by the United Nations.</span>
     <span class="mn">Тайлбар: энэхүү тойм нь нээлттэй эх сурвалжийн мэдээлэлд тулгуурлан хиймэл оюун ухааны хэрэгсэл ашиглан бэлтгэсэн дотоод хэрэглээний танилцуулга юм. НҮБ гуравдагч талын мэдээллийн үнэн зөвийг баталгаажуулахгүй.</span>
   </footer>
 </main>

@@ -1,9 +1,11 @@
-# UN Mongolia Weekly — guida passo-passo (versione GitHub Desktop)
+# Mongolia Weekly — guida passo-passo (versione GitHub Desktop)
 
 Un sistema che ogni lunedì mattina raccoglie le notizie della settimana rilevanti per
-UN Mongolia, le fa scrivere a Claude in un report curato (per tema, con tag agenzia e sezione
+UN Mongolia, le fa scrivere a Claude in un report curato (quattro categorie, tag agenzia, sezione
 "Also noted"), le rivede da solo in un piccolo loop di qualità, e apre una **bozza** che la tua
-collega approva con un click. Il report finito va live su un sito statico — impaginazione da
+collega approva con un click. In parallelo produce una seconda pagina, **In the Media**, che
+raccoglie chi ha citato l'ONU in Mongolia, con che tono, e — quando è possibile stabilirlo — a
+quale nostra pubblicazione si riferiva. Tutto va live su un sito statico: impaginazione da
 testata giornalistica, card ordinate, toggle EN/MN, filtro per agenzia e archivio delle
 settimane passate.
 
@@ -20,10 +22,13 @@ mettere online il progetto. Tutto il resto si fa dal sito github.com.
   Lunedi 08:00 Ulaanbaatar
         |
         v
-  [collect.py]  raccoglie le notizie da ReliefWeb, GDELT, RSS   (fonti gratuite)
+  [collect.py]           raccoglie le notizie      (fonti dal workbook condiviso)
+  [index_un.py]          indicizza le NOSTRE pubblicazioni (finestra 180 giorni)
+  [collect_mentions.py]  cerca chi ci ha citati, scarica gli articoli
         |
         v
-  [generate.py] Claude scrive il report -> loop di auto-revisione -> traduce in MN
+  [generate.py]          Claude scrive il report -> loop di auto-revisione -> MN
+  [generate_mentions.py] tono + tipo + prominenza + quale nostra fonte era citata
         |            (bozza -> critica -> correggi, fino a confidenza >= 90)
         v
   apre una PULL REQUEST con la bozza  --->  la tua collega riceve un'email
@@ -46,15 +51,30 @@ ricostruito da li, quindi resta coerente e non si tocca mai l'HTML a mano.
 ## Cosa c'e nel progetto
 
 ```
-config.yaml              <- fonti, agenzie, temi, modello, soglie  (quasi tutto si cambia QUI)
+sources/sources.xlsx     <- IL FOGLIO CONDIVISO: fonti, testate, nomi, siti UN, glossario
+                            (e' qui che l'ufficio lavora, non nel codice)
+config.yaml              <- categorie, agenzie, modello, soglie, stile, media monitoring
 requirements.txt
 scripts/
+  sources_loader.py      <- legge il workbook, valida, raccoglie i problemi
+  make_sources_xlsx.py   <- crea il workbook di partenza (si lancia UNA volta)
+  un_style.py            <- linter UN Editorial Manual (nomi Paese, date, grafie)
   collect.py             <- raccoglie le notizie (niente AI, niente chiave)
-  generate.py            <- Claude + loop di revisione + traduzione MN
+  generate.py            <- Claude + loop di revisione + stile UN + traduzione MN
+  index_un.py            <- indice a scorrimento delle nostre pubblicazioni
+  collect_mentions.py    <- trova le menzioni e scarica il testo degli articoli
+  match_sources.py       <- collega la menzione alla nostra pubblicazione citata
+  generate_mentions.py   <- tono, tipo, prominenza, fonte citata, traduzione
+  pr_body.py             <- scrive il testo della pull request del lunedi
+  migrate_reports.py     <- converte i report vecchi alle quattro categorie
   build.py               <- genera il sito statico in docs/
-templates/report.html.j2 <- layout (masthead serif + card + sidebar + toggle + filtro)
+templates/
+  report.html.j2         <- layout del report settimanale
+  media.html.j2          <- layout della pagina "In the Media"
 assets/style.css, app.js <- stile e interattivita del sito
-reports/<data>.json      <- i report generati (fonte di verita; c'e un esempio dentro)
+reports/<data>.json      <- i report generati (fonte di verita)
+mentions/<data>.json     <- le menzioni della settimana (fonte di verita)
+index/un_publications.json <- indice delle nostre pubblicazioni (si accumula)
 docs/                    <- il sito generato (e cio che GitHub Pages pubblica)
 .github/workflows/
   weekly.yml             <- lunedi: raccogli+genera+apri PR
@@ -203,19 +223,94 @@ Ogni settimana, per lei sono tre gesti:
 
 ---
 
-## Passo 8 — Cambiare fonti, agenzie, temi, chiave
+## Passo 8 — Cambiare fonti, agenzie, categorie, chiave
 
-Quasi tutto si cambia in **`config.yaml`** (puoi editarlo anche dal sito: apri il file ->
-matita -> Commit):
-- **Fonti**: feed RSS sotto `sources.rss_feeds`, query GDELT sotto `sources.gdelt.queries`.
+**Le fonti si cambiano nel foglio Excel, non nel codice.** Vedi la sezione "Il foglio
+condiviso" piu sotto.
+
+Il resto si cambia in **`config.yaml`** (editabile anche dal sito: apri il file -> matita ->
+Commit):
 - **Agenzie** del filtro: lista `agencies`.
-- **Temi** e loro ordine: lista `themes`.
+- **Categorie** e loro ordine: lista `categories` (sono quattro).
+- **Tag secondari**: lista `secondary_tags`.
 - **Termini** di rilevanza: `mongolia_terms` e `regional_terms`.
+- **Stile UN**: `style.linter` (on/off) e `style.flag_only_terms` (i nomi che il sistema
+  segnala invece di decidere).
+- **Media monitoring**: `media_monitoring.match_min_confidence` (sotto questa soglia la fonte
+  citata viene mostrata come "non identificata" invece che indovinata),
+  `media_monitoring.un_index_days` (quanto indietro va l'indice delle nostre pubblicazioni).
 - **Modello**: campo `model` (`claude-sonnet-5`, oppure `claude-haiku-4-5-20251001` per
   spendere meno).
 
 Per passare alla **chiave d'ufficio**: aggiorna il secret `ANTHROPIC_API_KEY` (Passo 3) col
 nuovo valore. Nient'altro cambia.
+
+---
+
+## Il foglio condiviso (`sources/sources.xlsx`)
+
+E' il punto in cui l'ufficio lavora. Sei fogli:
+
+| Foglio | A cosa serve |
+|---|---|
+| `README` | istruzioni per la collega, dentro il file stesso |
+| `sources` | ricerche e feed per il report settimanale |
+| `outlets` | testate da sorvegliare per le menzioni |
+| `roster` | RC e head of office, **con tutti gli alias in cirillico** |
+| `un_sites` | le NOSTRE pagine, indicizzate per ricostruire la citazione |
+| `glossary` | terminologia UN concordata in mongolo, usata alla lettera |
+
+Il ciclo di lavoro della collega: apre il file in Excel, aggiunge o disattiva righe (colonna
+`active`: `yes`/`no`), salva, e lo ricarica su GitHub (`sources` -> **Add file** -> **Upload
+files** -> trascina -> **Commit changes**). Ha effetto dal lunedi successivo.
+
+Una riga sbagliata **non ferma il run**: finisce nella sezione "Source problems" della pull
+request, con foglio e numero di riga. Le celle `<FILL IN>` nel foglio `roster` vanno compilate
+per prime: finche' sono vuote, le menzioni che citano l'RC per nome non vengono trovate.
+
+Per spostare tutto su un Google Sheet piu avanti: **File -> Condividi -> Pubblica sul web ->
+CSV**, un URL per foglio, e li incolli in `workbook.csv_urls` in `config.yaml`. Nient'altro
+cambia.
+
+---
+
+## La pagina "In the Media"
+
+Ogni menzione mostra testata, data, lingua, tono (**Supportive / Neutral / Critical**), tipo
+di menzione, prominenza, agenzie citate, e la riga **"Refers to →"** con la nostra
+pubblicazione citata. Tre esiti possibili, tenuti volutamente distinti:
+
+- **linked in the article** — l'articolo contiene un link a un dominio ONU. E' una prova, non
+  una deduzione: confidenza 100.
+- **probable, 78% confidence** — nessun link: la fonte e' dedotta da cifre condivise,
+  formulazioni, prossimita' di date. La ragione concreta e' scritta sotto la riga.
+- **not identified** — sotto la soglia. Preferiamo dirlo che indovinare.
+
+Il tono giudica **come viene presentata l'ONU nell'articolo**, non la qualita' del pezzo ne'
+l'argomento: un articolo cupo che riporta le nostre cifre senza commento e' *Neutral*.
+
+In fondo alla pagina c'e' l'archivio cumulativo: totali, testate piu' frequenti, agenzie piu'
+citate, andamento settimana per settimana.
+
+---
+
+## Lo stile UN Editorial Manual
+
+Due strati, perche' il prompt da solo non basta a tenere la stessa casa editoriale tra un
+lunedi e l'altro:
+
+1. **Nei prompt** — registro istituzionale, numeri, maiuscole nei titoli di carica, forma
+   breve UN dei Paesi.
+2. **Nel linter** (`scripts/un_style.py`) — correzioni meccaniche deterministiche: *Russia* ->
+   *the Russian Federation*, *South Korea* -> *the Republic of Korea*, *Vietnam* -> *Viet Nam*,
+   *percent* -> *per cent*, *program* -> *programme*, *July 14, 2026* -> *14 July 2026*. URL,
+   citazioni dirette e nomi di testata sono mascherati prima della sostituzione, quindi
+   "Russia Today" resta "Russia Today".
+
+I **nomi politicamente sensibili** (Taiwan, Kosovo, Palestine, Crimea, Western Sahara...) non
+vengono mai riscritti automaticamente: compaiono in cima alla pull request sotto "Sensitive
+names — decide before merging", col contesto in cui appaiono. E' materia da RCO, non da
+modello.
 
 ---
 
@@ -234,3 +329,8 @@ Un modello linguistico puo occasionalmente enfatizzare o confondere una notizia,
 qualita e cattura gli errori evidenti, ma la **revisione umana della tua collega resta il
 filtro decisivo** e va mantenuta anche a regime. I prompt sono gia scritti in chiave prudente
 (cita sempre la fonte, non inventare, nel dubbio declassa ad "Also noted").
+
+Lo stesso vale, in modo ancora piu' netto, per la pagina **In the Media**: il tono e' un
+giudizio automatico su una pagina pubblica, e l'attribuzione della fonte citata e' una
+probabilita' dichiarata. Il disclaimer metodologico in fondo alla pagina lo dice
+esplicitamente: e' la vostra protezione, conviene lasciarlo.

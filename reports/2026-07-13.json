@@ -4,34 +4,81 @@
   "generated_at": "2026-07-20T00:05:00+00:00",
   "confidence": 92,
   "insights": [
-    {"en": "Early dzud-risk signals rose across several western aimags as pasture and fodder indicators weakened ahead of winter.", "mn": "Өвлийн өмнөх бэлчээр, тэжээлийн үзүүлэлт муудсанаар баруун хэд хэдэн аймагт зудын эрсдэлийн дохио нэмэгдлээ."},
-    {"en": "Rising coal receipts led the central bank to revise its growth outlook slightly upward.", "mn": "Нүүрсний орлого нэмэгдсэн нь Төв банк өсөлтийн төлөвөө бага зэрэг дээшлүүлэхэд хүргэв."},
-    {"en": "Seasonal air-quality advisories were issued in Ulaanbaatar as particulate levels climbed.", "mn": "Тоосонцрын хэмжээ нэмэгдсэнтэй холбоотойгоор Улаанбаатарт агаарын чанарын анхааруулга гаргалаа."}
+    {
+      "en": "Early dzud-risk signals rose across several western aimags as pasture and fodder indicators weakened ahead of winter.",
+      "mn": "Өвлийн өмнөх бэлчээр, тэжээлийн үзүүлэлт муудсанаар баруун хэд хэдэн аймагт зудын эрсдэлийн дохио нэмэгдлээ."
+    },
+    {
+      "en": "Rising coal receipts led the central bank to revise its growth outlook slightly upward.",
+      "mn": "Нүүрсний орлого нэмэгдсэн нь Төв банк өсөлтийн төлөвөө бага зэрэг дээшлүүлэхэд хүргэв."
+    },
+    {
+      "en": "Seasonal air-quality advisories were issued in Ulaanbaatar as particulate levels climbed.",
+      "mn": "Тоосонцрын хэмжээ нэмэгдсэнтэй холбоотойгоор Улаанбаатарт агаарын чанарын анхааруулга гаргалаа."
+    }
   ],
   "sections": [
     {
-      "theme": "Humanitarian & Protection",
-      "theme_mn": "Хүмүүнлэг ба хамгаалал",
+      "category": "Economy and Development",
+      "category_mn": "Эдийн засаг ба хөгжил",
       "items": [
-        {"en": "Herder families in Zavkhan province are reporting early winter stress as fodder reserves thin, prompting local authorities to pre-position feed. Aid actors are monitoring pasture indicators closely. (Illustrative sample.)", "mn": "Завхан аймгийн малчин өрхүүд тэжээлийн нөөц багассанаар өвлийн эхэн үеийн хүндрэлийг мэдээлж байна. (Жишээ загвар.)", "source": "Montsame", "url": "https://example.org/1", "agencies": ["WFP", "IOM", "FAO"]}
+        {
+          "en": "Higher-than-expected coal export receipts prompted the central bank to nudge its annual growth forecast upward, citing stronger cross-border demand. (Illustrative sample.)",
+          "mn": "Нүүрсний экспортын орлого хүлээлтээс өндөр гарсан нь Төв банкийг жилийн өсөлтийн урьдчилсан төлөвөө дээшлүүлэхэд хүргэв. (Жишээ загвар.)",
+          "source": "Reuters",
+          "url": "https://example.org/2",
+          "agencies": [
+            "UNDP"
+          ],
+          "tags": []
+        }
       ]
     },
     {
-      "theme": "Economy & Development",
-      "theme_mn": "Эдийн засаг ба хөгжил",
+      "category": "Politics, Governance and Diplomacy",
+      "category_mn": "Бүс нутгийн харилцаа",
       "items": [
-        {"en": "Higher-than-expected coal export receipts prompted the central bank to nudge its annual growth forecast upward, citing stronger cross-border demand. (Illustrative sample.)", "mn": "Нүүрсний экспортын орлого хүлээлтээс өндөр гарсан нь Төв банкийг жилийн өсөлтийн урьдчилсан төлөвөө дээшлүүлэхэд хүргэв. (Жишээ загвар.)", "source": "Reuters", "url": "https://example.org/2", "agencies": ["UNDP"]}
+        {
+          "en": "Cross-border transit discussions with China resumed after winter delays, with both sides signalling interest in smoother mineral logistics. (Illustrative sample.)",
+          "mn": "Хилийн дамжин өнгөрөх тээврийн хэлэлцээ өвлийн саатлын дараа сэргэж, эрдэс баялгийн логистикийг сайжруулах сонирхлоо талууд илэрхийллээ. (Жишээ загвар.)",
+          "source": "South China Morning Post",
+          "url": "https://example.org/3",
+          "agencies": [],
+          "tags": []
+        }
       ]
     },
     {
-      "theme": "Regional Dynamics",
-      "theme_mn": "Бүс нутгийн харилцаа",
+      "category": "Social and Humanitarian",
+      "category_mn": "Хүмүүнлэг ба хамгаалал",
       "items": [
-        {"en": "Cross-border transit discussions with China resumed after winter delays, with both sides signalling interest in smoother mineral logistics. (Illustrative sample.)", "mn": "Хилийн дамжин өнгөрөх тээврийн хэлэлцээ өвлийн саатлын дараа сэргэж, эрдэс баялгийн логистикийг сайжруулах сонирхлоо талууд илэрхийллээ. (Жишээ загвар.)", "source": "South China Morning Post", "url": "https://example.org/3", "agencies": []}
+        {
+          "en": "Herder families in Zavkhan province are reporting early winter stress as fodder reserves thin, prompting local authorities to pre-position feed. Aid actors are monitoring pasture indicators closely. (Illustrative sample.)",
+          "mn": "Завхан аймгийн малчин өрхүүд тэжээлийн нөөц багассанаар өвлийн эхэн үеийн хүндрэлийг мэдээлж байна. (Жишээ загвар.)",
+          "source": "Montsame",
+          "url": "https://example.org/1",
+          "agencies": [
+            "WFP",
+            "IOM",
+            "FAO"
+          ],
+          "tags": []
+        }
       ]
     }
   ],
   "also_noted": [
-    {"en": "A new cultural-heritage initiative launched in the capital this week. (Illustrative sample.)", "mn": "Энэ долоо хоногт нийслэлд соёлын өвийн шинэ санаачилга эхэллээ. (Жишээ загвар.)", "source": "The UB Post", "url": "https://example.org/4", "agencies": ["UNESCO"]}
-  ]
+    {
+      "en": "A new cultural-heritage initiative launched in the capital this week. (Illustrative sample.)",
+      "mn": "Энэ долоо хоногт нийслэлд соёлын өвийн шинэ санаачилга эхэллээ. (Жишээ загвар.)",
+      "source": "The UB Post",
+      "url": "https://example.org/4",
+      "agencies": [
+        "UNESCO"
+      ],
+      "tags": []
+    }
+  ],
+  "style_flags": [],
+  "issues": []
 }

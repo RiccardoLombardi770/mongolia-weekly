@@ -33,3 +33,23 @@ var menu = document.getElementById('menu-btn');
 if (menu) menu.addEventListener('click', function () {
   document.getElementById('sidebar').classList.toggle('open');
 });
+
+// "In the Media" filters: tone, agency, and whether the cited source was identified
+document.querySelectorAll('[data-mfilter]').forEach(function (chip) {
+  chip.addEventListener('click', function () {
+    var f = chip.dataset.mfilter;
+    document.querySelectorAll('[data-mfilter]').forEach(function (c) { c.classList.remove('active'); });
+    chip.classList.add('active');
+    document.querySelectorAll('.mention').forEach(function (card) {
+      var show = true;
+      if (f.indexOf('tone:') === 0) {
+        show = card.dataset.tone === f.slice(5);
+      } else if (f.indexOf('agency:') === 0) {
+        show = (card.dataset.agencies || '').split('|').indexOf(f.slice(7)) !== -1;
+      } else if (f.indexOf('src:') === 0) {
+        show = card.dataset.matched === f.slice(4);
+      }
+      card.classList.toggle('hidden', !show);
+    });
+  });
+});
