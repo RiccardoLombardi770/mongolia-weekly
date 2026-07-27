@@ -7,7 +7,7 @@ on:
     # same round minute, and can occasionally drop a run during that spike.
     # If a Monday ever goes silent with no run at all, moving a few minutes
     # off the hour (e.g. "7 0 * * 1") is a cheap mitigation.
-    - cron: "0 0 * * 1"
+    - cron: "57 6 * * 1"
   workflow_dispatch: {}   # lets you also run it manually from the Actions tab
 
 permissions:
