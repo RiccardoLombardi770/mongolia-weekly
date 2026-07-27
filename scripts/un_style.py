@@ -254,6 +254,7 @@ def lint_object(obj, protected=None, flag_terms=None, keys=("en", "text", "summa
     changes, flags = [], []
 
     def walk(node):
+        nonlocal changes, flags
         if isinstance(node, dict):
             for k, v in node.items():
                 if k in keys and isinstance(v, str):
