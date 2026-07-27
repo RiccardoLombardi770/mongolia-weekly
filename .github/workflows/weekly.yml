@@ -2,8 +2,8 @@ name: Weekly report (draft PR)
 
 on:
   schedule:
-    # 00:00 UTC every Monday = 08:00 Ulaanbaatar (UTC+8, no DST)
-    - cron: "0 0 * * 1"
+    # 14:30 UTC every Monday = 08:00 Ulaanbaatar (UTC+8, no DST)
+    - cron: "30 6 * * 1"
   workflow_dispatch: {}   # lets you also run it manually from the Actions tab
 
 permissions:
