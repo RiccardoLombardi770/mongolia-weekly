@@ -241,11 +241,37 @@ def merge(mentions, analysis):
 
 
 def translate(doc, glossary):
-    try:
-        mn = parse_json(call(translate_system(glossary), json.dumps(doc, ensure_ascii=False)))
-    except Exception as e:
-        print(f"  translation skipped ({e}); the page will show English in both tabs")
+    # Only what needs translating — not review_log/issues/style_flags/un_source,
+    # which are pure prose or structured evidence the translator doesn't touch
+    # and which would needlessly inflate the prompt.
+    payload = {
+        "overview": doc["overview"],
+        "mentions": [{"id": m["id"], "summary": m["summary"], "tone_note": m["tone_note"]}
+                     for m in doc["mentions"]],
+    }
+    user = json.dumps(payload, ensure_ascii=False)
+
+    mn, last_err = None, None
+    for attempt in range(2):
+        system = translate_system(glossary)
+        if attempt == 1:
+            system += "\n\nIMPORTANT: reply with the JSON object ONLY. No preamble, no explanation, no code fences."
+        try:
+            mn = parse_json(call(system, user))
+            break
+        except Exception as e:
+            last_err = e
+            print(f"  translate attempt {attempt + 1}: could not parse JSON, retrying...")
+
+    if mn is None:
+        print(f"  translation failed after retries ({last_err}); the page will show "
+              f"English in both tabs this week")
+        doc.setdefault("issues", []).append(
+            "Mongolian translation failed this week ({}); the MN tab currently shows "
+            "English text. Re-run scripts/generate_mentions.py, or translate manually "
+            "in this PR.".format(type(last_err).__name__ if last_err else "unknown error"))
         return doc
+
     by_id = {m.get("id"): m for m in mn.get("mentions", [])}
     for m in doc["mentions"]:
         t = by_id.get(m["id"], {})

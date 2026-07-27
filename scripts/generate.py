@@ -252,7 +252,41 @@ def normalise_categories(report):
 
 
 def translate(report_en, glossary):
-    mn = parse_json(call(translate_system(glossary), json.dumps(report_en, ensure_ascii=False)))
+    # Only the fields that actually need translating go to the model. Sending
+    # review_log/issues/style_flags too would bloat the prompt with prose the
+    # translator doesn't need, and risks the reply being cut off mid-JSON.
+    payload = {
+        "week_start": report_en["week_start"], "week_end": report_en["week_end"],
+        "insights": report_en["insights"],
+        "sections": [{"category": s["category"], "items": s["items"]}
+                     for s in report_en.get("sections", [])],
+        "also_noted": report_en.get("also_noted", []),
+    }
+    user = json.dumps(payload, ensure_ascii=False)
+
+    mn, last_err = None, None
+    for attempt in range(2):
+        system = translate_system(glossary)
+        if attempt == 1:
+            system += "\n\nIMPORTANT: reply with the JSON object ONLY. No preamble, no explanation, no code fences."
+        try:
+            mn = parse_json(call(system, user))
+            break
+        except (ValueError, json.JSONDecodeError) as e:
+            last_err = e
+            print(f"  translate attempt {attempt + 1}: could not parse JSON, retrying...")
+
+    if mn is None:
+        # Don't lose an entire week's drafting + review over a translation hiccup:
+        # publish English in both tabs and flag it, rather than crash the run.
+        print(f"  translation failed after retries ({last_err}); publishing English "
+              f"text in the MN tab too this week.")
+        mn = payload
+        report_en.setdefault("issues", []).append(
+            "Mongolian translation failed this week ({}); the MN tab currently shows "
+            "English text. Re-run scripts/generate.py, or translate the 'en' fields "
+            "manually in this PR.".format(type(last_err).__name__ if last_err else "unknown error"))
+
     out = {
         "week_start": report_en["week_start"], "week_end": report_en["week_end"],
         "generated_at": dt.datetime.now(dt.timezone.utc).isoformat(),
