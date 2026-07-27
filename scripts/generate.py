@@ -172,11 +172,15 @@ def draft(raw):
 
 def review_loop(report):
     threshold = CONFIG["review"]["confidence_threshold"]
+    log = []
     for i in range(1, CONFIG["review"]["max_iterations"] + 1):
         verdict = parse_json(call(REVIEW_SYSTEM, json.dumps(report, ensure_ascii=False)))
         score = int(verdict.get("confidence", 0))
         issues = verdict.get("issues", [])
         print(f"  review pass {i}: confidence={score}")
+        for issue in issues:
+            print(f"    - {issue}")
+        log.append({"pass": i, "confidence": score, "issues": issues})
         report["confidence"] = score
         if score >= threshold or not issues:
             break
@@ -184,6 +188,7 @@ def review_loop(report):
                "\n\nIssues to fix:\n" + json.dumps(issues, ensure_ascii=False))
         report = parse_json(call(REVISE_SYSTEM, fix))
         report["confidence"] = score
+    report["review_log"] = log
     return report
 
 
@@ -257,6 +262,7 @@ def translate(report_en, glossary):
         "sections": [], "also_noted": [],
         "style_flags": report_en.get("style_flags", []),
         "issues": report_en.get("issues", []),
+        "review_log": report_en.get("review_log", []),
     }
     for s_en, s_mn in zip(report_en["sections"], mn.get("sections", report_en["sections"])):
         out["sections"].append({

@@ -60,6 +60,16 @@ def main():
                      f"categor(ies), {len(report.get('also_noted', []))} in Also noted")
         for s in report.get("sections", []):
             lines.append(f"  - {s.get('category')}: {len(s.get('items', []))}")
+        threshold = CONFIG["review"]["confidence_threshold"]
+        if report.get("confidence", 0) < threshold and report.get("review_log"):
+            last = report["review_log"][-1]
+            lines.append(f"- **Score stayed below {threshold} after "
+                         f"{len(report['review_log'])} review pass(es).** Last round's "
+                         f"editor notes (read the report with extra care):")
+            for issue in last.get("issues", []):
+                lines.append(f"  - {issue}")
+            trend = " → ".join(str(p["confidence"]) for p in report["review_log"])
+            lines.append(f"  - confidence by pass: {trend}")
         lines.append("")
 
     # ---- the media page
@@ -74,6 +84,16 @@ def main():
         if tones:
             lines.append("- Tone: " + ", ".join(f"{v} {k.lower()}" for k, v in tones.items()))
         lines.append(f"- Source publication identified for {matched} of {len(ms)}")
+        threshold = CONFIG["review"]["confidence_threshold"]
+        if mentions.get("confidence", 0) < threshold and mentions.get("review_log"):
+            last = mentions["review_log"][-1]
+            lines.append(f"- **Score stayed below {threshold} after "
+                         f"{len(mentions['review_log'])} review pass(es).** Last round's "
+                         f"editor notes:")
+            for issue in last.get("issues", []):
+                lines.append(f"  - {issue}")
+            trend = " → ".join(str(p["confidence"]) for p in mentions["review_log"])
+            lines.append(f"  - confidence by pass: {trend}")
         low = [m for m in ms
                if (m.get("un_source") or {}).get("method") == "inferred"
                and (m.get("un_source") or {}).get("confidence", 0) < 75]

@@ -170,11 +170,15 @@ def classify(mentions):
 def review_loop(analysis, mentions):
     threshold = CONFIG["review"]["confidence_threshold"]
     score = 0
+    log = []
     for i in range(1, CONFIG["review"]["max_iterations"] + 1):
         verdict = parse_json(call(REVIEW_SYSTEM, json.dumps(analysis, ensure_ascii=False)))
         score = int(verdict.get("confidence", 0))
         issues = verdict.get("issues", [])
         print(f"  review pass {i}: confidence={score}")
+        for issue in issues:
+            print(f"    - {issue}")
+        log.append({"pass": i, "confidence": score, "issues": issues})
         if score >= threshold or not issues:
             break
         fix = ("Your analysis:\n" + json.dumps(analysis, ensure_ascii=False)
@@ -182,7 +186,7 @@ def review_loop(analysis, mentions):
                + json.dumps(payload_for_model(mentions), ensure_ascii=False)
                + "\n\nIssues to fix:\n" + json.dumps(issues, ensure_ascii=False))
         analysis = parse_json(call(REVISE_SYSTEM, fix))
-    return analysis, score
+    return analysis, score, log
 
 
 def merge(mentions, analysis):
@@ -287,7 +291,7 @@ def main():
     doc = {"week_start": week_start.isoformat(), "week_end": week_end.isoformat(),
            "generated_at": dt.datetime.now(dt.timezone.utc).isoformat(),
            "confidence": 0, "overview": {"en": "", "mn": ""},
-           "mentions": [], "issues": issues, "style_flags": []}
+           "mentions": [], "issues": issues, "style_flags": [], "review_log": []}
 
     if not mentions:
         doc["overview"]["en"] = overview([])
@@ -300,9 +304,10 @@ def main():
         print(f"  {explicit} matched by direct link, {len(mentions) - explicit} to infer")
 
         analysis = classify(mentions)
-        analysis, score = review_loop(analysis, mentions)
+        analysis, score, log = review_loop(analysis, mentions)
         doc["mentions"] = merge(mentions, analysis)
         doc["confidence"] = score
+        doc["review_log"] = log
         doc["overview"]["en"] = overview(doc["mentions"])
 
     # House style, then translation.
