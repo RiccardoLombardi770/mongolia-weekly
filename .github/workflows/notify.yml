@@ -1,0 +1,53 @@
+name: Notify colleagues after merge
+
+# Fires when the weekly draft PR (branch report/draft) is merged into main.
+# Does NOT fire on other merges, so an unrelated PR — e.g. a manual style
+# tweak — never sends a surprise email.
+
+on:
+  pull_request:
+    types: [closed]
+
+permissions:
+  contents: read
+
+jobs:
+  notify:
+    if: >
+      github.event.pull_request.merged == true &&
+      github.event.pull_request.base.ref == 'main' &&
+      github.event.pull_request.head.ref == 'report/draft'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: main
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install pyyaml
+
+      # The site rebuild (build.yml) is triggered by the same merge and runs
+      # in parallel; give it time to finish so the links in the email work.
+      - name: Wait for the site to rebuild
+        run: sleep 90
+
+      - name: Prepare the email
+        id: prep
+        run: python scripts/notify.py
+
+      - name: Send email
+        if: steps.prep.outputs.send == 'true'
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.office365.com
+          server_port: 587
+          username: ${{ secrets.SMTP_USERNAME }}
+          password: ${{ secrets.SMTP_PASSWORD }}
+          subject: ${{ steps.prep.outputs.subject }}
+          to: ${{ steps.prep.outputs.recipients }}
+          from: Mongolia Weekly <${{ secrets.SMTP_USERNAME }}>
+          body: file://data/email_body.txt

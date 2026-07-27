@@ -1,0 +1,181 @@
+# ============================================================
+#  Mongolia Weekly — central configuration
+#  Most day-to-day changes (sources, outlets, names, glossary)
+#  now live in sources/sources.xlsx, not here.
+# ============================================================
+
+site:
+  title: "Mongolia Weekly"
+  subtitle: "Media and news monitoring — UN Mongolia"
+  media_page_title: "In the Media"
+  base_url: "https://riccardolombardi770.github.io/mongolia-weekly"
+
+# ---- Email notification sent to colleagues once a report is merged ----
+notifications:
+  enabled: true
+  subject_prefix: "Mongolia Weekly"
+  # Fixed list — edit directly here and commit. For a self-service list
+  # instead, this could read a column from sources/sources.xlsx; ask if
+  # you outgrow a handful of names.
+  recipients:
+    - "soyolmaa.dolgor@un.org"
+    - "lim6@un.org"
+    - "altangerel.choijoo@un.org"
+
+lookback_days: 7
+
+# ---- Model & self-review loop ----
+model: "claude-sonnet-5"
+max_output_tokens: 16000
+max_items_to_model: 120
+review:
+  confidence_threshold: 90
+  max_iterations: 3
+
+# ---- The shared workbook (single source of truth for sources) ----
+# The colleague edits this file in Excel and re-uploads it to GitHub.
+# To move to a Google Sheet later, just set workbook_csv_urls below
+# (File > Share > Publish to web > CSV, one URL per sheet).
+workbook:
+  path: "sources/sources.xlsx"
+  csv_urls: {}      # e.g. sources: "https://docs.google.com/.../pub?gid=0&single=true&output=csv"
+
+# ---- What counts as "about Mongolia" ----
+mongolia_terms:
+  - Mongolia
+  - Mongolian
+  - Ulaanbaatar
+  - Ulan Bator
+  - dzud
+  - Gobi
+  - Oyu Tolgoi
+  - Erdenet
+  - khural
+  - tugrik
+
+regional_terms:
+  - "Mongolia China trade"
+  - "Mongolia Russia"
+  - "Mongolia coal exports"
+  - "Mongolia mining"
+  - "Mongolia border transit"
+  - "Central Asia dzud"
+
+# ---- Fallback sources, used only if the workbook is missing/empty ----
+sources:
+  google_news:
+    enabled: true
+    hl: "en-US"
+    gl: "US"
+    queries:
+      - "Mongolia humanitarian"
+      - "Mongolia economy"
+      - "Mongolia politics government"
+      - "Mongolia dzud winter herders"
+      - "Mongolia mining coal exports"
+      - "Mongolia China Russia"
+      - "Ulaanbaatar"
+  rss_feeds:
+    - name: "UN News"
+      url: "https://news.un.org/feed/subscribe/en/news/all/rss.xml"
+  gdelt:
+    enabled: true
+    queries:
+      - "Mongolia"
+      - "Mongolia dzud"
+    max_records: 40
+
+# ---- UN agencies used for tagging + filter chips ----
+agencies:
+  - UNDP
+  - UNICEF
+  - WHO
+  - WFP
+  - IOM
+  - UNFPA
+  - FAO
+  - UNESCO
+  - ILO
+  - UN Women
+  - OHCHR
+  - UNEP
+
+# ---- The four categories (order = display order) ----
+categories:
+  - "Economy and Development"
+  - "Politics, Governance and Diplomacy"
+  - "Environment and Climate Change"
+  - "Social and Humanitarian"
+
+# Secondary tags a story can also carry (shown on the card, not a section)
+secondary_tags:
+  - "Mining"
+  - "Trade"
+  - "Health"
+  - "Education"
+  - "Gender"
+  - "Migration"
+  - "Air quality"
+  - "Dzud"
+  - "Regional relations"
+
+# ---- UN Editorial Manual style ----
+style:
+  un_editorial: true
+  # Deterministic linter fixes what can be fixed mechanically; the rest is
+  # handled in the prompts. Set to false to disable the linter only.
+  linter: true
+  # These are never auto-changed; they are flagged in the pull request
+  # so the office decides case by case.
+  flag_only_terms:
+    - Taiwan
+    - Kosovo
+    - Palestine
+    - Palestinian
+    - Western Sahara
+    - Crimea
+    - Nagorno-Karabakh
+    - Abkhazia
+    - South Ossetia
+
+# ============================================================
+#  MEDIA MONITORING ("In the Media" page)
+# ============================================================
+media_monitoring:
+  enabled: true
+  # How far back the index of our own publications reaches, in days.
+  un_index_days: 180
+  # Fetch the full article text (needed for tone + source matching).
+  fetch_full_text: true
+  fetch_timeout: 25
+  max_articles_to_fetch: 60
+  # Back-link matching: below this confidence the source is shown as
+  # "not identified" rather than guessed.
+  match_min_confidence: 60
+  # Model adjudication of the top-N deterministic candidates.
+  match_candidates: 3
+  tone_labels: ["Supportive", "Neutral", "Critical"]
+  mention_types:
+    - "Statement cited"
+    - "Data or report cited"
+    - "Event coverage"
+    - "Direct criticism"
+    - "Passing reference"
+  prominence_levels: ["Headline", "Lead paragraph", "Body", "Passing"]
+  # Fallback UN domains if the workbook has no un_sites sheet.
+  un_domains:
+    - mongolia.un.org
+    - un.org
+    - unicef.org
+    - undp.org
+    - who.int
+    - wfp.org
+    - iom.int
+    - unfpa.org
+    - fao.org
+    - unesco.org
+    - ilo.org
+    - unwomen.org
+    - ohchr.org
+    - unep.org
+    - reliefweb.int

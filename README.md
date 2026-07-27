@@ -227,7 +227,86 @@ Every week, for her it's three actions:
 
 ---
 
-## Step 8 — Changing sources, agencies, categories, key
+## If a Monday brings nothing
+
+Check, in this order, on github.com in your repo:
+
+1. **Actions tab -> "Weekly report (draft PR)".** If there's no run for today: the workflow
+   didn't start. The most common cause is having uploaded or edited the project *after*
+   08:00 Ulaanbaatar on Monday: that week's scheduled run had already passed, and the next one
+   is seven days away. No need to wait — click **Run workflow** to trigger it right now.
+2. **If there's a red (failed) run:** open it and see which step stopped. Typical causes are a
+   missing `ANTHROPIC_API_KEY` secret (Step 3) or Actions permissions not enabled (Step 4).
+3. **If there's a green run but no email arrived:** the Pull Request was created anyway, nobody
+   was just notified. Go to the **Pull requests** tab to find it, and see below for how to make
+   the notification happen on its own.
+4. **If nothing shows up at all, ever, not even a failed attempt:** the schedule may simply not
+   have had a real chance to fire yet, or GitHub's free-tier scheduler occasionally drops a run
+   during high load — this is a documented limitation, not something on your end. Scheduling
+   runs on GitHub's own cloud servers, completely independent of any local computer being on or
+   off. A practical mitigation: avoid round cron times like `"0 0 * * 1"` (every repository in
+   the world with that same schedule competes for the same slot); a few minutes off the hour,
+   e.g. `"7 2 * * 1"`, avoids the crowd.
+
+---
+
+## Automatic notification to colleagues (email after merge)
+
+When you click **Merge pull request**, a second workflow (`notify.yml`) automatically sends an
+email to the recipients listed in `config.yaml`, with the link to that week's report and to
+"In the Media". No more forwarding the link by hand.
+
+### Step A — Write the recipients
+
+In `config.yaml`, under `notifications`:
+```yaml
+notifications:
+  enabled: true
+  subject_prefix: "Mongolia Weekly"
+  recipients:
+    - "colleague1@un.org"
+    - "colleague2@un.org"
+```
+Add or remove lines as needed; it's a fixed list, edited here and committed. To turn sending
+off entirely without deleting the list, set `enabled: false`.
+
+### Step B — Set up SMTP sending (Outlook / Microsoft 365)
+
+You need a mailbox to send from (yours, a shared office mailbox, or a dedicated
+"mongolia-weekly@..." one). Two secrets to add under **Settings -> Secrets and variables ->
+Actions -> New repository secret**:
+
+- `SMTP_USERNAME` — the full email address of the sending mailbox.
+- `SMTP_PASSWORD` — the password, **or an app password** if that mailbox has multi-factor
+  authentication enabled (almost certainly the case in a UN tenant). App passwords are
+  generated from account.microsoft.com -> Security -> Advanced sign-in options.
+
+**A point that will very likely block the first attempt, so it's worth knowing in advance:**
+since 2022 Microsoft disables basic SMTP authentication by default across all 365 tenants. If
+the first send fails with something like `535 5.7.139 Authentication unsuccessful,
+SmtpClientAuthentication is disabled`, it means the office's IT needs to **re-enable
+Authenticated SMTP for that one mailbox** (Exchange Admin Center -> recipients -> the mailbox
+-> "Authenticated SMTP"). It's a per-mailbox setting, not a tenant-wide one, so it's usually a
+quick request rather than a project.
+
+If you'd rather not wait on IT, the fastest alternative is a free low-volume external SMTP
+service (e.g. SendGrid, Mailgun, Brevo): create an account, generate an API key to use as
+`SMTP_PASSWORD`, and change only `server_address` in `.github/workflows/notify.yml` (e.g.
+`smtp.sendgrid.net`). The email still arrives at `colleague@un.org`; only where it's sent
+*from* changes, not who receives it.
+
+### How it works
+
+`notify.yml` only fires when the automated Monday Pull Request (branch `report/draft`) is
+merged — not for other changes to the repo, so it never sends a surprise email if you tweak
+the style or the code. It waits 90 seconds to give the site time to rebuild, then composes the
+subject and body by reading the latest weekly report and the latest "In the Media" page, and
+sends it. Testing this step costs no API tokens: `notify.yml` never calls Claude, it only
+reads an already-generated report and sends mail.
+
+---
+
+
 
 **Sources are changed in the Excel sheet, not in the code.** See the "The shared sheet"
 section below.

@@ -2,8 +2,12 @@ name: Weekly report (draft PR)
 
 on:
   schedule:
-    # 14:30 UTC every Monday = 08:00 Ulaanbaatar (UTC+8, no DST)
-    - cron: "30 6 * * 1"
+    # 00:00 UTC every Monday = 08:00 Ulaanbaatar (UTC+8, no DST).
+    # Tip: GitHub's scheduler queues every repository worldwide using this
+    # same round minute, and can occasionally drop a run during that spike.
+    # If a Monday ever goes silent with no run at all, moving a few minutes
+    # off the hour (e.g. "7 0 * * 1") is a cheap mitigation.
+    - cron: "0 0 * * 1"
   workflow_dispatch: {}   # lets you also run it manually from the Actions tab
 
 permissions:
@@ -64,6 +68,7 @@ jobs:
             reports/*.json
             mentions/*.json
             index/*.json
-          # Set your colleague's GitHub username so she is auto-requested as
-          # reviewer and gets an email every Monday:
+          # Optional, and separate from the notify.yml email below: set your
+          # colleague's GitHub username so she is auto-requested as a GitHub
+          # reviewer and gets GitHub's own notification too.
           # reviewers: her-github-username
