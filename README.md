@@ -1,336 +1,342 @@
-# Mongolia Weekly — guida passo-passo (versione GitHub Desktop)
+# Mongolia Weekly — step-by-step guide (GitHub Desktop version)
 
-Un sistema che ogni lunedì mattina raccoglie le notizie della settimana rilevanti per
-UN Mongolia, le fa scrivere a Claude in un report curato (quattro categorie, tag agenzia, sezione
-"Also noted"), le rivede da solo in un piccolo loop di qualità, e apre una **bozza** che la tua
-collega approva con un click. In parallelo produce una seconda pagina, **In the Media**, che
-raccoglie chi ha citato l'ONU in Mongolia, con che tono, e — quando è possibile stabilirlo — a
-quale nostra pubblicazione si riferiva. Tutto va live su un sito statico: impaginazione da
-testata giornalistica, card ordinate, toggle EN/MN, filtro per agenzia e archivio delle
-settimane passate.
+A system that every Monday morning collects the week's news relevant to
+the UN in Mongolia, has Claude write it up into a curated report (four categories, agency
+tags, "Also noted" section), self-reviews it in a small quality loop, and opens a **draft**
+that your colleague approves with a click. In parallel it produces a second page, **In the
+Media**, which collects who mentioned the UN in Mongolia, in what tone, and — when it can be
+established — which of our publications was being referred to. Everything goes live on a
+static site: newsroom-style layout, tidy cards, EN/MN toggle, agency filter, and an archive of
+past weeks.
 
-Tutto gira su GitHub, senza server e senza n8n. Costo stimato: **~2-5 $/mese** di API.
+Everything runs on GitHub, with no server and no n8n. Estimated cost: **~$2-5/month** in API
+usage.
 
-Questa guida usa **GitHub Desktop** (app con interfaccia grafica): niente riga di comando per
-mettere online il progetto. Tutto il resto si fa dal sito github.com.
-
----
-
-## Come funziona il flusso (il quadro mentale)
-
-```
-  Lunedi 08:00 Ulaanbaatar
-        |
-        v
-  [collect.py]           raccoglie le notizie      (fonti dal workbook condiviso)
-  [index_un.py]          indicizza le NOSTRE pubblicazioni (finestra 180 giorni)
-  [collect_mentions.py]  cerca chi ci ha citati, scarica gli articoli
-        |
-        v
-  [generate.py]          Claude scrive il report -> loop di auto-revisione -> MN
-  [generate_mentions.py] tono + tipo + prominenza + quale nostra fonte era citata
-        |            (bozza -> critica -> correggi, fino a confidenza >= 90)
-        v
-  apre una PULL REQUEST con la bozza  --->  la tua collega riceve un'email
-        |
-        v
-  lei legge, corregge se serve, clicca "Merge"
-        |
-        v
-  [build.py] rigenera il sito  ->  va LIVE su GitHub Pages
-        |
-        v
-  lei inoltra il link al canale dell'ufficio
-```
-
-Il **report JSON** (`reports/<data>.json`) e l'unica fonte di verita: il sito HTML viene sempre
-ricostruito da li, quindi resta coerente e non si tocca mai l'HTML a mano.
+This guide uses **GitHub Desktop** (a graphical app): no command line needed to get the
+project online. Everything else is done from the github.com website.
 
 ---
 
-## Cosa c'e nel progetto
+## How the flow works (the mental model)
 
 ```
-sources/sources.xlsx     <- IL FOGLIO CONDIVISO: fonti, testate, nomi, siti UN, glossario
-                            (e' qui che l'ufficio lavora, non nel codice)
-config.yaml              <- categorie, agenzie, modello, soglie, stile, media monitoring
+  Monday 08:00 Ulaanbaatar
+        |
+        v
+  [collect.py]           gathers the news        (sources from the shared workbook)
+  [index_un.py]          indexes OUR publications (180-day window)
+  [collect_mentions.py]  finds who mentioned us, downloads the articles
+        |
+        v
+  [generate.py]          Claude writes the report -> self-review loop -> MN
+  [generate_mentions.py] tone + type + prominence + which of our sources was cited
+        |            (draft -> critique -> fix, until confidence >= 90)
+        v
+  opens a PULL REQUEST with the draft  --->  your colleague receives an email
+        |
+        v
+  she reads it, corrects it if needed, clicks "Merge"
+        |
+        v
+  [build.py] rebuilds the site  ->  goes LIVE on GitHub Pages
+        |
+        v
+  she forwards the link to the office channel
+```
+
+The **JSON report** (`reports/<date>.json`) is the single source of truth: the HTML site is
+always rebuilt from it, so it stays consistent and the HTML is never touched by hand.
+
+---
+
+## What's in the project
+
+```
+sources/sources.xlsx     <- THE SHARED SHEET: sources, outlets, names, UN sites, glossary
+                            (this is where the office works, not in the code)
+config.yaml              <- categories, agencies, model, thresholds, style, media monitoring
 requirements.txt
 scripts/
-  sources_loader.py      <- legge il workbook, valida, raccoglie i problemi
-  make_sources_xlsx.py   <- crea il workbook di partenza (si lancia UNA volta)
-  un_style.py            <- linter UN Editorial Manual (nomi Paese, date, grafie)
-  collect.py             <- raccoglie le notizie (niente AI, niente chiave)
-  generate.py            <- Claude + loop di revisione + stile UN + traduzione MN
-  index_un.py            <- indice a scorrimento delle nostre pubblicazioni
-  collect_mentions.py    <- trova le menzioni e scarica il testo degli articoli
-  match_sources.py       <- collega la menzione alla nostra pubblicazione citata
-  generate_mentions.py   <- tono, tipo, prominenza, fonte citata, traduzione
-  pr_body.py             <- scrive il testo della pull request del lunedi
-  migrate_reports.py     <- converte i report vecchi alle quattro categorie
-  build.py               <- genera il sito statico in docs/
+  sources_loader.py      <- reads the workbook, validates it, collects issues
+  make_sources_xlsx.py   <- creates the starter workbook (run ONCE)
+  un_style.py            <- UN Editorial Manual linter (country names, dates, spelling)
+  collect.py             <- collects the news (no AI, no key needed)
+  generate.py            <- Claude + review loop + UN style + MN translation
+  index_un.py            <- scrolling index of our publications
+  collect_mentions.py    <- finds mentions and downloads article text
+  match_sources.py       <- links the mention to the publication of ours it cites
+  generate_mentions.py   <- tone, type, prominence, cited source, translation
+  pr_body.py             <- writes the text of Monday's pull request
+  migrate_reports.py     <- converts old reports to the four categories
+  build.py               <- generates the static site into docs/
 templates/
-  report.html.j2         <- layout del report settimanale
-  media.html.j2          <- layout della pagina "In the Media"
-assets/style.css, app.js <- stile e interattivita del sito
-reports/<data>.json      <- i report generati (fonte di verita)
-mentions/<data>.json     <- le menzioni della settimana (fonte di verita)
-index/un_publications.json <- indice delle nostre pubblicazioni (si accumula)
-docs/                    <- il sito generato (e cio che GitHub Pages pubblica)
+  report.html.j2         <- weekly report layout
+  media.html.j2           <- "In the Media" page layout
+assets/style.css, app.js <- site styling and interactivity
+reports/<date>.json      <- the generated reports (source of truth)
+mentions/<date>.json     <- the week's mentions (source of truth)
+index/un_publications.json <- index of our publications (accumulates over time)
+docs/                    <- the generated site (what GitHub Pages publishes)
 .github/workflows/
-  weekly.yml             <- lunedi: raccogli+genera+apri PR
-  build.yml              <- dopo il merge: ricostruisci e pubblica
+  weekly.yml             <- Monday: collect+generate+open PR
+  build.yml               <- after merge: rebuild and publish
 ```
 
 ---
 
-## Prerequisiti (una volta sola)
+## Prerequisites (one-time only)
 
-1. Un **account GitHub** gratuito (tuo). La tua collega ne creera uno suo piu avanti.
-2. **GitHub Desktop** installato: scaricalo da https://desktop.github.com e accedi con il tuo
-   account GitHub.
-3. Una **chiave API Anthropic**. Vai su https://console.anthropic.com, crea una API key, e
-   tienila da parte. Per ora usi la tua (con i ~5 $ di credito bastano decine di prove); la
-   sostituirai con quella d'ufficio piu avanti, cambiando un solo campo (vedi Passo 8).
+1. A free **GitHub account** (yours). Your colleague will create her own later.
+2. **GitHub Desktop** installed: download it from https://desktop.github.com and sign in with
+   your GitHub account.
+3. An **Anthropic API key**. Go to https://console.anthropic.com, create an API key, and keep
+   it handy. For now use yours (the ~$5 of credit is enough for dozens of test runs); you'll
+   swap in the office one later on, by changing a single field (see Step 8).
 
-(Python NON e obbligatorio per partire: il primo report puoi generarlo nel cloud. Serve solo
-se vuoi fare il test locale piu comodo del Passo 6.)
-
----
-
-## Passo 1 — Prepara la cartella del progetto
-
-1. Scompatta lo `.zip` del progetto in una cartella facile da ritrovare (es. in Documenti).
-2. Aprila in Esplora File e controlla di vedere DENTRO i file veri: `config.yaml`, `README.md`,
-   `scripts`, `templates`. Se invece vedi un'altra cartella `mongolia-weekly` dentro la prima,
-   entra in quella interna: e quella giusta (lo zip a volte crea una cartella dentro l'altra).
-   La cartella "giusta" e sempre quella che contiene direttamente `config.yaml`.
+(Python is NOT required to get started: you can generate the first report in the cloud. It's
+only needed if you want the more convenient local test in Step 6.)
 
 ---
 
-## Passo 2 — Metti il progetto su GitHub (con GitHub Desktop)
+## Step 1 — Prepare the project folder
 
-1. Apri GitHub Desktop. Menu **File -> Add local repository**.
-2. Scegli la cartella "giusta" del Passo 1 (quella con dentro `config.yaml`).
-3. Desktop dira che non e ancora un repository e offrira un link **"create a repository"**:
-   cliccalo, poi **Create repository** (le impostazioni di default vanno bene).
-4. In basso a sinistra vedi la lista dei file, ognuno con una spunta. Nel campo in basso
-   scrivi un messaggio nel riquadro **Summary**, es. `Initial setup`, e clicca
+1. Unzip the project's `.zip` into a folder that's easy to find (e.g. in Documents).
+2. Open it in File Explorer and check that you can see the actual files INSIDE it:
+   `config.yaml`, `README.md`, `scripts`, `templates`. If instead you see another folder called
+   `mongolia-weekly` inside the first one, go into that inner one: that's the right one (the
+   zip sometimes creates a folder inside another). The "right" folder is always the one that
+   directly contains `config.yaml`.
+
+---
+
+## Step 2 — Put the project on GitHub (with GitHub Desktop)
+
+1. Open GitHub Desktop. Menu **File -> Add local repository**.
+2. Choose the "right" folder from Step 1 (the one containing `config.yaml`).
+3. Desktop will say it's not yet a repository and offer a **"create a repository"** link:
+   click it, then **Create repository** (the default settings are fine).
+4. At the bottom left you'll see the list of files, each with a checkbox. In the field below,
+   write a message in the **Summary** box, e.g. `Initial setup`, and click
    **Commit to main**.
 
-   > Il pulsante **Commit to main** resta grigio (non cliccabile)? Cause tipiche:
-   > - **Non appare NESSUN file nella lista** (scheda "Changes" vuota). Due possibilita:
-   >   (a) hai aggiunto la cartella sbagliata — quella che vedi in GitHub Desktop non
-   >   contiene i file del progetto. Controlla il percorso in **Repository -> Repository
-   >   settings**; se e sbagliato, fai **Current repository -> tasto destro sul repo ->
-   >   Remove**, e rifai il Passo 2 scegliendo la cartella con dentro `config.yaml`.
-   >   (b) avevi gia fatto un commit di questa cartella in un tentativo precedente: allora e
-   >   normale che non ci sia nulla da committare — salta direttamente al punto 5 (Publish).
-   > - **I file appaiono ma senza spunta**: in alto nella lista spunta la casella
-   >   "select all", cosi tutti i file rientrano nel commit.
-   > - **Il Summary e vuoto o non e stato registrato**: clicca dentro il riquadro *Summary*,
-   >   scrivi `Initial setup`, poi clicca una volta fuori dal campo (o premi Tab). A volte il
-   >   pulsante si attiva solo dopo che il campo perde il focus.
-5. In alto clicca **Publish repository**. Nella finestra: lascia il nome `mongolia-weekly` e
-   **togli la spunta** da "Keep this code private" (il sito dev'essere pubblico). Poi
-   **Publish repository**.
+   > Is the **Commit to main** button greyed out (not clickable)? Typical causes:
+   > - **NO files appear in the list** (the "Changes" tab is empty). Two possibilities:
+   >   (a) you added the wrong folder — the one you see in GitHub Desktop doesn't
+   >   contain the project files. Check the path under **Repository -> Repository
+   >   settings**; if it's wrong, do **Current repository -> right-click the repo ->
+   >   Remove**, and redo Step 2 choosing the folder that contains `config.yaml`.
+   >   (b) you'd already committed this folder in an earlier attempt: in that case it's
+   >   normal for there to be nothing to commit — skip straight to point 5 (Publish).
+   > - **The files appear but without a checkmark**: at the top of the list, check the
+   >   "select all" box, so all the files are included in the commit.
+   > - **The Summary is empty or wasn't registered**: click inside the *Summary* box,
+   >   type `Initial setup`, then click once outside the field (or press Tab). Sometimes the
+   >   button only activates once the field loses focus.
+5. At the top, click **Publish repository**. In the window: leave the name as
+   `mongolia-weekly` and **uncheck** "Keep this code private" (the site needs to be public).
+   Then **Publish repository**.
 
-Fatto: i tuoi file sono su GitHub. Aprendo github.com dal tuo profilo vedrai il repo.
+Done: your files are on GitHub. Opening github.com from your profile you'll see the repo.
 
-> Hai creato repo di troppo per errore? Si cancellano dal sito: apri la repo su github.com ->
-> **Settings** -> in fondo, **Danger Zone** -> **Delete this repository** -> conferma
-> digitando il nome. Tienine una sola, quella pubblicata qui sopra.
+> Did you accidentally create extra repos? They can be deleted from the site: open the repo on
+> github.com -> **Settings** -> at the bottom, **Danger Zone** -> **Delete this repository** ->
+> confirm by typing the name. Keep only one, the one published above.
 
 ---
 
-## Passo 3 — Salva la chiave API come "secret"
+## Step 3 — Save the API key as a "secret"
 
-Sul **sito** github.com, nella tua repo: **Settings -> Secrets and variables -> Actions ->
+On the **website** github.com, in your repo: **Settings -> Secrets and variables -> Actions ->
 New repository secret**.
 - Name: `ANTHROPIC_API_KEY`
-- Secret: la tua chiave.
+- Secret: your key.
 
-E cifrata e invisibile nei log. E l'unico posto dove vive la chiave.
+It's encrypted and hidden from logs. It's the only place the key lives.
 
 ---
 
-## Passo 4 — Dai i permessi alle Actions
+## Step 4 — Grant permissions to Actions
 
-Sempre in **Settings -> Actions -> General**, sezione "Workflow permissions":
-- scegli **Read and write permissions**;
-- spunta **Allow GitHub Actions to create and approve pull requests**;
+Still under **Settings -> Actions -> General**, "Workflow permissions" section:
+- choose **Read and write permissions**;
+- check **Allow GitHub Actions to create and approve pull requests**;
 - Save.
 
-Senza questo, la Pull Request automatica non puo essere creata.
+Without this, the automatic Pull Request cannot be created.
 
 ---
 
-## Passo 5 — Accendi il sito (GitHub Pages)
+## Step 5 — Turn on the site (GitHub Pages)
 
-In **Settings -> Pages**, sezione "Build and deployment":
+Under **Settings -> Pages**, "Build and deployment" section:
 - Source: **Deploy from a branch**
-- Branch: **main**, cartella **/docs** -> Save.
+- Branch: **main**, folder **/docs** -> Save.
 
-Dopo un minuto il sito e online a `https://<tuo-utente>.github.io/mongolia-weekly/`.
-Poiche il progetto include gia un report d'esempio, dovresti vederlo subito: e la conferma
-che tutto e collegato bene.
+After a minute the site is live at `https://<your-username>.github.io/mongolia-weekly/`.
+Since the project already includes a sample report, you should see it right away: that's the
+confirmation that everything is properly connected.
 
 ---
 
-## Passo 6 — Genera il primo report vero
+## Step 6 — Generate the first real report
 
-Due modi, scegli quello che preferisci.
+Two ways, pick whichever you prefer.
 
-**A) Nel cloud (nessun Python da installare).**
-Sul sito, tab **Actions -> Weekly report -> Run workflow**. Parte la raccolta + generazione e,
-al termine, apre una Pull Request con la bozza. Poi vai al Passo 7 per approvarla.
+**A) In the cloud (no Python to install).**
+On the website, tab **Actions -> Weekly report -> Run workflow**. This starts the collection +
+generation and, at the end, opens a Pull Request with the draft. Then go to Step 7 to approve
+it.
 
-**B) In locale (per mettere a punto i prompt con calma).** Richiede Python 3.12+ sul tuo
-computer. Nella cartella del progetto:
+**B) Locally (to fine-tune the prompts at your own pace).** Requires Python 3.12+ on your
+computer. In the project folder:
 ```
 pip install -r requirements.txt
-set ANTHROPIC_API_KEY=sk-ant-...tua-chiave...      (Windows CMD)
-$env:ANTHROPIC_API_KEY="sk-ant-..."                (Windows PowerShell)
+set ANTHROPIC_API_KEY=sk-ant-...your-key...          (Windows CMD)
+$env:ANTHROPIC_API_KEY="sk-ant-..."                   (Windows PowerShell)
 python scripts/collect.py     -> data/raw_news.json
-python scripts/generate.py    -> reports/<data>.json
-python scripts/build.py       -> docs/index.html   (aprilo nel browser)
+python scripts/generate.py    -> reports/<date>.json
+python scripts/build.py       -> docs/index.html   (open it in your browser)
 ```
-Se il tono o la struttura non convincono, modifica i prompt in `scripts/generate.py`
-(`DRAFT_SYSTEM`, `REVIEW_SYSTEM`, `TRANSLATE_SYSTEM`) e rilancia. Quando sei contento, in
-GitHub Desktop fai **Commit to main** e **Push** per caricare le modifiche.
+If the tone or structure doesn't convince you, edit the prompts in `scripts/generate.py`
+(`DRAFT_SYSTEM`, `REVIEW_SYSTEM`, `TRANSLATE_SYSTEM`) and run again. When you're happy, in
+GitHub Desktop do **Commit to main** and **Push** to upload the changes.
 
 ---
 
-## Passo 7 — Il flusso settimanale della tua collega (i 3 gesti)
+## Step 7 — Your colleague's weekly flow (the 3 actions)
 
-Una volta sola:
-1. Lei si crea un account GitHub gratuito.
-2. Tu la aggiungi al repo: sul sito, **Settings -> Collaborators -> Add people**.
-3. Per farle arrivare l'email ogni settimana, apri `.github/workflows/weekly.yml` e togli il
-   commento alla riga `reviewers: her-github-username`, mettendo il suo username. (In
-   alternativa lei clicca "Watch -> All Activity" sul repo.)
+One-time setup:
+1. She creates a free GitHub account.
+2. You add her to the repo: on the website, **Settings -> Collaborators -> Add people**.
+3. To have the email reach her every week, open `.github/workflows/weekly.yml` and uncomment
+   the line `reviewers: her-github-username`, putting in her username. (Alternatively she can
+   click "Watch -> All Activity" on the repo.)
 
-Ogni settimana, per lei sono tre gesti:
-1. **Riceve l'email** "Weekly report — ready for review" e apre la Pull Request.
-2. Nella scheda **"Files changed"** legge il report. Se una frase va sistemata, clicca la
-   matita e corregge il testo nei campi `"en"` / `"mn"` del JSON (e testo semplice ed
-   etichettato — non serve saper programmare).
-3. Clicca **"Merge pull request"**. Il sito si ricostruisce da solo e va live. Poi lei
-   **inoltra il link** del sito al canale dell'ufficio.
+Every week, for her it's three actions:
+1. **She receives the email** "Weekly report — ready for review" and opens the Pull Request.
+2. In the **"Files changed"** tab she reads the report. If a sentence needs fixing, she clicks
+   the pencil icon and edits the text in the `"en"` / `"mn"` fields of the JSON (it's plain,
+   labeled text — no coding needed).
+3. She clicks **"Merge pull request"**. The site rebuilds itself and goes live. Then she
+   **forwards the site link** to the office channel.
 
-> Nota sull'anteprima: in questa versione lei vede il testo nel JSON, non ancora il rendering
-> finale, prima del merge. Se dopo la pubblicazione nota qualcosa, rifa la correzione e il
-> sito si ricostruisce. Un'anteprima live pre-merge e un miglioramento aggiungibile dopo.
-
----
-
-## Passo 8 — Cambiare fonti, agenzie, categorie, chiave
-
-**Le fonti si cambiano nel foglio Excel, non nel codice.** Vedi la sezione "Il foglio
-condiviso" piu sotto.
-
-Il resto si cambia in **`config.yaml`** (editabile anche dal sito: apri il file -> matita ->
-Commit):
-- **Agenzie** del filtro: lista `agencies`.
-- **Categorie** e loro ordine: lista `categories` (sono quattro).
-- **Tag secondari**: lista `secondary_tags`.
-- **Termini** di rilevanza: `mongolia_terms` e `regional_terms`.
-- **Stile UN**: `style.linter` (on/off) e `style.flag_only_terms` (i nomi che il sistema
-  segnala invece di decidere).
-- **Media monitoring**: `media_monitoring.match_min_confidence` (sotto questa soglia la fonte
-  citata viene mostrata come "non identificata" invece che indovinata),
-  `media_monitoring.un_index_days` (quanto indietro va l'indice delle nostre pubblicazioni).
-- **Modello**: campo `model` (`claude-sonnet-5`, oppure `claude-haiku-4-5-20251001` per
-  spendere meno).
-
-Per passare alla **chiave d'ufficio**: aggiorna il secret `ANTHROPIC_API_KEY` (Passo 3) col
-nuovo valore. Nient'altro cambia.
+> Note on previewing: in this version she sees the text in the JSON, not yet the final
+> rendering, before merging. If she notices something after publishing, she makes the fix
+> again and the site rebuilds. A live pre-merge preview is an improvement that can be added
+> later.
 
 ---
 
-## Il foglio condiviso (`sources/sources.xlsx`)
+## Step 8 — Changing sources, agencies, categories, key
 
-E' il punto in cui l'ufficio lavora. Sei fogli:
+**Sources are changed in the Excel sheet, not in the code.** See the "The shared sheet"
+section below.
 
-| Foglio | A cosa serve |
+Everything else is changed in **`config.yaml`** (also editable from the website: open the file
+-> pencil icon -> Commit):
+- **Filter agencies**: `agencies` list.
+- **Categories** and their order: `categories` list (there are four).
+- **Secondary tags**: `secondary_tags` list.
+- **Relevance terms**: `mongolia_terms` and `regional_terms`.
+- **UN style**: `style.linter` (on/off) and `style.flag_only_terms` (names the system flags
+  instead of deciding on its own).
+- **Media monitoring**: `media_monitoring.match_min_confidence` (below this threshold the
+  cited source is shown as "not identified" instead of being guessed),
+  `media_monitoring.un_index_days` (how far back the index of our publications goes).
+- **Model**: `model` field (`claude-sonnet-5`, or `claude-haiku-4-5-20251001` to spend less).
+
+To switch to the **office key**: update the `ANTHROPIC_API_KEY` secret (Step 3) with the new
+value. Nothing else changes.
+
+---
+
+## The shared sheet (`sources/sources.xlsx`)
+
+This is where the office does its work. Six sheets:
+
+| Sheet | What it's for |
 |---|---|
-| `README` | istruzioni per la collega, dentro il file stesso |
-| `sources` | ricerche e feed per il report settimanale |
-| `outlets` | testate da sorvegliare per le menzioni |
-| `roster` | RC e head of office, **con tutti gli alias in cirillico** |
-| `un_sites` | le NOSTRE pagine, indicizzate per ricostruire la citazione |
-| `glossary` | terminologia UN concordata in mongolo, usata alla lettera |
+| `README` | instructions for your colleague, inside the file itself |
+| `sources` | searches and feeds for the weekly report |
+| `outlets` | outlets to monitor for mentions |
+| `roster` | RC and head of office, **with all Cyrillic aliases** |
+| `un_sites` | OUR pages, indexed to help reconstruct citations |
+| `glossary` | agreed UN terminology in Mongolian, used verbatim |
 
-Il ciclo di lavoro della collega: apre il file in Excel, aggiunge o disattiva righe (colonna
-`active`: `yes`/`no`), salva, e lo ricarica su GitHub (`sources` -> **Add file** -> **Upload
-files** -> trascina -> **Commit changes**). Ha effetto dal lunedi successivo.
+Your colleague's workflow: she opens the file in Excel, adds or disables rows (`active`
+column: `yes`/`no`), saves it, and re-uploads it to GitHub (`sources` -> **Add file** ->
+**Upload files** -> drag it in -> **Commit changes**). It takes effect from the following
+Monday.
 
-Una riga sbagliata **non ferma il run**: finisce nella sezione "Source problems" della pull
-request, con foglio e numero di riga. Le celle `<FILL IN>` nel foglio `roster` vanno compilate
-per prime: finche' sono vuote, le menzioni che citano l'RC per nome non vengono trovate.
+A mistaken row **doesn't stop the run**: it ends up in the "Source problems" section of the
+pull request, with sheet name and row number. The `<FILL IN>` cells in the `roster` sheet
+should be filled in first: as long as they're empty, mentions that cite the RC by name won't
+be found.
 
-Per spostare tutto su un Google Sheet piu avanti: **File -> Condividi -> Pubblica sul web ->
-CSV**, un URL per foglio, e li incolli in `workbook.csv_urls` in `config.yaml`. Nient'altro
-cambia.
-
----
-
-## La pagina "In the Media"
-
-Ogni menzione mostra testata, data, lingua, tono (**Supportive / Neutral / Critical**), tipo
-di menzione, prominenza, agenzie citate, e la riga **"Refers to →"** con la nostra
-pubblicazione citata. Tre esiti possibili, tenuti volutamente distinti:
-
-- **linked in the article** — l'articolo contiene un link a un dominio ONU. E' una prova, non
-  una deduzione: confidenza 100.
-- **probable, 78% confidence** — nessun link: la fonte e' dedotta da cifre condivise,
-  formulazioni, prossimita' di date. La ragione concreta e' scritta sotto la riga.
-- **not identified** — sotto la soglia. Preferiamo dirlo che indovinare.
-
-Il tono giudica **come viene presentata l'ONU nell'articolo**, non la qualita' del pezzo ne'
-l'argomento: un articolo cupo che riporta le nostre cifre senza commento e' *Neutral*.
-
-In fondo alla pagina c'e' l'archivio cumulativo: totali, testate piu' frequenti, agenzie piu'
-citate, andamento settimana per settimana.
+To move everything to a Google Sheet later on: **File -> Share -> Publish to web ->
+CSV**, one URL per sheet, and paste them into `workbook.csv_urls` in `config.yaml`. Nothing
+else changes.
 
 ---
 
-## Lo stile UN Editorial Manual
+## The "In the Media" page
 
-Due strati, perche' il prompt da solo non basta a tenere la stessa casa editoriale tra un
-lunedi e l'altro:
+Each mention shows the outlet, date, language, tone (**Supportive / Neutral / Critical**),
+type of mention, prominence, agencies cited, and a **"Refers to →"** line with the publication
+of ours that's cited. Three possible outcomes, kept deliberately distinct:
 
-1. **Nei prompt** — registro istituzionale, numeri, maiuscole nei titoli di carica, forma
-   breve UN dei Paesi.
-2. **Nel linter** (`scripts/un_style.py`) — correzioni meccaniche deterministiche: *Russia* ->
+- **linked in the article** — the article contains a link to a UN domain. It's proof, not
+  a deduction: confidence 100.
+- **probable, 78% confidence** — no link: the source is inferred from shared figures,
+  wording, closeness of dates. The concrete reasoning is written below the line.
+- **not identified** — below the threshold. We'd rather say so than guess.
+
+Tone judges **how the UN is portrayed in the article**, not the quality of the piece or its
+argument: a grim article that reports our figures without comment is *Neutral*.
+
+At the bottom of the page is the cumulative archive: totals, most frequent outlets, most
+cited agencies, week-by-week trend.
+
+---
+
+## The UN Editorial Manual style
+
+Two layers, because the prompt alone isn't enough to keep a consistent editorial house style
+from one Monday to the next:
+
+1. **In the prompts** — institutional register, numbers, capitalization of official titles,
+   short UN form of country names.
+2. **In the linter** (`scripts/un_style.py`) — deterministic mechanical fixes: *Russia* ->
    *the Russian Federation*, *South Korea* -> *the Republic of Korea*, *Vietnam* -> *Viet Nam*,
-   *percent* -> *per cent*, *program* -> *programme*, *July 14, 2026* -> *14 July 2026*. URL,
-   citazioni dirette e nomi di testata sono mascherati prima della sostituzione, quindi
-   "Russia Today" resta "Russia Today".
+   *percent* -> *per cent*, *program* -> *programme*, *July 14, 2026* -> *14 July 2026*. URLs,
+   direct quotations and outlet names are masked before substitution, so
+   "Russia Today" stays "Russia Today".
 
-I **nomi politicamente sensibili** (Taiwan, Kosovo, Palestine, Crimea, Western Sahara...) non
-vengono mai riscritti automaticamente: compaiono in cima alla pull request sotto "Sensitive
-names — decide before merging", col contesto in cui appaiono. E' materia da RCO, non da
-modello.
-
----
-
-## Costi
-
-Volume settimanale piccolo (~40k token input, ~7-8k output EN+MN, piu 1-2 giri di
-auto-revisione). Con **Claude Sonnet 5** siamo su pochi centesimi a settimana; scenario
-peggiore ~5-6 $/mese. Con Haiku scendi ancora, a scapito di un po' di finezza.
+**Politically sensitive names** (Taiwan, Kosovo, Palestine, Crimea, Western Sahara...) are
+never automatically rewritten: they appear at the top of the pull request under "Sensitive
+names — decide before merging", with the context in which they appear. This is a matter for
+the RCO, not the model.
 
 ---
 
-## Nota importante sull'affidabilita
+## Costs
 
-Un modello linguistico puo occasionalmente enfatizzare o confondere una notizia, e la
-"confidenza" che si auto-assegna nel loop **non e una garanzia oggettiva**. Il loop alza la
-qualita e cattura gli errori evidenti, ma la **revisione umana della tua collega resta il
-filtro decisivo** e va mantenuta anche a regime. I prompt sono gia scritti in chiave prudente
-(cita sempre la fonte, non inventare, nel dubbio declassa ad "Also noted").
+Small weekly volume (~40k input tokens, ~7-8k output EN+MN, plus 1-2 self-review rounds). With
+**Claude Sonnet 5** we're talking a few cents a week; worst case ~$5-6/month. With Haiku it
+goes down further, at the cost of a bit of nuance.
 
-Lo stesso vale, in modo ancora piu' netto, per la pagina **In the Media**: il tono e' un
-giudizio automatico su una pagina pubblica, e l'attribuzione della fonte citata e' una
-probabilita' dichiarata. Il disclaimer metodologico in fondo alla pagina lo dice
-esplicitamente: e' la vostra protezione, conviene lasciarlo.
+---
+
+## Important note on reliability
+
+A language model can occasionally overemphasize or mix up a story, and the "confidence" it
+assigns itself in the loop **is not an objective guarantee**. The loop raises quality and
+catches obvious errors, but **your colleague's human review remains the decisive filter** and
+should be kept even once the system is running smoothly. The prompts are already written with
+a cautious approach (always cite the source, never invent, when in doubt downgrade to "Also
+noted").
+
+The same applies, even more clearly, to the **In the Media** page: the tone is an automated
+judgment on a public page, and the attribution of the cited source is a stated probability.
+The methodological disclaimer at the bottom of the page says this explicitly: it's your
+protection, best to leave it there.
