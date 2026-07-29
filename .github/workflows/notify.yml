@@ -43,7 +43,11 @@ jobs:
         if: steps.prep.outputs.send == 'true'
         uses: dawidd6/action-send-mail@v3
         with:
-          server_address: smtp.office365.com
+          # Sending via a personal Gmail account, since Authenticated SMTP is
+          # blocked on the office's Microsoft 365 mailbox and IT hasn't
+          # enabled it yet. Requires a Gmail App Password, not the normal
+          # account password — see the setup guide for exact steps.
+          server_address: smtp.gmail.com
           server_port: 587
           username: ${{ secrets.SMTP_USERNAME }}
           password: ${{ secrets.SMTP_PASSWORD }}
