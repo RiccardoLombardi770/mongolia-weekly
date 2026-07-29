@@ -38,14 +38,17 @@ RAW = ROOT / "data" / "raw_news.json"
 client = Anthropic()
 MODEL = CONFIG["model"]
 MAXTOK = CONFIG["max_output_tokens"]
+# Translation is a mechanical, glossary-constrained task — a lighter model
+# handles it well at a fraction of the cost. Falls back to MODEL if unset.
+TRANSLATE_MODEL = CONFIG.get("translate_model") or MODEL
 CATEGORIES = CONFIG["categories"]
 
 
 # ---------- helpers ----------
 
-def call(system, user):
+def call(system, user, model=None):
     msg = client.messages.create(
-        model=MODEL, max_tokens=MAXTOK,
+        model=model or MODEL, max_tokens=MAXTOK,
         system=system, messages=[{"role": "user", "content": user}],
     )
     return "".join(b.text for b in msg.content if b.type == "text")
@@ -270,7 +273,7 @@ def translate(report_en, glossary):
         if attempt == 1:
             system += "\n\nIMPORTANT: reply with the JSON object ONLY. No preamble, no explanation, no code fences."
         try:
-            mn = parse_json(call(system, user))
+            mn = parse_json(call(system, user, model=TRANSLATE_MODEL))
             break
         except (ValueError, json.JSONDecodeError) as e:
             last_err = e

@@ -13,6 +13,7 @@ Output:        data/raw_news.json
 """
 
 import json
+import re
 import time
 import pathlib
 import datetime as dt
@@ -133,14 +134,58 @@ def fetch_gdelt():
     return items
 
 
+STOP_WORDS = set("the a an and or of in on at to for from with by as is are was were "
+                 "will be been this that these those mongolia mongolian said says say "
+                 "new news".split())
+_WORD_RE = re.compile(r"[A-Za-z]{4,}")
+
+
+def _title_words(title):
+    return {w.lower() for w in _WORD_RE.findall(title or "") if w.lower() not in STOP_WORDS}
+
+
 def dedupe(items):
+    """Exact match first (URL or identical title), then near-duplicate titles —
+    the same story returned by more than one search query, worded slightly
+    differently, which exact-string matching misses entirely."""
     seen, out = set(), []
     for it in items:
         key = (it.get("url") or it.get("title", "")).strip().lower()
         if key and key not in seen:
             seen.add(key)
             out.append(it)
-    return out
+
+    kept, kept_words = [], []
+    for it in out:
+        words = _title_words(it.get("title", ""))
+        is_dup = False
+        if words:
+            for kw in kept_words:
+                overlap = len(words & kw) / max(1, min(len(words), len(kw)))
+                if overlap >= 0.6:
+                    is_dup = True
+                    break
+        if not is_dup:
+            kept.append(it)
+            kept_words.append(words)
+    return kept
+
+
+def relevance_rank(items, core_terms, regional_terms):
+    """Sort by how clearly each item is actually about Mongolia, so that when
+    generate.py caps the list, the cut favours substance over arrival order."""
+    core = [t.lower() for t in core_terms]
+    regional = [t.lower() for t in regional_terms]
+
+    def score(it):
+        text = (it.get("title", "") + " " + it.get("snippet", "")).lower()
+        s = sum(2 for t in core if t in text)          # direct Mongolia terms weigh more
+        s += sum(1 for t in regional if t in text)
+        if it.get("suggested_category"):
+            s += 1                                     # came from a targeted, curated search
+        return s
+
+    return sorted(items, key=score, reverse=True)
 
 
 def main():
@@ -154,7 +199,11 @@ def main():
     all_items += fetch_google_news(queries)
     all_items += fetch_rss(feeds)
     all_items += fetch_gdelt()
+    before = len(all_items)
     all_items = dedupe(all_items)
+    print(f"  {before - len(all_items)} duplicate/near-duplicate item(s) removed")
+    all_items = relevance_rank(all_items, CONFIG.get("mongolia_terms", []),
+                               CONFIG.get("regional_terms", []))
 
     OUT.parent.mkdir(parents=True, exist_ok=True)   # <-- the fix: ensure data/ exists
     payload = {"collected_at": dt.datetime.now(dt.timezone.utc).isoformat(),

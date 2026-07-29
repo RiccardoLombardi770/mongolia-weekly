@@ -41,6 +41,9 @@ RAW = ROOT / "data" / "raw_mentions.json"
 client = Anthropic()
 MODEL = CONFIG["model"]
 MAXTOK = CONFIG["max_output_tokens"]
+# Translation is a mechanical, glossary-constrained task — a lighter model
+# handles it well at a fraction of the cost. Falls back to MODEL if unset.
+TRANSLATE_MODEL = CONFIG.get("translate_model") or MODEL
 
 TONES = MM.get("tone_labels", ["Supportive", "Neutral", "Critical"])
 TYPES = MM.get("mention_types", [])
@@ -257,7 +260,7 @@ def translate(doc, glossary):
         if attempt == 1:
             system += "\n\nIMPORTANT: reply with the JSON object ONLY. No preamble, no explanation, no code fences."
         try:
-            mn = parse_json(call(system, user))
+            mn = parse_json(call(system, user, model=TRANSLATE_MODEL))
             break
         except Exception as e:
             last_err = e

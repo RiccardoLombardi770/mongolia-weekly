@@ -1,0 +1,39 @@
+name: Test data collection (no AI, no tokens)
+
+# Manual only — never scheduled, never touches generate.py or the API key.
+# Use this to check that the shared workbook and news collection are working
+# BEFORE running the real weekly workflow, at zero cost.
+
+on:
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  test-collection:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      # Deliberately NOT installing the anthropic package — this job cannot
+      # call the API even if a script tried to.
+      - name: Install dependencies (no AI library)
+        run: pip install requests pyyaml openpyxl
+
+      - name: Collect news (no AI)
+        run: python scripts/collect.py
+
+      - name: Inspect workbook + collection quality (no AI)
+        run: python scripts/inspect_collection.py
+
+      - name: Upload raw_news.json for inspection
+        uses: actions/upload-artifact@v4
+        with:
+          name: raw-news-preview
+          path: data/raw_news.json
+          retention-days: 14

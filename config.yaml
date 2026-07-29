@@ -8,16 +8,39 @@ site:
   title: "Mongolia Weekly"
   subtitle: "Media and news monitoring — UN Mongolia"
   media_page_title: "In the Media"
-  base_url: ""
+  base_url: "https://riccardolombardi770.github.io/mongolia-weekly"
+
+# ---- Email notification sent to colleagues once a report is merged ----
+notifications:
+  enabled: true
+  subject_prefix: "Mongolia Weekly"
+  # Fixed list — edit directly here and commit. For a self-service list
+  # instead, this could read a column from sources/sources.xlsx; ask if
+  # you outgrow a handful of names.
+  recipients:
+    - "colleague1@un.org"
+    - "colleague2@un.org"
 
 lookback_days: 7
 
 # ---- Model & self-review loop ----
 model: "claude-sonnet-5"
+# Translation is mechanical and glossary-constrained — a lighter, cheaper
+# model handles it well. Comment out to use "model" for translation too.
+translate_model: "claude-haiku-4-5-20251001"
 max_output_tokens: 16000
-max_items_to_model: 120
+# How many collected items get sent to the model to draft from. collect.py
+# now sorts by relevance before this cut (see relevance_rank), so lowering
+# this number trims the weakest items first, not a random slice. Lower this
+# if weekly volume is consistently high (400+) and confidence stays low —
+# fewer, better-chosen items are usually easier for the model to structure
+# well than more, noisier ones.
+max_items_to_model: 80
 review:
   confidence_threshold: 90
+  # Each extra pass costs a full draft-sized call. If confidence oscillates
+  # instead of climbing (e.g. 58 -> 66 -> 61), a 3rd pass is not guaranteed
+  # to help — 2 is a reasonable, cheaper default once the pipeline is stable.
   max_iterations: 3
 
 # ---- The shared workbook (single source of truth for sources) ----
