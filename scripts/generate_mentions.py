@@ -78,6 +78,35 @@ def parse_json(text):
     return json.loads(cleaned[start:end + 1])
 
 
+def call_json(system, user, model=None, label="call"):
+    """Call the model and parse its reply as JSON, retrying malformed replies.
+
+    Attempt 1 is as given; attempt 2 nudges the model to reply with JSON only.
+    From attempt 3 on, instead of regenerating from scratch (which tends to
+    reproduce the same mistake, e.g. an unescaped quote inside an article
+    snippet), the model is asked to repair the exact syntax error in what it
+    already wrote — much likelier to succeed than a fresh roll of the dice.
+    """
+    last_err = last_text = None
+    for attempt in range(3):
+        if attempt == 0:
+            sys_prompt, prompt = system, user
+        elif attempt == 1:
+            sys_prompt = system + "\n\nIMPORTANT: reply with the JSON object ONLY. No preamble, no fences."
+            prompt = user
+        else:
+            sys_prompt = ("Fix ONLY the JSON syntax error below; do not change any wording, "
+                          "facts, numbers, or structure. Return the corrected JSON object only.")
+            prompt = f"Parse error: {last_err}\n\nBroken JSON:\n{last_text}"
+        text = call(sys_prompt, prompt, model=model)
+        try:
+            return parse_json(text)
+        except (ValueError, json.JSONDecodeError) as e:
+            last_err, last_text = e, text
+            print(f"  {label} attempt {attempt + 1}: could not parse JSON, retrying...")
+    raise last_err
+
+
 CLASSIFY_SYSTEM = f"""You analyse how the media in Mongolia and abroad refer to the
 United Nations, for the UN Resident Coordinator's Office. You are describing coverage,
 not judging journalists, and your output is published on a public page: stay descriptive
@@ -181,15 +210,7 @@ def payload_for_model(mentions):
 def classify(mentions):
     user = ("Analyse these articles. Return one object per article, keeping the ids.\n\n"
             + json.dumps(payload_for_model(mentions), ensure_ascii=False))
-    for attempt in range(2):
-        system = CLASSIFY_SYSTEM
-        if attempt:
-            system += "\n\nIMPORTANT: reply with the JSON object ONLY. No preamble, no fences."
-        try:
-            return parse_json(call(system, user))
-        except (ValueError, json.JSONDecodeError):
-            print(f"  classify attempt {attempt + 1}: unparseable JSON, retrying...")
-    raise RuntimeError("Could not obtain valid JSON from the classification step.")
+    return call_json(CLASSIFY_SYSTEM, user, label="classify")
 
 
 def review_loop(analysis, mentions):
@@ -277,16 +298,10 @@ def translate(doc, glossary):
     user = json.dumps(payload, ensure_ascii=False)
 
     mn, last_err = None, None
-    for attempt in range(2):
-        system = translate_system(glossary)
-        if attempt == 1:
-            system += "\n\nIMPORTANT: reply with the JSON object ONLY. No preamble, no explanation, no code fences."
-        try:
-            mn = parse_json(call(system, user, model=TRANSLATE_MODEL))
-            break
-        except Exception as e:
-            last_err = e
-            print(f"  translate attempt {attempt + 1}: could not parse JSON, retrying...")
+    try:
+        mn = call_json(translate_system(glossary), user, model=TRANSLATE_MODEL, label="translate")
+    except Exception as e:
+        last_err = e
 
     if mn is None:
         print(f"  translation failed after retries ({last_err}); the page will show "
