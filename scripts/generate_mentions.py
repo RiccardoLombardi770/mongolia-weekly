@@ -38,7 +38,11 @@ CONFIG = yaml.safe_load((ROOT / "config.yaml").read_text(encoding="utf-8"))
 MM = CONFIG.get("media_monitoring", {})
 RAW = ROOT / "data" / "raw_mentions.json"
 
-client = Anthropic()
+# This is a once-a-week cron run — losing the whole report to a transient
+# "Overloaded" (529) or other 5xx from the API is expensive to lose, so retry
+# harder than the SDK's default of 2 before giving up. The SDK already backs
+# off between attempts.
+client = Anthropic(max_retries=6)
 MODEL = CONFIG["model"]
 MAXTOK = CONFIG["max_output_tokens"]
 # Translation is a mechanical, glossary-constrained task — a lighter model
