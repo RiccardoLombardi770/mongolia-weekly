@@ -41,7 +41,7 @@ review:
   # Each extra pass costs a full draft-sized call. If confidence oscillates
   # instead of climbing (e.g. 58 -> 66 -> 61), a 3rd pass is not guaranteed
   # to help — 2 is a reasonable, cheaper default once the pipeline is stable.
-  max_iterations: 3
+  max_iterations: 2
 
 # ---- The shared workbook (single source of truth for sources) ----
 # The colleague edits this file in Excel and re-uploads it to GitHub.
