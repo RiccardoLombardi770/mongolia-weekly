@@ -75,6 +75,35 @@ def parse_json(text):
     return json.loads(cleaned[start:end + 1])
 
 
+def call_json(system, user, model=None, label="call"):
+    """Call the model and parse its reply as JSON, retrying malformed replies.
+
+    Attempt 1 is as given; attempt 2 nudges the model to reply with JSON only.
+    From attempt 3 on, instead of regenerating from scratch (which tends to
+    reproduce the same mistake, e.g. an unescaped quote inside an article
+    snippet), the model is asked to repair the exact syntax error in what it
+    already wrote — much likelier to succeed than a fresh roll of the dice.
+    """
+    last_err = last_text = None
+    for attempt in range(3):
+        if attempt == 0:
+            sys_prompt, prompt = system, user
+        elif attempt == 1:
+            sys_prompt = system + "\n\nIMPORTANT: reply with the JSON object ONLY. No preamble, no explanation, no code fences."
+            prompt = user
+        else:
+            sys_prompt = ("Fix ONLY the JSON syntax error below; do not change any wording, "
+                          "facts, numbers, or structure. Return the corrected JSON object only.")
+            prompt = f"Parse error: {last_err}\n\nBroken JSON:\n{last_text}"
+        text = call(sys_prompt, prompt, model=model)
+        try:
+            return parse_json(text)
+        except (ValueError, json.JSONDecodeError) as e:
+            last_err, last_text = e, text
+            print(f"  {label} attempt {attempt + 1}: could not parse JSON, retrying...")
+    raise last_err
+
+
 # ---------- prompts (tune these to change tone / structure) ----------
 
 STRUCTURE_NOTE = f"""
@@ -180,17 +209,7 @@ def translate_system(glossary):
 
 def draft(raw):
     user = "Here are this week's candidate articles as JSON:\n\n" + json.dumps(raw, ensure_ascii=False)
-    last_err = None
-    for attempt in range(2):
-        system = DRAFT_SYSTEM
-        if attempt == 1:
-            system += "\n\nIMPORTANT: reply with the JSON object ONLY. No preamble, no explanation, no code fences."
-        try:
-            return parse_json(call(system, user))
-        except (ValueError, json.JSONDecodeError) as e:
-            last_err = e
-            print(f"  draft attempt {attempt + 1}: could not parse JSON, retrying...")
-    raise last_err
+    return call_json(DRAFT_SYSTEM, user, label="draft")
 
 
 # Formats seen from the model despite the prompt asking for YYYY-MM-DD, so a
@@ -315,16 +334,10 @@ def translate(report_en, glossary):
     user = json.dumps(payload, ensure_ascii=False)
 
     mn, last_err = None, None
-    for attempt in range(2):
-        system = translate_system(glossary)
-        if attempt == 1:
-            system += "\n\nIMPORTANT: reply with the JSON object ONLY. No preamble, no explanation, no code fences."
-        try:
-            mn = parse_json(call(system, user, model=TRANSLATE_MODEL))
-            break
-        except (ValueError, json.JSONDecodeError) as e:
-            last_err = e
-            print(f"  translate attempt {attempt + 1}: could not parse JSON, retrying...")
+    try:
+        mn = call_json(translate_system(glossary), user, model=TRANSLATE_MODEL, label="translate")
+    except (ValueError, json.JSONDecodeError) as e:
+        last_err = e
 
     if mn is None:
         # Don't lose an entire week's drafting + review over a translation hiccup:
