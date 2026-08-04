@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-08-03T12:56:01.204866+00:00",
+  "updated_at": "2026-08-04T06:54:36.049098+00:00",
   "window_days": 180,
   "count": 39,
   "issues": [
     "[roster] no names filled in yet — mentions that quote the Resident Coordinator or a head of office by name cannot be detected until the sheet is completed",
     "[un_sites] could not read https://mongolia.un.org/en/resources/press-releases: 404 Client Error: Not Found for url: https://mongolia.un.org/en/resources/press-releases",
-    "[un_sites] could not read https://www.unicef.org/mongolia/press-releases: 404 Client Error: Not Found for url: https://www.unicef.org/mongolia/press-releases",
+    "[un_sites] could not read https://www.unicef.org/mongolia/press-releases: 403 Client Error: Forbidden for url: https://www.unicef.org/mongolia/press-releases",
     "[un_sites] could not read https://www.undp.org/mongolia/press-releases: 403 Client Error: Forbidden for url: https://www.undp.org/mongolia/press-releases",
     "[un_sites] could not read https://mongolia.iom.int/news: 403 Client Error: Forbidden for url: https://mongolia.iom.int/news",
     "[un_sites] no publications found at https://reliefweb.int/country/mng — the page layout may have changed, or the URL may be wrong"
