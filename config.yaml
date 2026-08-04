@@ -18,8 +18,10 @@ notifications:
   # instead, this could read a column from sources/sources.xlsx; ask if
   # you outgrow a handful of names.
   recipients:
-    - "colleague1@un.org"
-    - "colleague2@un.org"
+    - "riccardo.lombardi@un.org"
+    - "soyolmaa.dolgor@un.org"
+    - "lim6@un.org"
+    - "altangerel.choijoo@un.org"
 
 lookback_days: 7
 
