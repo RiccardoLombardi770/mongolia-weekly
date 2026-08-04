@@ -189,6 +189,33 @@ def draft(raw):
     raise last_err
 
 
+# Formats seen from the model despite the prompt asking for YYYY-MM-DD, so a
+# stray one doesn't silently corrupt the output filename and break the site
+# build (which indexes reports by this field).
+_DATE_FALLBACKS = ("%d %B %Y", "%B %d, %Y", "%B %d %Y", "%d/%m/%Y")
+
+
+def normalise_week_dates(report):
+    for key in ("week_start", "week_end"):
+        value = report.get(key)
+        if not value:
+            continue
+        try:
+            dt.date.fromisoformat(value)
+            continue
+        except ValueError:
+            pass
+        for fmt in _DATE_FALLBACKS:
+            try:
+                report[key] = dt.datetime.strptime(value, fmt).date().isoformat()
+                break
+            except ValueError:
+                continue
+        else:
+            raise ValueError(f"could not parse '{key}': {value!r} into an ISO date")
+    return report
+
+
 def review_loop(report):
     threshold = CONFIG["review"]["confidence_threshold"]
     log = []
@@ -351,6 +378,7 @@ def main():
     print(f"  using {len(items)} items after trimming")
 
     report_en = draft(raw)
+    report_en = normalise_week_dates(report_en)
     report_en = review_loop(report_en)
     report_en, unknown = normalise_categories(report_en)
     if unknown:
