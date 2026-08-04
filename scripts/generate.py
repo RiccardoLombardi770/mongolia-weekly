@@ -47,9 +47,17 @@ CATEGORIES = CONFIG["categories"]
 # ---------- helpers ----------
 
 def call(system, user, model=None):
+    # A plain string system prompt is cached whole (ephemeral). The review loop
+    # and multi-attempt retries reuse the same DRAFT/REVIEW system prompts within
+    # a run, so a cache hit skips most of that input on the repeat calls. Pass a
+    # pre-built list of blocks (see revise_system()) to control the cache split.
+    system_param = (
+        [{"type": "text", "text": system, "cache_control": {"type": "ephemeral"}}]
+        if isinstance(system, str) else system
+    )
     msg = client.messages.create(
         model=model or MODEL, max_tokens=MAXTOK,
-        system=system, messages=[{"role": "user", "content": user}],
+        system=system_param, messages=[{"role": "user", "content": user}],
     )
     return "".join(b.text for b in msg.content if b.type == "text")
 
@@ -139,8 +147,16 @@ names, "14 July 2026" dates, "per cent", British spellings with -ize endings.
 Return ONLY JSON: {{"confidence": <0-100>, "issues": ["specific, actionable fixes"]}}.
 Score honestly; 90+ means genuinely ready for a human reviewer."""
 
-REVISE_SYSTEM = DRAFT_SYSTEM + \
-    "\nRevise the draft to resolve the listed issues. Return the full corrected JSON only."
+REVISE_SUFFIX = "\nRevise the draft to resolve the listed issues. Return the full corrected JSON only."
+
+
+def revise_system():
+    # Two blocks so the DRAFT_SYSTEM portion re-hits the cache entry written by
+    # draft()'s call, instead of caching "DRAFT_SYSTEM + suffix" as a separate blob.
+    return [
+        {"type": "text", "text": DRAFT_SYSTEM, "cache_control": {"type": "ephemeral"}},
+        {"type": "text", "text": REVISE_SUFFIX},
+    ]
 
 
 def translate_system(glossary):
@@ -189,7 +205,7 @@ def review_loop(report):
             break
         fix = ("Draft JSON:\n" + json.dumps(report, ensure_ascii=False) +
                "\n\nIssues to fix:\n" + json.dumps(issues, ensure_ascii=False))
-        report = parse_json(call(REVISE_SYSTEM, fix))
+        report = parse_json(call(revise_system(), fix))
         report["confidence"] = score
     report["review_log"] = log
     return report

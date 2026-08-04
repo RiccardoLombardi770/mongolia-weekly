@@ -50,9 +50,19 @@ TYPES = MM.get("mention_types", [])
 PROMINENCE = MM.get("prominence_levels", [])
 
 
-def call(system, user):
-    msg = client.messages.create(model=MODEL, max_tokens=MAXTOK, system=system,
-                                 messages=[{"role": "user", "content": user}])
+def call(system, user, model=None):
+    # A plain string system prompt is cached whole (ephemeral). The review loop
+    # reuses the same CLASSIFY/REVIEW system prompts within a run, so a cache hit
+    # skips most of that input on the repeat calls. Pass a pre-built list of
+    # blocks (see revise_system()) to control the cache split.
+    system_param = (
+        [{"type": "text", "text": system, "cache_control": {"type": "ephemeral"}}]
+        if isinstance(system, str) else system
+    )
+    msg = client.messages.create(
+        model=model or MODEL, max_tokens=MAXTOK,
+        system=system_param, messages=[{"role": "user", "content": user}],
+    )
     return "".join(b.text for b in msg.content if b.type == "text")
 
 
@@ -111,8 +121,16 @@ style is respected, including UN short-form country names.
 Return ONLY JSON: {{"confidence": <0-100>, "issues": ["specific, actionable fixes"]}}.
 90+ means genuinely ready for a human reviewer."""
 
-REVISE_SYSTEM = CLASSIFY_SYSTEM + \
-    "\nRevise your analysis to resolve the listed issues. Return the full corrected JSON only."
+REVISE_SUFFIX = "\nRevise your analysis to resolve the listed issues. Return the full corrected JSON only."
+
+
+def revise_system():
+    # Two blocks so the CLASSIFY_SYSTEM portion re-hits the cache entry written by
+    # classify()'s call, instead of caching "CLASSIFY_SYSTEM + suffix" as a separate blob.
+    return [
+        {"type": "text", "text": CLASSIFY_SYSTEM, "cache_control": {"type": "ephemeral"}},
+        {"type": "text", "text": REVISE_SUFFIX},
+    ]
 
 
 def translate_system(glossary):
@@ -188,7 +206,7 @@ def review_loop(analysis, mentions):
                + "\n\nThe articles:\n"
                + json.dumps(payload_for_model(mentions), ensure_ascii=False)
                + "\n\nIssues to fix:\n" + json.dumps(issues, ensure_ascii=False))
-        analysis = parse_json(call(REVISE_SYSTEM, fix))
+        analysis = parse_json(call(revise_system(), fix))
     return analysis, score, log
 
 
