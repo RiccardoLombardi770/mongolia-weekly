@@ -65,8 +65,12 @@ def load(folder):
             continue
         if not d.get("week_start"):
             continue
-        d["_slug"] = d["week_start"]
-        d["_label"] = label(d["week_start"], d.get("week_end", d["week_start"]))
+        try:
+            d["_slug"] = d["week_start"]
+            d["_label"] = label(d["week_start"], d.get("week_end", d["week_start"]))
+        except ValueError as e:
+            print(f"  ! {p.name} has a malformed week_start/week_end ({e}); skipped")
+            continue
         out.append(d)
     out.sort(key=lambda d: d["week_start"], reverse=True)
     return out
