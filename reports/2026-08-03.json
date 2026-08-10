@@ -1,0 +1,233 @@
+{
+  "week_start": "2026-08-03",
+  "week_end": "2026-08-10",
+  "generated_at": "2026-08-10T05:30:06.279919+00:00",
+  "confidence": 78,
+  "insights": [
+    {
+      "en": "Rio Tinto's Oyu Tolgoi mine resumed exports after a blockade in Mongolia was lifted, though the cause of the disruption was not detailed in available reporting.",
+      "mn": "Rio Tinto-ийн Ойу Толгойн уурхай Монголын цэвэрлэгдсэний дараа нийлүүлэлтийг сэргээжээ, гэхдээ сүүлийн түүхэнд зөрчилдөөний шалтгаан дэлгэрэнгүй байгаагүй байна."
+    },
+    {
+      "en": "A China-backed wastewater treatment plant was commissioned in Ulaanbaatar and cross-border rail construction for mineral exports continued to advance, both reflecting deepening Mongolia-China economic cooperation.",
+      "mn": "Хятадын эргүүлэлт авлагатай ус цэвэрлэх үйлдвэрлэл Улаанбаатарт нээгдэж, ашигтай ортын уугуул дам хилийн төмөр замын барилга үргэлжилж байгаа бөгөөд энэ нь Монгол-Хятадын эдийн засгийн хамтын ажиллагааны гүнзгийрлийг харуулж байна."
+    },
+    {
+      "en": "Ulaanbaatar hosted visits by the President of the Republic of Korea and the President of Tajikistan during the week, according to Yonhap News Agency and the Times of Central Asia respectively.",
+      "mn": "Улаанбаатар нь Республик Солонгосын Ерөнхийлөгч, Таджикстаны Ерөнхийлөгчийн айлуудыг хүлээн авсан бөгөөд энэ нь Yonhap News Agency болон Times of Central Asia сонинуудаас мэдээлэгдсэн."
+    },
+    {
+      "en": "Mongolia's State Great Khural selected a new prime minister against a backdrop of continuing corruption allegations, extending a period of governmental instability.",
+      "mn": "Монголын Төрийн Их Хурал авлигын үл хөндлөлтэй тулгардаг нөхцөлд шинэ сайд олгосон бөгөөд энэ нь засгийн газрын тогтворгүй байдлын үе үргэлжилж байна."
+    },
+    {
+      "en": "A Mongolian Mining Journal interview with an industry commentator called for continued policy support for thermal coal exports amid fluctuating global prices.",
+      "mn": "Монголын Уурхайн Сэтгүүл нь салбарын тайлбарлагчтай ярилцлагад дулааны нүүрс экспортыг түлхэн өнцөглөгч бодлогын үргэлжүүлэлтийн хэрэгцээ эсэргүүцэв."
+    }
+  ],
+  "sections": [
+    {
+      "category": "Economy and Development",
+      "category_mn": "Эдийн засаг ба хөгжил",
+      "items": [
+        {
+          "en": "Rio Tinto's Oyu Tolgoi mine has resumed exports after a blockade in Mongolia was lifted, Mining.com reported. Further detail on the cause and duration of the disruption was not available in the reporting reviewed.",
+          "mn": "Rio Tinto-ийн Ойу Толгойн уурхай Монголын цэвэрлэгдсэний дараа нийлүүлэлтийг сэргээжээ гэж Mining.com мэдээлэв. Сүүлийн түүхэнд зөрчилдөөний шалтгаан ба үргэлжлэх хугацааны талаар дэлгэрэнгүй мэдээлэл байхгүй байна.",
+          "source": "Mining.com",
+          "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxPNzZoY0czMzM0MzM1ZUl1V1Zwa3plcmpiS1BIZFpoODFJcUdGblp0Wnlsdzh0ejFzU3NRTTZFLTdfX2hHRndFOWQtVU5zSFhjNXRNZkFNLXp6V2NLMmpyNFFSSEd4ckJqamhBMWZYek4zTjdocnZ1cHJ6dUI4UExWQkxmYkZxYmJZWVI2dzFR?oc=5",
+          "agencies": [],
+          "tags": [
+            "Mining",
+            "Trade"
+          ]
+        },
+        {
+          "en": "The Mongolian Mining Journal reports that 70 to 80 per cent of cross-border railway construction is expected to be completed this year, part of continuing efforts to expand rail capacity for mineral exports, primarily toward China.",
+          "mn": "Монголын Уурхайн Сэтгүүл, дам хилийн төмөр замын барилгын 70-80 хувь энэ жил дуусах гэж мэдээлж байна. Энэ нь гол төлөв Хятад руу чиглэсэн ашигтай ортын нийлүүлэлтийг хөндлөн төмөр замын багтаамжийг өргөжүүлэх үргэлжүүлэлтийн нэг хэсэг юм.",
+          "source": "www.mongolianminingjournal.com",
+          "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBzSjVwX1F0dHdrU2lvTkhzcERhcHBDc1FPRWRWcVh4cWFJb3hiTGdkX2RZeDdZdTVZcmVsR0pReEVLcm5kckFMZ0E5dUJKLWVUcVlndXV2NjRRZw?oc=5",
+          "agencies": [],
+          "tags": [
+            "Trade"
+          ]
+        },
+        {
+          "en": "The Ulaanbaatar Central Wastewater Treatment Plant, described by China's Ministry of Foreign Affairs as a major bilateral cooperation project, has officially entered operation, according to the ministry's statement. The facility represents continued Chinese financing of Mongolian urban infrastructure; the statement does not indicate any United Nations agency role in the project.",
+          "mn": "Улаанбаатарын Төв Ус цэвэрлэх үйлдвэрлэлийг Хятадын Гадаад Хэргийн Яамны үнэлэмжээр хосмог төрийн хамтын ажиллагааны томоохон төслийн нэг гэж тодорхойлж байгаа бөгөөд үйлдвэрлэл ажиллуулахаа эхэлсэн гэж яамны мэдэгдлээс мэдэгдэв. Энэ үйлдвэрлэл нь Хятадын Монголын хот суурин дахь дэд бүтцийг эдэлгээгээсний үргэлжүүлэл бөгөөд мэдэгдэл энэ төсөлд Нэгдсэн Үндэстний Байгууллагын агентлагийн ямар нэгэн үүрэг байгаа болохыг дарын мэдээлээгүй байна.",
+          "source": "mfa.gov.cn",
+          "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE82eXBaOS1OTHdDUEM1Sk9fVnVScllMRmtVT3NmY0ZQd1ZsSVVHUzJydDZEajU3TExiSl9XaDFmTkxyMHZUQmlhQWoxZjJtXzUtTFRycUtWanc0NTE1M0FyOF9VZnJISkJZZE5yOW1rb2MwbTl2YzVr?oc=5",
+          "agencies": [],
+          "tags": [
+            "Regional relations"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Politics, Governance and Diplomacy",
+      "category_mn": "Улс төр, засаг захирга ба дипломатич",
+      "items": [
+        {
+          "en": "Republic of Korea President Lee travelled to Ulaanbaatar for a summit with the Mongolian president after concluding a visit to Ankara, Yonhap News Agency reported. Further detail on summit outcomes was not available in the initial reporting.",
+          "mn": "Республик Солонгосын Ерөнхийлөгч Lee нь Анкара хотоос яваа аялалаа төгсөж Улаанбаатарт ирж Монголын Ерөнхийлөгчтэй төвлөрлийн уулзалт хийж байсан гэж Yonhap News Agency мэдээлэв. Төвлөрлийн үр дүнгийн талаар эхний мэдээлэлд дэлгэрэнгүй мэдээлэл байхгүй байна.",
+          "source": "Yonhap News Agency",
+          "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE82TDRfUHRXZ0pjenVpSWlpb0VNdThmOVNabWc5aUFVREpfRXJQbGZ2ZUE3emx1d1FpczBCUG9LQzBqMjB4OFRfbnpJNXVtUHVPWFRXUFo4TDlWQQ?oc=5",
+          "agencies": [],
+          "tags": [
+            "Regional relations"
+          ]
+        },
+        {
+          "en": "Tajikistan's President Emomali Rahmon visited Mongolia, according to the Times of Central Asia. Further detail on the visit's agenda was not specified in the reporting reviewed.",
+          "mn": "Таджикстаны Ерөнхийлөгч Эмомали Рахмон Монголд айлчилсан гэж Times of Central Asia мэдээлэв. Айлчлалын зарлагын талаар авч үзсэн мэдээлэлд бүрэн дээр дэлгэрэнгүй байгаагүй байна.",
+          "source": "The Times Of Central Asia",
+          "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPdlNlN3R2VVRmYkdmYkFBdDRQMGRTRzd2SlJqaEl3RHRGSGNLWmZwbUF2aEJPNk83bGgwUUs2aWxqcFdHdVRWUnRBV2g5N0I3QWVsNDVlcXliVURMVlNHdGVyb1hRTTl0aDdmODloWHYtYlhtZHE0Tk56UDBUUmdHM0tURXppczN1S0VVMHV3YnFSR0QzbDd3LUVXQTNXdGc5MXlITnhXZ1VQbHFHZkxJ?oc=5",
+          "agencies": [],
+          "tags": [
+            "Regional relations"
+          ]
+        },
+        {
+          "en": "Mongolia's State Great Khural (parliament) selected a new prime minister amid ongoing corruption allegations, the South China Morning Post reported, continuing a period of frequent leadership change following earlier removals of the prime minister and speaker in 2025.",
+          "mn": "Монголын Төрийн Их Хурал авлигын үл хөндлөлтэй тулгардаг нөхцөлд шинэ сайдыг сонгосон гэж South China Morning Post мэдээлэв. Энэ нь 2025 онд Сайд, Спикер эргүүлэгдсэний дараа эрт сэлүүлэн удирдагчдыг өөрчлөх үе үргэлжилж байна.",
+          "source": "South China Morning Post",
+          "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxQcDFmZmVFLUJfN0xlbWU4bzhOd2UwUW5HOEZDWGliX2U2bUlncWNmb1JBUk4ySHhrYkhUYlBtLW14a3o4TFFlaUY3el80bE5iLUtZMXdmcmNFeTJWbWVtMlU4MmhEZ01jMmJZRFMyaE9MX21zOHB5OHJZTUJYUWh6RVhFdkhtVF9OcnI3V2NPbU9xeldkcC00QmRIQnFPVlZSRVB6aTk2RG53VjJ6MkFJSE84MHY1NVFwVkw3NVVUN29zdUJkQVJLS2JzYWjSAcwBQVVfeXFMT3Zjb0Y1S2hwa2Z0MlN4YVpPenpsR013VXlmTzhuOHdlSExvejRnczl5S0JQRGV6QUhnRWI5UVRPR1BOVnpwb2huOGNDREVMTDZ2ZUhmUWd1cnprdGdrakY1QWNfMUV1cjhBUnA5REd6ZFJQSVVnR1M1OWRPWC1vNXFvdTlxYk5vdHJEVUY1ZzJ1SXFjMFBZU0tYMG94c2tRWUJzenZmc2NHVzJwR2lobUttdVJOTVBoUnFVcE02Wmtlc1JzdHBQb1djRXk5?oc=5",
+          "agencies": [],
+          "tags": []
+        }
+      ]
+    }
+  ],
+  "also_noted": [
+    {
+      "en": "An interview published by the Mongolian Mining Journal with an industry commentator argues that continued policy support is needed to increase Mongolia's thermal coal exports.",
+      "mn": "Монголын Уурхайн Сэтгүүлд нийтлэгдсэн ярилцлагад салбарын тайлбарлагч Монголын дулааны нүүрс экспортыг нэмэгдүүлэхийн тулд үргэлжүүлэн бодлогын дэмжлэгийг хэрэгцээтэй гэж үзэж байна.",
+      "source": "www.mongolianminingjournal.com",
+      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE9FVkZLdkZDY1drTThQYlp6UUVDbWpQeWlncDlCbjdoeTJfNDZCTHVhQjhPVDcxbm5ZanpsZkt3N1hOa1JmUG1MWUJhclE0T2hQY2FtTFRDb0hLQQ?oc=5",
+      "agencies": [],
+      "tags": [
+        "Mining",
+        "Trade"
+      ]
+    },
+    {
+      "en": "JICA and Mongolian counterparts signed a SATREPS research protocol in Ulaanbaatar, according to open.kg, though details of the programme's scope were not specified.",
+      "mn": "JICA болон Монголын түнш байгууллагууд Улаанбаатарт SATREPS судалгааны протоколд гарын үсэг зурсан гэж open.kg мэдээлэв. Гэхдээ хөтөлбөрийн хүрээний дэлгэрэнгүй мэдээлэл байгаагүй байна.",
+      "source": "open.kg",
+      "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxNd1JTQ3hyTHdpTlZ3R0hzSnd0RTFSRUtjYzNMWlBsVGNKczFXX0ZkSnlpNXFBZG1ZeWlDR3UyTUVzZ3lYNFpvZXBtS21IczR0cTdUQzB1aUZ0REROVTR2T1NZZ0hRc212akhKVUpQQktXR3QxT1A3TGJtTXBlVWQ3MHBvcmlQbGNOSW9tNWluNzVILVhnLUFvTnlJckY0aVF3OW9lWDE1OTF5NHZTc0hN?oc=5",
+      "agencies": [
+        "UNESCO"
+      ],
+      "tags": []
+    },
+    {
+      "en": "UN News has published an earlier assessment finding that extreme winter weather placed roughly 90 per cent of Mongolia at high risk from dzud conditions, underscoring the recurrent seasonal humanitarian exposure of herder households.",
+      "mn": "НҮБ-ын мэдээ нь хэм хэмжээгүй өндөр цаг агаарын нөхцөл нь Монголын ойролцоогоор 90 хувийг зүдийн өндөр эрсдэлтэй болгосон гэх үнэлгээг нийтэлсэн бөгөөд энэ нь малчин өрхүүдийн улирлын нөхцөл байдлаас үүдсэн хүмүүнлэгийн тусламжийн эрсдэлийг дахин таталдаг юм.",
+      "source": "UN News",
+      "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTFBPblB6VUdpempaOXRfem0wVmhqeEo4OTJiZ21Va1I4YTI5R1ZpOWlya0pWT1lWckE4M3ViX3RNd3k4SXlfNnhqUUlqamZyRzZCakt2REc0OA?oc=5",
+      "agencies": [
+        "WFP",
+        "FAO"
+      ],
+      "tags": [
+        "Dzud"
+      ]
+    },
+    {
+      "en": "Dialogue Earth has reported on herder concerns about a planned coal transport corridor to China, highlighting land-use and environmental tensions linked to mining expansion.",
+      "mn": "Dialogue Earth нь Хятад руу чиглэсэн нүүрс тээвэрлэх коридоры ойлгоход малчдын санаалас мэдээлсэн бөгөөд уурхайн өргөжүүлэлттэй холбоотой газрын ашиглалт, орчны нөхцөл байдлын харшилыг онцолжээ.",
+      "source": "Dialogue Earth",
+      "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxOZFM0d0lycTRJN0pqclBSLTBqTm9jdzhSUUV1S3RwTmZHandKRmcxYjBVUDlnSElQdDRydmJVbWRLYVlUTWpRdDhvVTlMT3VQd1VwWHdYaVRQWThMdG44eFQ3V3dDRkkxZFhQRG5pelpqLUpqSFhHUHBFcHdOaUtSbXJTT1hQTWdnZTFYLQ?oc=5",
+      "agencies": [
+        "UNEP"
+      ],
+      "tags": [
+        "Mining"
+      ]
+    },
+    {
+      "en": "The Australian Financial Review has described Oyu Tolgoi as caught between rival Mongolian political factions, part of continuing scrutiny of the mine's governance.",
+      "mn": "Australian Financial Review нь Ойу Толгойг Монголын өрсөлдөж буй улс төрийн фракц хоёрын хооронд тулгарч байгаа гэж тодорхойлсон бөгөөд энэ нь уурхайн засаглалын дээжийн үргэлжүүлэлт юм.",
+      "source": "AFR",
+      "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPSF9xV3diMlYyd0NhVXJ1eVV0SURHaDk0MS13OExHWjhqbk9QYjZyX3dxMHYwWUs2WGdNb0tMSlNVcEU3WWhpamtYc3pERkJyTHczN1JiRUR1NlljRks2RGRISEhtMm9QUmgxOFIyNnVIUTUzXzd1U2lqTDBSMW1GLUUyNTBzQUJfcVFEM2RzWFlnd2w2UHREcS1HNkxBcDFiM0JjWWhyQXdsN3FUQ2FLU2otTkc?oc=5",
+      "agencies": [],
+      "tags": [
+        "Mining"
+      ]
+    },
+    {
+      "en": "Former Rio Tinto chief executive Jean-Sébastien Jacques has been called to give evidence to a Mongolian inquiry examining Oyu Tolgoi, the Australian Financial Review reported.",
+      "mn": "Rio Tinto-ийн өмнөх гүйцэтгэх захирал Жан-Себастьян Жак Ойу Толгойг шинжэх Монголын нenquiry хүлээлтэнд хэлэлцүүлэхээр дуудагдсан гэж Australian Financial Review мэдээлэв.",
+      "source": "AFR",
+      "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxNNUdMYkc4TS1IMHczQ184ZVJMRVh5Qkl2UFg5Y1hiQktHNFM3VkJrT3pyVWR6b0JDWG1ZT0hOMzFna2JBZEMtTDdhOVB1ay04dF9Bckhtdmp5blFGUF9KcmRlWl9JZ3ZLWU9yekhTaWp6WGRNaVFURS1KeG1qM1ZuanRCOFYzRlRnOVRpMExVbTcwcnJVbDB0azVoeXJZTjZQdjlZWjlfeHAzSTl5X3JybGE5ekdSRnR4Zj?oc=5",
+      "agencies": [],
+      "tags": [
+        "Mining"
+      ]
+    },
+    {
+      "en": "The Diplomat interviewed Mongolian MP Luvsanjamts Ganzorig on efforts to address air pollution and corruption.",
+      "mn": "The Diplomat нь Монголын Их Хурлын гишүүн Лувсанжамц Ганзориг агаарын бохирдол ба авлигыг шийдвэрлэхэд гарсан хүчин чармайлтын талаар ярилцлаж байна.",
+      "source": "The Diplomat – Asia-Pacific Current Affairs Magazine",
+      "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxNcHlmSVp3RWc2UUgwb21fdTNZaktjMFRPU3VlWW16NEw3eHdhNGFSSER0VGk0c3VtVnpZM1dpcmhWZl8xcjBrNmhOY19tOTdUdkdzMlRCVlljSXZlMHpremRpdklrcGxMRDBpdXR6elVyNG5lQWl1aUdPRUVxX0tBVWZFOFAwbWVXSzkwWGxacE9UNDhkelQxT0h6dlNGTFJRcDRUM2pjLXhRZXZBb2hiSFRBWVJpMFpr?oc=5",
+      "agencies": [
+        "UNEP"
+      ],
+      "tags": [
+        "Air quality"
+      ]
+    },
+    {
+      "en": "The Diplomat offers analysis suggesting an evolving multilateral dimension to Mongolia's 'third neighbour' foreign policy, though the specific partners of any such framework were not detailed in the reporting.",
+      "mn": "The Diplomat нь Монголын 'гурав дахь хөршид' гадаад бодлогод олон нийтийн түвшин дээрх өөрчлөлтийн шинжилгээг үзүүлсэн ч ийм хүрээний тодорхой түнш нь мэдээлэлд дэлгэрэнгүй байгаагүй байна.",
+      "source": "The Diplomat – Asia-Pacific Current Affairs Magazine",
+      "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxOMk5fWUp1OXVRZUMwa1VIaHQyZWFFYTM4RXVQMXp2VDN6QVN1MlJwNWs0N2ZyVmZqLURSUGFsTHdoVFE0c2o2dmwyNzdxOE5VRnVsQnhzV1Bfa0gxYk9DNXhRQ3FSLTBlZjdLazg1VExTdUx5QkZLRVIwTFo2T18teHNNbE51eVE?oc=5",
+      "agencies": [],
+      "tags": [
+        "Regional relations"
+      ]
+    },
+    {
+      "en": "The Eurasian Economic Commission reported that Kazakhstan's Prime Minister Bakytzhan Sagintayev held talks with Nyam-Osoryn Uchral, Chairman of Mongolia's State Great Khural.",
+      "mn": "Евразийн эдийн засгийн комисс Казахстаны Сайд-Ши Бақытжан Сағынтаев Монголын Төрийн Их Хурлын Дарга Ням-Осорын Ухрал нарын хооронд ярилцаа болсон гэж мэдээлэв.",
+      "source": "Eurasian Economic Commission",
+      "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxNekFSbnVRV2p0bkpKaWxPdTg0bWZvTGpUZjFBMkwxWEpLaWtLTGpVbHdRZEFyRDRmcXpJYm8zUHZsZmtWa1BuRnBPcnZBQ2NS",
+      "agencies": [],
+      "tags": [
+        "Regional relations"
+      ]
+    }
+  ],
+  "style_flags": [],
+  "issues": [
+    "[roster] no names filled in yet — mentions that quote the Resident Coordinator or a head of office by name cannot be detected until the sheet is completed",
+    "[roster] no names filled in yet — mentions that quote the Resident Coordinator or a head of office by name cannot be detected until the sheet is completed"
+  ],
+  "review_log": [
+    {
+      "pass": 1,
+      "confidence": 74,
+      "issues": [
+        "The final also_noted item (Eurasian Economic Commission / Kazakhstan-Mongolia talks) is missing the required \"agencies\" and \"tags\" fields — add them for structural consistency.",
+        "The source name for that same item is given in Russian (\"Евразийская экономическая комиссия\"); per UN Editorial Manual style, render source names in English (e.g., \"Eurasian Economic Commission\").",
+        "The Oyu Tolgoi item adds an unattributed editorial claim (\"one of the country's largest sources of foreign direct investment and copper output\") not clearly sourced to Mining.com — either attribute this claim or remove it to avoid appearing invented/exaggerated.",
+        "The Ulaanbaatar wastewater treatment plant item is a water/sanitation infrastructure story with clear environmental relevance; reconsider whether it fits better under \"Environment and Climate Change\" rather than \"Economy and Development\".",
+        "The Diplomat's '8+1 framework' item introduces a specific analytical label not reflected in the week's insights summary; since the article itself admits the framework's partners were unspecified, consider softening the framing or moving to also_noted given its speculative/analytical nature.",
+        "Agency tags on trade/mining items (e.g., UNDP on Oyu Tolgoi export resumption, coal policy commentary, railway construction) are only loosely justified — confirm UNDP's mandate connection or tag more precisely (e.g., ITC, UNCTAD) to avoid appearing arbitrary."
+      ]
+    },
+    {
+      "pass": 2,
+      "confidence": 78,
+      "issues": [
+        "The Republic of Korea president's visit item adds editorial framing ('consistent with Mongolia's continuing effort to broaden ties beyond its two large neighbours') that is not attributed to Yonhap; either source this interpretation or soften it to avoid appearing as an inserted analytical claim.",
+        "The Tajikistan visit item similarly asserts unsourced context ('Ulaanbaatar continues to expand diplomatic outreach to Central Asian states under its broader multi-vector foreign policy') beyond what the Times of Central Asia piece is described as reporting; attribute or trim this framing.",
+        "The UNDP agency tag on the prime-minister-selection item (Politics section) is not supported by the source (SCMP) or item text — no UNDP link to this domestic political story is evident; remove or justify.",
+        "The UNEP/UNDP tags on the Ulaanbaatar wastewater plant item are not grounded in the cited mfa.gov.cn statement, which discusses Chinese bilateral cooperation only; verify actual UN agency involvement before tagging, or drop the tags.",
+        "The wastewater-treatment-plant item is filed under 'Environment and Climate Change,' but the weekly insights frame it primarily as part of Mongolia-China economic cooperation; consider whether 'Economy and Development' is the more accurate category, or add a brief line clarifying the environmental angle to justify placement.",
+        "The coal-export interview item (Economy section) is based on one industry commentator's opinion ('argues'); confirm this rises to the threshold of a main-section item rather than a minor trade commentary better suited to also_noted.",
+        "Minor style check: confirm 'Parliament' vs 'State Great Khural' usage is consistent with UN Editorial Manual preference for the formal Mongolian legislative body name where first referenced."
+      ]
+    }
+  ]
+}
