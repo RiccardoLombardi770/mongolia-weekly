@@ -31,7 +31,15 @@ CONFIG = yaml.safe_load((ROOT / "config.yaml").read_text(encoding="utf-8"))
 MM = CONFIG.get("media_monitoring", {})
 OUT = ROOT / "data" / "raw_mentions.json"
 
-HEADERS = {"User-Agent": "mongolia-weekly/2.0 (UN Mongolia media monitoring)"}
+# A plain tool user-agent is refused outright by several news sites' front-end
+# protection, and Google's link-resolution endpoint expects a browser. These are
+# ordinary public pages; the header only keeps us from being turned away.
+HEADERS = {
+    "User-Agent": ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+                   "(KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"),
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+    "Accept-Language": "en-US,en;q=0.9",
+}
 TIMEOUT = MM.get("fetch_timeout", 25)
 UN_DOMAINS = [d.lower() for d in MM.get("un_domains", [])]
 
@@ -115,13 +123,70 @@ def within_window(item, days):
         return True     # undated: keep, the model sees the date it can find
 
 
+GOOGLE_DECODE = "https://news.google.com/_/DotsSplashUi/data/batchexecute"
+
+
+def google_real_url(wrapped_url, html):
+    """Turn a news.google.com/rss/articles/... link into the publisher's URL.
+
+    These links do not redirect over HTTP — the hop is done in JavaScript, so
+    following them just lands back on news.google.com and what we downloaded is
+    Google's own page. For a year that is exactly what happened: every article
+    body was the 11-character string "Google News", and the tone of every
+    mention was judged from the search snippet alone.
+
+    The page carries the signature and timestamp needed to ask Google for the
+    destination, which is what the browser itself does. Returns "" on any
+    failure — this is best-effort, and the caller carries on with the snippet.
+    """
+    sg = re.search(r'data-n-a-sg="([^"]+)"', html or "")
+    ts = re.search(r'data-n-a-ts="([^"]+)"', html or "")
+    if not (sg and ts):
+        return ""
+    article_id = wrapped_url.rstrip("/").split("/")[-1].split("?")[0]
+    inner = json.dumps([
+        "garturlreq",
+        [["X", "X", ["X", "X"], None, None, 1, 1, "US:en", None, 1,
+          None, None, None, None, None, 0, 1],
+         "X", "X", 1, [1, 1, 1], 1, 1, None, 0, 0, None, 0],
+        article_id, int(ts.group(1)), sg.group(1),
+    ])
+    payload = [[["Fbv4je", inner, None, "generic"]]]
+    try:
+        r = requests.post(
+            GOOGLE_DECODE,
+            data="f.req=" + urllib.parse.quote(json.dumps(payload)),
+            headers={**HEADERS,
+                     "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"},
+            timeout=TIMEOUT,
+        )
+        r.raise_for_status()
+    except Exception:
+        return ""
+    # The reply is Google's ")]}'" prelude followed by JSON whose payload is
+    # itself a JSON string: ["garturlres","https://…",1]
+    m = re.search(r'garturlres\\",\\"(https?://[^\\"]+)', r.text)
+    return m.group(1) if m else ""
+
+
 def resolve(url):
-    """Google News wraps links; follow to the publisher."""
+    """Follow a link to the publisher, decoding Google News wrappers."""
     try:
         r = requests.get(url, headers=HEADERS, timeout=TIMEOUT, allow_redirects=True)
-        return r.url, r
     except Exception:
         return url, None
+    if "news.google.com" not in urlparse(r.url).netloc:
+        return r.url, r
+    real = google_real_url(url, getattr(r, "text", ""))
+    if not real:
+        return r.url, r
+    try:
+        r2 = requests.get(real, headers=HEADERS, timeout=TIMEOUT, allow_redirects=True)
+        # A publisher that refuses us leaves nothing better than the wrapper, but
+        # the real URL is still worth recording — it names the outlet.
+        return (r2.url, r2) if getattr(r2, "text", "") else (real, None)
+    except Exception:
+        return real, None
 
 
 def un_links_in(html, base_url):
@@ -157,6 +222,22 @@ def outlet_for(url, hint, outlets, publisher_domain=""):
         if host == o["domain"] or host.endswith("." + o["domain"]):
             return o["name"], o["domain"], o["language"], o["priority"], True
     return (hint or host or "Unknown"), host, "", 3, False
+
+
+STOPWORDS = {"the", "a", "an", "of", "for", "and", "in", "on", "to", "with", "at",
+             "by", "from", "as", "is", "are", "its", "new", "un", "united", "nations"}
+
+
+def title_key(title):
+    """A headline reduced to its distinctive words, for spotting syndication.
+
+    "UN and Mongolia mark 50 years of partnership" and "Mongolia, UN mark 50
+    years of partnership" are the same story; comparing the significant words
+    catches that, while staying blunt enough not to merge unrelated pieces.
+    """
+    words = re.findall(r"[\wЀ-ӿ]+", (title or "").lower())
+    keep = [w for w in words if w not in STOPWORDS and len(w) > 2]
+    return " ".join(sorted(keep)[:8]) if len(keep) >= 3 else ""
 
 
 def is_our_domain(host):
@@ -229,10 +310,21 @@ def main():
     terms = CORE_TERMS + agency_terms() + roster_terms(roster)
 
     # Queries: generic UN-in-Mongolia, one per agency, one per named official.
+    # Broad enough to catch coverage that names us without naming an agency, and
+    # thematic in Mongolian — most local reporting never uses the Latin acronym,
+    # and searching the acronym alone missed whole subject areas.
     queries = [("\"United Nations\" Mongolia", "en"),
                ("UN Resident Coordinator Mongolia", "en"),
+               ("United Nations Mongolia report", "en"),
                ("НҮБ Монгол", "mn"),
-               ("НҮБ-ын суурин зохицуулагч", "mn")]
+               ("НҮБ-ын суурин зохицуулагч", "mn"),
+               ("НҮБ хүүхэд", "mn"),            # children
+               ("НҮБ эрүүл мэнд", "mn"),        # health
+               ("НҮБ боловсрол", "mn"),         # education
+               ("НҮБ уур амьсгал", "mn"),       # climate
+               ("НҮБ жендэр", "mn"),            # gender
+               ("НҮБ хөгжлийн хөтөлбөр", "mn"), # UNDP, spelled out
+               ("НҮБ төсөл Монгол", "mn")]      # UN project(s) in Mongolia
     for ag in agency_terms():
         queries.append((f"{ag} Mongolia", "en"))
     for p in roster:
@@ -264,12 +356,20 @@ def main():
             issues.append(f"[outlet feed] {o['name']}: {e}")
 
     # Dedupe + window + cheap pre-filter on title/snippet.
-    seen, filtered = set(), []
+    # The same press release is routinely syndicated under several URLs and
+    # slightly different headlines; an exact-match key let those through as
+    # separate mentions, which the reviewer flagged week after week.
+    seen, seen_titles, filtered = set(), set(), []
     for c in candidates:
         key = (c.get("url") or c.get("title", "")).lower()
         if not key or key in seen:
             continue
         seen.add(key)
+        tkey = title_key(c.get("title", ""))
+        if tkey and tkey in seen_titles:
+            continue
+        if tkey:
+            seen_titles.add(tkey)
         if not within_window(c, days):
             continue
         if not (mentions_un(c["title"] + " " + c.get("snippet", ""), terms)):

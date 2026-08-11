@@ -212,3 +212,15 @@ media_monitoring:
     - ohchr.org
     - unep.org
     - reliefweb.int
+    # Also ours in practice: national committees, UN University, Volunteers and
+    # other UN-family sites whose pages are our own communications, not coverage.
+    - unodc.org
+    - unu.edu
+    - unv.org
+    - unicefusa.org
+    - unfoundation.org
+    - iaea.org
+    - itu.int
+    - undrr.org
+    - unctad.org
+    - un.int
