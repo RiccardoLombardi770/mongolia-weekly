@@ -103,7 +103,15 @@ def main():
 
     report = newest("reports")
     mentions = newest("mentions")
-    week = report or mentions
+
+    # The media page is allowed to fail on its own without taking the report
+    # down. When it does, the newest file in mentions/ is an older week, and
+    # announcing it as this week's would be plainly wrong.
+    stale_media = None
+    if report and mentions and mentions.get("week_start") != report.get("week_start"):
+        stale_media, mentions = mentions, None
+
+    week = report or mentions or stale_media
     if not week:
         print("No report or mentions file found; nothing to announce.")
         write_output("send", "false")
@@ -124,6 +132,10 @@ def main():
     if mentions:
         m = len(mentions.get("mentions", []))
         lines.append(f"In the Media — {m} mention(s): {base_url}/media/index.html")
+    elif stale_media:
+        lines.append(f"In the Media — NOT updated this week; the page still shows "
+                     f"{undate(stale_media.get('week_start'))}. See the run log in the "
+                     f"Actions tab, then re-run the weekly workflow.")
 
     notes = review_notes()
     if notes:

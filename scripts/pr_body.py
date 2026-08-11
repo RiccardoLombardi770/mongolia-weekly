@@ -46,6 +46,12 @@ def main():
     rpath, report = newest("reports")
     mpath, mentions = newest("mentions")
 
+    # A media page from an earlier week is not this week's news; summarising it
+    # here would tell the reader the page is fine when it is not.
+    stale_media = None
+    if report and mentions and mentions.get("week_start") != report.get("week_start"):
+        stale_media, mentions = mentions, None
+
     lines.append("This week has been generated and published automatically.\n")
     lines.append("To correct anything, edit the wording in the JSON files in `reports/` "
                  "or `mentions/` (the `en` / `mn` fields) and commit; the site rebuilds "
@@ -111,6 +117,12 @@ def main():
             for m in crit:
                 lines.append(f"  - {m.get('outlet')}: {m.get('title')} — {m.get('url')}")
         lines.append("")
+
+    if stale_media:
+        lines.append("### In the Media — not produced this week")
+        lines.append(f"The page still shows {undate(stale_media.get('week_start'))}. The "
+                     f"weekly report is unaffected. Open the run in the **Actions** tab and "
+                     f"look at the *Analyse mentions* step to see what failed.\n")
 
     # ---- things a human must decide
     flags = (report or {}).get("style_flags", []) + (mentions or {}).get("style_flags", [])
