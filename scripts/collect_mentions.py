@@ -64,6 +64,17 @@ def roster_terms(roster):
     return [t for t in out if t and len(t) > 3]
 
 
+def full_name_terms(roster):
+    """Roster terms specific enough to identify a person on their own.
+
+    A bare surname is not: "Шарифи" pulled in eleven articles about unrelated
+    Tajik and Iranian people, and because a roster match waives the Mongolia
+    requirement, every one of them was collected as Mongolian media coverage.
+    Only a term with at least two words earns that waiver.
+    """
+    return [t for t in roster_terms(roster) if len(t.split()) >= 2]
+
+
 def google_source_map(content):
     """link -> publisher domain, from the <source url="..."> of each RSS item.
 
@@ -374,6 +385,7 @@ def main():
     # separate mentions, which the reviewer flagged week after week.
     seen, seen_titles, filtered = set(), set(), []
     dropped_offtopic = []
+    full_names = full_name_terms(roster)
     for c in candidates:
         key = (c.get("url") or c.get("title", "")).lower()
         if not key or key in seen:
@@ -390,9 +402,10 @@ def main():
         if not mentions_un(blob, terms):
             continue
         # A named official is reason enough on its own — a profile of the
-        # Resident Coordinator need not repeat the country's name.
+        # Resident Coordinator need not repeat the country's name. Full names
+        # only: a surname alone matches too many unrelated people.
         if MM.get("require_mongolia", True) and not about_mongolia(blob):
-            if not mentions_un(blob, roster_terms(roster)):
+            if not mentions_un(blob, full_names):
                 dropped_offtopic.append(c)
                 continue
         filtered.append(c)
