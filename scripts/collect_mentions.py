@@ -187,6 +187,39 @@ def is_our_publication(c):
     return any(p in name for p in OWN_NAME_PATTERNS)
 
 
+def report_fetch_quality(items, issues):
+    """Say plainly whether we are reading articles or just search snippets.
+
+    The tone judgement is only as good as the text behind it. If a link never
+    leaves news.google.com, what we downloaded is Google's interstitial page,
+    and the model ends up judging a 400-character snippet as though it were the
+    article. That failure is invisible in the output, so it is counted here.
+    """
+    if not items:
+        return
+    stuck = [c for c in items if "news.google.com" in (c.get("url") or "")]
+    real = [c for c in items if len(c.get("body") or "") > 1000]
+    thin = [c for c in items if 0 < len(c.get("body") or "") <= 1000]
+    empty = [c for c in items if not (c.get("body") or "")]
+    lengths = sorted(len(c.get("body") or "") for c in items)
+    median = lengths[len(lengths) // 2] if lengths else 0
+
+    print("\nFetch quality:")
+    print(f"  {len(real)} full article(s) (>1000 chars) | {len(thin)} thin (<=1000) | "
+          f"{len(empty)} empty | median {median:,} chars")
+    if stuck:
+        print(f"  ! {len(stuck)} link(s) never left news.google.com — for these the "
+              f"model sees the search snippet, not the article")
+        issues.append(
+            f"{len(stuck)} of {len(items)} article(s) could not be followed past Google "
+            f"News, so their tone and summary rest on a short search snippet rather than "
+            f"the full text.")
+    if len(real) < len(items) / 2:
+        issues.append(
+            f"Only {len(real)} of {len(items)} article(s) yielded full text this week; "
+            f"tone judgements on the rest are based on very little.")
+
+
 def main():
     data, issues = SL.load_workbook_data()
     outlets = SL.outlets(data)
@@ -303,6 +336,8 @@ def main():
             if i % 10 == 0:
                 print(f"  fetched {i}/{len(filtered)}")
             time.sleep(0.6)
+
+        report_fetch_quality(filtered, issues)
 
     # Drop anything whose full text turned out not to mention us at all.
     keep = [c for c in filtered

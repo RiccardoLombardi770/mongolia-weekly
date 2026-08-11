@@ -1,0 +1,42 @@
+name: Test mention collection (no AI, no tokens)
+
+# Manual only. Runs the collection half of the media pipeline and stops before
+# the model is ever called — the anthropic package is not even installed, so
+# this job cannot spend a token.
+#
+# Use it to check who is being collected, whether our own publications are
+# being excluded, and whether the articles are really being downloaded or only
+# their search snippets.
+
+on:
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  test-mentions:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies (no AI library)
+        run: pip install requests pyyaml openpyxl
+
+      - name: Index our own publications
+        continue-on-error: true
+        run: python scripts/index_un.py
+
+      - name: Collect mentions (no AI)
+        run: python scripts/collect_mentions.py
+
+      - name: Upload raw_mentions.json for inspection
+        uses: actions/upload-artifact@v4
+        with:
+          name: raw-mentions-preview
+          path: data/raw_mentions.json
+          retention-days: 14
