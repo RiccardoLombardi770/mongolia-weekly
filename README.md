@@ -81,6 +81,10 @@ docs/                    <- the generated site (what GitHub Pages publishes)
 .github/workflows/
   weekly.yml             <- Monday: collect + generate + publish + email
   build.yml               <- rebuilds the site after a manual correction
+  media-only.yml         <- re-run just "In the Media" (spends tokens; no email)
+  test-mentions.yml      <- who would be collected, and is the text real? (free)
+  test-collection.yml    <- the news collection, without the model (free)
+  test-email.yml         <- send the email for the report already in the repo (free)
 ```
 
 ---
@@ -350,7 +354,15 @@ column: `yes`/`no`), saves it, and re-uploads it to GitHub (`sources` -> **Add f
 Monday.
 
 A mistaken row **doesn't stop the run**: it ends up in the "Source problems" section of
-Monday's email, with sheet name and row number. The `<FILL IN>` cells in the `roster` sheet
+Monday's email, with sheet name and row number.
+
+Two things to know about the `un_sites` sheet, checked on 11 August 2026: **undp.org,
+unicef.org and iom.int refuse automated requests** (403) and offer no feed, so their
+pages cannot be indexed — the rows are kept, with a note, in case that changes.
+Where a site publishes RSS, put it in `feed_url`: it is more reliable than scraping the
+listing page, and `mongolia.un.org`, `mongolia.unfpa.org` are already set up that way.
+The same applies to `rss_url` in the `outlets` sheet — an outlet with a feed is read
+directly instead of through Google News, which is both more complete and more accurate. The `<FILL IN>` cells in the `roster` sheet
 should be filled in first: as long as they're empty, mentions that cite the RC by name won't
 be found.
 
