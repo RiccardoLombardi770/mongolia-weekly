@@ -44,13 +44,21 @@ DATE_PATTERNS = [
     (re.compile(r"(January|February|March|April|May|June|July|August|September|"
                 r"October|November|December)\s+(\d{1,2}),\s*(\d{4})", re.I),
      lambda m: _iso(m[3], m[1], m[2])),
+    # RFC 822, the format every RSS pubDate uses: "Mon, 04 Aug 2026 07:00:00 GMT".
+    # Without this every feed date failed to parse and came back empty — and an
+    # empty date was treated as "keep", so the week's window filtered nothing.
+    (re.compile(r"(\d{1,2})\s+(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\w*\s+"
+                r"(\d{4})", re.I),
+     lambda m: _iso(m[3], m[2], m[1])),
 ]
 MONTHS = ["january", "february", "march", "april", "may", "june", "july",
           "august", "september", "october", "november", "december"]
 
 
 def _iso(y, month_name, d):
-    m = MONTHS.index(month_name.lower()) + 1
+    # Accepts "August" and "Aug" alike — RSS dates abbreviate.
+    name = month_name.lower()
+    m = next(i for i, full in enumerate(MONTHS, 1) if full.startswith(name[:3]))
     return f"{int(y):04d}-{m:02d}-{int(d):02d}"
 
 

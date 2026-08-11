@@ -103,9 +103,12 @@ def google_source_map(content):
     return out
 
 
-def google_news(query, lang="en"):
+def google_news(query, lang="en", days=7):
     hl, gl, ceid = ("mn-MN", "MN", "MN:mn") if lang == "mn" else ("en-US", "US", "US:en")
-    q = urllib.parse.quote(query)
+    # "when:7d" restricts the search at Google's end. Without it the results
+    # reached back years — a 2015 wire story and a 2018 Reuters piece were
+    # published as this week's coverage.
+    q = urllib.parse.quote(f"{query} when:{int(days)}d")
     url = (f"https://news.google.com/rss/search?q={q}"
            f"&hl={hl}&gl={gl}&ceid={ceid}")
     # Google throttles a burst of searches with 429/503. Backing off costs a few
@@ -144,9 +147,27 @@ def google_news(query, lang="en"):
 def within_window(item, days):
     d = item.get("published") or ""
     try:
-        return (dt.date.today() - dt.date.fromisoformat(d[:10])).days <= days
+        age = (dt.date.today() - dt.date.fromisoformat(d[:10])).days
     except Exception:
         return True     # undated: keep, the model sees the date it can find
+    return -1 <= age <= days
+
+
+def plausible_date(iso, days):
+    """A date scraped from article text, or "" if it cannot be believed.
+
+    find_date() takes the first date-shaped string in the page, which is often
+    not the publication date at all: an article on sixty years of UN membership
+    yielded 1946, and that became its publication date. A date far outside the
+    reporting window is worse than no date, because it is then acted upon.
+    """
+    if not iso:
+        return ""
+    try:
+        age = (dt.date.today() - dt.date.fromisoformat(iso[:10])).days
+    except Exception:
+        return ""
+    return iso if -1 <= age <= days * 4 else ""
 
 
 GOOGLE_DECODE = "https://news.google.com/_/DotsSplashUi/data/batchexecute"
@@ -386,7 +407,7 @@ def main():
     candidates = []
     search_failures = 0
     for q, lang in queries:
-        items, err = google_news(q, lang)
+        items, err = google_news(q, lang, days)
         if err:
             issues.append(err)
             search_failures += 1
@@ -506,7 +527,7 @@ def main():
             c["un_links"] = un_links_in(html, final_url)
             c["matched_terms"] = mentions_un(body, terms)[:8]
             if not c.get("published"):
-                c["published"] = find_date(body[:3000])
+                c["published"] = plausible_date(find_date(body[:3000]), days)
             # re-resolve outlet now that redirects are followed
             name, domain, lang, prio, known = outlet_for(
                 final_url, c.get("outlet_hint"), outlets, c.get("publisher_domain"))
@@ -520,6 +541,15 @@ def main():
     # Drop anything whose full text turned out not to mention us at all.
     keep = [c for c in filtered
             if c.get("matched_terms") or not c.get("fetch_ok", True)]
+
+    # Re-apply the window now that the article itself has been read: the date on
+    # the feed entry is often absent, and only the page carries the real one.
+    stale = [c for c in keep if not within_window(c, days)]
+    if stale:
+        keep = [c for c in keep if within_window(c, days)]
+        oldest = min(c.get("published", "") for c in stale)
+        print(f"Dropped {len(stale)} article(s) published outside the {days}-day "
+              f"window (oldest {oldest[:10]})")
 
     # "We searched and found nothing" and "we could not search" look identical
     # in the output, and the page would state that nobody mentioned us. Refuse
