@@ -436,20 +436,27 @@ def main():
     dropped_offtopic = []
     dropped_topic = []
     full_names = full_name_terms(roster)
+    # A thin week should be explainable without reading the code: these count
+    # where candidates are lost, and are printed as a funnel below.
+    n_dup_url = n_dup_title = n_old = n_no_un = 0
     for c in candidates:
         key = (c.get("url") or c.get("title", "")).lower()
         if not key or key in seen:
+            n_dup_url += 1
             continue
         seen.add(key)
         tkey = title_key(c.get("title", ""))
         if tkey and tkey in seen_titles:
+            n_dup_title += 1
             continue
         if tkey:
             seen_titles.add(tkey)
         if not within_window(c, days):
+            n_old += 1
             continue
         blob = c["title"] + " " + c.get("snippet", "")
         if not mentions_un(blob, terms):
+            n_no_un += 1
             continue
         topic = excluded_topic(blob)
         if topic:
@@ -464,16 +471,20 @@ def main():
                 continue
         filtered.append(c)
 
+    print(f"\nFrom {len(candidates)} search result(s):")
+    print(f"  -{n_dup_url:<4} already seen (same link)")
+    print(f"  -{n_dup_title:<4} same story under another headline")
+    print(f"  -{n_old:<4} published outside the {days}-day window")
+    print(f"  -{n_no_un:<4} no United Nations term in the headline or snippet")
     if dropped_offtopic:
-        print(f"Dropped {len(dropped_offtopic)} item(s) that mention the United Nations "
-              f"but not Mongolia")
+        print(f"  -{len(dropped_offtopic):<4} mention the United Nations but not Mongolia")
     if dropped_topic:
         by_topic = {}
         for topic, _ in dropped_topic:
             by_topic[topic] = by_topic.get(topic, 0) + 1
         listed = ", ".join(f"{k} ({v})" for k, v in
                            sorted(by_topic.items(), key=lambda kv: -kv[1]))
-        print(f"Dropped {len(dropped_topic)} item(s) on excluded subjects: {listed}")
+        print(f"  -{len(dropped_topic):<4} on excluded subjects: {listed}")
 
     # Priority: known outlets first, then most recent.
     for c in filtered:
@@ -496,7 +507,7 @@ def main():
                 by_name[c.get("outlet", "?")] = by_name.get(c.get("outlet", "?"), 0) + 1
             listed = ", ".join(f"{k} ({v})" for k, v in
                                sorted(by_name.items(), key=lambda kv: -kv[1])[:6])
-            print(f"Excluded {len(ours)} item(s) published by us: {listed}")
+            print(f"  -{len(ours):<4} published by us: {listed}")
         if not filtered:
             issues.append(
                 "Every candidate this week was one of our own publications; the media "
