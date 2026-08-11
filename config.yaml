@@ -194,6 +194,10 @@ media_monitoring:
   # us — without this they crowded out the genuine mentions almost entirely.
   # Set to false to go back to listing everything, our own pages included.
   exclude_own_publications: true
+  # Require the article to concern Mongolia. Searching "UNDP Mongolia" also
+  # returns pieces about UNDP elsewhere, which arrived as Mongolian media
+  # mentions. An article naming someone on the roster is kept regardless.
+  require_mongolia: true
   # UN domains: used both to recognise a citation of ours and, with the setting
   # above, to recognise a page as ours rather than a mention.
   un_domains:

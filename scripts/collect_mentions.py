@@ -212,6 +212,19 @@ def mentions_un(text, terms):
     return [t for t in terms if t.lower() in low]
 
 
+# Searching "UNDP Mongolia" also returns pieces about UNDP somewhere else
+# entirely; nothing required the article to concern Mongolia at all, so Tehran
+# Times, Guardian Nigeria and Armenpress arrived as Mongolian media mentions.
+MONGOLIA_TERMS = [t.lower() for t in CONFIG.get("mongolia_terms", [])] + [
+    "монгол", "улаанбаатар", "монголия",
+]
+
+
+def about_mongolia(text):
+    low = (text or "").lower()
+    return any(t in low for t in MONGOLIA_TERMS)
+
+
 def outlet_for(url, hint, outlets, publisher_domain=""):
     # publisher_domain comes from the feed and is authoritative when present;
     # the URL's host is only a fallback, and is news.google.com for anything
@@ -360,6 +373,7 @@ def main():
     # slightly different headlines; an exact-match key let those through as
     # separate mentions, which the reviewer flagged week after week.
     seen, seen_titles, filtered = set(), set(), []
+    dropped_offtopic = []
     for c in candidates:
         key = (c.get("url") or c.get("title", "")).lower()
         if not key or key in seen:
@@ -372,9 +386,20 @@ def main():
             seen_titles.add(tkey)
         if not within_window(c, days):
             continue
-        if not (mentions_un(c["title"] + " " + c.get("snippet", ""), terms)):
+        blob = c["title"] + " " + c.get("snippet", "")
+        if not mentions_un(blob, terms):
             continue
+        # A named official is reason enough on its own — a profile of the
+        # Resident Coordinator need not repeat the country's name.
+        if MM.get("require_mongolia", True) and not about_mongolia(blob):
+            if not mentions_un(blob, roster_terms(roster)):
+                dropped_offtopic.append(c)
+                continue
         filtered.append(c)
+
+    if dropped_offtopic:
+        print(f"Dropped {len(dropped_offtopic)} item(s) that mention the United Nations "
+              f"but not Mongolia")
 
     # Priority: known outlets first, then most recent.
     for c in filtered:
