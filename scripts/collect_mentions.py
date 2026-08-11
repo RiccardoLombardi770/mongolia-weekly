@@ -140,7 +140,7 @@ def google_news(query, lang="en", days=7):
         items.append({"title": title.strip(), "url": link, "outlet_hint": outlet.strip(),
                       "publisher_domain": sources.get(link, ""),
                       "published": date, "snippet": summary[:400], "query": query,
-                      "language": lang})
+                      "from_query": True, "language": lang})
     return items, None
 
 
@@ -455,20 +455,28 @@ def main():
             n_old += 1
             continue
         blob = c["title"] + " " + c.get("snippet", "")
-        if not mentions_un(blob, terms):
+        # Google News snippets carry no real summary — usually just the outlet
+        # name — so this check effectively saw the headline alone and threw away
+        # 150 of 209 results, including a piece on the COP17 preparations whose
+        # title never says "UN". The search that found it already asked for us
+        # by name, so trust the query and let the full text decide below; only
+        # outlet feeds, which are not United Nations searches, are screened here.
+        if not c.get("from_query") and not mentions_un(blob, terms):
             n_no_un += 1
             continue
         topic = excluded_topic(blob)
         if topic:
             dropped_topic.append((topic, c))
             continue
-        # A named official is reason enough on its own — a profile of the
-        # Resident Coordinator need not repeat the country's name. Full names
-        # only: a surname alone matches too many unrelated people.
-        if MM.get("require_mongolia", True) and not about_mongolia(blob):
-            if not mentions_un(blob, full_names):
-                dropped_offtopic.append(c)
-                continue
+        # Same reasoning: judged on a headline alone this drops good stories, so
+        # for search results it waits for the article text. A named official is
+        # reason enough on its own — a profile of the Resident Coordinator need
+        # not repeat the country's name. Full names only: a surname alone
+        # matches too many unrelated people.
+        if (MM.get("require_mongolia", True) and not c.get("from_query")
+                and not about_mongolia(blob) and not mentions_un(blob, full_names)):
+            dropped_offtopic.append(c)
+            continue
         filtered.append(c)
 
     print(f"\nFrom {len(candidates)} search result(s):")
@@ -549,9 +557,25 @@ def main():
 
         report_fetch_quality(filtered, issues)
 
-    # Drop anything whose full text turned out not to mention us at all.
-    keep = [c for c in filtered
-            if c.get("matched_terms") or not c.get("fetch_ok", True)]
+    # Now that the articles have been read, apply on their text the two checks
+    # that a headline could not answer.
+    keep, n_body_no_un, n_body_no_mn = [], 0, 0
+    for c in filtered:
+        if not c.get("fetch_ok", True):
+            keep.append(c)          # unreadable: keep, and say so downstream
+            continue
+        if not c.get("matched_terms"):
+            n_body_no_un += 1
+            continue
+        text = c["title"] + " " + (c.get("body") or "")
+        if (MM.get("require_mongolia", True) and not about_mongolia(text)
+                and not mentions_un(text, full_names)):
+            n_body_no_mn += 1
+            continue
+        keep.append(c)
+    if n_body_no_un or n_body_no_mn:
+        print(f"  -{n_body_no_un:<4} full text does not mention the United Nations")
+        print(f"  -{n_body_no_mn:<4} full text is not about Mongolia")
 
     # Re-apply the window now that the article itself has been read: the date on
     # the feed entry is often absent, and only the page carries the real one.

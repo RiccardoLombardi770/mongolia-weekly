@@ -170,7 +170,10 @@ media_monitoring:
   # Fetch the full article text (needed for tone + source matching).
   fetch_full_text: true
   fetch_timeout: 25
-  max_articles_to_fetch: 60
+  # Raised from 60: the United Nations and Mongolia checks now run on the
+  # article text rather than the headline, so more candidates reach the fetch
+  # stage and are sorted out there. Each fetch costs about a second.
+  max_articles_to_fetch: 110
   # Back-link matching: below this confidence the source is shown as
   # "not identified" rather than guessed.
   match_min_confidence: 60
