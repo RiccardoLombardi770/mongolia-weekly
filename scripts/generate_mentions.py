@@ -519,6 +519,16 @@ def main():
     mentions = raw.get("mentions", [])
     issues = list(raw.get("issues", []))
 
+    # Analysing all 60 articles costs real money, which makes tuning the prompts
+    # expensive. MENTIONS_LIMIT analyses only the first N so a prompt change can
+    # be judged for a fraction of that. Never set on the weekly run.
+    limit = os.environ.get("MENTIONS_LIMIT", "").strip()
+    if limit.isdigit() and int(limit) > 0:
+        mentions = mentions[:int(limit)]
+        print(f"MENTIONS_LIMIT={limit} — analysing {len(mentions)} article(s) only; "
+              f"this file is a sample, not the week's record")
+        issues.append(f"Test run: only the first {len(mentions)} article(s) were analysed.")
+
     today = dt.date.today()
     week_start = today - dt.timedelta(days=today.weekday())
     week_end = week_start + dt.timedelta(days=6)

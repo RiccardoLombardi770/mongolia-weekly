@@ -16,6 +16,10 @@ on:
         description: "Commit the result and rebuild the site (off = artifact only)"
         type: boolean
         default: true
+      limit:
+        description: "Analyse only the first N articles (cheap prompt test; blank = all)"
+        type: string
+        default: ""
 
 permissions:
   contents: write
@@ -43,6 +47,7 @@ jobs:
       - name: Analyse mentions (tone, source matching, translation)
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          MENTIONS_LIMIT: ${{ inputs.limit }}
         run: python scripts/generate_mentions.py
 
       # Always keep the JSON, even when not publishing, so a failed or
@@ -55,8 +60,11 @@ jobs:
           path: mentions/*.json
           retention-days: 14
 
+      # A limited run analyses a sample, so publishing it would overwrite the
+      # week's real record with a partial one. The artifact above is the output
+      # of a test run; the page is not touched.
       - name: Commit the media page and rebuild the site
-        if: inputs.publish
+        if: inputs.publish && inputs.limit == ''
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
