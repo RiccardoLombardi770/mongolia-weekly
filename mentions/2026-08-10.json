@@ -1,1832 +1,34 @@
 {
   "week_start": "2026-08-10",
   "week_end": "2026-08-16",
-  "generated_at": "2026-08-11T07:52:03.859270+00:00",
-  "confidence": 85,
+  "generated_at": "2026-08-11T08:54:51.626974+00:00",
+  "confidence": 82,
   "overview": {
-    "en": "34 mentions recorded across 16 outlets; 34 neutral; the underlying United Nations publication was identified for 6 of them.",
-    "mn": "34 mentions recorded across 16 outlets; 34 neutral; the underlying United Nations publication was identified for 6 of them."
+    "en": "12 mentions recorded across 12 outlets; 12 neutral; the underlying United Nations publication was identified for 2 of them.",
+    "mn": "12 mentions recorded across 12 outlets; 12 neutral; the underlying United Nations publication was identified for 2 of them."
   },
   "mentions": [
     {
       "id": "m001",
-      "outlet": "Reuters",
-      "outlet_domain": "reuters.com",
+      "outlet": "iKon.mn",
+      "outlet_domain": "ikon.mn",
       "known_outlet": true,
-      "language": "en",
-      "published": "",
-      "title": "Mongolian air pollution causing health crisis: UNICEF",
-      "url": "https://www.reuters.com/article/world/mongolian-air-pollution-causing-health-crisis-unicef-idUSKCN1G70S8/",
+      "language": "mn",
+      "published": "2026-08-11",
+      "title": "Наймдугаар сарын 17-нд эхлэх \"COP17\" хурлын бэлтгэл ажил 95 хувьтай үргэлжилж байна",
+      "url": "https://ikon.mn/n/3pjs",
       "summary": {
-        "en": "The headline reports a UNICEF assessment that air pollution in Mongolia is causing a health crisis.",
-        "mn": "The headline reports a UNICEF assessment that air pollution in Mongolia is causing a health crisis."
+        "en": "The article reports that preparations for the venue of the 17th Conference of the Parties to the United Nations Convention to Combat Desertification (UNCCD) COP17 in Ulaanbaatar are 95 per cent complete, citing statements from the city's mayor about the significance of hosting the event.",
+        "mn": "The article reports that preparations for the venue of the 17th Conference of the Parties to the United Nations Convention to Combat Desertification (UNCCD) COP17 in Ulaanbaatar are 95 per cent complete, citing statements from the city's mayor about the significance of hosting the event."
       },
       "tone": "Neutral",
       "tone_note": {
-        "en": "cites UNICEF's findings in the headline without further elaboration",
-        "mn": "cites UNICEF's findings in the headline without further elaboration"
-      },
-      "mention_type": "Data or report cited",
-      "prominence": "Headline",
-      "agencies": [
-        "UNICEF"
-      ],
-      "officials": [],
-      "un_source": {
-        "matched": false,
-        "method": "none",
-        "confidence": 10,
-        "title": "",
-        "url": "",
-        "date": "",
-        "agency": "",
-        "evidence": [
-          "shared wording: unicef, health"
-        ],
-        "candidates": [
-          {
-            "score": 12,
-            "evidence": [
-              "shared wording: unicef, health"
-            ],
-            "title": "13 July 2026 Mongolia’s EPI review calls for a roadmap to strengthen immunization programme in Mongolia",
-            "url": "https://www.who.int/mongolia/news/feature-stories/detail-wpro/mongolia-s-epi-review---calls-for-a-roadmap-to-strengthen-immunization-programme-in-mongolia",
-            "date": "2026-07-13",
-            "agency": "WHO"
-          },
-          {
-            "score": 11,
-            "evidence": [
-              "shared wording: crisis"
-            ],
-            "title": "Regional Office for Africa",
-            "url": "https://www.fao.org/africa/en/",
-            "date": "2026-10-29",
-            "agency": "FAO"
-          },
-          {
-            "score": 11,
-            "evidence": [
-              "shared wording: health"
-            ],
-            "title": "10 August 2026 Departmental update WHO-DG HERA workshop on pooled procurement mechanisms for regional entities",
-            "url": "https://www.who.int/mongolia/news/detail-global/10-08-2026-who-dg-hera-workshop-on-pooled-procurement-mechanisms-for-regional-entities",
-            "date": "2026-08-10",
-            "agency": "WHO"
-          }
-        ],
-        "reason": "none of the candidate WHO or FAO pages relate to this UNICEF air pollution report"
-      }
-    },
-    {
-      "id": "m002",
-      "outlet": "The Diplomat",
-      "outlet_domain": "thediplomat.com",
-      "known_outlet": true,
-      "language": "en",
-      "published": "1946-06-24",
-      "title": "Mongolia Celebrates 60 Years in the United Nations",
-      "url": "https://thediplomat.com/2021/11/mongolia-celebrates-60-years-in-the-united-nations/",
-      "summary": {
-        "en": "The article recounts the history of Mongolia's 15-year effort to join the United Nations and marks the 60th anniversary of its membership with a United Nations Week; it references Mongolian peacekeepers serving with UNMISS.",
-        "mn": "The article recounts the history of Mongolia's 15-year effort to join the United Nations and marks the 60th anniversary of its membership with a United Nations Week; it references Mongolian peacekeepers serving with UNMISS."
-      },
-      "tone": "Neutral",
-      "tone_note": {
-        "en": "provides a historical narrative of Mongolia's accession without evaluating the United Nations' work",
-        "mn": "provides a historical narrative of Mongolia's accession without evaluating the United Nations' work"
-      },
-      "mention_type": "Event coverage",
-      "prominence": "Headline",
-      "agencies": [
-        "UNMISS"
-      ],
-      "officials": [],
-      "un_source": {
-        "matched": true,
-        "method": "explicit_link",
-        "confidence": 95,
-        "title": "",
-        "url": "https://digitallibrary.un.org/record/112166?ln=en",
-        "date": "",
-        "agency": "digitallibrary.un.org",
-        "evidence": [
-          "the article links to this United Nations page (not yet in our index)"
-        ],
-        "candidates": []
-      }
-    },
-    {
-      "id": "m003",
-      "outlet": "AKIpress",
-      "outlet_domain": "akipress.com",
-      "known_outlet": true,
-      "language": "en",
-      "published": "2026-08-03",
-      "title": "Minister of Finance of Mongolia and UN Resident Coordinator discuss promoting regional development",
-      "url": "https://m.akipress.com/news:910484:Minister_of_Finance_of_Mongolia_and_UN_Resident_Coordinator_discuss_promoting_regional_development/",
-      "summary": {
-        "en": "The article reports on a meeting between Mongolia's Minister of Finance and the United Nations Resident Coordinator, Jaap van Hierden, to discuss regional development cooperation and the Sustainable Development Cooperation Framework.",
-        "mn": "The article reports on a meeting between Mongolia's Minister of Finance and the United Nations Resident Coordinator, Jaap van Hierden, to discuss regional development cooperation and the Sustainable Development Cooperation Framework."
-      },
-      "tone": "Neutral",
-      "tone_note": {
-        "en": "reports the meeting and proposals without evaluative comment",
-        "mn": "reports the meeting and proposals without evaluative comment"
-      },
-      "mention_type": "Event coverage",
-      "prominence": "Headline",
-      "agencies": [],
-      "officials": [
-        "Jaap van Hierden"
-      ],
-      "un_source": {
-        "matched": false,
-        "method": "none",
-        "confidence": 5,
-        "title": "",
-        "url": "",
-        "date": "",
-        "agency": "",
-        "evidence": [
-          "shared wording: minister, august, country, public, health",
-          "shared figures: 2026, 2027"
-        ],
-        "candidates": [
-          {
-            "score": 50,
-            "evidence": [
-              "shared wording: minister, august, country, public, health",
-              "shared figures: 2026, 2027"
-            ],
-            "title": "5 August 2026 Departmental update Thailand to host Third WHO Global Summit on Traditional Medicine in 2027",
-            "url": "https://www.who.int/mongolia/news/detail-global/05-08-2026-thailand-to-host-third-who-global-summit-on-traditional-medicine-in-2027",
-            "date": "2026-08-05",
-            "agency": "WHO"
-          },
-          {
-            "score": 41,
-            "evidence": [
-              "shared wording: authorities, cooperation, advances, strengthening, world, health",
-              "shared figures: 2026",
-              "published 11 day(s) before the article"
-            ],
-            "title": "23 July 2026 Departmental update WHO advances global regulatory cooperation with first interim list of regulatory authorities for medical devices",
-            "url": "https://www.who.int/mongolia/news/detail-global/23-07-2026-who-advances-global-regulatory-cooperation-with-first-interim-list-of-regulatory-authorities-for-medical-devices",
-            "date": "2026-07-23",
-            "agency": "WHO"
-          },
-          {
-            "score": 40,
-            "evidence": [
-              "shared wording: without, framework, transition, while, practical, world",
-              "shared figures: 2026",
-              "published 5 day(s) before the article"
-            ],
-            "title": "29 July 2026 Departmental update WHO launches first global framework to help regulators advance greener pharmaceuticals",
-            "url": "https://www.who.int/mongolia/news/detail-global/29-07-2026-who-launches-first-global-framework-to-help-regulators-advance-greener-pharmaceuticals",
-            "date": "2026-07-29",
-            "agency": "WHO"
-          }
-        ],
-        "reason": "candidate WHO items concern unrelated health topics with no matching quotes or figures"
-      }
-    },
-    {
-      "id": "m004",
-      "outlet": "The Diplomat",
-      "outlet_domain": "thediplomat.com",
-      "known_outlet": true,
-      "language": "en",
-      "published": "",
-      "title": "Jaap Van Hierden on the UN in Mongolia (and Vice Versa)",
-      "url": "https://thediplomat.com/2025/10/jaap-van-hierden-on-the-un-in-mongolia-and-vice-versa/",
-      "summary": {
-        "en": "An interview with Resident Coordinator Jaap van Hierden discusses Mongolia's engagement with the United Nations, the organization's 80th anniversary, reform prospects, and climate financing.",
-        "mn": "An interview with Resident Coordinator Jaap van Hierden discusses Mongolia's engagement with the United Nations, the organization's 80th anniversary, reform prospects, and climate financing."
-      },
-      "tone": "Neutral",
-      "tone_note": {
-        "en": "presents an interview format with the official's views, without the outlet offering its own evaluative judgement",
-        "mn": "presents an interview format with the official's views, without the outlet offering its own evaluative judgement"
-      },
-      "mention_type": "Statement cited",
-      "prominence": "Headline",
-      "agencies": [],
-      "officials": [
-        "Jaap van Hierden"
-      ],
-      "un_source": {
-        "matched": false,
-        "method": "none",
-        "confidence": 0,
-        "title": "",
-        "url": "",
-        "date": "",
-        "agency": "",
-        "evidence": [
-          "shared wording: change, across, work, many, south, strengthening",
-          "shared figures: 2026"
-        ],
-        "candidates": [
-          {
-            "score": 27,
-            "evidence": [
-              "shared wording: change, across, work, many, south, strengthening",
-              "shared figures: 2026"
-            ],
-            "title": "French Polynesia (France)",
-            "url": "https://www.who.int/frenchpolynesia/",
-            "date": "2026-07-22",
-            "agency": "WHO"
-          },
-          {
-            "score": 26,
-            "evidence": [
-              "shared wording: micronesia, work, many, south, strengthening, pacific",
-              "shared figures: 2026"
-            ],
-            "title": "Micronesia, Federated States of",
-            "url": "https://www.who.int/micronesia/",
-            "date": "2026-07-22",
-            "agency": "WHO"
-          },
-          {
-            "score": 25,
-            "evidence": [
-              "shared wording: major, east, post, asia, south, world",
-              "shared figures: 2026"
-            ],
-            "title": "29 July 2026 Departmental update WHO updates treatment guidelines on visceral and post-kala-azar dermal leishmaniasis",
-            "url": "https://www.who.int/mongolia/news/detail-global/29-07-2026-who-updates-treatment-guidelines-on-visceral-and-post-kala-azar-dermal-leishmaniasis",
-            "date": "2026-07-29",
-            "agency": "WHO"
-          }
-        ],
-        "reason": "candidate WHO pages on Micronesia and French Polynesia share no substantive overlap with this interview"
-      }
-    },
-    {
-      "id": "m005",
-      "outlet": "AKIpress",
-      "outlet_domain": "akipress.com",
-      "known_outlet": true,
-      "language": "en",
-      "published": "2025-01-24",
-      "title": "UN Resident Coordinator presents credentials at Foreign Ministry of Mongolia",
-      "url": "https://akipress.com/news:815799:UN_Resident_Coordinator_presents_credentials_at_Foreign_Ministry_of_Mongolia/",
-      "summary": {
-        "en": "The article reports that United Nations Resident Coordinator Jaap van Hierden presented his letter of credence to Mongolia's Foreign Minister, noting his prior UN posting and his remarks praising Mongolia's hosting of two international forums.",
-        "mn": "The article reports that United Nations Resident Coordinator Jaap van Hierden presented his letter of credence to Mongolia's Foreign Minister, noting his prior UN posting and his remarks praising Mongolia's hosting of two international forums."
-      },
-      "tone": "Neutral",
-      "tone_note": {
-        "en": "describes a routine credentials ceremony and quotes praise directed at the government, not at the United Nations",
-        "mn": "describes a routine credentials ceremony and quotes praise directed at the government, not at the United Nations"
-      },
-      "mention_type": "Event coverage",
-      "prominence": "Headline",
-      "agencies": [],
-      "officials": [
-        "Jaap van Hierden"
-      ],
-      "un_source": {
-        "matched": false,
-        "method": "none",
-        "confidence": 0,
-        "title": "",
-        "url": "",
-        "date": "",
-        "agency": "",
-        "evidence": [
-          "shared wording: policy, islands, government, development, world",
-          "shared figures: 2026, 23"
-        ],
-        "candidates": [
-          {
-            "score": 35,
-            "evidence": [
-              "shared wording: policy, islands, government, development, world",
-              "shared figures: 2026, 23"
-            ],
-            "title": "Policy Dialogue: Energy Security in a Volatile World: Accelerating Renewables for a More Resilient Pacific",
-            "url": "https://mongolia.un.org/en/317376-policy-dialogue-energy-security-volatile-world-accelerating-renewables-more-resilient",
-            "date": "",
-            "agency": "UNRCO"
-          },
-          {
-            "score": 33,
-            "evidence": [
-              "shared wording: islands, office, world",
-              "shared figures: 05, 2026"
-            ],
-            "title": "World Oceans Day 2026: Pacific Youth Invited to Reimagine Our Ocean Through Photography",
-            "url": "https://mongolia.un.org/en/316883-world-oceans-day-2026-pacific-youth-invited-reimagine-our-ocean-through-photography",
-            "date": "",
-            "agency": "UNRCO"
-          },
-          {
-            "score": 32,
-            "evidence": [
-              "shared wording: hosted",
-              "shared figures: 2026, 23"
-            ],
-            "title": "CALL FOR EXPRESSIONS OF INTEREST / COP17 ART COMMISSION",
-            "url": "https://mongolia.un.org/en/319871-call-expressions-interest-cop17-art-commission",
-            "date": "",
-            "agency": "UNRCO"
-          }
-        ],
-        "reason": "candidate UNRCO pages on energy, oceans and COP17 do not match this credentials story"
-      }
-    },
-    {
-      "id": "m006",
-      "outlet": "The Diplomat",
-      "outlet_domain": "thediplomat.com",
-      "known_outlet": true,
-      "language": "en",
-      "published": "",
-      "title": "‘No One Left Behind’: UNDP Representative Matilda Dimovska on Mongolia’s Development Journey",
-      "url": "https://thediplomat.com/2024/12/no-one-left-behind-undp-representative-matilda-dimovska-on-mongolias-development-journey/",
-      "summary": {
-        "en": "An interview with UNDP Resident Representative Matilda Dimovska describes UNDP's five decades of development work in Mongolia, including its role in establishing Khas Bank and the Gobi Cashmere factory.",
-        "mn": "An interview with UNDP Resident Representative Matilda Dimovska describes UNDP's five decades of development work in Mongolia, including its role in establishing Khas Bank and the Gobi Cashmere factory."
-      },
-      "tone": "Neutral",
-      "tone_note": {
-        "en": "presents the official's account of UNDP's history and projects without the outlet's own evaluative language",
-        "mn": "presents the official's account of UNDP's history and projects without the outlet's own evaluative language"
-      },
-      "mention_type": "Statement cited",
-      "prominence": "Headline",
-      "agencies": [
-        "UNDP"
-      ],
-      "officials": [
-        "Matilda Dimovska"
-      ],
-      "un_source": {
-        "matched": true,
-        "method": "explicit_link",
-        "confidence": 95,
-        "title": "",
-        "url": "https://www.undp.org/mongolia/blog/mongolias-clean-energy-transition-pathway-sustainable-and-inclusive-development",
-        "date": "",
-        "agency": "undp.org",
-        "evidence": [
-          "the article links to this United Nations page (not yet in our index)"
-        ],
-        "candidates": []
-      }
-    },
-    {
-      "id": "m007",
-      "outlet": "AKIpress",
-      "outlet_domain": "akipress.com",
-      "known_outlet": true,
-      "language": "en",
-      "published": "2025-12-23",
-      "title": "Mongolia presents pilot results of National Multidimensional Poverty Index",
-      "url": "https://m.akipress.com/news:869482:Mongolia_presents_pilot_results_of_National_Multidimensional_Poverty_Index/",
-      "summary": {
-        "en": "The article reports the pilot results of Mongolia's National Multidimensional Poverty Index, developed under a UNDP-supported statistical capacity-building project, with poverty figures and comments from the National Statistics Office, the Republic of Korea's ambassador, and UNDP's resident representative.",
-        "mn": "The article reports the pilot results of Mongolia's National Multidimensional Poverty Index, developed under a UNDP-supported statistical capacity-building project, with poverty figures and comments from the National Statistics Office, the Republic of Korea's ambassador, and UNDP's resident representative."
-      },
-      "tone": "Neutral",
-      "tone_note": {
-        "en": "cites UNDP's role and the official's statement on the index without added evaluation",
-        "mn": "cites UNDP's role and the official's statement on the index without added evaluation"
-      },
-      "mention_type": "Data or report cited",
-      "prominence": "Lead paragraph",
-      "agencies": [
-        "UNDP"
-      ],
-      "officials": [
-        "Matilda Dimovska"
-      ],
-      "un_source": {
-        "matched": false,
-        "method": "none",
-        "confidence": 0,
-        "title": "",
-        "url": "",
-        "date": "",
-        "agency": "",
-        "evidence": [
-          "shared wording: will, partners, policy, government, development, world",
-          "shared figures: 15, 2026, 23"
-        ],
-        "candidates": [
-          {
-            "score": 40,
-            "evidence": [
-              "shared wording: will, partners, policy, government, development, world",
-              "shared figures: 15, 2026, 23"
-            ],
-            "title": "Policy Dialogue: Energy Security in a Volatile World: Accelerating Renewables for a More Resilient Pacific",
-            "url": "https://mongolia.un.org/en/317376-policy-dialogue-energy-security-volatile-world-accelerating-renewables-more-resilient",
-            "date": "",
-            "agency": "UNRCO"
-          },
-          {
-            "score": 39,
-            "evidence": [
-              "shared wording: results, empowerment, gender, population, partners, evidence",
-              "shared figures: 15, 2025, 2026"
-            ],
-            "title": "Annual report - 2025",
-            "url": "https://mongolia.unfpa.org/en/publications/annual-report-2entity25",
-            "date": "2026-06-15",
-            "agency": "UNFPA"
-          },
-          {
-            "score": 37,
-            "evidence": [
-              "shared wording: people, office, world",
-              "shared figures: 15, 2026"
-            ],
-            "title": "World Oceans Day 2026: Pacific Youth Invited to Reimagine Our Ocean Through Photography",
-            "url": "https://mongolia.un.org/en/316883-world-oceans-day-2026-pacific-youth-invited-reimagine-our-ocean-through-photography",
-            "date": "",
-            "agency": "UNRCO"
-          }
-        ],
-        "reason": "candidate UNRCO and UNFPA items concern unrelated topics with no shared figures or quotes"
-      }
-    },
-    {
-      "id": "m008",
-      "outlet": "The Diplomat",
-      "outlet_domain": "thediplomat.com",
-      "known_outlet": true,
-      "language": "en",
-      "published": "",
-      "title": "UNICEF and Children’s Wellness and Protection in Mongolia",
-      "url": "https://thediplomat.com/2025/03/unicef-and-childrens-wellness-and-protection-in-mongolia/",
-      "summary": {
-        "en": "An interview with UNICEF Representative Evariste Kouassi-Komlan discusses UNICEF's programmes in Mongolia addressing air pollution, child health, and protection, including the CHIP stove-replacement project and a related award.",
-        "mn": "An interview with UNICEF Representative Evariste Kouassi-Komlan discusses UNICEF's programmes in Mongolia addressing air pollution, child health, and protection, including the CHIP stove-replacement project and a related award."
-      },
-      "tone": "Neutral",
-      "tone_note": {
-        "en": "reports the official's account of UNICEF's projects and a cited award without the outlet's own evaluative language",
-        "mn": "reports the official's account of UNICEF's projects and a cited award without the outlet's own evaluative language"
-      },
-      "mention_type": "Statement cited",
-      "prominence": "Headline",
-      "agencies": [
-        "UNICEF"
-      ],
-      "officials": [
-        "Evariste Kouassi-Komlan"
-      ],
-      "un_source": {
-        "matched": true,
-        "method": "explicit_link",
-        "confidence": 95,
-        "title": "",
-        "url": "https://mics.unicef.org/",
-        "date": "",
-        "agency": "mics.unicef.org",
-        "evidence": [
-          "the article links to this United Nations page (not yet in our index)"
-        ],
-        "candidates": []
-      }
-    },
-    {
-      "id": "m009",
-      "outlet": "AKIpress",
-      "outlet_domain": "akipress.com",
-      "known_outlet": true,
-      "language": "en",
-      "published": "2025-08-13",
-      "title": "Early Childhood Development Center to be opened in Mongolia with support of UNICEF and UK Embassy",
-      "url": "https://akipress.com/news:844593:Early_Childhood_Development_Center_to_be_opened_in_Mongolia_with_support_of_UNICEF_and_UK_Embassy/",
-      "summary": {
-        "en": "The article reports on a partnership between UNICEF and the British Embassy to open a climate-smart Early Childhood Development Centre in Orkhon province, quoting the UNICEF representative and the British ambassador.",
-        "mn": "The article reports on a partnership between UNICEF and the British Embassy to open a climate-smart Early Childhood Development Centre in Orkhon province, quoting the UNICEF representative and the British ambassador."
-      },
-      "tone": "Neutral",
-      "tone_note": {
-        "en": "reports the project launch and quotes officials without the outlet's own evaluative comment",
-        "mn": "reports the project launch and quotes officials without the outlet's own evaluative comment"
-      },
-      "mention_type": "Event coverage",
-      "prominence": "Headline",
-      "agencies": [
-        "UNICEF"
-      ],
-      "officials": [
-        "Evariste Kouassi-Komlan"
-      ],
-      "un_source": {
-        "matched": false,
-        "method": "none",
-        "confidence": 0,
-        "title": "",
-        "url": "",
-        "date": "",
-        "agency": "",
-        "evidence": [
-          "shared wording: renewable, energy, will, partners, across, policy",
-          "shared figures: 15, 2026"
-        ],
-        "candidates": [
-          {
-            "score": 43,
-            "evidence": [
-              "shared wording: renewable, energy, will, partners, across, policy",
-              "shared figures: 15, 2026"
-            ],
-            "title": "Policy Dialogue: Energy Security in a Volatile World: Accelerating Renewables for a More Resilient Pacific",
-            "url": "https://mongolia.un.org/en/317376-policy-dialogue-energy-security-volatile-world-accelerating-renewables-more-resilient",
-            "date": "",
-            "agency": "UNRCO"
-          },
-          {
-            "score": 39,
-            "evidence": [
-              "shared wording: unicef, children, center, partners, rsquo, strengthen",
-              "shared figures: 13, 2026"
-            ],
-            "title": "13 July 2026 Mongolia’s EPI review calls for a roadmap to strengthen immunization programme in Mongolia",
-            "url": "https://www.who.int/mongolia/news/feature-stories/detail-wpro/mongolia-s-epi-review---calls-for-a-roadmap-to-strengthen-immunization-programme-in-mongolia",
-            "date": "2026-07-13",
-            "agency": "WHO"
-          },
-          {
-            "score": 38,
-            "evidence": [
-              "shared wording: resilience, office, climate, world",
-              "shared figures: 15, 2026"
-            ],
-            "title": "World Oceans Day 2026: Pacific Youth Invited to Reimagine Our Ocean Through Photography",
-            "url": "https://mongolia.un.org/en/316883-world-oceans-day-2026-pacific-youth-invited-reimagine-our-ocean-through-photography",
-            "date": "",
-            "agency": "UNRCO"
-          }
-        ],
-        "reason": "candidate WHO and UNRCO pages do not match this UNICEF/UK Embassy story"
-      }
-    },
-    {
-      "id": "m010",
-      "outlet": "AKIpress",
-      "outlet_domain": "akipress.com",
-      "known_outlet": true,
-      "language": "en",
-      "published": "2023-11-21",
-      "title": "UNESCO Collection \"History of Nomadic Civilizations\" to be issued at Mongolia's proposal",
-      "url": "https://akipress.com/news:744062:UNESCO_Collection__History_of_Nomadic_Civilizations__to_be_issued_at_Mongolia_s_proposal/",
-      "summary": {
-        "en": "The article reports that a new UNESCO Collection on the history of nomadic civilizations, proposed by Mongolia, was approved at UNESCO's General Conference, with several countries expressing interest in participating.",
-        "mn": "The article reports that a new UNESCO Collection on the history of nomadic civilizations, proposed by Mongolia, was approved at UNESCO's General Conference, with several countries expressing interest in participating."
-      },
-      "tone": "Neutral",
-      "tone_note": {
-        "en": "reports the resolution's approval without evaluative comment",
-        "mn": "reports the resolution's approval without evaluative comment"
-      },
-      "mention_type": "Event coverage",
-      "prominence": "Headline",
-      "agencies": [
-        "UNESCO"
-      ],
-      "officials": [],
-      "un_source": {
-        "matched": false,
-        "method": "none",
-        "confidence": 0,
-        "title": "",
-        "url": "",
-        "date": "",
-        "agency": "",
-        "evidence": [
-          "shared wording: economy, including, environment, held, policy, countries",
-          "shared figures: 08, 09, 22"
-        ],
-        "candidates": [
-          {
-            "score": 41,
-            "evidence": [
-              "shared wording: economy, including, environment, held, policy, countries",
-              "shared figures: 08, 09, 22"
-            ],
-            "title": "Mamadou Kane",
-            "url": "https://mongolia.un.org/en/301167-mamadou-kane",
-            "date": "",
-            "agency": "UNRCO"
-          },
-          {
-            "score": 40,
-            "evidence": [
-              "shared wording: member, being, kyrgyz, republic, health",
-              "shared figures: 08, 2026"
-            ],
-            "title": "AI Dialogue Partnerships Hub",
-            "url": "https://mongolia.un.org/en/316905-ai-dialogue-partnerships-hub",
-            "date": "",
-            "agency": "UNRCO"
-          },
-          {
-            "score": 35,
-            "evidence": [
-              "shared figures: 08, 2026"
-            ],
-            "title": "Change is in our hands. Act Now.",
-            "url": "https://mongolia.un.org/en/319489-change-our-hands-act-now",
-            "date": "",
-            "agency": "UNRCO"
-          }
-        ],
-        "reason": "candidate UNRCO pages on staff bios and AI dialogue share no substantive overlap"
-      }
-    },
-    {
-      "id": "m011",
-      "outlet": "Монгол Улсын Ерөнхийлөгчийн Тамгын газар",
-      "outlet_domain": "president.mn",
-      "known_outlet": false,
-      "language": "en",
-      "published": "",
-      "title": "Khurelsukh Ukhnaa: Mongolia Will Steadfastly Support the United Nations’ Efforts to Safeguard International Peace and Security",
-      "url": "https://president.mn/en/2025/09/24/khurelsukh-ukhnaa-mongolia-will-steadfastly-support-the-united-nations-efforts-to-safeguard-international-peace-and-security/",
-      "summary": {
-        "en": "The headline reports a statement by Mongolia's President Khürelsükh affirming Mongolia's continued support for the United Nations' peace and security efforts.",
-        "mn": "The headline reports a statement by Mongolia's President Khürelsükh affirming Mongolia's continued support for the United Nations' peace and security efforts."
-      },
-      "tone": "Neutral",
-      "tone_note": {
-        "en": "reports the president's stated commitment in the headline",
-        "mn": "reports the president's stated commitment in the headline"
-      },
-      "mention_type": "Statement cited",
-      "prominence": "Headline",
-      "agencies": [],
-      "officials": [],
-      "un_source": {
-        "matched": false,
-        "method": "none",
-        "confidence": 0,
-        "title": "",
-        "url": "",
-        "date": "",
-        "agency": "",
-        "evidence": [
-          "shared wording: монгол, support"
-        ],
-        "candidates": [
-          {
-            "score": 9,
-            "evidence": [
-              "shared wording: монгол, support"
-            ],
-            "title": "17 June 2026 Joint News Release Mongolia issues a new action plan for noncommunicable diseases Mongolia, with the support of the World Health Organization (WHO), launched its National Action Plan for noncommunicable diseases (NCDs) 2026–2028 to tackle diseases that cause 81% ...",
-            "url": "https://www.who.int/mongolia/news/detail/17-06-2026-mongolia-issues-a-new-action-plan-for-noncommunicable-diseases",
-            "date": "2026-06-17",
-            "agency": "WHO"
-          },
-          {
-            "score": 8,
-            "evidence": [
-              "shared wording: will, security"
-            ],
-            "title": "Policy Dialogue: Energy Security in a Volatile World: Accelerating Renewables for a More Resilient Pacific",
-            "url": "https://mongolia.un.org/en/317376-policy-dialogue-energy-security-volatile-world-accelerating-renewables-more-resilient",
-            "date": "",
-            "agency": "UNRCO"
-          },
-          {
-            "score": 8,
-            "evidence": [
-              "shared wording: continue, support"
-            ],
-            "title": "23 July 2026 Departmental update Momentum builds as countries accelerate action to defeat meningitis",
-            "url": "https://www.who.int/mongolia/news/detail-global/23-07-2026-momentum-builds-as-countries-accelerate-action-to-defeat-meningitis",
-            "date": "2026-07-23",
-            "agency": "WHO"
-          }
-        ],
-        "reason": "candidate WHO and UNRCO items are unrelated to this statement on peace and security"
-      }
-    },
-    {
-      "id": "m012",
-      "outlet": "Монгол Улсын Ерөнхийлөгчийн Тамгын газар",
-      "outlet_domain": "president.mn",
-      "known_outlet": false,
-      "language": "en",
-      "published": "",
-      "title": "MEETING WITH TAPAN MISHRA, UN RESIDENT COORDINATOR",
-      "url": "https://president.mn/en/2019/10/01/meeting-with-tapan-mishra-un-resident-coordinator/",
-      "summary": {
-        "en": "The headline reports a meeting between a Mongolian official and then-United Nations Resident Coordinator Tapan Mishra.",
-        "mn": "The headline reports a meeting between a Mongolian official and then-United Nations Resident Coordinator Tapan Mishra."
-      },
-      "tone": "Neutral",
-      "tone_note": {
-        "en": "reports the meeting in the headline",
-        "mn": "reports the meeting in the headline"
-      },
-      "mention_type": "Event coverage",
-      "prominence": "Headline",
-      "agencies": [],
-      "officials": [
-        "Tapan Mishra"
-      ],
-      "un_source": {
-        "matched": false,
-        "method": "none",
-        "confidence": 0,
-        "title": "",
-        "url": "",
-        "date": "",
-        "agency": "",
-        "evidence": [
-          "shared wording: meeting, монгол"
-        ],
-        "candidates": [
-          {
-            "score": 9,
-            "evidence": [
-              "shared wording: meeting, монгол"
-            ],
-            "title": "13 May 2026 News release WHO advances partnership for science and research in Mongolia The World Health Organization (WHO) convened a roundtable meeting to launch the Mongolia Partnership for Science and Research for Health, bringing together diverse stakeholders to ...",
-            "url": "https://www.who.int/mongolia/news/detail/13-05-2026-who-advances-partnership-for-science-and-research-in-mongolia",
-            "date": "2026-05-13",
-            "agency": "WHO"
-          },
-          {
-            "score": 8,
-            "evidence": [
-              "shared wording: meeting"
-            ],
-            "title": "30 July 2026 Medical product alert Statement from the Joint Meeting of the Advisory Committee on Safety of Medicinal Products (ACSoMP) and the Global Advisory Committee on Vaccine Safety (GACVS) on the safe and appropriate use of GLP‑1 receptor agonists",
-            "url": "https://www.who.int/mongolia/news/detail-global/30-07-2026-statement-from-the-joint-meeting-of-the-advisory-committee-on-safety-of-medicinal-products-(acsomp)-and-the-global-advisory-committee-on-vaccine-safety-(gacvs)-on-the-safe-and-appropriate-use-of-glp-1-receptor-agonists",
-            "date": "2026-07-30",
-            "agency": "WHO"
-          },
-          {
-            "score": 8,
-            "evidence": [
-              "shared wording: coordinator, resident"
-            ],
-            "title": "Mamadou Kane",
-            "url": "https://mongolia.un.org/en/301167-mamadou-kane",
-            "date": "",
-            "agency": "UNRCO"
-          }
-        ],
-        "reason": "candidate WHO pages and a UNRCO staff bio do not match this 2019 meeting"
-      }
-    },
-    {
-      "id": "m013",
-      "outlet": "Монгол Улсын Ерөнхийлөгчийн Тамгын газар",
-      "outlet_domain": "president.mn",
-      "known_outlet": false,
-      "language": "en",
-      "published": "",
-      "title": "PRESIDENT KHURELSUKH AWARDS UN RESIDENT COORDINATOR WITH THE “FRIENDSHIP” MEDAL",
-      "url": "https://president.mn/en/2024/11/30/president-khurelsukh-awards-un-resident-coordinator-with-the-friendship-medal/",
-      "summary": {
-        "en": "The article reports that President Khurelsukh awarded the United Nations Resident Coordinator the 'Friendship' medal, a state honour ceremony.",
-        "mn": "The article reports that President Khurelsukh awarded the United Nations Resident Coordinator the 'Friendship' medal, a state honour ceremony."
-      },
-      "tone": "Neutral",
-      "tone_note": {
-        "en": "reports the awarding of a medal without evaluative language",
-        "mn": "reports the awarding of a medal without evaluative language"
-      },
-      "mention_type": "Event coverage",
-      "prominence": "Headline",
-      "agencies": [
-        "UNRCO"
-      ],
-      "officials": [],
-      "un_source": {
-        "matched": false,
-        "method": "none",
-        "confidence": 0,
-        "title": "",
-        "url": "",
-        "date": "",
-        "agency": "",
-        "evidence": [
-          "shared wording: coordinator, resident"
-        ],
-        "candidates": [
-          {
-            "score": 8,
-            "evidence": [
-              "shared wording: coordinator, resident"
-            ],
-            "title": "Mamadou Kane",
-            "url": "https://mongolia.un.org/en/301167-mamadou-kane",
-            "date": "",
-            "agency": "UNRCO"
-          },
-          {
-            "score": 8,
-            "evidence": [
-              "shared wording: coordinator, resident"
-            ],
-            "title": "Rita Columbia",
-            "url": "https://mongolia.un.org/en/278916-rita-columbia",
-            "date": "",
-            "agency": "UNRCO"
-          },
-          {
-            "score": 8,
-            "evidence": [
-              "shared wording: coordinator, resident"
-            ],
-            "title": "Pablo Ruiz Hiebra",
-            "url": "https://mongolia.un.org/es/138293-pablo-ruiz-hiebra",
-            "date": "",
-            "agency": "UNRCO"
-          }
-        ],
-        "reason": "no concrete textual overlap (shared quote, figure, or date) links this ceremony to any of the candidate UNRCO biography pages"
-      }
-    },
-    {
-      "id": "m014",
-      "outlet": "Монгол Улсын Ерөнхийлөгчийн Тамгын газар",
-      "outlet_domain": "president.mn",
-      "known_outlet": false,
-      "language": "en",
-      "published": "",
-      "title": "STATEMENT AT THE GENERAL DEBATE OF THE 78TH SESSION OF THE UNITED NATIONS GENERAL ASSEMBLY",
-      "url": "https://president.mn/en/2023/09/21/statement-at-the-general-debate-of-the-78th-session-of-the-united-nations-general-assembly/",
-      "summary": {
-        "en": "The article is the President of Mongolia's statement delivered at the General Debate of the 78th session of the United Nations General Assembly, referencing the United Nations as the forum for the speech.",
-        "mn": "The article is the President of Mongolia's statement delivered at the General Debate of the 78th session of the United Nations General Assembly, referencing the United Nations as the forum for the speech."
-      },
-      "tone": "Neutral",
-      "tone_note": {
-        "en": "reports the statement's delivery at a UN body without evaluative language",
-        "mn": "reports the statement's delivery at a UN body without evaluative language"
-      },
-      "mention_type": "Statement cited",
-      "prominence": "Headline",
-      "agencies": [],
-      "officials": [],
-      "un_source": {
-        "matched": false,
-        "method": "none",
-        "confidence": 0,
-        "title": "",
-        "url": "",
-        "date": "",
-        "agency": "",
-        "evidence": [
-          "shared wording: statement"
-        ],
-        "candidates": [
-          {
-            "score": 8,
-            "evidence": [
-              "shared wording: statement"
-            ],
-            "title": "30 July 2026 Medical product alert Statement from the Joint Meeting of the Advisory Committee on Safety of Medicinal Products (ACSoMP) and the Global Advisory Committee on Vaccine Safety (GACVS) on the safe and appropriate use of GLP‑1 receptor agonists",
-            "url": "https://www.who.int/mongolia/news/detail-global/30-07-2026-statement-from-the-joint-meeting-of-the-advisory-committee-on-safety-of-medicinal-products-(acsomp)-and-the-global-advisory-committee-on-vaccine-safety-(gacvs)-on-the-safe-and-appropriate-use-of-glp-1-receptor-agonists",
-            "date": "2026-07-30",
-            "agency": "WHO"
-          },
-          {
-            "score": 7,
-            "evidence": [
-              "shared wording: continue"
-            ],
-            "title": "23 July 2026 Departmental update Momentum builds as countries accelerate action to defeat meningitis",
-            "url": "https://www.who.int/mongolia/news/detail-global/23-07-2026-momentum-builds-as-countries-accelerate-action-to-defeat-meningitis",
-            "date": "2026-07-23",
-            "agency": "WHO"
-          },
-          {
-            "score": 7,
-            "evidence": [
-              "shared wording: монгол"
-            ],
-            "title": "13 July 2026 Mongolia’s EPI review calls for a roadmap to strengthen immunization programme in Mongolia",
-            "url": "https://www.who.int/mongolia/news/feature-stories/detail-wpro/mongolia-s-epi-review---calls-for-a-roadmap-to-strengthen-immunization-programme-in-mongolia",
-            "date": "2026-07-13",
-            "agency": "WHO"
-          }
-        ],
-        "reason": "none of the WHO candidates relate to a General Assembly statement"
-      }
-    },
-    {
-      "id": "m015",
-      "outlet": "Forbes",
-      "outlet_domain": "forbes.com",
-      "known_outlet": false,
-      "language": "en",
-      "published": "",
-      "title": "UN Pilot In Mongolia Uses Blockchain To Help Farmers Deliver Sustainable Cashmere",
-      "url": "https://www.forbes.com/sites/rogerhuang/2019/12/28/un-pilot-in-mongolia-uses-blockchain-to-help-farmers-deliver-sustainable-cashmere/",
-      "summary": {
-        "en": "The article describes a UNDP-supported pilot in Mongolia that uses blockchain technology to help cashmere herders demonstrate sustainable production practices.",
-        "mn": "The article describes a UNDP-supported pilot in Mongolia that uses blockchain technology to help cashmere herders demonstrate sustainable production practices."
-      },
-      "tone": "Neutral",
-      "tone_note": {
-        "en": "describes the UNDP pilot and its mechanics factually, without outlet commentary",
-        "mn": "describes the UNDP pilot and its mechanics factually, without outlet commentary"
+        "en": "reports preparation progress and a mayoral statement without evaluating the United Nations",
+        "mn": "reports preparation progress and a mayoral statement without evaluating the United Nations"
       },
       "mention_type": "Event coverage",
       "prominence": "Lead paragraph",
       "agencies": [
-        "UNDP"
-      ],
-      "officials": [],
-      "un_source": {
-        "matched": true,
-        "method": "explicit_link",
-        "confidence": 95,
-        "title": "",
-        "url": "https://www.undp.org/content/undp/en/home/blog/2019/creating-a-market-for-sustainable-cashmere.html",
-        "date": "",
-        "agency": "undp.org",
-        "evidence": [
-          "the article links to this United Nations page (not yet in our index)"
-        ],
-        "candidates": []
-      }
-    },
-    {
-      "id": "m016",
-      "outlet": "Qazinform",
-      "outlet_domain": "qazinform.com",
-      "known_outlet": false,
-      "language": "en",
-      "published": "2025-04-22",
-      "title": "UNDP launches 'Integra' initiative in Mongolia",
-      "url": "https://qazinform.com/news/undp-launches-integra-initiative-in-mongolia-ee09cf",
-      "summary": {
-        "en": "The article reports the launch of UNDP's 'Integra' initiative in Mongolia to strengthen governance and transparency in the extractive sector, implemented with the Ministry of Industry and Mineral Resources.",
-        "mn": "The article reports the launch of UNDP's 'Integra' initiative in Mongolia to strengthen governance and transparency in the extractive sector, implemented with the Ministry of Industry and Mineral Resources."
-      },
-      "tone": "Neutral",
-      "tone_note": {
-        "en": "announces the initiative's launch and partners without evaluative language",
-        "mn": "announces the initiative's launch and partners without evaluative language"
-      },
-      "mention_type": "Event coverage",
-      "prominence": "Headline",
-      "agencies": [
-        "UNDP"
-      ],
-      "officials": [],
-      "un_source": {
-        "matched": false,
-        "method": "none",
-        "confidence": 0,
-        "title": "",
-        "url": "",
-        "date": "",
-        "agency": "",
-        "evidence": [
-          "shared wording: governance, photo, resilience, programme, development",
-          "shared figures: 16, 2025, 22"
-        ],
-        "candidates": [
-          {
-            "score": 39,
-            "evidence": [
-              "shared wording: governance, photo, resilience, programme, development",
-              "shared figures: 16, 2025, 22"
-            ],
-            "title": "Mamadou Kane",
-            "url": "https://mongolia.un.org/en/301167-mamadou-kane",
-            "date": "",
-            "agency": "UNRCO"
-          },
-          {
-            "score": 33,
-            "evidence": [
-              "shared wording: april, management, support, through, world",
-              "shared figures: 16, 22"
-            ],
-            "title": "Micronesia, Federated States of",
-            "url": "https://www.who.int/micronesia/",
-            "date": "2026-07-22",
-            "agency": "WHO"
-          },
-          {
-            "score": 33,
-            "evidence": [
-              "shared wording: april, management, support, through, world",
-              "shared figures: 16, 22"
-            ],
-            "title": "Northern Mariana Islands (USA)",
-            "url": "https://www.who.int/northernmarianaislands/",
-            "date": "2026-07-22",
-            "agency": "WHO"
-          }
-        ],
-        "reason": "no candidate matches the specific Integra initiative launch details"
-      }
-    },
-    {
-      "id": "m017",
-      "outlet": "Qazinform",
-      "outlet_domain": "qazinform.com",
-      "known_outlet": false,
-      "language": "en",
-      "published": "2025-08-14",
-      "title": "UNICEF and UK to establish “Growing Up Green” early childhood development center in Mongolia",
-      "url": "https://qazinform.com/news/unicef-and-uk-to-establish-growing-up-green-early-childhood-development-center-in-mongolia-931ad6",
-      "summary": {
-        "en": "The article reports on a partnership agreement between UNICEF and the British Embassy in Mongolia to build a climate-smart early childhood development centre in Orkhon aimag.",
-        "mn": "The article reports on a partnership agreement between UNICEF and the British Embassy in Mongolia to build a climate-smart early childhood development centre in Orkhon aimag."
-      },
-      "tone": "Neutral",
-      "tone_note": {
-        "en": "reports the agreement and quotes officials without the outlet's own evaluative language",
-        "mn": "reports the agreement and quotes officials without the outlet's own evaluative language"
-      },
-      "mention_type": "Statement cited",
-      "prominence": "Headline",
-      "agencies": [
-        "UNICEF"
-      ],
-      "officials": [
-        "Evariste Kouassi-Komlan"
-      ],
-      "un_source": {
-        "matched": false,
-        "method": "none",
-        "confidence": 0,
-        "title": "",
-        "url": "",
-        "date": "",
-        "agency": "",
-        "evidence": [
-          "shared wording: outdoor, will",
-          "shared figures: 11, 2026"
-        ],
-        "candidates": [
-          {
-            "score": 37,
-            "evidence": [
-              "shared wording: outdoor, will",
-              "shared figures: 11, 2026"
-            ],
-            "title": "CALL FOR EXPRESSIONS OF INTEREST / COP17 ART COMMISSION",
-            "url": "https://mongolia.un.org/en/319871-call-expressions-interest-cop17-art-commission",
-            "date": "",
-            "agency": "UNRCO"
-          },
-          {
-            "score": 33,
-            "evidence": [
-              "shared wording: safe, during",
-              "shared figures: 2026, 26"
-            ],
-            "title": "30 July 2026 Medical product alert Statement from the Joint Meeting of the Advisory Committee on Safety of Medicinal Products (ACSoMP) and the Global Advisory Committee on Vaccine Safety (GACVS) on the safe and appropriate use of GLP‑1 receptor agonists",
-            "url": "https://www.who.int/mongolia/news/detail-global/30-07-2026-statement-from-the-joint-meeting-of-the-advisory-committee-on-safety-of-medicinal-products-(acsomp)-and-the-global-advisory-committee-on-vaccine-safety-(gacvs)-on-the-safe-and-appropriate-use-of-glp-1-receptor-agonists",
-            "date": "2026-07-30",
-            "agency": "WHO"
-          },
-          {
-            "score": 33,
-            "evidence": [
-              "shared wording: transitioning, sustainable, building, brings, environment, over",
-              "shared figures: 2025"
-            ],
-            "title": "Mamadou Kane",
-            "url": "https://mongolia.un.org/en/301167-mamadou-kane",
-            "date": "",
-            "agency": "UNRCO"
-          }
-        ],
-        "reason": "none of the candidates match this specific UNICEF-UK partnership announcement"
-      }
-    },
-    {
-      "id": "m018",
-      "outlet": "EEAS",
-      "outlet_domain": "eeas.europa.eu",
-      "known_outlet": false,
-      "language": "en",
-      "published": "",
-      "title": "European Union and WHO hand over essential equipment to support Mongolia’s response to COVID-19",
-      "url": "https://www.eeas.europa.eu/delegations/mongolia/european-union-and-who-hand-over-essential-equipment-support-mongolia%E2%80%99s-response-covid-19_en",
-      "summary": {
-        "en": "The article reports on the European Union and WHO handing over essential equipment to Mongolia's Ministry of Health to support the COVID-19 response.",
-        "mn": "The article reports on the European Union and WHO handing over essential equipment to Mongolia's Ministry of Health to support the COVID-19 response."
-      },
-      "tone": "Neutral",
-      "tone_note": {
-        "en": "describes the equipment handover and project objectives factually",
-        "mn": "describes the equipment handover and project objectives factually"
-      },
-      "mention_type": "Event coverage",
-      "prominence": "Headline",
-      "agencies": [
-        "WHO"
-      ],
-      "officials": [
-        "Sergey Diorditsa"
-      ],
-      "un_source": {
-        "matched": false,
-        "method": "none",
-        "confidence": 0,
-        "title": "",
-        "url": "",
-        "date": "",
-        "agency": "",
-        "evidence": [
-          "shared wording: plan, ministry, strengthen, support, national, health",
-          "shared figures: 19"
-        ],
-        "candidates": [
-          {
-            "score": 37,
-            "evidence": [
-              "shared wording: plan, ministry, strengthen, support, national, health",
-              "shared figures: 19"
-            ],
-            "title": "19 October 2023 People of the Western Pacific: Dr Naranzul Tsedenbal, Mongolia",
-            "url": "https://www.who.int/mongolia/news",
-            "date": "2026-06-17",
-            "agency": "WHO"
-          },
-          {
-            "score": 30,
-            "evidence": [
-              "shared wording: laboratory, devices, country, medical, capacity, strengthening"
-            ],
-            "title": "16 June 2026 Joint News Release Mongolia inaugurates the new National Reference Laboratory for Medicines and Medical Devices The Government of Mongolia inaugurated a new National Reference Laboratory for Medicines and Medical Devices, strengthening the country’s capacity to manage public health emer",
-            "url": "https://www.who.int/mongolia/news/detail/16-06-2026-mongolia-inaugurates-the-new-national-reference-laboratory-for-medicines-and-medical-devices",
-            "date": "2026-06-16",
-            "agency": "WHO"
-          },
-          {
-            "score": 27,
-            "evidence": [
-              "shared wording: detection, contact, early, access, response, community"
-            ],
-            "title": "6 August 2026 Joint News Release Africa CDC and WHO call for urgent, community-led action to contain Ebola in the DRC",
-            "url": "https://www.who.int/mongolia/news/detail-global/06-08-2026-africa-cdc-and-who-call-for-urgent--community-led-action-to-contain-ebola-in-the-drc",
-            "date": "2026-08-06",
-            "agency": "WHO"
-          }
-        ],
-        "reason": "candidates concern unrelated 2026 WHO items, not the 2021 COVID equipment handover"
-      }
-    },
-    {
-      "id": "m019",
-      "outlet": "www.zms.mn",
-      "outlet_domain": "zms.mn",
-      "known_outlet": false,
-      "language": "en",
-      "published": "2026-03-29",
-      "title": "IOM Resident Representative presents credentials in Mongolia",
-      "url": "https://www.zms.mn/a/103823",
-      "summary": {
-        "en": "The article reports that the IOM Resident Representative in Mongolia, Yoko Fujimura, presented her credentials to the Foreign Minister, discussing IOM's cooperation with Mongolia.",
-        "mn": "The article reports that the IOM Resident Representative in Mongolia, Yoko Fujimura, presented her credentials to the Foreign Minister, discussing IOM's cooperation with Mongolia."
-      },
-      "tone": "Neutral",
-      "tone_note": {
-        "en": "reports the credentialing event and paraphrased remarks without outlet commentary",
-        "mn": "reports the credentialing event and paraphrased remarks without outlet commentary"
-      },
-      "mention_type": "Event coverage",
-      "prominence": "Headline",
-      "agencies": [
-        "IOM"
-      ],
-      "officials": [
-        "Yoko Fujimura"
-      ],
-      "un_source": {
-        "matched": false,
-        "method": "none",
-        "confidence": 0,
-        "title": "",
-        "url": "",
-        "date": "",
-        "agency": "",
-        "evidence": [
-          "shared wording: previously, closely, assistance, parties, resident",
-          "shared figures: 00, 08, 14"
-        ],
-        "candidates": [
-          {
-            "score": 40,
-            "evidence": [
-              "shared wording: previously, closely, assistance, parties, resident",
-              "shared figures: 00, 08, 14"
-            ],
-            "title": "Pablo Ruiz Hiebra",
-            "url": "https://mongolia.un.org/es/138293-pablo-ruiz-hiebra",
-            "date": "",
-            "agency": "UNRCO"
-          },
-          {
-            "score": 40,
-            "evidence": [
-              "shared wording: creative, conference, convention, will, parties",
-              "shared figures: 07, 2026"
-            ],
-            "title": "CALL FOR EXPRESSIONS OF INTEREST / COP17 ART COMMISSION",
-            "url": "https://mongolia.un.org/en/319871-call-expressions-interest-cop17-art-commission",
-            "date": "",
-            "agency": "UNRCO"
-          },
-          {
-            "score": 38,
-            "evidence": [
-              "shared wording: misinformation, covid",
-              "shared figures: 03, 07, 19, 2026"
-            ],
-            "title": "Global youth competition on influenza and COVID-19 prevention and control",
-            "url": "https://mongolia.un.org/en/318426-global-youth-competition-influenza-and-covid-19-prevention-and-control",
-            "date": "",
-            "agency": "UNRCO"
-          }
-        ],
-        "reason": "no candidate matches this specific credentialing event"
-      }
-    },
-    {
-      "id": "m020",
-      "outlet": "fundsforNGOs",
-      "outlet_domain": "www2.fundsforngos.org",
-      "known_outlet": false,
-      "language": "en",
-      "published": "",
-      "title": "IOM Call for Proposals: Understanding and Managing Internal Migration Project for Mongolian NGOs",
-      "url": "https://www2.fundsforngos.org/latest-funds-for-ngos/iom-call-for-proposals-understanding-and-managing-internal-migration-project-for-mongolian-ngos/",
-      "summary": {
-        "en": "The article (largely inaccessible) appears to announce an IOM call for proposals for a project on understanding and managing internal migration for Mongolian NGOs.",
-        "mn": "The article (largely inaccessible) appears to announce an IOM call for proposals for a project on understanding and managing internal migration for Mongolian NGOs."
-      },
-      "tone": "Neutral",
-      "tone_note": {
-        "en": "announces a funding call without evaluative language",
-        "mn": "announces a funding call without evaluative language"
-      },
-      "mention_type": "Passing reference",
-      "prominence": "Headline",
-      "agencies": [
-        "IOM"
-      ],
-      "officials": [],
-      "un_source": {
-        "matched": false,
-        "method": "none",
-        "confidence": 0,
-        "title": "",
-        "url": "",
-        "date": "",
-        "agency": "",
-        "evidence": [
-          "shared wording: migration"
-        ],
-        "candidates": [
-          {
-            "score": 12,
-            "evidence": [
-              "shared wording: migration"
-            ],
-            "title": "5 August 2026 Departmental update WHO launches global research priorities on climate, health and migration",
-            "url": "https://www.who.int/mongolia/news/detail-global/05-08-2026-who-launches-global-research-priorities-on-climate--health-and-migration",
-            "date": "2026-08-05",
-            "agency": "WHO"
-          },
-          {
-            "score": 12,
-            "evidence": [
-              "shared wording: proposals, call"
-            ],
-            "title": "CALL FOR EXPRESSIONS OF INTEREST / COP17 ART COMMISSION",
-            "url": "https://mongolia.un.org/en/319871-call-expressions-interest-cop17-art-commission",
-            "date": "",
-            "agency": "UNRCO"
-          },
-          {
-            "score": 12,
-            "evidence": [
-              "shared wording: best"
-            ],
-            "title": "28 May 2026 Sustaining gains in vaccine-preventable diseases: WHO supports review of Mongolia’s national immunization programme",
-            "url": "https://www.who.int/mongolia/news/feature-stories/detail-wpro/sustaining-gains-in-vaccine-preventable-diseases--who-supports-review-of-mongolia-s-national-immunization-programme",
-            "date": "2026-05-28",
-            "agency": "WHO"
-          }
-        ],
-        "reason": "candidates concern unrelated WHO and UNRCO items, not this IOM funding call"
-      }
-    },
-    {
-      "id": "m021",
-      "outlet": "IOM3",
-      "outlet_domain": "iom3.org",
-      "known_outlet": false,
-      "language": "en",
-      "published": "2023-10-30",
-      "title": "Mongolia visit to boost UK critical minerals supply",
-      "url": "https://www.iom3.org/resource/mongolia-visit-to-boost-uk-critical-minerals-supply.html",
-      "summary": {
-        "en": "The article covers a UK Industry Minister's visit to Mongolia to boost critical minerals trade ties; it does not mention the United Nations.",
-        "mn": "The article covers a UK Industry Minister's visit to Mongolia to boost critical minerals trade ties; it does not mention the United Nations."
-      },
-      "tone": "Neutral",
-      "tone_note": {
-        "en": "no United Nations content or evaluative language present",
-        "mn": "no United Nations content or evaluative language present"
-      },
-      "mention_type": "Passing reference",
-      "prominence": "Passing",
-      "agencies": [],
-      "officials": [],
-      "un_source": {
-        "matched": false,
-        "method": "none",
-        "confidence": 0,
-        "title": "",
-        "url": "",
-        "date": "",
-        "agency": "",
-        "evidence": [
-          "shared wording: renewable, leaders, energy, senior, will, security",
-          "shared figures: 2026, 23"
-        ],
-        "candidates": [
-          {
-            "score": 45,
-            "evidence": [
-              "shared wording: renewable, leaders, energy, senior, will, security",
-              "shared figures: 2026, 23"
-            ],
-            "title": "Policy Dialogue: Energy Security in a Volatile World: Accelerating Renewables for a More Resilient Pacific",
-            "url": "https://mongolia.un.org/en/317376-policy-dialogue-energy-security-volatile-world-accelerating-renewables-more-resilient",
-            "date": "",
-            "agency": "UNRCO"
-          },
-          {
-            "score": 42,
-            "evidence": [
-              "shared wording: being, industry, infrastructure, well, republic, initiative",
-              "shared figures: 10, 2026"
-            ],
-            "title": "AI Dialogue Partnerships Hub",
-            "url": "https://mongolia.un.org/en/316905-ai-dialogue-partnerships-hub",
-            "date": "",
-            "agency": "UNRCO"
-          },
-          {
-            "score": 39,
-            "evidence": [
-              "shared wording: large, will, october, scale",
-              "shared figures: 2026, 23"
-            ],
-            "title": "CALL FOR EXPRESSIONS OF INTEREST / COP17 ART COMMISSION",
-            "url": "https://mongolia.un.org/en/319871-call-expressions-interest-cop17-art-commission",
-            "date": "",
-            "agency": "UNRCO"
-          }
-        ],
-        "reason": "article does not concern the United Nations, so no candidate applies"
-      }
-    },
-    {
-      "id": "m022",
-      "outlet": "Parliament.mn",
-      "outlet_domain": "parliament.mn",
-      "known_outlet": false,
-      "language": "en",
-      "published": "2024-10-28",
-      "title": "MP M. Gankhuleg Meets with Dr. Khalid Sharif, Head of UNFPA in Mongolia",
-      "url": "https://www.parliament.mn/en/nn/63210/",
-      "summary": {
-        "en": "The article reports a meeting between an MP and the Head of UNFPA in Mongolia, Dr. Khalid Sharifi, to discuss youth development cooperation.",
-        "mn": "The article reports a meeting between an MP and the Head of UNFPA in Mongolia, Dr. Khalid Sharifi, to discuss youth development cooperation."
-      },
-      "tone": "Neutral",
-      "tone_note": {
-        "en": "reports the meeting and quoted remarks without outlet evaluation",
-        "mn": "reports the meeting and quoted remarks without outlet evaluation"
-      },
-      "mention_type": "Statement cited",
-      "prominence": "Headline",
-      "agencies": [
-        "UNFPA"
-      ],
-      "officials": [
-        "Khalid Sharifi"
-      ],
-      "un_source": {
-        "matched": false,
-        "method": "none",
-        "confidence": 0,
-        "title": "",
-        "url": "",
-        "date": "",
-        "agency": "",
-        "evidence": [
-          "shared wording: policies, population, unfpa, young, youth, people",
-          "shared figures: 06, 2026"
-        ],
-        "candidates": [
-          {
-            "score": 42,
-            "evidence": [
-              "shared wording: policies, population, unfpa, young, youth, people",
-              "shared figures: 06, 2026"
-            ],
-            "title": "Annual report - 2025",
-            "url": "https://mongolia.unfpa.org/en/publications/annual-report-2entity25",
-            "date": "2026-06-15",
-            "agency": "UNFPA"
-          },
-          {
-            "score": 41,
-            "evidence": [
-              "shared figures: 2026, 28"
-            ],
-            "title": "Turkmen",
-            "url": "https://mongolia.unfpa.org/en/turkmen",
-            "date": "",
-            "agency": "UNFPA"
-          },
-          {
-            "score": 40,
-            "evidence": [
-              "shared wording: initiatives, well, republic, dialogue, supporting, health",
-              "shared figures: 06, 10, 2026"
-            ],
-            "title": "AI Dialogue Partnerships Hub",
-            "url": "https://mongolia.un.org/en/316905-ai-dialogue-partnerships-hub",
-            "date": "",
-            "agency": "UNRCO"
-          }
-        ],
-        "reason": "no candidate matches this specific meeting report"
-      }
-    },
-    {
-      "id": "m023",
-      "outlet": "Parliament.mn",
-      "outlet_domain": "parliament.mn",
-      "known_outlet": false,
-      "language": "en",
-      "published": "2023-02-09",
-      "title": "An agreement to implement the UNFPA VII programme to support Mongolia was signed",
-      "url": "https://www.parliament.mn/en/nn/29552/",
-      "summary": {
-        "en": "The article reports the signing of an agreement between Mongolia's Parliament Secretariat and UNFPA to implement the seventh UNFPA country programme supporting Mongolia from 2023 to 2027.",
-        "mn": "The article reports the signing of an agreement between Mongolia's Parliament Secretariat and UNFPA to implement the seventh UNFPA country programme supporting Mongolia from 2023 to 2027."
-      },
-      "tone": "Neutral",
-      "tone_note": {
-        "en": "reports the signing and quoted remarks of officials without the outlet's own evaluative language",
-        "mn": "reports the signing and quoted remarks of officials without the outlet's own evaluative language"
-      },
-      "mention_type": "Statement cited",
-      "prominence": "Headline",
-      "agencies": [
-        "UNFPA"
-      ],
-      "officials": [
-        "Khalid Sharifi"
-      ],
-      "un_source": {
-        "matched": false,
-        "method": "none",
-        "confidence": 0,
-        "title": "",
-        "url": "",
-        "date": "",
-        "agency": "",
-        "evidence": [
-          "shared wording: women, sexual, reproductive, gender, equality, population",
-          "shared figures: 06, 2026"
-        ],
-        "candidates": [
-          {
-            "score": 49,
-            "evidence": [
-              "shared wording: women, sexual, reproductive, gender, equality, population",
-              "shared figures: 06, 2026"
-            ],
-            "title": "Annual report - 2025",
-            "url": "https://mongolia.unfpa.org/en/publications/annual-report-2entity25",
-            "date": "2026-06-15",
-            "agency": "UNFPA"
-          },
-          {
-            "score": 39,
-            "evidence": [
-              "shared wording: agreement, parties, implementation, issues",
-              "shared figures: 02, 2019"
-            ],
-            "title": "Pablo Ruiz Hiebra",
-            "url": "https://mongolia.un.org/es/138293-pablo-ruiz-hiebra",
-            "date": "",
-            "agency": "UNRCO"
-          },
-          {
-            "score": 39,
-            "evidence": [
-              "shared wording: well, republic, dialogue, supporting, health",
-              "shared figures: 06, 10, 2026"
-            ],
-            "title": "AI Dialogue Partnerships Hub",
-            "url": "https://mongolia.un.org/en/316905-ai-dialogue-partnerships-hub",
-            "date": "",
-            "agency": "UNRCO"
-          }
-        ],
-        "reason": "no candidate matches this specific 2023 agreement-signing report"
-      }
-    },
-    {
-      "id": "m024",
-      "outlet": "fundsforNGOs",
-      "outlet_domain": "www2.fundsforngos.org",
-      "known_outlet": false,
-      "language": "en",
-      "published": "2018-10-31",
-      "title": "UNFPA Call for Proposals: Implementing Partner on Youth Entrepreneurship Support Interventions in Mongolia",
-      "url": "https://www2.fundsforngos.org/latest-funds-for-ngos/unfpa-call-for-proposals-implementing-partner-on-youth-entrepreneurship-support-interventions-in-mongolia/",
-      "summary": {
-        "en": "The article (largely inaccessible) appears to be a UNFPA call for proposals seeking an implementing partner for youth entrepreneurship support interventions in Mongolia, jointly linked to UNFPA, UNICEF and WHO programming.",
-        "mn": "The article (largely inaccessible) appears to be a UNFPA call for proposals seeking an implementing partner for youth entrepreneurship support interventions in Mongolia, jointly linked to UNFPA, UNICEF and WHO programming."
-      },
-      "tone": "Neutral",
-      "tone_note": {
-        "en": "describes the call for proposals and programme scope without evaluative language",
-        "mn": "describes the call for proposals and programme scope without evaluative language"
-      },
-      "mention_type": "Event coverage",
-      "prominence": "Headline",
-      "agencies": [
-        "UNFPA",
-        "UNICEF",
-        "WHO"
-      ],
-      "officials": [],
-      "un_source": {
-        "matched": true,
-        "method": "explicit_link",
-        "confidence": 95,
-        "title": "",
-        "url": "https://mongolia.unfpa.org/en/submission/call-proposal",
-        "date": "",
-        "agency": "mongolia.unfpa.org",
-        "evidence": [
-          "the article links to this United Nations page (not yet in our index)"
-        ],
-        "candidates": []
-      }
-    },
-    {
-      "id": "m025",
-      "outlet": "Qazinform",
-      "outlet_domain": "qazinform.com",
-      "known_outlet": false,
-      "language": "en",
-      "published": "2025-10-31",
-      "title": "Mongolia joins FAO effort to improve soil mapping for farmland",
-      "url": "https://qazinform.com/news/mongolia-joins-fao-effort-to-improve-soil-mapping-for-farmland-3bd196",
-      "summary": {
-        "en": "The article reports the launch in Mongolia of an FAO-led South-South Cooperation project to improve soil mapping and sustainable soil management, implemented with China and Mongolia's Ministry of Food, Agriculture and Light Industry.",
-        "mn": "The article reports the launch in Mongolia of an FAO-led South-South Cooperation project to improve soil mapping and sustainable soil management, implemented with China and Mongolia's Ministry of Food, Agriculture and Light Industry."
-      },
-      "tone": "Neutral",
-      "tone_note": {
-        "en": "reports the project launch and quotes a Mongolian official without the outlet itself evaluating FAO's work",
-        "mn": "reports the project launch and quotes a Mongolian official without the outlet itself evaluating FAO's work"
-      },
-      "mention_type": "Event coverage",
-      "prominence": "Lead paragraph",
-      "agencies": [
-        "FAO"
-      ],
-      "officials": [],
-      "un_source": {
-        "matched": false,
-        "method": "none",
-        "confidence": 0,
-        "title": "",
-        "url": "",
-        "date": "",
-        "agency": "",
-        "evidence": [
-          "shared wording: improve, advance, country, people, development",
-          "shared figures: 15, 2025"
-        ],
-        "candidates": [
-          {
-            "score": 33,
-            "evidence": [
-              "shared wording: improve, advance, country, people, development",
-              "shared figures: 15, 2025"
-            ],
-            "title": "Annual report - 2025",
-            "url": "https://mongolia.unfpa.org/en/publications/annual-report-2entity25",
-            "date": "2026-06-15",
-            "agency": "UNFPA"
-          },
-          {
-            "score": 28,
-            "evidence": [
-              "shared wording: recently, secretary, sustainable, experience, photo, development",
-              "shared figures: 2025"
-            ],
-            "title": "Mamadou Kane",
-            "url": "https://mongolia.un.org/en/301167-mamadou-kane",
-            "date": "",
-            "agency": "UNRCO"
-          },
-          {
-            "score": 26,
-            "evidence": [
-              "shared wording: will, security, development, regional, world",
-              "shared figures: 15"
-            ],
-            "title": "Policy Dialogue: Energy Security in a Volatile World: Accelerating Renewables for a More Resilient Pacific",
-            "url": "https://mongolia.un.org/en/317376-policy-dialogue-energy-security-volatile-world-accelerating-renewables-more-resilient",
-            "date": "",
-            "agency": "UNRCO"
-          }
-        ],
-        "reason": "candidates concern unrelated UNFPA/UNRCO pages with no matching figures or quotes"
-      }
-    },
-    {
-      "id": "m026",
-      "outlet": "Монгол Улсын Ерөнхийлөгчийн Тамгын газар",
-      "outlet_domain": "president.mn",
-      "known_outlet": false,
-      "language": "en",
-      "published": "",
-      "title": "FAO Director-General Pays Courtesy Call on President Khurelsukh",
-      "url": "https://president.mn/en/2025/12/03/fao-director-general-pays-courtesy-call-on-president-khurelsukh/",
-      "summary": {
-        "en": "The article (title only, page content not accessible) reports a courtesy call by the FAO Director-General on Mongolia's President.",
-        "mn": "The article (title only, page content not accessible) reports a courtesy call by the FAO Director-General on Mongolia's President."
-      },
-      "tone": "Neutral",
-      "tone_note": {
-        "en": "headline reports a diplomatic meeting without evaluative language",
-        "mn": "headline reports a diplomatic meeting without evaluative language"
-      },
-      "mention_type": "Event coverage",
-      "prominence": "Headline",
-      "agencies": [
-        "FAO"
-      ],
-      "officials": [],
-      "un_source": {
-        "matched": false,
-        "method": "none",
-        "confidence": 0,
-        "title": "",
-        "url": "",
-        "date": "",
-        "agency": "",
-        "evidence": [],
-        "candidates": [
-          {
-            "score": 16,
-            "evidence": [],
-            "title": "Regional Office for Africa",
-            "url": "https://www.fao.org/africa/en/",
-            "date": "2026-10-29",
-            "agency": "FAO"
-          },
-          {
-            "score": 16,
-            "evidence": [],
-            "title": "Regional Office for Europe and Central Asia",
-            "url": "https://www.fao.org/europe/en/",
-            "date": "2026-07-23",
-            "agency": "FAO"
-          },
-          {
-            "score": 16,
-            "evidence": [],
-            "title": "Regional Office for Latin America and the Caribbean",
-            "url": "https://www.fao.org/americas/en/",
-            "date": "2026-07-17",
-            "agency": "FAO"
-          }
-        ],
-        "reason": "candidates are generic FAO regional pages unrelated to this bilateral meeting"
-      }
-    },
-    {
-      "id": "m027",
-      "outlet": "Qazinform",
-      "outlet_domain": "qazinform.com",
-      "known_outlet": false,
-      "language": "en",
-      "published": "2023-12-05",
-      "title": "UNESCO and Rio Tinto to support sustainable development in Mongolia",
-      "url": "https://qazinform.com/news/unesco-and-rio-tinto-to-support-sustainable-development-in-mongolia-751943",
-      "summary": {
-        "en": "The article reports the signing of a memorandum of understanding between UNESCO and Rio Tinto to support sustainable development, heritage and environmental initiatives in Mongolia, noting remarks by officials including the United Nations Resident Coordinator.",
-        "mn": "The article reports the signing of a memorandum of understanding between UNESCO and Rio Tinto to support sustainable development, heritage and environmental initiatives in Mongolia, noting remarks by officials including the United Nations Resident Coordinator."
-      },
-      "tone": "Neutral",
-      "tone_note": {
-        "en": "reports the MOU signing and lists opening remarks without the outlet's own evaluative language",
-        "mn": "reports the MOU signing and lists opening remarks without the outlet's own evaluative language"
-      },
-      "mention_type": "Event coverage",
-      "prominence": "Headline",
-      "agencies": [
-        "UNESCO"
-      ],
-      "officials": [
-        "Tapan Mishra",
-        "Shahbaz Khan"
-      ],
-      "un_source": {
-        "matched": false,
-        "method": "none",
-        "confidence": 0,
-        "title": "",
-        "url": "",
-        "date": "",
-        "agency": "",
-        "evidence": [
-          "shared wording: representative, director, photo, asia, coordinator, resident",
-          "shared figures: 20"
-        ],
-        "candidates": [
-          {
-            "score": 31,
-            "evidence": [
-              "shared wording: representative, director, photo, asia, coordinator, resident",
-              "shared figures: 20"
-            ],
-            "title": "Rita Columbia",
-            "url": "https://mongolia.un.org/en/278916-rita-columbia",
-            "date": "",
-            "agency": "UNRCO"
-          },
-          {
-            "score": 29,
-            "evidence": [
-              "shared wording: secretary, environmental, sustainable, photo, coordinator, resident",
-              "shared figures: 20"
-            ],
-            "title": "Mamadou Kane",
-            "url": "https://mongolia.un.org/en/301167-mamadou-kane",
-            "date": "",
-            "agency": "UNRCO"
-          },
-          {
-            "score": 28,
-            "evidence": [
-              "shared wording: director, technical, photo, coordinator, resident, regional",
-              "shared figures: 20"
-            ],
-            "title": "Pablo Ruiz Hiebra",
-            "url": "https://mongolia.un.org/es/138293-pablo-ruiz-hiebra",
-            "date": "",
-            "agency": "UNRCO"
-          }
-        ],
-        "reason": "listed UNRCO officials (Rita Columbia, Mamadou Kane, Pablo Ruiz Hiebra) do not match the named Tapan Mishra or event date"
-      }
-    },
-    {
-      "id": "m028",
-      "outlet": "open.kg",
-      "outlet_domain": "open.kg",
-      "known_outlet": false,
-      "language": "en",
-      "published": "",
-      "title": "Mongolia participates in the 43rd session of the United Nations General Conference on Education, Science and Culture (UNESCO) » News of Kyrgyzstan, Bishkek and Osh — latest events today",
-      "url": "https://open.kg/en/news/in-the-world/42191-mongolija-uchastvuet-v-43-j-sessii-generalnoj-konferencii-oon-po-voprosam-obrazovanija-nauki-i-kultury-junesko.html",
-      "summary": {
-        "en": "The article reports Mongolia's participation in the 43rd UNESCO General Conference, including the ambassador's remarks on UNESCO's role and Mongolia's initiatives such as a heritage resolution and plans to host COP17.",
-        "mn": "The article reports Mongolia's participation in the 43rd UNESCO General Conference, including the ambassador's remarks on UNESCO's role and Mongolia's initiatives such as a heritage resolution and plans to host COP17."
-      },
-      "tone": "Neutral",
-      "tone_note": {
-        "en": "reports the ambassador's supportive remarks as a quoted statement rather than the outlet's own judgement",
-        "mn": "reports the ambassador's supportive remarks as a quoted statement rather than the outlet's own judgement"
-      },
-      "mention_type": "Statement cited",
-      "prominence": "Headline",
-      "agencies": [
-        "UNESCO",
         "UNCCD"
       ],
       "officials": [],
@@ -1839,178 +41,69 @@
         "date": "",
         "agency": "",
         "evidence": [
-          "shared wording: committee, during, meeting, held, global",
-          "shared figures: 2026, 26"
+          "shared wording: rdquo, ldquo",
+          "shared figures: 2026, 28",
+          "published 14 day(s) before the article"
         ],
         "candidates": [
           {
-            "score": 43,
+            "score": 48,
             "evidence": [
-              "shared wording: committee, during, meeting, held, global",
-              "shared figures: 2026, 26"
+              "shared wording: rdquo, ldquo",
+              "shared figures: 2026, 28",
+              "published 14 day(s) before the article"
             ],
-            "title": "30 July 2026 Medical product alert Statement from the Joint Meeting of the Advisory Committee on Safety of Medicinal Products (ACSoMP) and the Global Advisory Committee on Vaccine Safety (GACVS) on the safe and appropriate use of GLP‑1 receptor agonists",
-            "url": "https://www.who.int/mongolia/news/detail-global/30-07-2026-statement-from-the-joint-meeting-of-the-advisory-committee-on-safety-of-medicinal-products-(acsomp)-and-the-global-advisory-committee-on-vaccine-safety-(gacvs)-on-the-safe-and-appropriate-use-of-glp-1-receptor-agonists",
-            "date": "2026-07-30",
+            "title": "World Hepatitis Day 2026 28 July 2026",
+            "url": "https://www.who.int/westernpacific/newsroom/events/overview/item/2026/07/28/western-pacific-events/world-hepatitis-day-2026",
+            "date": "2026-07-28",
             "agency": "WHO"
           },
           {
-            "score": 36,
+            "score": 45,
             "evidence": [
-              "shared wording: development",
-              "shared figures: 2025, 2026"
+              "shared figures: 2026, 22",
+              "published 6 day(s) before the article"
             ],
-            "title": "Annual report - 2025",
-            "url": "https://mongolia.unfpa.org/en/publications/annual-report-2entity25",
-            "date": "2026-06-15",
-            "agency": "UNFPA"
+            "title": "5 August 2026 Departmental update WHO launches global research priorities on climate, health and migration",
+            "url": "https://www.who.int/mongolia/news/detail-global/05-08-2026-who-launches-global-research-priorities-on-climate--health-and-migration",
+            "date": "2026-08-05",
+            "agency": "WHO"
           },
           {
-            "score": 35,
+            "score": 38,
             "evidence": [
-              "shared figures: 2026, 26"
-            ],
-            "title": "Menstrual Hygiene Kits - UNFPA/MNG/RFQ/26/005",
-            "url": "https://mongolia.unfpa.org/en/submission/menstrual-hygiene-kits-unfpamngrfq26entityentity5",
-            "date": "2026-05-14",
-            "agency": "UNFPA"
-          }
-        ],
-        "reason": "candidate publications (WHO, UNFPA items) share no specific figures or quotes with this UNESCO conference report"
-      }
-    },
-    {
-      "id": "m029",
-      "outlet": "open.kg",
-      "outlet_domain": "open.kg",
-      "known_outlet": false,
-      "language": "en",
-      "published": "",
-      "title": "Two Mongolian Settlements Joined the UNESCO Global Network of Learning Cities",
-      "url": "https://open.kg/en/news/in-the-world/51549-dva-mongolskih-naselennyh-punkta-prisoedinilis-k-globalnoj-seti-obuchajuschihsja-gorodov-junesko.html",
-      "summary": {
-        "en": "The article reports that two Mongolian settlements joined UNESCO's Global Network of Learning Cities, describing the network's aims and statistics on membership.",
-        "mn": "The article reports that two Mongolian settlements joined UNESCO's Global Network of Learning Cities, describing the network's aims and statistics on membership."
-      },
-      "tone": "Neutral",
-      "tone_note": {
-        "en": "reports the network's stated goals and membership figures without the outlet's own evaluative language",
-        "mn": "reports the network's stated goals and membership figures without the outlet's own evaluative language"
-      },
-      "mention_type": "Data or report cited",
-      "prominence": "Headline",
-      "agencies": [
-        "UNESCO"
-      ],
-      "officials": [],
-      "un_source": {
-        "matched": false,
-        "method": "none",
-        "confidence": 0,
-        "title": "",
-        "url": "",
-        "date": "",
-        "agency": "",
-        "evidence": [
-          "shared wording: received, school, have, workers, first, time",
-          "shared figures: 13, 14"
-        ],
-        "candidates": [
-          {
-            "score": 42,
-            "evidence": [
-              "shared wording: received, school, have, workers, first, time",
-              "shared figures: 13, 14"
+              "shared wording: монгол",
+              "shared figures: 11, 2026"
             ],
             "title": "13 July 2026 Mongolia conducts evaluation for HPV vaccines roll-out",
             "url": "https://www.who.int/mongolia/news/feature-stories/detail-wpro/mongolia-conducts-evaluation-for-hpv-vaccines-roll-out",
             "date": "2026-07-13",
             "agency": "WHO"
-          },
-          {
-            "score": 32,
-            "evidence": [
-              "shared wording: marks, authorities, cooperation, first, global, time",
-              "shared figures: 14"
-            ],
-            "title": "23 July 2026 Departmental update WHO advances global regulatory cooperation with first interim list of regulatory authorities for medical devices",
-            "url": "https://www.who.int/mongolia/news/detail-global/23-07-2026-who-advances-global-regulatory-cooperation-with-first-interim-list-of-regulatory-authorities-for-medical-devices",
-            "date": "2026-07-23",
-            "agency": "WHO"
-          },
-          {
-            "score": 29,
-            "evidence": [
-              "shared wording: annual, policies, communities, improve, based, development",
-              "shared figures: 2025"
-            ],
-            "title": "Annual report - 2025",
-            "url": "https://mongolia.unfpa.org/en/publications/annual-report-2entity25",
-            "date": "2026-06-15",
-            "agency": "UNFPA"
           }
         ],
-        "reason": "candidate WHO and UNFPA items share no specific figures or wording tied to this UNESCO network announcement"
+        "reason": "the WHO candidates address hepatitis awareness, climate-health research and HPV vaccination in Mongolia, none related to COP17 venue preparations"
       }
     },
     {
-      "id": "m030",
-      "outlet": "Hyperallergic",
-      "outlet_domain": "hyperallergic.com",
-      "known_outlet": false,
-      "language": "en",
-      "published": "2026-11-15",
-      "title": "Estonian Saunas and Mongolian Knuckle-Bone Shooting Merit Preservation, UNESCO Says",
-      "url": "https://hyperallergic.com/estonian-saunas-and-mongolian-knuckle-bone-shooting-merit-preservation-unesco-says/",
-      "summary": {
-        "en": "The article covers UNESCO's addition of several traditions, including Mongolian knuckle-bone shooting, to its Intangible Cultural Heritage list, explaining the list's purpose and criteria.",
-        "mn": "The article covers UNESCO's addition of several traditions, including Mongolian knuckle-bone shooting, to its Intangible Cultural Heritage list, explaining the list's purpose and criteria."
-      },
-      "tone": "Neutral",
-      "tone_note": {
-        "en": "describes UNESCO's stated rationale for the list without the outlet offering its own approving or critical judgement of UNESCO",
-        "mn": "describes UNESCO's stated rationale for the list without the outlet offering its own approving or critical judgement of UNESCO"
-      },
-      "mention_type": "Data or report cited",
-      "prominence": "Headline",
-      "agencies": [
-        "UNESCO"
-      ],
-      "officials": [],
-      "un_source": {
-        "matched": true,
-        "method": "explicit_link",
-        "confidence": 95,
-        "title": "",
-        "url": "http://www.unesco.org/culture/ich/index.php?lg=en&pg=00011&RL=00951&ref=hyperallergic.com",
-        "date": "",
-        "agency": "unesco.org",
-        "evidence": [
-          "the article links to this United Nations page (not yet in our index)"
-        ],
-        "candidates": []
-      }
-    },
-    {
-      "id": "m031",
+      "id": "m005",
       "outlet": "Devdiscourse",
       "outlet_domain": "devdiscourse.com",
       "known_outlet": false,
       "language": "en",
-      "published": "",
+      "published": "2026-08-05",
       "title": "ILO Study Highlights Future of Digital Work in Mongolia",
       "url": "https://www.devdiscourse.com/article/other/3959902-ilo-study-highlights-future-of-digital-work-in-mongolia",
       "summary": {
-        "en": "The article reports on an ILO-supported study and stakeholder workshop examining the growth of digital and platform-based work in Mongolia and the need for stronger worker protections.",
-        "mn": "The article reports on an ILO-supported study and stakeholder workshop examining the growth of digital and platform-based work in Mongolia and the need for stronger worker protections."
+        "en": "The article covers a workshop and diagnostic study led by the International Labour Organization (ILO) on digital work in Mongolia, describing findings on platform-based employment and the need for stronger worker protections.",
+        "mn": "The article covers a workshop and diagnostic study led by the International Labour Organization (ILO) on digital work in Mongolia, describing findings on platform-based employment and the need for stronger worker protections."
       },
       "tone": "Neutral",
       "tone_note": {
-        "en": "reports the study's findings and workshop discussions without evaluative language about the ILO's role",
-        "mn": "reports the study's findings and workshop discussions without evaluative language about the ILO's role"
+        "en": "reports the study's findings and workshop discussions without evaluative language about the ILO",
+        "mn": "reports the study's findings and workshop discussions without evaluative language about the ILO"
       },
       "mention_type": "Data or report cited",
-      "prominence": "Lead paragraph",
+      "prominence": "Headline",
       "agencies": [
         "ILO"
       ],
@@ -2027,10 +120,23 @@
         "date": "",
         "agency": "",
         "evidence": [
-          "shared wording: partnership, government, research, people, office, national",
-          "shared figures: 19, 2026"
+          "shared wording: governments, people, release, organization",
+          "shared figures: 2026, 25",
+          "published 13 day(s) before the article"
         ],
         "candidates": [
+          {
+            "score": 58,
+            "evidence": [
+              "shared wording: governments, people, release, organization",
+              "shared figures: 2026, 25",
+              "published 13 day(s) before the article"
+            ],
+            "title": "23 July 2026 News release WHO launches seven strategies to prevent drowning",
+            "url": "https://www.who.int/mongolia/news/detail-global/23-07-2026-who-launches-seven-strategies-to-prevent-drowning",
+            "date": "2026-07-23",
+            "agency": "WHO"
+          },
           {
             "score": 50,
             "evidence": [
@@ -2043,129 +149,43 @@
             "agency": "WHO"
           },
           {
-            "score": 44,
+            "score": 49,
             "evidence": [
-              "shared wording: governments, people, release, organization",
-              "shared figures: 2026, 25"
+              "shared wording: continue, systems, treatment, challenges, while, many",
+              "shared figures: 2026",
+              "published 13 day(s) before the article"
             ],
-            "title": "23 July 2026 News release WHO launches seven strategies to prevent drowning",
-            "url": "https://www.who.int/mongolia/news/detail-global/23-07-2026-who-launches-seven-strategies-to-prevent-drowning",
+            "title": "23 July 2026 Departmental update Momentum builds as countries accelerate action to defeat meningitis",
+            "url": "https://www.who.int/mongolia/news/detail-global/23-07-2026-momentum-builds-as-countries-accelerate-action-to-defeat-meningitis",
             "date": "2026-07-23",
             "agency": "WHO"
-          },
-          {
-            "score": 41,
-            "evidence": [
-              "shared wording: innovation, industry, stakeholders, practical, supporting, through",
-              "shared figures: 08, 2026"
-            ],
-            "title": "AI Dialogue Partnerships Hub",
-            "url": "https://mongolia.un.org/en/316905-ai-dialogue-partnerships-hub",
-            "date": "",
-            "agency": "UNRCO"
           }
         ],
-        "reason": "candidate WHO and UNRCO pages share no specific figures, quotes or dates with this ILO digital-work study"
+        "reason": "the WHO candidates cover drowning prevention, a WHO Mongolia profile piece, and meningitis control, none related to the ILO's digital work study"
       }
     },
     {
-      "id": "m032",
-      "outlet": "upi.com",
-      "outlet_domain": "upi.com",
+      "id": "m019",
+      "outlet": "Menafn",
+      "outlet_domain": "menafn.com",
       "known_outlet": false,
       "language": "en",
-      "published": "2015-06-10",
-      "title": "ILO urges Mongolia to act against NKorea labor exploitation",
-      "url": "https://www.upi.com/Top_News/World-News/2015/06/10/NKorea-laborers-are-exploited-in-Mongolia-says-ILO/9001433989974/",
+      "published": "2026-08-06",
+      "title": "Mongolia: Indian Ambassador Visits UNCCD COP17 Venue",
+      "url": "https://menafn.com/1111503200/Mongolia-Indian-Ambassador-Visits-UNCCD-COP17-Venue",
       "summary": {
-        "en": "The article reports an ILO statement urging Mongolia to address forced labour conditions among Democratic People's Republic of Korea (the Democratic People's Republic of Korea) workers, citing the ILO's Forced Labour Convention, 1930 (No. 29).",
-        "mn": "The article reports an ILO statement urging Mongolia to address forced labour conditions among Democratic People's Republic of Korea (the Democratic People's Republic of Korea) workers, citing the ILO's Forced Labour Convention, 1930 (No. 29)."
+        "en": "The retrievable text consists only of a technical redirect notice; no article content could be retrieved beyond the headline, 'Mongolia: Indian Ambassador Visits UNCCD COP17 Venue.'",
+        "mn": "The retrievable text consists only of a technical redirect notice; no article content could be retrieved beyond the headline, 'Mongolia: Indian Ambassador Visits UNCCD COP17 Venue.'"
       },
       "tone": "Neutral",
       "tone_note": {
-        "en": "reports the ILO official's statement and cites the relevant convention without the outlet itself evaluating the ILO",
-        "mn": "reports the ILO official's statement and cites the relevant convention without the outlet itself evaluating the ILO"
-      },
-      "mention_type": "Statement cited",
-      "prominence": "Headline",
-      "agencies": [
-        "ILO"
-      ],
-      "officials": [
-        "Sophy Fisher"
-      ],
-      "un_source": {
-        "matched": false,
-        "method": "none",
-        "confidence": 0,
-        "title": "",
-        "url": "",
-        "date": "",
-        "agency": "",
-        "evidence": [
-          "shared wording: east, asia, south, organization, world",
-          "shared figures: 29"
-        ],
-        "candidates": [
-          {
-            "score": 27,
-            "evidence": [
-              "shared wording: east, asia, south, organization, world",
-              "shared figures: 29"
-            ],
-            "title": "29 July 2026 Departmental update WHO updates treatment guidelines on visceral and post-kala-azar dermal leishmaniasis",
-            "url": "https://www.who.int/mongolia/news/detail-global/29-07-2026-who-updates-treatment-guidelines-on-visceral-and-post-kala-azar-dermal-leishmaniasis",
-            "date": "2026-07-29",
-            "agency": "WHO"
-          },
-          {
-            "score": 25,
-            "evidence": [
-              "shared wording: have, workers",
-              "shared figures: 11"
-            ],
-            "title": "13 July 2026 Mongolia conducts evaluation for HPV vaccines roll-out",
-            "url": "https://www.who.int/mongolia/news/feature-stories/detail-wpro/mongolia-conducts-evaluation-for-hpv-vaccines-roll-out",
-            "date": "2026-07-13",
-            "agency": "WHO"
-          },
-          {
-            "score": 24,
-            "evidence": [
-              "shared wording: organization, world",
-              "shared figures: 10"
-            ],
-            "title": "10 August 2026 Departmental update WHO-DG HERA workshop on pooled procurement mechanisms for regional entities",
-            "url": "https://www.who.int/mongolia/news/detail-global/10-08-2026-who-dg-hera-workshop-on-pooled-procurement-mechanisms-for-regional-entities",
-            "date": "2026-08-10",
-            "agency": "WHO"
-          }
-        ],
-        "reason": "candidate WHO pages from 2026 share no substantive overlap with this 2015 ILO labour statement"
-      }
-    },
-    {
-      "id": "m033",
-      "outlet": "SDG Knowledge Hub",
-      "outlet_domain": "sdg.iisd.org",
-      "known_outlet": false,
-      "language": "en",
-      "published": "",
-      "title": "UNEP Assists Mongolia in non-HCFC Conversion",
-      "url": "https://sdg.iisd.org/news/unep-assists-mongolia-in-non-hcfc-conversion/",
-      "summary": {
-        "en": "The article (title only, page content not accessible) reports on UNEP's assistance to Mongolia in phasing out non-HCFC substances.",
-        "mn": "The article (title only, page content not accessible) reports on UNEP's assistance to Mongolia in phasing out non-HCFC substances."
-      },
-      "tone": "Neutral",
-      "tone_note": {
-        "en": "headline describes UNEP's assistance factually without evaluative language",
-        "mn": "headline describes UNEP's assistance factually without evaluative language"
+        "en": "no retrievable text contains commentary on the United Nations",
+        "mn": "no retrievable text contains commentary on the United Nations"
       },
       "mention_type": "Passing reference",
-      "prominence": "Headline",
+      "prominence": "",
       "agencies": [
-        "UNEP"
+        "UNCCD"
       ],
       "officials": [],
       "un_source": {
@@ -2177,68 +197,533 @@
         "date": "",
         "agency": "",
         "evidence": [
-          "shared wording: knowledge"
+          "published 0 day(s) before the article"
         ],
         "candidates": [
           {
-            "score": 12,
+            "score": 20,
             "evidence": [
-              "shared wording: knowledge"
+              "published 0 day(s) before the article"
             ],
-            "title": "23 July 2026 Departmental update Implementing research priorities: webinar explores how global research agendas can lead to meaningful action",
-            "url": "https://www.who.int/mongolia/news/detail-global/23-07-2026-implementing-research-priorities--webinar-explores-how-global-research-agendas-can-lead-to-meaningful-action",
-            "date": "2026-07-23",
+            "title": "6 August 2026 Joint News Release Africa CDC and WHO call for urgent, community-led action to contain Ebola in the DRC",
+            "url": "https://www.who.int/mongolia/news/detail-global/06-08-2026-africa-cdc-and-who-call-for-urgent--community-led-action-to-contain-ebola-in-the-drc",
+            "date": "2026-08-06",
             "agency": "WHO"
           },
           {
-            "score": 11,
+            "score": 20,
             "evidence": [
-              "shared wording: unep"
+              "published 0 day(s) before the article"
             ],
-            "title": "Mamadou Kane",
-            "url": "https://mongolia.un.org/en/301167-mamadou-kane",
-            "date": "",
-            "agency": "UNRCO"
+            "title": "6 August 2026 Departmental update WHO and Tsinghua University launch collaboration to strengthen global health emergency preparedness",
+            "url": "https://www.who.int/mongolia/news/detail-global/06-08-2026-who-and-tsinghua-university-launch-collaboration-to-strengthen-global-health-emergency-preparedness",
+            "date": "2026-08-06",
+            "agency": "WHO"
           },
           {
-            "score": 11,
+            "score": 20,
             "evidence": [
-              "shared wording: unep"
+              "published 1 day(s) before the article"
             ],
-            "title": "UN Global Dance Challenge for the Environment",
-            "url": "https://mongolia.un.org/en/316770-un-global-dance-challenge-environment",
-            "date": "",
-            "agency": "UNRCO"
+            "title": "5 August 2026 Departmental update WHO launches global research priorities on climate, health and migration",
+            "url": "https://www.who.int/mongolia/news/detail-global/05-08-2026-who-launches-global-research-priorities-on-climate--health-and-migration",
+            "date": "2026-08-05",
+            "agency": "WHO"
           }
         ],
-        "reason": "candidate UNRCO and WHO pages share only generic keyword overlap, no matching figures or quotes"
+        "reason": "the WHO candidates concern Ebola response, a Tsinghua University collaboration, and climate-health research, none related to the ambassador's COP17 site visit, and no article body was retrievable to confirm any overlap"
       }
     },
     {
-      "id": "m034",
-      "outlet": "open.kg",
-      "outlet_domain": "open.kg",
+      "id": "m023",
+      "outlet": "The Tribune",
+      "outlet_domain": "tribuneindia.com",
       "known_outlet": false,
       "language": "en",
-      "published": "2025-12-05",
-      "title": "Beate Dastel: UNICEF will continue the implementation of successful projects and programs in Mongolia",
-      "url": "https://open.kg/en/news/in-the-world/75511-beate-dastel-junisef-prodolzhit-realizaciju-uspeshnyh-proektov-i-programm-v-mongolii.html",
+      "published": "2026-08-06",
+      "title": "Indian envoy visits UNCCD COP17 venue in Mongolia",
+      "url": "https://www.tribuneindia.com/news/world/indian-envoy-visits-unccd-cop17-venue-in-mongolia/",
       "summary": {
-        "en": "The article reports that newly appointed UNICEF Representative Beate Dastel presented her credentials in Mongolia, with a Mongolian official noting UNICEF's contribution to child rights and development goals.",
-        "mn": "The article reports that newly appointed UNICEF Representative Beate Dastel presented her credentials in Mongolia, with a Mongolian official noting UNICEF's contribution to child rights and development goals."
+        "en": "The article reports on the Indian ambassador and resident diplomatic corps visiting the venue of the 17th Conference of the Parties to the United Nations Convention to Combat Desertification (UNCCD) COP17 in Ulaanbaatar, and provides background on the conference's scope and themes.",
+        "mn": "The article reports on the Indian ambassador and resident diplomatic corps visiting the venue of the 17th Conference of the Parties to the United Nations Convention to Combat Desertification (UNCCD) COP17 in Ulaanbaatar, and provides background on the conference's scope and themes."
       },
       "tone": "Neutral",
       "tone_note": {
-        "en": "reports the credentialing event and the official's remarks as quoted statements rather than the outlet's own evaluation",
-        "mn": "reports the credentialing event and the official's remarks as quoted statements rather than the outlet's own evaluation"
+        "en": "describes the visit and conference details without evaluating the United Nations' role",
+        "mn": "describes the visit and conference details without evaluating the United Nations' role"
       },
       "mention_type": "Event coverage",
       "prominence": "Headline",
       "agencies": [
-        "UNICEF"
+        "UNCCD"
+      ],
+      "officials": [],
+      "un_source": {
+        "matched": false,
+        "method": "none",
+        "confidence": 0,
+        "title": "",
+        "url": "",
+        "date": "",
+        "agency": "",
+        "evidence": [
+          "shared wording: theme, world",
+          "shared figures: 2026, 28",
+          "published 9 day(s) before the article"
+        ],
+        "candidates": [
+          {
+            "score": 57,
+            "evidence": [
+              "shared wording: theme, world",
+              "shared figures: 2026, 28",
+              "published 9 day(s) before the article"
+            ],
+            "title": "World Hepatitis Day 2026 28 July 2026",
+            "url": "https://www.who.int/westernpacific/newsroom/events/overview/item/2026/07/28/western-pacific-events/world-hepatitis-day-2026",
+            "date": "2026-07-28",
+            "agency": "WHO"
+          },
+          {
+            "score": 50,
+            "evidence": [
+              "shared wording: displacement, priorities, change, august, climate, global",
+              "shared figures: 2026",
+              "published 1 day(s) before the article"
+            ],
+            "title": "5 August 2026 Departmental update WHO launches global research priorities on climate, health and migration",
+            "url": "https://www.who.int/mongolia/news/detail-global/05-08-2026-who-launches-global-research-priorities-on-climate--health-and-migration",
+            "date": "2026-08-05",
+            "agency": "WHO"
+          },
+          {
+            "score": 50,
+            "evidence": [
+              "shared wording: minister, host, summit, international, august, global",
+              "shared figures: 2026",
+              "published 1 day(s) before the article"
+            ],
+            "title": "5 August 2026 Departmental update Thailand to host Third WHO Global Summit on Traditional Medicine in 2027",
+            "url": "https://www.who.int/mongolia/news/detail-global/05-08-2026-thailand-to-host-third-who-global-summit-on-traditional-medicine-in-2027",
+            "date": "2026-08-05",
+            "agency": "WHO"
+          }
+        ],
+        "reason": "the WHO candidates address hepatitis awareness, climate-health research and a traditional medicine summit, none related to the ambassador's COP17 visit"
+      }
+    },
+    {
+      "id": "m024",
+      "outlet": "Mirage News",
+      "outlet_domain": "miragenews.com",
+      "known_outlet": false,
+      "language": "en",
+      "published": "2026-08-06",
+      "title": "IMF Wraps Up 2026 Article IV Talks With Mongolia",
+      "url": "https://www.miragenews.com/imf-wraps-up-2026-article-iv-talks-with-mongolia-1723122/",
+      "summary": {
+        "en": "The article summarizes the International Monetary Fund's (IMF) Article IV consultation with Mongolia, covering macroeconomic outcomes, growth projections and fiscal policy recommendations.",
+        "mn": "The article summarizes the International Monetary Fund's (IMF) Article IV consultation with Mongolia, covering macroeconomic outcomes, growth projections and fiscal policy recommendations."
+      },
+      "tone": "Neutral",
+      "tone_note": {
+        "en": "reports the IMF's economic assessment and figures without evaluative language about the institution",
+        "mn": "reports the IMF's economic assessment and figures without evaluative language about the institution"
+      },
+      "mention_type": "Data or report cited",
+      "prominence": "Headline",
+      "agencies": [
+        "IMF"
+      ],
+      "officials": [],
+      "un_source": {
+        "matched": false,
+        "method": "none",
+        "confidence": 0,
+        "title": "",
+        "url": "",
+        "date": "",
+        "agency": "",
+        "evidence": [
+          "shared wording: without, help, reduce, while, global, time",
+          "shared figures: 2026",
+          "published 8 day(s) before the article"
+        ],
+        "candidates": [
+          {
+            "score": 39,
+            "evidence": [
+              "shared wording: without, help, reduce, while, global, time",
+              "shared figures: 2026",
+              "published 8 day(s) before the article"
+            ],
+            "title": "29 July 2026 Departmental update WHO launches first global framework to help regulators advance greener pharmaceuticals",
+            "url": "https://www.who.int/mongolia/news/detail-global/29-07-2026-who-launches-first-global-framework-to-help-regulators-advance-greener-pharmaceuticals",
+            "date": "2026-07-29",
+            "agency": "WHO"
+          },
+          {
+            "score": 39,
+            "evidence": [
+              "shared wording: have, time",
+              "shared figures: 11, 2026"
+            ],
+            "title": "13 July 2026 Mongolia conducts evaluation for HPV vaccines roll-out",
+            "url": "https://www.who.int/mongolia/news/feature-stories/detail-wpro/mongolia-conducts-evaluation-for-hpv-vaccines-roll-out",
+            "date": "2026-07-13",
+            "agency": "WHO"
+          },
+          {
+            "score": 38,
+            "evidence": [
+              "shared wording: remains, ahead, reduce, help, time",
+              "shared figures: 2026",
+              "published 14 day(s) before the article"
+            ],
+            "title": "23 July 2026 News release WHO launches seven strategies to prevent drowning",
+            "url": "https://www.who.int/mongolia/news/detail-global/23-07-2026-who-launches-seven-strategies-to-prevent-drowning",
+            "date": "2026-07-23",
+            "agency": "WHO"
+          }
+        ],
+        "reason": "the WHO candidates cover a pharmaceuticals regulatory framework, HPV vaccination and drowning prevention, none related to the IMF's Article IV consultation"
+      }
+    },
+    {
+      "id": "m026",
+      "outlet": "unric.org",
+      "outlet_domain": "unric.org",
+      "known_outlet": false,
+      "language": "en",
+      "published": "2026-08-07",
+      "title": "UNCCD: Mongolia welcomes Silk Road Caravan on its final approach to COP17",
+      "url": "https://unric.org/en/unccd-mongolia-welcomes-silk-road-caravan-on-its-final-approach-to-cop17/",
+      "summary": {
+        "en": "The article, published on a United Nations regional information centre site, announces the Silk Road Caravan's arrival in Mongolia ahead of the United Nations Convention to Combat Desertification (UNCCD) COP17 conference.",
+        "mn": "The article, published on a United Nations regional information centre site, announces the Silk Road Caravan's arrival in Mongolia ahead of the United Nations Convention to Combat Desertification (UNCCD) COP17 conference."
+      },
+      "tone": "Neutral",
+      "tone_note": {
+        "en": "announces the campaign's progress without evaluative language",
+        "mn": "announces the campaign's progress without evaluative language"
+      },
+      "mention_type": "Event coverage",
+      "prominence": "Headline",
+      "agencies": [
+        "UNCCD"
+      ],
+      "officials": [],
+      "un_source": {
+        "matched": true,
+        "method": "explicit_link",
+        "confidence": 95,
+        "title": "",
+        "url": "https://www.un.org/en",
+        "date": "",
+        "agency": "un.org",
+        "evidence": [
+          "the article links to this United Nations page (not yet in our index)"
+        ],
+        "candidates": []
+      }
+    },
+    {
+      "id": "m027",
+      "outlet": "International Union for Conservation of Nature",
+      "outlet_domain": "iucn.org",
+      "known_outlet": false,
+      "language": "en",
+      "published": "2026-08-07",
+      "title": "Mongolia-led project to tackle land degradation, as UNCCD COP17 approaches",
+      "url": "https://iucn.org/story/202608/mongolia-led-project-tackle-land-degradation-unccd-cop17-approaches",
+      "summary": {
+        "en": "The article describes a new project led by the International Union for Conservation of Nature (IUCN) and funded by the Global Environment Facility (GEF) to address land degradation and rangeland management in Mongolia, timed to the country's presidency of the United Nations Convention to Combat Desertification (UNCCD) COP17.",
+        "mn": "The article describes a new project led by the International Union for Conservation of Nature (IUCN) and funded by the Global Environment Facility (GEF) to address land degradation and rangeland management in Mongolia, timed to the country's presidency of the United Nations Convention to Combat Desertification (UNCCD) COP17."
+      },
+      "tone": "Neutral",
+      "tone_note": {
+        "en": "reports project details and an IUCN official's quote without evaluative language about the United Nations",
+        "mn": "reports project details and an IUCN official's quote without evaluative language about the United Nations"
+      },
+      "mention_type": "Event coverage",
+      "prominence": "Headline",
+      "agencies": [
+        "UNCCD"
+      ],
+      "officials": [],
+      "un_source": {
+        "matched": false,
+        "method": "none",
+        "confidence": 0,
+        "title": "",
+        "url": "",
+        "date": "",
+        "agency": "",
+        "evidence": [
+          "shared wording: over, during, change, august, advance, action",
+          "shared figures: 2026",
+          "published 2 day(s) before the article"
+        ],
+        "candidates": [
+          {
+            "score": 43,
+            "evidence": [
+              "shared wording: over, during, change, august, advance, action",
+              "shared figures: 2026",
+              "published 2 day(s) before the article"
+            ],
+            "title": "5 August 2026 Departmental update WHO launches global research priorities on climate, health and migration",
+            "url": "https://www.who.int/mongolia/news/detail-global/05-08-2026-who-launches-global-research-priorities-on-climate--health-and-migration",
+            "date": "2026-08-05",
+            "agency": "WHO"
+          },
+          {
+            "score": 40,
+            "evidence": [
+              "shared wording: building, august, people, strengthen, global, world",
+              "shared figures: 2026",
+              "published 1 day(s) before the article"
+            ],
+            "title": "6 August 2026 Departmental update WHO and Tsinghua University launch collaboration to strengthen global health emergency preparedness",
+            "url": "https://www.who.int/mongolia/news/detail-global/06-08-2026-who-and-tsinghua-university-launch-collaboration-to-strengthen-global-health-emergency-preparedness",
+            "date": "2026-08-06",
+            "agency": "WHO"
+          },
+          {
+            "score": 38,
+            "evidence": [
+              "shared wording: community, august, action, support, world, content",
+              "shared figures: 2026",
+              "published 1 day(s) before the article"
+            ],
+            "title": "6 August 2026 Joint News Release Africa CDC and WHO call for urgent, community-led action to contain Ebola in the DRC",
+            "url": "https://www.who.int/mongolia/news/detail-global/06-08-2026-africa-cdc-and-who-call-for-urgent--community-led-action-to-contain-ebola-in-the-drc",
+            "date": "2026-08-06",
+            "agency": "WHO"
+          }
+        ],
+        "reason": "the WHO candidates cover climate-health research, a Tsinghua University collaboration, and Ebola response, none related to the IUCN-GEF rangeland project"
+      }
+    },
+    {
+      "id": "m032",
+      "outlet": "The Climate Watch",
+      "outlet_domain": "theclimatewatch.com",
+      "known_outlet": false,
+      "language": "en",
+      "published": "2026-08-08",
+      "title": "Silk Road Caravan reaches Mongolia ahead of UNCCD COP17 summit",
+      "url": "https://theclimatewatch.com/silk-road-caravan-reaches-mongolia-ahead-of-unccd-cop17-summit/",
+      "summary": {
+        "en": "The retrievable text consists mainly of website navigation and unrelated topic listings; no substantive article body could be retrieved beyond the headline, 'Silk Road Caravan reaches Mongolia ahead of UNCCD COP17 summit.'",
+        "mn": "The retrievable text consists mainly of website navigation and unrelated topic listings; no substantive article body could be retrieved beyond the headline, 'Silk Road Caravan reaches Mongolia ahead of UNCCD COP17 summit.'"
+      },
+      "tone": "Neutral",
+      "tone_note": {
+        "en": "no retrievable text contains commentary on the United Nations",
+        "mn": "no retrievable text contains commentary on the United Nations"
+      },
+      "mention_type": "Passing reference",
+      "prominence": "",
+      "agencies": [
+        "UNCCD"
+      ],
+      "officials": [],
+      "un_source": {
+        "matched": true,
+        "method": "explicit_link",
+        "confidence": 95,
+        "title": "",
+        "url": "https://www.fao.org/rangelands-pastoralists-2026/en",
+        "date": "",
+        "agency": "fao.org",
+        "evidence": [
+          "the article links to this United Nations page (not yet in our index)"
+        ],
+        "candidates": []
+      }
+    },
+    {
+      "id": "m034",
+      "outlet": "The Guardian Nigeria News",
+      "outlet_domain": "guardian.ng",
+      "known_outlet": false,
+      "language": "en",
+      "published": "2026-08-08",
+      "title": "Wildlife conservation, ecological integrity on focus at UNCCD COP17",
+      "url": "https://guardian.ng/business-services/agro-care/wildlife-conservation-ecological-integrity-on-focus-at-unccd-cop17/",
+      "summary": {
+        "en": "The article reports on the Wildlife Conservation Society's (WCS) plans to promote wildlife conservation and ecological integrity at the United Nations Convention to Combat Desertification (UNCCD) COP17, quoting WCS officials on rangeland restoration.",
+        "mn": "The article reports on the Wildlife Conservation Society's (WCS) plans to promote wildlife conservation and ecological integrity at the United Nations Convention to Combat Desertification (UNCCD) COP17, quoting WCS officials on rangeland restoration."
+      },
+      "tone": "Neutral",
+      "tone_note": {
+        "en": "reports WCS officials' statements about the conference without evaluating the United Nations' role",
+        "mn": "reports WCS officials' statements about the conference without evaluating the United Nations' role"
+      },
+      "mention_type": "Statement cited",
+      "prominence": "Headline",
+      "agencies": [
+        "UNCCD"
+      ],
+      "officials": [],
+      "un_source": {
+        "matched": false,
+        "method": "none",
+        "confidence": 0,
+        "title": "",
+        "url": "",
+        "date": "",
+        "agency": "",
+        "evidence": [
+          "shared wording: theme, people, time, world",
+          "shared figures: 2026, 28",
+          "published 11 day(s) before the article"
+        ],
+        "candidates": [
+          {
+            "score": 48,
+            "evidence": [
+              "shared wording: theme, people, time, world",
+              "shared figures: 2026, 28",
+              "published 11 day(s) before the article"
+            ],
+            "title": "World Hepatitis Day 2026 28 July 2026",
+            "url": "https://www.who.int/westernpacific/newsroom/events/overview/item/2026/07/28/western-pacific-events/world-hepatitis-day-2026",
+            "date": "2026-07-28",
+            "agency": "WHO"
+          },
+          {
+            "score": 39,
+            "evidence": [
+              "shared wording: during, change, august, advance, climate, global",
+              "shared figures: 2026",
+              "published 3 day(s) before the article"
+            ],
+            "title": "5 August 2026 Departmental update WHO launches global research priorities on climate, health and migration",
+            "url": "https://www.who.int/mongolia/news/detail-global/05-08-2026-who-launches-global-research-priorities-on-climate--health-and-migration",
+            "date": "2026-08-05",
+            "agency": "WHO"
+          },
+          {
+            "score": 38,
+            "evidence": [
+              "shared wording: building, august, people, global, time, world",
+              "shared figures: 2026",
+              "published 2 day(s) before the article"
+            ],
+            "title": "6 August 2026 Departmental update WHO and Tsinghua University launch collaboration to strengthen global health emergency preparedness",
+            "url": "https://www.who.int/mongolia/news/detail-global/06-08-2026-who-and-tsinghua-university-launch-collaboration-to-strengthen-global-health-emergency-preparedness",
+            "date": "2026-08-06",
+            "agency": "WHO"
+          }
+        ],
+        "reason": "the WHO candidates address hepatitis awareness, climate-health research and a Tsinghua University collaboration, none related to this wildlife conservation report"
+      }
+    },
+    {
+      "id": "m037",
+      "outlet": "Qazinform",
+      "outlet_domain": "qazinform.com",
+      "known_outlet": false,
+      "language": "en",
+      "published": "2026-08-08",
+      "title": "Silk Road Caravan arrives in Mongolia",
+      "url": "https://qazinform.com/news/silk-road-caravan-arrives-in-mongolia-017365",
+      "summary": {
+        "en": "The article reports on the Silk Road Caravan's arrival in Mongolia ahead of the United Nations Convention to Combat Desertification (UNCCD) COP17, describing its route and citing UNCCD's framing of the initiative.",
+        "mn": "The article reports on the Silk Road Caravan's arrival in Mongolia ahead of the United Nations Convention to Combat Desertification (UNCCD) COP17, describing its route and citing UNCCD's framing of the initiative."
+      },
+      "tone": "Neutral",
+      "tone_note": {
+        "en": "cites UNCCD's statement that 'people are at the heart of land restoration' as reported fact, without added evaluation",
+        "mn": "cites UNCCD's statement that 'people are at the heart of land restoration' as reported fact, without added evaluation"
+      },
+      "mention_type": "Statement cited",
+      "prominence": "Lead paragraph",
+      "agencies": [
+        "UNCCD"
+      ],
+      "officials": [],
+      "un_source": {
+        "matched": false,
+        "method": "none",
+        "confidence": 0,
+        "title": "",
+        "url": "",
+        "date": "",
+        "agency": "",
+        "evidence": [
+          "shared wording: during, participants, august, countries, together, action",
+          "shared figures: 2026",
+          "published 3 day(s) before the article"
+        ],
+        "candidates": [
+          {
+            "score": 45,
+            "evidence": [
+              "shared wording: during, participants, august, countries, together, action",
+              "shared figures: 2026",
+              "published 3 day(s) before the article"
+            ],
+            "title": "5 August 2026 Departmental update WHO launches global research priorities on climate, health and migration",
+            "url": "https://www.who.int/mongolia/news/detail-global/05-08-2026-who-launches-global-research-priorities-on-climate--health-and-migration",
+            "date": "2026-08-05",
+            "agency": "WHO"
+          },
+          {
+            "score": 42,
+            "evidence": [
+              "shared wording: august, rsquo, people, through, global, world",
+              "shared figures: 2026",
+              "published 2 day(s) before the article"
+            ],
+            "title": "6 August 2026 Departmental update WHO and Tsinghua University launch collaboration to strengthen global health emergency preparedness",
+            "url": "https://www.who.int/mongolia/news/detail-global/06-08-2026-who-and-tsinghua-university-launch-collaboration-to-strengthen-global-health-emergency-preparedness",
+            "date": "2026-08-06",
+            "agency": "WHO"
+          },
+          {
+            "score": 42,
+            "evidence": [
+              "shared wording: international, third, august, rsquo, global",
+              "shared figures: 2026",
+              "published 3 day(s) before the article"
+            ],
+            "title": "5 August 2026 Departmental update Thailand to host Third WHO Global Summit on Traditional Medicine in 2027",
+            "url": "https://www.who.int/mongolia/news/detail-global/05-08-2026-thailand-to-host-third-who-global-summit-on-traditional-medicine-in-2027",
+            "date": "2026-08-05",
+            "agency": "WHO"
+          }
+        ],
+        "reason": "the WHO candidates cover climate-health research, a Tsinghua University collaboration and a traditional medicine summit, none related to this caravan report"
+      }
+    },
+    {
+      "id": "m057",
+      "outlet": "globalgovernancenews.com",
+      "outlet_domain": "globalgovernancenews.com",
+      "known_outlet": false,
+      "language": "en",
+      "published": "2026-08-10",
+      "title": "Silk Road Caravan Reaches Mongolia Ahead of UNCCD COP17",
+      "url": "https://globalgovernancenews.com/silk-road-caravan-reaches-mongolia-ahead-of-unccd-cop17/",
+      "summary": {
+        "en": "The article reports on the Silk Road Caravan reaching Mongolia ahead of the United Nations Convention to Combat Desertification (UNCCD) COP17, quoting an official the article identifies as the UNCCD Executive Secretary, Dr. Yasmine Fouad, alongside Mongolian officials, on rangeland restoration and land degradation statistics; this wire-style report shares figures and a quotation also carried by other outlets covering the same caravan story. Note for fact-check: the article's title for Dr. Yasmine Fouad as 'UNCCD Executive Secretary' does not match the publicly recorded holder of that position and should be verified before publication.",
+        "mn": "The article reports on the Silk Road Caravan reaching Mongolia ahead of the United Nations Convention to Combat Desertification (UNCCD) COP17, quoting an official the article identifies as the UNCCD Executive Secretary, Dr. Yasmine Fouad, alongside Mongolian officials, on rangeland restoration and land degradation statistics; this wire-style report shares figures and a quotation also carried by other outlets covering the same caravan story. Note for fact-check: the article's title for Dr. Yasmine Fouad as 'UNCCD Executive Secretary' does not match the publicly recorded holder of that position and should be verified before publication."
+      },
+      "tone": "Neutral",
+      "tone_note": {
+        "en": "reports the quoted official's statement and figures without added evaluative language",
+        "mn": "reports the quoted official's statement and figures without added evaluative language"
+      },
+      "mention_type": "Statement cited",
+      "prominence": "Headline",
+      "agencies": [
+        "UNCCD"
       ],
       "officials": [
-        "Beate Dastel"
+        "Dr. Yasmine Fouad"
       ],
       "un_source": {
         "matched": false,
@@ -2249,110 +734,159 @@
         "date": "",
         "agency": "",
         "evidence": [
-          "shared wording: secretary, served, experience, over, photo, international",
-          "shared figures: 2025"
+          "shared wording: every, people, time",
+          "shared figures: 2026, 28",
+          "published 13 day(s) before the article"
         ],
         "candidates": [
           {
-            "score": 29,
+            "score": 52,
             "evidence": [
-              "shared wording: secretary, served, experience, over, photo, international",
-              "shared figures: 2025"
+              "shared wording: every, people, time",
+              "shared figures: 2026, 28",
+              "published 13 day(s) before the article"
             ],
-            "title": "Mamadou Kane",
-            "url": "https://mongolia.un.org/en/301167-mamadou-kane",
-            "date": "",
-            "agency": "UNRCO"
-          },
-          {
-            "score": 29,
-            "evidence": [
-              "shared wording: cooperation, published, strengthening, global, world, health",
-              "shared figures: 23"
-            ],
-            "title": "23 July 2026 Departmental update WHO advances global regulatory cooperation with first interim list of regulatory authorities for medical devices",
-            "url": "https://www.who.int/mongolia/news/detail-global/23-07-2026-who-advances-global-regulatory-cooperation-with-first-interim-list-of-regulatory-authorities-for-medical-devices",
-            "date": "2026-07-23",
+            "title": "World Hepatitis Day 2026 28 July 2026",
+            "url": "https://www.who.int/westernpacific/newsroom/events/overview/item/2026/07/28/western-pacific-events/world-hepatitis-day-2026",
+            "date": "2026-07-28",
             "agency": "WHO"
           },
           {
-            "score": 27,
+            "score": 51,
             "evidence": [
-              "shared wording: open, will, development, groups, world",
-              "shared figures: 23"
+              "shared wording: august, time",
+              "shared figures: 10, 2026",
+              "published 0 day(s) before the article"
             ],
-            "title": "Policy Dialogue: Energy Security in a Volatile World: Accelerating Renewables for a More Resilient Pacific",
-            "url": "https://mongolia.un.org/en/317376-policy-dialogue-energy-security-volatile-world-accelerating-renewables-more-resilient",
-            "date": "",
-            "agency": "UNRCO"
+            "title": "10 August 2026 Departmental update WHO-DG HERA workshop on pooled procurement mechanisms for regional entities",
+            "url": "https://www.who.int/mongolia/news/detail-global/10-08-2026-who-dg-hera-workshop-on-pooled-procurement-mechanisms-for-regional-entities",
+            "date": "2026-08-10",
+            "agency": "WHO"
+          },
+          {
+            "score": 49,
+            "evidence": [
+              "shared wording: minister, host, summit, marking, international, third",
+              "shared figures: 2026",
+              "published 5 day(s) before the article"
+            ],
+            "title": "5 August 2026 Departmental update Thailand to host Third WHO Global Summit on Traditional Medicine in 2027",
+            "url": "https://www.who.int/mongolia/news/detail-global/05-08-2026-thailand-to-host-third-who-global-summit-on-traditional-medicine-in-2027",
+            "date": "2026-08-05",
+            "agency": "WHO"
           }
         ],
-        "reason": "candidate pages (Mamadou Kane, WHO, UNRCO policy dialogue) do not name Beate Dastel or match the credentialing event"
+        "reason": "the WHO candidates cover hepatitis awareness, a procurement workshop and a traditional medicine summit, none related to this caravan report"
+      }
+    },
+    {
+      "id": "m069",
+      "outlet": "Sarkaritel.com",
+      "outlet_domain": "sarkaritel.com",
+      "known_outlet": false,
+      "language": "en",
+      "published": "2026-08-10",
+      "title": "Mongolia Welcomes Silk Road Caravan Ahead Of UNCCD COP17",
+      "url": "https://www.sarkaritel.com/silk-road-caravan-mongolia-unccd-cop17/",
+      "summary": {
+        "en": "The article covers the Silk Road Caravan's arrival in Mongolia ahead of the United Nations Convention to Combat Desertification (UNCCD) COP17, citing an official the article identifies as the UNCCD Executive Secretary, Dr. Yasmine Fouad, and statistics on rangeland degradation and livestock losses; this wire-style report shares figures and a quotation also carried by other outlets covering the same caravan story. Note for fact-check: the article's title for Dr. Yasmine Fouad as 'UNCCD Executive Secretary' does not match the publicly recorded holder of that position and should be verified before publication.",
+        "mn": "The article covers the Silk Road Caravan's arrival in Mongolia ahead of the United Nations Convention to Combat Desertification (UNCCD) COP17, citing an official the article identifies as the UNCCD Executive Secretary, Dr. Yasmine Fouad, and statistics on rangeland degradation and livestock losses; this wire-style report shares figures and a quotation also carried by other outlets covering the same caravan story. Note for fact-check: the article's title for Dr. Yasmine Fouad as 'UNCCD Executive Secretary' does not match the publicly recorded holder of that position and should be verified before publication."
+      },
+      "tone": "Neutral",
+      "tone_note": {
+        "en": "reports the quoted official's statement and figures without added evaluative language",
+        "mn": "reports the quoted official's statement and figures without added evaluative language"
+      },
+      "mention_type": "Statement cited",
+      "prominence": "Headline",
+      "agencies": [
+        "UNCCD"
+      ],
+      "officials": [
+        "Dr. Yasmine Fouad"
+      ],
+      "un_source": {
+        "matched": false,
+        "method": "none",
+        "confidence": 0,
+        "title": "",
+        "url": "",
+        "date": "",
+        "agency": "",
+        "evidence": [
+          "shared wording: million, people, time, world",
+          "shared figures: 2026, 28",
+          "published 13 day(s) before the article"
+        ],
+        "candidates": [
+          {
+            "score": 52,
+            "evidence": [
+              "shared wording: million, people, time, world",
+              "shared figures: 2026, 28",
+              "published 13 day(s) before the article"
+            ],
+            "title": "World Hepatitis Day 2026 28 July 2026",
+            "url": "https://www.who.int/westernpacific/newsroom/events/overview/item/2026/07/28/western-pacific-events/world-hepatitis-day-2026",
+            "date": "2026-07-28",
+            "agency": "WHO"
+          },
+          {
+            "score": 45,
+            "evidence": [
+              "shared wording: china, august, launched, people, through, global",
+              "shared figures: 2026",
+              "published 4 day(s) before the article"
+            ],
+            "title": "6 August 2026 Departmental update WHO and Tsinghua University launch collaboration to strengthen global health emergency preparedness",
+            "url": "https://www.who.int/mongolia/news/detail-global/06-08-2026-who-and-tsinghua-university-launch-collaboration-to-strengthen-global-health-emergency-preparedness",
+            "date": "2026-08-06",
+            "agency": "WHO"
+          },
+          {
+            "score": 45,
+            "evidence": [
+              "shared wording: during, bringing, change, august, launched, climate",
+              "shared figures: 2026",
+              "published 5 day(s) before the article"
+            ],
+            "title": "5 August 2026 Departmental update WHO launches global research priorities on climate, health and migration",
+            "url": "https://www.who.int/mongolia/news/detail-global/05-08-2026-who-launches-global-research-priorities-on-climate--health-and-migration",
+            "date": "2026-08-05",
+            "agency": "WHO"
+          }
+        ],
+        "reason": "the WHO candidates cover hepatitis awareness, a Tsinghua University collaboration and climate-health research, none related to this caravan report"
       }
     }
   ],
   "issues": [
-    "Part of the Mongolian translation failed this week (1 batch(es)); those entries currently show English text in the MN tab. Re-run scripts/generate_mentions.py, or translate them by hand."
+    "[fetch] could not read https://asiarussia.ru/news/51919/",
+    "64 collected result(s) were set aside as not being about the United Nations in Mongolia; see the run log for the list."
   ],
   "style_flags": [],
   "review_log": [
     {
       "pass": 1,
-      "confidence": 78,
+      "confidence": 60,
       "issues": [
-        "Standardize the official's name capitalization: 'Jaap van Hierden' (m003, m005) vs. 'Jaap Van Hierden' (m004) — use one consistent form throughout.",
-        "Remove or rephrase the internal production notes about failed retrieval ('the full article text could not be retrieved' in m001, m011, m012); this meta-commentary about the review process is not appropriate for a public-facing summary and should be replaced with a purely factual note or omitted.",
-        "Verify Mongolian presidential name order in m011 ('Khurelsukh Ukhnaa') against UN Editorial Manual convention for Mongolian names to ensure correct given/family name sequencing."
+        "m057 and m069 both identify \"Dr. Yasmine Fouad\" in connection with the quoted \"UNCCD Executive Secretary\" statement; the UNCCD Executive Secretary is Ibrahim Thiaw, not Yasmine Fouad. Verify the official's actual title/role before publication and correct the attribution in both mentions.",
+        "m057 and m069 are near-duplicate summaries (same caravan story, same quote, same statistics) — confirm these are genuinely distinct articles rather than a duplicate entry, or merge/clarify sourcing.",
+        "For m001, m005, m019, m023, m024, m026, m027, m032, m034, m037: confirm that agency acronyms (UNCCD, ILO, IMF, IUCN, GEF, WCS) are spelled out on first reference per UN Editorial Manual style if not already done in the full article text.",
+        "m019: tone_note states the article is a technical redirect page with no substantive content — confirm this mention still meets sourcing/factual standards for inclusion, since a redirect page offers no verifiable article content to summarize."
       ],
       "batch": 1
     },
     {
       "pass": 2,
-      "confidence": 90,
+      "confidence": 82,
       "issues": [
-        "m011: The summary names President Khürelsükh but the officials field is empty — add \"Khürelsükh\" to the officials list for consistency.",
-        "m005: Consider specifying that the praise was directed at Mongolia's government (not the UN) explicitly in the summary text as well as the tone_note, to avoid any reader inferring UN self-praise from the headline framing.",
-        "m009: Confirm 'British Embassy' reflects the article's own wording; if the source article uses the formal entity name, consider aligning with UN Editorial Manual convention (e.g., 'Embassy of the United Kingdom') for consistency, though this is a minor stylistic note."
+        "In m057 and m069, the article's identification of Dr. Yasmine Fouad as \"UNCCD Executive Secretary\" appears factually incorrect (the UNCCD Executive Secretary is Ibrahim Thiaw); while the summaries appropriately hedge this as unverified, flag both mentions for fact-check before publication rather than passing them through as-is.",
+        "The source_reason field repeats near-identical boilerplate (\"the WHO candidates concern unrelated health topics\") across many mentions covering unrelated subjects (UNCCD, ILO, IMF, WCS reports) — this appears templated rather than tailored to each article and should be revised to reflect the actual candidate pool considered for each specific mention.",
+        "m019's summary speculates about article content (\"appears to report on... though this could not be verified\") from a headline alone when the retrievable text is only a redirect notice; consider omitting the speculative characterization entirely rather than publishing an unverified guess, even hedged.",
+        "m032 similarly summarizes content from a page that is described as mostly site navigation; confirm there is enough substantive text to justify including this as a mention rather than excluding it for lack of retrievable content."
       ],
       "batch": 1
-    },
-    {
-      "pass": 1,
-      "confidence": 72,
-      "issues": [
-        "m013: source_choice=1 (UNRCO/Mamadou Kane) is asserted with only 35% confidence and a speculative rationale ('title referencing... aligns with') rather than concrete textual overlap; per rule 2, either raise the evidentiary bar with concrete overlap or set source_choice to null.",
-        "m019: tone_note claims 'quoted appreciation from the minister' but the summary does not mention any quote from the minister — align tone_note strictly with what the summary/article supports, or remove the unsupported quote reference.",
-        "m015 and m024: source_reason states 'source is already established' with no candidate list, which is not a meaningful justification for source_confidence=0/source_choice=null; consider clarifying or removing this boilerplate reason for consistency."
-      ],
-      "batch": 2
-    },
-    {
-      "pass": 2,
-      "confidence": 85,
-      "issues": [
-        "m022 and m023 give inconsistent spellings for the same UNFPA Head in Mongolia ('Khalid Sharif' vs 'Khalid Sharifi') — verify the correct spelling and make consistent across both mentions.",
-        "m024 summary states as fact that the article 'is a UNFPA call for proposals...' despite being 'largely inaccessible,' while m020 appropriately hedges with 'appears to announce' for a similarly inaccessible article. Add hedging language ('appears to be') to m024 for consistency and factual caution."
-      ],
-      "batch": 2
-    },
-    {
-      "pass": 1,
-      "confidence": 78,
-      "issues": [
-        "m032: 'North Korean workers' should use UN short-form country name 'Democratic People's Republic of Korea (DPRK) workers' per UN Editorial Manual style.",
-        "m032: 'Forced Labor Convention No. 29' should use UN/ILO standard British spelling 'Forced Labour Convention, 1930 (No. 29)'.",
-        "m030: source_reason field ('no candidate publications supplied; instructed to set null') reads as an internal note rather than an analytic justification; rephrase to state simply that no matching source was found, without referencing instructions."
-      ],
-      "batch": 3
-    },
-    {
-      "pass": 2,
-      "confidence": 90,
-      "issues": [
-        "m029: Summary uses vague term 'two Mongolian settlements' for entrants to UNESCO's Learning Cities network — verify and use the actual city/town names or the term used in the source article rather than a generic paraphrase.",
-        "m028: tone_note describes the ambassador's remarks as 'supportive,' which could be misread as justifying a non-Neutral tone label; reword to a purely descriptive phrase (e.g., 'the ambassador's remarks on UNESCO's role') without an evaluative adjective, even though the assigned tone (Neutral) is otherwise correctly earned."
-      ],
-      "batch": 3
     }
   ]
 }
