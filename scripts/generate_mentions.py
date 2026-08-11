@@ -194,11 +194,35 @@ For every article you receive, return:
 - summary: one or two sentences, in English, saying what the article is about and how the
   United Nations appears in it.
 - tone: exactly one of {json.dumps(TONES)}. Judge the tone TOWARDS the United Nations
-  only, not the tone of the article overall. A grim article about winter losses that
-  reports our figures neutrally is "Neutral", not "Critical". Reserve "Critical" for
-  explicit criticism, doubt cast on our work, or a negative framing of our role.
-- tone_note: one short clause explaining the tone judgement, in neutral language
-  ("reports our figures without comment", "questions the pace of the response").
+  only, not the tone of the article overall, and not the subject matter.
+
+  "Neutral" is the default and will be the correct answer for most articles. Routine
+  reporting — an appointment, an event, a launch, an agreement, a statement quoted as
+  said, our figures cited as figures — is "Neutral", however welcome the underlying news
+  is. Move away from "Neutral" only when the article's own words evaluate us.
+
+  "Supportive" requires explicit approving language ABOUT the United Nations or its work,
+  written by the outlet: praise, endorsement, credit for a result, or a favourable
+  judgement of our role. None of the following is enough on its own, and each is a
+  common mistake:
+    - the absence of criticism;
+    - a positive or hopeful subject (education, clean energy, gender equality);
+    - the article appearing on a United Nations website, or the United Nations being the
+      author of the statement being reported — the publisher is not the tone;
+    - approving words spoken by an official we quote, rather than written by the outlet;
+    - the mere fact that a partnership, milestone or anniversary is being reported.
+  If you cannot point to specific approving words in the article text, the answer is
+  "Neutral".
+
+  "Critical" requires explicit criticism, doubt cast on our work, or a negative framing
+  of our role. A grim article about winter losses that reports our figures without
+  comment is "Neutral", not "Critical".
+- tone_note: one short clause explaining the tone judgement, in neutral language. For
+  "Supportive" and "Critical" it must quote the words from the article that carry the
+  judgement ("calls the programme 'a turning point for herders'", "questions 'the slow
+  pace' of the response"). For "Neutral", say what the article does instead ("reports
+  our figures without comment", "announces the appointment"). Never justify a tone by
+  what the article does NOT say.
 - mention_type: exactly one of {json.dumps(TYPES)}.
 - prominence: exactly one of {json.dumps(PROMINENCE)} — where in the article we appear.
 - agencies: which United Nations entities are actually named (0-3, use the acronyms).
@@ -224,8 +248,12 @@ Return ONLY valid JSON:
   "source_confidence": 0, "source_reason": "..."}}]}}"""
 
 REVIEW_SYSTEM = f"""You are reviewing a media-monitoring batch before it goes to a human
-at a United Nations office. Check: (1) every tone label is justified by the article and is
-one of {json.dumps(TONES)}; (2) no source attribution is asserted without concrete overlap;
+at a United Nations office. Check: (1) every tone label is one of {json.dumps(TONES)} and
+is earned — "Neutral" is the expected answer for routine coverage, and a "Supportive" or
+"Critical" label is only justified when its tone_note quotes evaluative words from the
+article itself. Flag any "Supportive" resting on the absence of criticism, on a positive
+subject, on the piece appearing on a United Nations site, or on wording that merely
+restates the label; (2) no source attribution is asserted without concrete overlap;
 (3) summaries are factual, contain nothing not in the article, and name no motives;
 (4) the register is neutral and publishable on a public page; (5) UN Editorial Manual
 style is respected, including UN short-form country names.
