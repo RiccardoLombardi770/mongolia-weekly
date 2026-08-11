@@ -20,6 +20,7 @@ from urllib.parse import urlparse
 
 import requests
 import yaml
+import xml.etree.ElementTree as ET
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import sources_loader as SL          # noqa: E402
@@ -55,6 +56,34 @@ def roster_terms(roster):
     return [t for t in out if t and len(t) > 3]
 
 
+def google_source_map(content):
+    """link -> publisher domain, from the <source url="..."> of each RSS item.
+
+    Google News hands back links of the form news.google.com/rss/articles/CBMi...
+    which redirect through JavaScript, not HTTP — so following them leaves us on
+    news.google.com and the real publisher stays unknown. The publisher is right
+    there in the feed, in an element parse_feed() has no use for elsewhere.
+    """
+    out = {}
+    try:
+        root = ET.fromstring(content)
+    except ET.ParseError:
+        return out
+    for it in root.iter():
+        if it.tag.split("}")[-1] not in ("item", "entry"):
+            continue
+        link = src = ""
+        for ch in it:
+            tag = ch.tag.split("}")[-1]
+            if tag == "link":
+                link = (ch.text or ch.get("href") or "").strip()
+            elif tag == "source":
+                src = (ch.get("url") or "").strip()
+        if link and src:
+            out[link] = urlparse(src).netloc.lower().replace("www.", "")
+    return out
+
+
 def google_news(query, lang="en"):
     hl, gl, ceid = ("mn-MN", "MN", "MN:mn") if lang == "mn" else ("en-US", "US", "US:en")
     q = urllib.parse.quote(query)
@@ -65,12 +94,14 @@ def google_news(query, lang="en"):
         r.raise_for_status()
     except Exception as e:
         return [], f"[search] '{query}' failed: {e}"
+    sources = google_source_map(r.content)
     items = []
     for title, link, date, summary in parse_feed(r.content):
         outlet = "Google News"
         if " - " in title:
             title, outlet = title.rsplit(" - ", 1)
         items.append({"title": title.strip(), "url": link, "outlet_hint": outlet.strip(),
+                      "publisher_domain": sources.get(link, ""),
                       "published": date, "snippet": summary[:400], "query": query,
                       "language": lang})
     return items, None
@@ -116,12 +147,44 @@ def mentions_un(text, terms):
     return [t for t in terms if t.lower() in low]
 
 
-def outlet_for(url, hint, outlets):
-    host = urlparse(url).netloc.lower().replace("www.", "")
+def outlet_for(url, hint, outlets, publisher_domain=""):
+    # publisher_domain comes from the feed and is authoritative when present;
+    # the URL's host is only a fallback, and is news.google.com for anything
+    # that arrived through a Google News search.
+    host = (publisher_domain
+            or urlparse(url).netloc.lower().replace("www.", ""))
     for o in outlets:
         if host == o["domain"] or host.endswith("." + o["domain"]):
             return o["name"], o["domain"], o["language"], o["priority"], True
     return (hint or host or "Unknown"), host, "", 3, False
+
+
+def is_our_domain(host):
+    host = (host or "").lower().replace("www.", "")
+    return bool(host) and any(host == d or host.endswith("." + d) for d in UN_DOMAINS)
+
+
+# Fallback for the rare item whose feed entry carries no <source url>: the
+# publisher name Google gives us. Deliberately narrow — it must not swallow an
+# outlet that merely reports on us, only pages we publish ourselves.
+OWN_NAME_PATTERNS = [
+    "united nations", "нэгдсэн үндэстн", "reliefweb",
+    "unicef", "undp", "unfpa", "unesco", "unido", "unodc", "unhcr",
+    "world health organization", "world food programme",
+    "international organization for migration",
+    "food and agriculture organization", "international labour organization",
+    "un women", "un news", "un environment",
+]
+
+
+def is_our_publication(c):
+    """True when we published this ourselves, rather than being written about."""
+    if is_our_domain(c.get("publisher_domain") or c.get("outlet_domain")):
+        return True
+    if c.get("publisher_domain"):
+        return False        # the feed told us the publisher; trust it over the name
+    name = (c.get("outlet_hint") or c.get("outlet") or "").lower()
+    return any(p in name for p in OWN_NAME_PATTERNS)
 
 
 def main():
@@ -182,11 +245,32 @@ def main():
 
     # Priority: known outlets first, then most recent.
     for c in filtered:
-        name, domain, lang, prio, known = outlet_for(c["url"], c.get("outlet_hint"), outlets)
+        name, domain, lang, prio, known = outlet_for(
+            c["url"], c.get("outlet_hint"), outlets, c.get("publisher_domain"))
         c.update({"outlet": name, "outlet_domain": domain, "known_outlet": known,
                   "priority": prio})
         if lang:
             c["language"] = lang
+
+    # Our own press releases are not media coverage of us. Google News indexes
+    # undp.org and un.org alongside real outlets, and without this they crowd
+    # out the actual mentions — 55 of 60 in the week of 10 August 2026.
+    if MM.get("exclude_own_publications", True):
+        ours = [c for c in filtered if is_our_publication(c)]
+        filtered = [c for c in filtered if not is_our_publication(c)]
+        if ours:
+            by_name = {}
+            for c in ours:
+                by_name[c.get("outlet", "?")] = by_name.get(c.get("outlet", "?"), 0) + 1
+            listed = ", ".join(f"{k} ({v})" for k, v in
+                               sorted(by_name.items(), key=lambda kv: -kv[1])[:6])
+            print(f"Excluded {len(ours)} item(s) published by us: {listed}")
+        if not filtered:
+            issues.append(
+                "Every candidate this week was one of our own publications; the media "
+                "page has no third-party coverage to show. Check the outlet list in "
+                "sources/sources.xlsx, or set media_monitoring.exclude_own_publications "
+                "to false to include our own pages again.")
     filtered.sort(key=lambda c: (c["priority"], c.get("published") or ""), reverse=False)
 
     cap = int(MM.get("max_articles_to_fetch", 60))
@@ -213,7 +297,8 @@ def main():
             if not c.get("published"):
                 c["published"] = find_date(body[:3000])
             # re-resolve outlet now that redirects are followed
-            name, domain, lang, prio, known = outlet_for(final_url, c.get("outlet_hint"), outlets)
+            name, domain, lang, prio, known = outlet_for(
+                final_url, c.get("outlet_hint"), outlets, c.get("publisher_domain"))
             c.update({"outlet": name, "outlet_domain": domain, "known_outlet": known})
             if i % 10 == 0:
                 print(f"  fetched {i}/{len(filtered)}")

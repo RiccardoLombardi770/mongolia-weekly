@@ -189,7 +189,13 @@ media_monitoring:
     - "Direct criticism"
     - "Passing reference"
   prominence_levels: ["Headline", "Lead paragraph", "Body", "Passing"]
-  # Fallback UN domains if the workbook has no un_sites sheet.
+  # Drop candidates published on our own sites. Google News indexes undp.org and
+  # un.org next to real outlets, and a press release of ours is not coverage of
+  # us — without this they crowded out the genuine mentions almost entirely.
+  # Set to false to go back to listing everything, our own pages included.
+  exclude_own_publications: true
+  # UN domains: used both to recognise a citation of ours and, with the setting
+  # above, to recognise a page as ours rather than a mention.
   un_domains:
     - mongolia.un.org
     - un.org
