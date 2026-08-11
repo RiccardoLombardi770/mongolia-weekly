@@ -108,11 +108,26 @@ def google_news(query, lang="en"):
     q = urllib.parse.quote(query)
     url = (f"https://news.google.com/rss/search?q={q}"
            f"&hl={hl}&gl={gl}&ceid={ceid}")
-    try:
-        r = requests.get(url, headers=HEADERS, timeout=TIMEOUT)
-        r.raise_for_status()
-    except Exception as e:
-        return [], f"[search] '{query}' failed: {e}"
+    # Google throttles a burst of searches with 429/503. Backing off costs a few
+    # seconds; not backing off costs the week — every query failing at once
+    # produces a page that says nobody mentioned us.
+    last = None
+    for attempt in range(3):
+        try:
+            r = requests.get(url, headers=HEADERS, timeout=TIMEOUT)
+            if r.status_code in (429, 503):
+                last = f"{r.status_code} {r.reason}"
+                time.sleep(5 * (attempt + 1))
+                continue
+            r.raise_for_status()
+            break
+        except Exception as e:
+            last = e
+            time.sleep(3 * (attempt + 1))
+    else:
+        return [], f"[search] '{query}' failed after 3 attempts: {last}"
+    if r.status_code != 200:
+        return [], f"[search] '{query}' failed: {last}"
     sources = google_source_map(r.content)
     items = []
     for title, link, date, summary in parse_feed(r.content):
@@ -360,12 +375,16 @@ def main():
 
     print(f"Searching {len(queries)} quer(ies) + {len(feed_outlets)} outlet feed(s)...")
     candidates = []
+    search_failures = 0
     for q, lang in queries:
         items, err = google_news(q, lang)
         if err:
             issues.append(err)
+            search_failures += 1
         candidates += items
         time.sleep(1)
+    if search_failures:
+        print(f"  ! {search_failures} of {len(queries)} search(es) failed")
 
     for o in feed_outlets:
         try:
@@ -480,6 +499,16 @@ def main():
     # Drop anything whose full text turned out not to mention us at all.
     keep = [c for c in filtered
             if c.get("matched_terms") or not c.get("fetch_ok", True)]
+
+    # "We searched and found nothing" and "we could not search" look identical
+    # in the output, and the page would state that nobody mentioned us. Refuse
+    # to produce that: stopping here leaves last week's page in place, and the
+    # Monday email already reports a media page that did not update.
+    if not keep and search_failures > len(queries) / 2:
+        print(f"\nSTOPPING: {search_failures} of {len(queries)} searches failed and "
+              f"nothing was collected. This is a search outage, not a quiet week — "
+              f"writing an empty week would state something untrue. Re-run later.")
+        sys.exit(1)
 
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(
