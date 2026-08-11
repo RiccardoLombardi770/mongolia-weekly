@@ -251,6 +251,15 @@ def about_mongolia(text):
     return any(t in low for t in MONGOLIA_TERMS)
 
 
+EXCLUDED_TOPICS = [t.lower() for t in MM.get("exclude_topics", [])]
+
+
+def excluded_topic(text):
+    """Subjects the office does not count as coverage of its work."""
+    low = (text or "").lower()
+    return next((t for t in EXCLUDED_TOPICS if t in low), "")
+
+
 def outlet_for(url, hint, outlets, publisher_domain=""):
     # publisher_domain comes from the feed and is authoritative when present;
     # the URL's host is only a fallback, and is news.google.com for anything
@@ -404,6 +413,7 @@ def main():
     # separate mentions, which the reviewer flagged week after week.
     seen, seen_titles, filtered = set(), set(), []
     dropped_offtopic = []
+    dropped_topic = []
     full_names = full_name_terms(roster)
     for c in candidates:
         key = (c.get("url") or c.get("title", "")).lower()
@@ -420,6 +430,10 @@ def main():
         blob = c["title"] + " " + c.get("snippet", "")
         if not mentions_un(blob, terms):
             continue
+        topic = excluded_topic(blob)
+        if topic:
+            dropped_topic.append((topic, c))
+            continue
         # A named official is reason enough on its own — a profile of the
         # Resident Coordinator need not repeat the country's name. Full names
         # only: a surname alone matches too many unrelated people.
@@ -432,6 +446,13 @@ def main():
     if dropped_offtopic:
         print(f"Dropped {len(dropped_offtopic)} item(s) that mention the United Nations "
               f"but not Mongolia")
+    if dropped_topic:
+        by_topic = {}
+        for topic, _ in dropped_topic:
+            by_topic[topic] = by_topic.get(topic, 0) + 1
+        listed = ", ".join(f"{k} ({v})" for k, v in
+                           sorted(by_topic.items(), key=lambda kv: -kv[1]))
+        print(f"Dropped {len(dropped_topic)} item(s) on excluded subjects: {listed}")
 
     # Priority: known outlets first, then most recent.
     for c in filtered:

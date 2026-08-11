@@ -198,6 +198,26 @@ media_monitoring:
   # returns pieces about UNDP elsewhere, which arrived as Mongolian media
   # mentions. An article naming someone on the roster is kept regardless.
   require_mongolia: true
+  # Subjects that mention a United Nations body but are not coverage of our work
+  # here. Heritage inscriptions dominated the page — 23 of 52 items in one week
+  # were World Heritage, geopark and biosphere listings, down to a hotel review.
+  # This is an editorial choice, not a technical one: delete a line to let that
+  # subject back in. Matched against the headline and the search snippet, so a
+  # story that merely happens to name a heritage site is not caught.
+  exclude_topics:
+    - world heritage
+    - heritage site
+    - heritage list
+    - heritage committee
+    - heritage nomination
+    - intangible cultural heritage
+    - unesco recognition
+    - biosphere reserve
+    - geopark
+    - icomos
+    - nowruz
+    - novruz
+    - memory of the world
   # UN domains: used both to recognise a citation of ours and, with the setting
   # above, to recognise a page as ours rather than a mention.
   un_domains:
