@@ -1,0 +1,68 @@
+name: In the Media only (no report, no email)
+
+# Manual only. Runs just the media-monitoring half of the pipeline:
+#   index_un.py -> collect_mentions.py -> generate_mentions.py
+#
+# It does NOT run generate.py, so the weekly news report is untouched, and it
+# sends no email. Use it to test or rebuild the "In the Media" page on its own.
+#
+# This DOES spend API tokens (generate_mentions.py calls Claude). The run
+# prints a token count and a cost estimate at the end of the analyse step.
+
+on:
+  workflow_dispatch:
+    inputs:
+      publish:
+        description: "Commit the result and rebuild the site (off = artifact only)"
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+
+jobs:
+  media:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Update the index of our own publications
+        continue-on-error: true
+        run: python scripts/index_un.py
+
+      - name: Collect media mentions
+        run: python scripts/collect_mentions.py
+
+      - name: Analyse mentions (tone, source matching, translation)
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python scripts/generate_mentions.py
+
+      # Always keep the JSON, even when not publishing, so a failed or
+      # unsatisfying run can still be inspected.
+      - name: Upload the mentions JSON
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mentions-json
+          path: mentions/*.json
+          retention-days: 14
+
+      - name: Commit the media page and rebuild the site
+        if: inputs.publish
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add mentions index
+          git diff --staged --quiet || git commit -m "In the Media: rebuild [skip ci]"
+          python scripts/build.py
+          git add docs
+          git diff --staged --quiet || git commit -m "Rebuild site"
+          git push

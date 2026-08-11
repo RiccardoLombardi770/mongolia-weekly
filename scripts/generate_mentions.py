@@ -67,6 +67,50 @@ BATCH_SIZE = int(MM.get("classify_batch_size", 12))
 UNANALYSED_NOTE = ("This article was collected but could not be analysed automatically "
                    "this week; it is listed here for reference.")
 
+# US dollars per million tokens, as published by Anthropic. Cached input is
+# charged at 1.25x on the write and 0.1x on the read. These are here only to
+# print an estimate at the end of a run — they are not used for anything else,
+# so a stale price makes the estimate wrong, never the report.
+PRICES = {
+    "claude-sonnet-5": (3.00, 15.00),
+    "claude-haiku-4-5-20251001": (1.00, 5.00),
+    "claude-haiku-4-5": (1.00, 5.00),
+    "claude-opus-5": (5.00, 25.00),
+}
+USAGE = {}          # model -> {input, output, cache_write, cache_read}
+
+
+def record_usage(model, usage):
+    u = USAGE.setdefault(model, {"input": 0, "output": 0, "cache_write": 0, "cache_read": 0})
+    u["input"] += usage.input_tokens or 0
+    u["output"] += usage.output_tokens or 0
+    u["cache_write"] += getattr(usage, "cache_creation_input_tokens", 0) or 0
+    u["cache_read"] += getattr(usage, "cache_read_input_tokens", 0) or 0
+
+
+def report_usage():
+    if not USAGE:
+        return
+    print("\nToken usage this run:")
+    total = 0.0
+    unpriced = []
+    for model, u in USAGE.items():
+        print(f"  {model}")
+        print(f"    input {u['input']:,} | cache write {u['cache_write']:,} | "
+              f"cache read {u['cache_read']:,} | output {u['output']:,}")
+        price = PRICES.get(model)
+        if not price:
+            unpriced.append(model)
+            continue
+        pin, pout = price
+        cost = ((u["input"] + 1.25 * u["cache_write"] + 0.1 * u["cache_read"]) * pin
+                + u["output"] * pout) / 1_000_000
+        total += cost
+        print(f"    estimated cost: ${cost:.4f}")
+    if unpriced:
+        print(f"  (no price on file for {', '.join(unpriced)}; excluded from the total)")
+    print(f"  ESTIMATED TOTAL: ${total:.4f}")
+
 
 def call(system, user, model=None):
     # A plain string system prompt is cached whole (ephemeral). The review loop
@@ -81,6 +125,7 @@ def call(system, user, model=None):
         model=model or MODEL, max_tokens=MAXTOK,
         system=system_param, messages=[{"role": "user", "content": user}],
     )
+    record_usage(model or MODEL, msg.usage)
     text = "".join(b.text for b in msg.content if b.type == "text")
     if msg.stop_reason == "max_tokens":
         # The reply was cut off mid-JSON; say so plainly rather than letting it
@@ -493,6 +538,7 @@ def main():
     out.write_text(json.dumps(doc, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"Saved {out.relative_to(ROOT)} — {len(doc['mentions'])} mention(s), "
           f"confidence {doc['confidence']}")
+    report_usage()
 
 
 if __name__ == "__main__":
