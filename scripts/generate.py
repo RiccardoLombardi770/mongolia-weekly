@@ -83,18 +83,26 @@ def call_json(system, user, model=None, label="call"):
     reproduce the same mistake, e.g. an unescaped quote inside an article
     snippet), the model is asked to repair the exact syntax error in what it
     already wrote — much likelier to succeed than a fresh roll of the dice.
+
+    The repair only makes sense when there is something to repair: if the model
+    replied with nothing at all, sending it an empty "Broken JSON:" block just
+    earns a puzzled question back, so fall back to a plain re-ask instead.
     """
+    json_only = ("\n\nIMPORTANT: reply with the JSON object ONLY. No preamble, "
+                 "no explanation, no code fences.")
     last_err = last_text = None
     for attempt in range(3):
-        if attempt == 0:
-            sys_prompt, prompt = system, user
-        elif attempt == 1:
-            sys_prompt = system + "\n\nIMPORTANT: reply with the JSON object ONLY. No preamble, no explanation, no code fences."
-            prompt = user
-        else:
+        repairable = bool(last_text and last_text.strip())
+        if attempt >= 2 and repairable:
             sys_prompt = ("Fix ONLY the JSON syntax error below; do not change any wording, "
                           "facts, numbers, or structure. Return the corrected JSON object only.")
             prompt = f"Parse error: {last_err}\n\nBroken JSON:\n{last_text}"
+        elif attempt == 0:
+            sys_prompt, prompt = system, user
+        else:
+            sys_prompt = (system + json_only if isinstance(system, str)
+                          else list(system) + [{"type": "text", "text": json_only}])
+            prompt = user
         text = call(sys_prompt, prompt, model=model)
         try:
             return parse_json(text)
@@ -243,7 +251,14 @@ def review_loop(report):
     threshold = CONFIG["review"]["confidence_threshold"]
     log = []
     for i in range(1, CONFIG["review"]["max_iterations"] + 1):
-        verdict = parse_json(call(REVIEW_SYSTEM, json.dumps(report, ensure_ascii=False)))
+        # A failed critique or revision must not cost us the whole report: the
+        # draft in hand is already publishable, the review only refines it.
+        try:
+            verdict = call_json(REVIEW_SYSTEM, json.dumps(report, ensure_ascii=False),
+                                label="review")
+        except Exception as e:
+            print(f"  ! review pass {i} failed ({type(e).__name__}); keeping the draft as it is")
+            break
         score = int(verdict.get("confidence", 0))
         issues = verdict.get("issues", [])
         print(f"  review pass {i}: confidence={score}")
@@ -255,7 +270,11 @@ def review_loop(report):
             break
         fix = ("Draft JSON:\n" + json.dumps(report, ensure_ascii=False) +
                "\n\nIssues to fix:\n" + json.dumps(issues, ensure_ascii=False))
-        report = parse_json(call(revise_system(), fix))
+        try:
+            report = call_json(revise_system(), fix, label="revise")
+        except Exception as e:
+            print(f"  ! revision failed ({type(e).__name__}); keeping the previous draft")
+            break
         report["confidence"] = score
     report["review_log"] = log
     return report

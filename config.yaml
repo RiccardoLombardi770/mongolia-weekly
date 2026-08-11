@@ -10,10 +10,19 @@ site:
   media_page_title: "In the Media"
   base_url: "https://riccardolombardi770.github.io/mongolia-weekly"
 
-# ---- Email notification sent to colleagues once a report is merged ----
+# ---- Email sent to colleagues as soon as the week is published ----
 notifications:
   enabled: true
   subject_prefix: "Mongolia Weekly"
+  # The name shown as the sender. The ADDRESS is always the account the mail is
+  # actually authenticated as — the SMTP_USERNAME repository secret — because
+  # Gmail refuses to send as anyone else. To send from a different mailbox,
+  # change the SMTP_USERNAME / SMTP_PASSWORD secrets to that account's address
+  # and its own app password; nothing here needs to change.
+  sender_name: "Mongolia Weekly — UN Mongolia"
+  # Optional: replies go here instead of to the sending mailbox. Leave empty to
+  # have replies go back to SMTP_USERNAME.
+  reply_to: ""
   # Fixed list — edit directly here and commit. For a self-service list
   # instead, this could read a column from sources/sources.xlsx; ask if
   # you outgrow a handful of names.
@@ -167,6 +176,11 @@ media_monitoring:
   match_min_confidence: 60
   # Model adjudication of the top-N deterministic candidates.
   match_candidates: 3
+  # How many articles are analysed (and translated) per model call. Keep this
+  # low enough that one reply fits in max_output_tokens: roughly
+  # max_output_tokens / 400 is a safe ceiling. Asking for all 60 at once is
+  # what silently broke this page after its first week.
+  classify_batch_size: 12
   tone_labels: ["Supportive", "Neutral", "Critical"]
   mention_types:
     - "Statement cited"

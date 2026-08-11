@@ -1,4 +1,4 @@
-name: Weekly report (draft PR)
+name: Weekly report (publish + email)
 
 on:
   schedule:
@@ -12,10 +12,9 @@ on:
 
 permissions:
   contents: write
-  pull-requests: write
 
 jobs:
-  build-draft:
+  publish:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
@@ -52,23 +51,59 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: python scripts/generate_mentions.py
 
-      # ---------- open the review PR ----------
-      - name: Write the pull request summary
+      # ---------- publish ----------
+      # No review pull request: the week goes straight to main, the site is
+      # rebuilt here, and the email goes out at the end of this same job.
+      # Corrections are made afterwards by editing the JSON on main.
+      - name: Commit this week's data
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add reports mentions index
+          # [skip ci] because this job rebuilds the site itself, two steps down;
+          # without it build.yml would race this workflow over the same commit.
+          git diff --staged --quiet || git commit -m "Weekly: report + media mentions [skip ci]"
+          git push
+
+      - name: Build the static site
+        run: python scripts/build.py
+
+      - name: Commit the rebuilt site
+        run: |
+          git add docs
+          git diff --staged --quiet || git commit -m "Rebuild site"
+          git push
+
+      - name: Write the summary of what needs a human eye
         run: python scripts/pr_body.py
 
-      - name: Open a review pull request
-        uses: peter-evans/create-pull-request@v7
+      - name: Prepare the email
+        id: prep
+        run: python scripts/notify.py
+
+      # GitHub Pages publishes the pushed commit asynchronously; give it a
+      # moment so the links in the email are live when they are clicked.
+      - name: Wait for GitHub Pages to publish
+        if: steps.prep.outputs.send == 'true'
+        run: sleep 90
+
+      - name: Send email
+        if: steps.prep.outputs.send == 'true'
+        uses: dawidd6/action-send-mail@v3
         with:
-          commit-message: "Weekly draft: report + media mentions"
-          branch: report/draft
-          delete-branch: true
-          title: "Mongolia Weekly — ready for review"
-          body-path: data/pr_body.md
-          add-paths: |
-            reports/*.json
-            mentions/*.json
-            index/*.json
-          # Optional, and separate from the notify.yml email below: set your
-          # colleague's GitHub username so she is auto-requested as a GitHub
-          # reviewer and gets GitHub's own notification too.
-          # reviewers: her-github-username
+          # Sending via Gmail SMTP, since Authenticated SMTP is blocked on the
+          # office's Microsoft 365 mailboxes and IT hasn't enabled it yet.
+          # SMTP_USERNAME is the mailbox the email is sent FROM, and
+          # SMTP_PASSWORD must be a Gmail App Password for that same mailbox,
+          # not the normal account password. To change who it comes from,
+          # change those two secrets — Gmail will not let us send as anyone
+          # other than the authenticated account.
+          server_address: smtp.gmail.com
+          server_port: 587
+          username: ${{ secrets.SMTP_USERNAME }}
+          password: ${{ secrets.SMTP_PASSWORD }}
+          subject: ${{ steps.prep.outputs.subject }}
+          to: ${{ steps.prep.outputs.recipients }}
+          from: ${{ steps.prep.outputs.sender_name }} <${{ secrets.SMTP_USERNAME }}>
+          reply_to: ${{ steps.prep.outputs.reply_to }}
+          body: file://data/email_body.txt

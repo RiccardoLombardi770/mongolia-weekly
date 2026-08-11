@@ -1,10 +1,14 @@
 """
-notify.py — compose the email sent to colleagues after a weekly merge.
+notify.py — compose the email sent to colleagues once the week is published.
 
-Reads config.yaml (notifications.recipients, site.base_url) and the newest
-files in reports/ and mentions/ to build a subject line and a short body,
-and writes them to $GITHUB_OUTPUT so the notify.yml workflow can pass them
-to the mail-sending step.
+Reads config.yaml (notifications.*, site.base_url) and the newest files in
+reports/ and mentions/ to build a subject line, a sender and a body, and writes
+them to $GITHUB_OUTPUT so weekly.yml can pass them to the mail-sending step.
+
+Since there is no review pull request any more, the things that used to be
+listed there for a human to check — sensitive country names, low-confidence
+source matches, feeds that stopped working — are appended to the email itself,
+from data/pr_body.md if pr_body.py has already run.
 
 Runs only inside GitHub Actions, after the site has rebuilt.
 """
@@ -48,6 +52,29 @@ def write_output(key, value):
         f.write(f"{key}={value}\n")
 
 
+def review_notes():
+    """The 'worth a look' section, taken from data/pr_body.md if it exists.
+
+    That file is Markdown written for GitHub; here it is read by people in a
+    mail client, so the heading and emphasis markers come back out.
+    """
+    src = ROOT / "data" / "pr_body.md"
+    if not src.exists():
+        return []
+    lines = []
+    for raw in src.read_text(encoding="utf-8").splitlines():
+        line = raw.replace("**", "").replace("`", "")
+        if line.startswith("#"):
+            line = line.lstrip("# ").upper()
+        lines.append(line)
+    # Trim the leading blurb: everything before the first heading is about the
+    # draft itself, which the reader of this email does not need.
+    for i, line in enumerate(lines):
+        if line.isupper() and line.strip():
+            return lines[i:]
+    return []
+
+
 def main():
     notif = CONFIG.get("notifications", {})
     if not notif.get("enabled"):
@@ -61,6 +88,12 @@ def main():
               "config.yaml; nothing to send.")
         write_output("send", "false")
         return
+
+    # Set by the test-email workflow: check the SMTP setup without mailing the
+    # whole office a test message.
+    if os.environ.get("NOTIFY_ONLY_FIRST", "").lower() in ("1", "true", "yes"):
+        recipients = recipients[:1]
+        print(f"  NOTIFY_ONLY_FIRST is set — sending to {recipients[0]} only")
 
     base_url = (CONFIG.get("site", {}).get("base_url") or "").rstrip("/")
     if not base_url:
@@ -84,19 +117,27 @@ def main():
     prefix = notif.get("subject_prefix", "Mongolia Weekly")
     subject = f"{prefix} — {label}"
 
-    lines = [f"The {prefix} report for {label} has been reviewed and published.", ""]
+    lines = [f"The {prefix} for {label} is now online.", ""]
     if report:
         n = sum(len(s.get("items", [])) for s in report.get("sections", []))
         lines.append(f"Weekly report — {n} item(s): {base_url}/")
     if mentions:
         m = len(mentions.get("mentions", []))
         lines.append(f"In the Media — {m} mention(s): {base_url}/media/index.html")
-    lines += ["", "This is an automated notification; no reply is needed."]
+
+    notes = review_notes()
+    if notes:
+        lines += ["", "-" * 60, ""] + notes
+
+    lines += ["", "This is an automated message. Corrections can be made directly in the "
+                  "JSON files in the repository; the site rebuilds itself."]
     body = "\n".join(lines)
 
     write_output("send", "true")
     write_output("subject", subject)
     write_output("recipients", ",".join(recipients))
+    write_output("sender_name", notif.get("sender_name", prefix))
+    write_output("reply_to", notif.get("reply_to", ""))
     (ROOT / "data").mkdir(parents=True, exist_ok=True)
     (ROOT / "data" / "email_body.txt").write_text(body, encoding="utf-8")
     print(f"Prepared email for {len(recipients)} recipient(s): {subject}")

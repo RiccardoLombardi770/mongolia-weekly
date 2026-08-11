@@ -2,8 +2,8 @@
 
 A system that every Monday morning collects the week's news relevant to
 the UN in Mongolia, has Claude write it up into a curated report (four categories, agency
-tags, "Also noted" section), self-reviews it in a small quality loop, and opens a **draft**
-that your colleague approves with a click. In parallel it produces a second page, **In the
+tags, "Also noted" section), self-reviews it in a small quality loop, **publishes it, and
+emails the office the link**. In parallel it produces a second page, **In the
 Media**, which collects who mentioned the UN in Mongolia, in what tone, and — when it can be
 established — which of our publications was being referred to. Everything goes live on a
 static site: newsroom-style layout, tidy cards, EN/MN toggle, agency filter, and an archive of
@@ -32,16 +32,16 @@ project online. Everything else is done from the github.com website.
   [generate_mentions.py] tone + type + prominence + which of our sources was cited
         |            (draft -> critique -> fix, until confidence >= 90)
         v
-  opens a PULL REQUEST with the draft  --->  your colleague receives an email
-        |
-        v
-  she reads it, corrects it if needed, clicks "Merge"
+  commits the week to main
         |
         v
   [build.py] rebuilds the site  ->  goes LIVE on GitHub Pages
         |
         v
-  she forwards the link to the office channel
+  [notify.py] emails the office the link, plus anything worth a second look
+        |
+        v
+  a correction, if ever needed, is made afterwards by editing the JSON
 ```
 
 The **JSON report** (`reports/<date>.json`) is the single source of truth: the HTML site is
@@ -66,7 +66,8 @@ scripts/
   collect_mentions.py    <- finds mentions and downloads article text
   match_sources.py       <- links the mention to the publication of ours it cites
   generate_mentions.py   <- tone, type, prominence, cited source, translation
-  pr_body.py             <- writes the text of Monday's pull request
+  pr_body.py             <- writes the summary of what needs a human eye (goes into the email)
+  notify.py              <- composes and addresses the Monday email
   migrate_reports.py     <- converts old reports to the four categories
   build.py               <- generates the static site into docs/
 templates/
@@ -78,8 +79,8 @@ mentions/<date>.json     <- the week's mentions (source of truth)
 index/un_publications.json <- index of our publications (accumulates over time)
 docs/                    <- the generated site (what GitHub Pages publishes)
 .github/workflows/
-  weekly.yml             <- Monday: collect+generate+open PR
-  build.yml               <- after merge: rebuild and publish
+  weekly.yml             <- Monday: collect + generate + publish + email
+  build.yml               <- rebuilds the site after a manual correction
 ```
 
 ---
@@ -159,10 +160,9 @@ It's encrypted and hidden from logs. It's the only place the key lives.
 
 Still under **Settings -> Actions -> General**, "Workflow permissions" section:
 - choose **Read and write permissions**;
-- check **Allow GitHub Actions to create and approve pull requests**;
 - Save.
 
-Without this, the automatic Pull Request cannot be created.
+Without this, Monday's run cannot commit the new week to the repository.
 
 ---
 
@@ -184,8 +184,7 @@ Two ways, pick whichever you prefer.
 
 **A) In the cloud (no Python to install).**
 On the website, tab **Actions -> Weekly report -> Run workflow**. This starts the collection +
-generation and, at the end, opens a Pull Request with the draft. Then go to Step 7 to approve
-it.
+generation and, at the end, publishes the site and sends the email.
 
 **B) Locally (to fine-tune the prompts at your own pace).** Requires Python 3.12+ on your
 computer. In the project folder:
@@ -203,27 +202,24 @@ GitHub Desktop do **Commit to main** and **Push** to upload the changes.
 
 ---
 
-## Step 7 — Your colleague's weekly flow (the 3 actions)
+## Step 7 — The weekly flow
 
-One-time setup:
+There is no approval step: Monday's run publishes the week and emails everyone in
+`notifications.recipients` the link, together with a short list of anything worth a second
+look (sensitive country names, low-confidence source matches, feeds that stopped working).
+
+**To correct something after publication**, open the file on github.com —
+`reports/<date>.json` or `mentions/<date>.json` — click the pencil icon, edit the text in the
+`"en"` / `"mn"` fields (plain, labelled text; no coding needed) and **Commit changes**. The
+site rebuilds itself within a minute or two.
+
+> The trade-off of publishing straight away: an error is public until it is corrected. The
+> review loop and the linter run before publication, but they are not a human editor — see
+> "Important note on reliability" at the end.
+
+One-time setup for a colleague who will make corrections:
 1. She creates a free GitHub account.
 2. You add her to the repo: on the website, **Settings -> Collaborators -> Add people**.
-3. To have the email reach her every week, open `.github/workflows/weekly.yml` and uncomment
-   the line `reviewers: her-github-username`, putting in her username. (Alternatively she can
-   click "Watch -> All Activity" on the repo.)
-
-Every week, for her it's three actions:
-1. **She receives the email** "Weekly report — ready for review" and opens the Pull Request.
-2. In the **"Files changed"** tab she reads the report. If a sentence needs fixing, she clicks
-   the pencil icon and edits the text in the `"en"` / `"mn"` fields of the JSON (it's plain,
-   labeled text — no coding needed).
-3. She clicks **"Merge pull request"**. The site rebuilds itself and goes live. Then she
-   **forwards the site link** to the office channel.
-
-> Note on previewing: in this version she sees the text in the JSON, not yet the final
-> rendering, before merging. If she notices something after publishing, she makes the fix
-> again and the site rebuilds. A live pre-merge preview is an improvement that can be added
-> later.
 
 ---
 
@@ -231,15 +227,15 @@ Every week, for her it's three actions:
 
 Check, in this order, on github.com in your repo:
 
-1. **Actions tab -> "Weekly report (draft PR)".** If there's no run for today: the workflow
+1. **Actions tab -> "Weekly report (publish + email)".** If there's no run for today: the workflow
    didn't start. The most common cause is having uploaded or edited the project *after*
    08:00 Ulaanbaatar on Monday: that week's scheduled run had already passed, and the next one
    is seven days away. No need to wait — click **Run workflow** to trigger it right now.
 2. **If there's a red (failed) run:** open it and see which step stopped. Typical causes are a
    missing `ANTHROPIC_API_KEY` secret (Step 3) or Actions permissions not enabled (Step 4).
-3. **If there's a green run but no email arrived:** the Pull Request was created anyway, nobody
-   was just notified. Go to the **Pull requests** tab to find it, and see below for how to make
-   the notification happen on its own.
+3. **If there's a green run but no email arrived:** the week was published anyway — check the
+   site. Only the notification failed: open the run, look at the **Send email** step, and see
+   the SMTP section below.
 4. **If nothing shows up at all, ever, not even a failed attempt:** the schedule may simply not
    have had a real chance to fire yet, or GitHub's free-tier scheduler occasionally drops a run
    during high load — this is a documented limitation, not something on your end. Scheduling
@@ -250,11 +246,11 @@ Check, in this order, on github.com in your repo:
 
 ---
 
-## Automatic notification to colleagues (email after merge)
+## The automatic email to colleagues
 
-When you click **Merge pull request**, a second workflow (`notify.yml`) automatically sends an
-email to the recipients listed in `config.yaml`, with the link to that week's report and to
-"In the Media". No more forwarding the link by hand.
+At the end of Monday's run, once the site has been rebuilt, the last steps of `weekly.yml`
+send an email to the recipients listed in `config.yaml`, with the link to that week's report
+and to "In the Media", and the short list of things worth a second look.
 
 ### Step A — Write the recipients
 
@@ -270,16 +266,22 @@ notifications:
 Add or remove lines as needed; it's a fixed list, edited here and committed. To turn sending
 off entirely without deleting the list, set `enabled: false`.
 
-### Step B — Set up SMTP sending (Outlook / Microsoft 365)
+### Step B — Set up SMTP sending, and choose who it comes from
 
-You need a mailbox to send from (yours, a shared office mailbox, or a dedicated
-"mongolia-weekly@..." one). Two secrets to add under **Settings -> Secrets and variables ->
-Actions -> New repository secret**:
+Two secrets under **Settings -> Secrets and variables -> Actions -> New repository secret**:
 
-- `SMTP_USERNAME` — the full email address of the sending mailbox.
-- `SMTP_PASSWORD` — the password, **or an app password** if that mailbox has multi-factor
-  authentication enabled (almost certainly the case in a UN tenant). App passwords are
-  generated from account.microsoft.com -> Security -> Advanced sign-in options.
+- `SMTP_USERNAME` — the full email address of the **sending mailbox**.
+- `SMTP_PASSWORD` — an **app password** for that same mailbox (not the normal account
+  password). On Gmail: myaccount.google.com -> Security -> 2-Step Verification -> App
+  passwords. On Microsoft 365: account.microsoft.com -> Security -> Advanced sign-in options.
+
+**The address the email comes from is always `SMTP_USERNAME`** — the mailbox the run
+authenticates as. Gmail (and Microsoft) refuse to send as anybody else, so there is no setting
+that can fake a different sender. To send from a colleague's mailbox instead of yours, she
+generates an app password on her own account and you replace both secrets with her address and
+that password; nothing in the code changes. The display name next to the address is
+`notifications.sender_name` in `config.yaml`, and `notifications.reply_to` can point replies
+somewhere else again.
 
 **A point that will very likely block the first attempt, so it's worth knowing in advance:**
 since 2022 Microsoft disables basic SMTP authentication by default across all 365 tenants. If
@@ -291,18 +293,18 @@ quick request rather than a project.
 
 If you'd rather not wait on IT, the fastest alternative is a free low-volume external SMTP
 service (e.g. SendGrid, Mailgun, Brevo): create an account, generate an API key to use as
-`SMTP_PASSWORD`, and change only `server_address` in `.github/workflows/notify.yml` (e.g.
+`SMTP_PASSWORD`, and change only `server_address` in `.github/workflows/weekly.yml` (e.g.
 `smtp.sendgrid.net`). The email still arrives at `colleague@un.org`; only where it's sent
 *from* changes, not who receives it.
 
 ### How it works
 
-`notify.yml` only fires when the automated Monday Pull Request (branch `report/draft`) is
-merged — not for other changes to the repo, so it never sends a surprise email if you tweak
-the style or the code. It waits 90 seconds to give the site time to rebuild, then composes the
-subject and body by reading the latest weekly report and the latest "In the Media" page, and
-sends it. Testing this step costs no API tokens: `notify.yml` never calls Claude, it only
-reads an already-generated report and sends mail.
+The email is the last thing Monday's run does, after the JSON has been committed and the site
+rebuilt. It waits 90 seconds so GitHub Pages has published the new pages before the links are
+clicked, then `notify.py` composes the subject and body from the latest weekly report and the
+latest "In the Media" page and sends it. This part costs no API tokens: it never calls Claude,
+it only reads an already-generated report and sends mail. To stop the sending without touching
+anything else, set `notifications.enabled: false` in `config.yaml`.
 
 ---
 
@@ -347,8 +349,8 @@ column: `yes`/`no`), saves it, and re-uploads it to GitHub (`sources` -> **Add f
 **Upload files** -> drag it in -> **Commit changes**). It takes effect from the following
 Monday.
 
-A mistaken row **doesn't stop the run**: it ends up in the "Source problems" section of the
-pull request, with sheet name and row number. The `<FILL IN>` cells in the `roster` sheet
+A mistaken row **doesn't stop the run**: it ends up in the "Source problems" section of
+Monday's email, with sheet name and row number. The `<FILL IN>` cells in the `roster` sheet
 should be filled in first: as long as they're empty, mentions that cite the RC by name won't
 be found.
 
@@ -392,8 +394,8 @@ from one Monday to the next:
    "Russia Today" stays "Russia Today".
 
 **Politically sensitive names** (Taiwan, Kosovo, Palestine, Crimea, Western Sahara...) are
-never automatically rewritten: they appear at the top of the pull request under "Sensitive
-names — decide before merging", with the context in which they appear. This is a matter for
+never automatically rewritten: they are listed in Monday's email under "Sensitive names",
+with the context in which they appear, so the office can decide whether to correct them. This is a matter for
 the RCO, not the model.
 
 ---
@@ -410,8 +412,10 @@ goes down further, at the cost of a bit of nuance.
 
 A language model can occasionally overemphasize or mix up a story, and the "confidence" it
 assigns itself in the loop **is not an objective guarantee**. The loop raises quality and
-catches obvious errors, but **your colleague's human review remains the decisive filter** and
-should be kept even once the system is running smoothly. The prompts are already written with
+catches obvious errors, but it is not an editor. Now that the week is published without an
+approval step, **someone should still read Monday's email and skim the page**: the email lists
+exactly what the run itself was unsure about, and any correction is one edit away. The prompts
+are already written with
 a cautious approach (always cite the source, never invent, when in doubt downgrade to "Also
 noted").
 

@@ -1,0 +1,61 @@
+name: Test email (no AI, no tokens)
+
+# Manual only. Sends the weekly email for the report that is already in the
+# repository, without collecting or generating anything — so it costs nothing
+# and can be run as often as needed while setting up the SMTP secrets.
+#
+# Use it after changing SMTP_USERNAME / SMTP_PASSWORD to check that the new
+# mailbox can actually send, before trusting it with a Monday run.
+
+on:
+  workflow_dispatch:
+    inputs:
+      only_me:
+        description: "Send only to the first address in notifications.recipients"
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+
+jobs:
+  test-email:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      # Deliberately NOT installing the anthropic package — this job cannot
+      # call the API even if a script tried to.
+      - name: Install dependencies (no AI library)
+        run: pip install pyyaml
+
+      - name: Write the summary of what needs a human eye
+        run: python scripts/pr_body.py
+
+      - name: Prepare the email
+        id: prep
+        env:
+          NOTIFY_ONLY_FIRST: ${{ inputs.only_me }}
+        run: python scripts/notify.py
+
+      - name: Show what would be sent
+        run: |
+          echo "Subject:    ${{ steps.prep.outputs.subject }}"
+          echo "Recipients: ${{ steps.prep.outputs.recipients }}"
+          echo "From name:  ${{ steps.prep.outputs.sender_name }}"
+          echo "----------------------------------------"
+          cat data/email_body.txt
+
+      - name: Send email
+        if: steps.prep.outputs.send == 'true'
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 587
+          username: ${{ secrets.SMTP_USERNAME }}
+          password: ${{ secrets.SMTP_PASSWORD }}
+          subject: "[TEST] ${{ steps.prep.outputs.subject }}"
+          to: ${{ steps.prep.outputs.recipients }}
+          from: ${{ steps.prep.outputs.sender_name }} <${{ secrets.SMTP_USERNAME }}>
+          reply_to: ${{ steps.prep.outputs.reply_to }}
+          body: file://data/email_body.txt

@@ -1,12 +1,14 @@
 """
-pr_body.py — write the text of Monday's pull request.
+pr_body.py — write Monday's summary of what needs a human eye.
 
-The point is that the reviewer should not have to open the JSON to know what
-needs attention. Everything that needs a human decision — sensitive country
-names, sources that could not be identified, feeds that stopped working — is
-listed here, at the top of the review.
+The point is that nobody should have to open the JSON to know what needs
+attention. Everything that needs a human decision — sensitive country names,
+sources that could not be identified, feeds that stopped working — is listed
+here.
 
-Writes data/pr_body.md, which the workflow passes to create-pull-request.
+Writes data/pr_body.md. Since the review pull request was dropped (the week is
+published straight away), notify.py appends this to the email instead. The name
+is kept so older links and notes still make sense.
 """
 
 import json
@@ -44,10 +46,10 @@ def main():
     rpath, report = newest("reports")
     mpath, mentions = newest("mentions")
 
-    lines.append("An automated draft is ready for review.\n")
-    lines.append("**To publish:** read the files in the *Files changed* tab, edit any "
-                 "wording directly in the JSON (`en` / `mn` fields), then click "
-                 "**Merge pull request**. The site rebuilds and goes live on its own.\n")
+    lines.append("This week has been generated and published automatically.\n")
+    lines.append("To correct anything, edit the wording in the JSON files in `reports/` "
+                 "or `mentions/` (the `en` / `mn` fields) and commit; the site rebuilds "
+                 "itself.\n")
 
     # ---- the weekly report
     if report:
@@ -105,7 +107,7 @@ def main():
                              f"({src.get('confidence')}%) — {src.get('reason', '')}")
         crit = [m for m in ms if m.get("tone") == "Critical"]
         if crit:
-            lines.append("- **Critical in tone** (worth a second read before publishing):")
+            lines.append("- **Critical in tone** (now online — worth a second read):")
             for m in crit:
                 lines.append(f"  - {m.get('outlet')}: {m.get('title')} — {m.get('url')}")
         lines.append("")
@@ -113,9 +115,9 @@ def main():
     # ---- things a human must decide
     flags = (report or {}).get("style_flags", []) + (mentions or {}).get("style_flags", [])
     if flags:
-        lines.append("### Sensitive names — decide before merging")
-        lines.append("These were left exactly as drafted. United Nations usage on these "
-                     "is a matter for the office, not for the tool.\n")
+        lines.append("### Sensitive names — worth a look")
+        lines.append("These were left exactly as drafted and are now online. United Nations "
+                     "usage on these is a matter for the office, not for the tool.\n")
         for f in flags:
             lines.append(f"- **{f['term']}** — {f['context']}")
         lines.append("")

@@ -11,6 +11,10 @@ Pipeline:
                  being cited, with its own confidence and reasoning.
   3. REVIEW    — a critic pass scores the batch 0-100; below threshold it is
                  revised, up to max_iterations.
+
+Steps 2, 3 and 5 run in batches of media_monitoring.classify_batch_size
+articles: one reply per batch stays inside max_output_tokens, and a batch that
+fails anyway costs that batch only — the page is still written.
   4. STYLE     — the UN Editorial Manual linter runs over the English.
   5. TRANSLATE — Mongolian, using the office glossary verbatim.
   6. SAVE      — mentions/<week_start>.json
@@ -53,6 +57,16 @@ TONES = MM.get("tone_labels", ["Supportive", "Neutral", "Critical"])
 TYPES = MM.get("mention_types", [])
 PROMINENCE = MM.get("prominence_levels", [])
 
+# How many articles go into one classify/review call. A weekly batch of 60
+# articles asked for a single reply of well over max_output_tokens, so the JSON
+# came back truncated and unparseable — every week since the first one. Small
+# batches keep each reply comfortably inside the limit, and a batch that still
+# fails costs us that batch only, not the whole page.
+BATCH_SIZE = int(MM.get("classify_batch_size", 12))
+
+UNANALYSED_NOTE = ("This article was collected but could not be analysed automatically "
+                   "this week; it is listed here for reference.")
+
 
 def call(system, user, model=None):
     # A plain string system prompt is cached whole (ephemeral). The review loop
@@ -67,7 +81,12 @@ def call(system, user, model=None):
         model=model or MODEL, max_tokens=MAXTOK,
         system=system_param, messages=[{"role": "user", "content": user}],
     )
-    return "".join(b.text for b in msg.content if b.type == "text")
+    text = "".join(b.text for b in msg.content if b.type == "text")
+    if msg.stop_reason == "max_tokens":
+        # The reply was cut off mid-JSON; say so plainly rather than letting it
+        # surface later as an inscrutable "Expecting ',' delimiter".
+        print(f"  ! reply hit max_output_tokens ({MAXTOK}) and was truncated")
+    return text
 
 
 def parse_json(text):
@@ -78,6 +97,16 @@ def parse_json(text):
     return json.loads(cleaned[start:end + 1])
 
 
+JSON_ONLY = "\n\nIMPORTANT: reply with the JSON object ONLY. No preamble, no fences."
+
+
+def with_suffix(system, extra):
+    """Append an instruction to a system prompt, string or block list alike."""
+    if isinstance(system, str):
+        return system + extra
+    return list(system) + [{"type": "text", "text": extra}]
+
+
 def call_json(system, user, model=None, label="call"):
     """Call the model and parse its reply as JSON, retrying malformed replies.
 
@@ -86,18 +115,22 @@ def call_json(system, user, model=None, label="call"):
     reproduce the same mistake, e.g. an unescaped quote inside an article
     snippet), the model is asked to repair the exact syntax error in what it
     already wrote — much likelier to succeed than a fresh roll of the dice.
+
+    The repair only makes sense when there is something to repair: if the model
+    replied with nothing at all, sending it an empty "Broken JSON:" block just
+    earns a puzzled question back, so fall back to a plain re-ask instead.
     """
     last_err = last_text = None
     for attempt in range(3):
-        if attempt == 0:
-            sys_prompt, prompt = system, user
-        elif attempt == 1:
-            sys_prompt = system + "\n\nIMPORTANT: reply with the JSON object ONLY. No preamble, no fences."
-            prompt = user
-        else:
+        repairable = bool(last_text and last_text.strip())
+        if attempt >= 2 and repairable:
             sys_prompt = ("Fix ONLY the JSON syntax error below; do not change any wording, "
                           "facts, numbers, or structure. Return the corrected JSON object only.")
             prompt = f"Parse error: {last_err}\n\nBroken JSON:\n{last_text}"
+        elif attempt == 0:
+            sys_prompt, prompt = system, user
+        else:
+            sys_prompt, prompt = with_suffix(system, JSON_ONLY), user
         text = call(sys_prompt, prompt, model=model)
         try:
             return parse_json(text)
@@ -213,12 +246,23 @@ def classify(mentions):
     return call_json(CLASSIFY_SYSTEM, user, label="classify")
 
 
-def review_loop(analysis, mentions):
+def review_loop(analysis, mentions, tag=""):
+    """Critique and revise one batch. A failed pass keeps the draft as it is.
+
+    The review verdict is small, but a revision returns the whole analysis
+    again — so this runs per batch, like classify, and never raises: a batch
+    that reviews badly is still better than no page at all.
+    """
     threshold = CONFIG["review"]["confidence_threshold"]
     score = 0
     log = []
     for i in range(1, CONFIG["review"]["max_iterations"] + 1):
-        verdict = parse_json(call(REVIEW_SYSTEM, json.dumps(analysis, ensure_ascii=False)))
+        try:
+            verdict = call_json(REVIEW_SYSTEM, json.dumps(analysis, ensure_ascii=False),
+                                label=f"review{tag}")
+        except Exception as e:
+            print(f"  ! review pass {i} failed ({type(e).__name__}); keeping the draft as it is")
+            break
         score = int(verdict.get("confidence", 0))
         issues = verdict.get("issues", [])
         print(f"  review pass {i}: confidence={score}")
@@ -231,8 +275,46 @@ def review_loop(analysis, mentions):
                + "\n\nThe articles:\n"
                + json.dumps(payload_for_model(mentions), ensure_ascii=False)
                + "\n\nIssues to fix:\n" + json.dumps(issues, ensure_ascii=False))
-        analysis = parse_json(call(revise_system(), fix))
+        try:
+            analysis = call_json(revise_system(), fix, label=f"revise{tag}")
+        except Exception as e:
+            print(f"  ! revision failed ({type(e).__name__}); keeping the previous draft")
+            break
     return analysis, score, log
+
+
+def chunked(seq, size):
+    for i in range(0, len(seq), size):
+        yield seq[i:i + size]
+
+
+def analyse(mentions):
+    """Classify and review the week's articles in small batches.
+
+    Returns the combined analysis, the lowest batch confidence (the honest
+    number to show a reviewer), the review log, and a note for any batch that
+    had to be dropped.
+    """
+    batches = list(chunked(mentions, BATCH_SIZE))
+    combined, logs, scores, issues = [], [], [], []
+    for n, batch in enumerate(batches, 1):
+        tag = f" {n}/{len(batches)}"
+        print(f"Batch{tag} — {len(batch)} article(s)")
+        try:
+            analysis = classify(batch)
+        except Exception as e:
+            print(f"  ! batch{tag} could not be classified ({type(e).__name__}: {e}); skipped")
+            issues.append(
+                f"{len(batch)} article(s) could not be analysed this week "
+                f"({type(e).__name__}); they appear on the page without tone or summary. "
+                f"Re-run scripts/generate_mentions.py to try again.")
+            continue
+        analysis, score, log = review_loop(analysis, batch, tag=tag)
+        combined += analysis.get("mentions", []) or []
+        if score:                        # 0 means the critic never got to speak
+            scores.append(score)
+        logs += [dict(entry, batch=n) for entry in log]
+    return {"mentions": combined}, (min(scores) if scores else 0), logs, issues
 
 
 def merge(mentions, analysis):
@@ -241,7 +323,9 @@ def merge(mentions, analysis):
     threshold = int(MM.get("match_min_confidence", 60))
     out = []
     for m in mentions:
-        a = by_id.get(m["id"], {})
+        a = by_id.get(m["id"])
+        unanalysed = a is None          # its batch failed; list it, don't lose it
+        a = a or {}
         src = dict(m.get("un_source", {}))
 
         if src.get("method") == "explicit_link":
@@ -274,7 +358,8 @@ def merge(mentions, analysis):
             "published": m.get("published", ""),
             "title": m.get("title", ""),
             "url": m.get("url", ""),
-            "summary": {"en": a.get("summary", ""), "mn": ""},
+            "summary": {"en": a.get("summary") or (UNANALYSED_NOTE if unanalysed else ""),
+                        "mn": ""},
             "tone": a.get("tone", "Neutral"),
             "tone_note": {"en": a.get("tone_note", ""), "mn": ""},
             "mention_type": a.get("mention_type", ""),
@@ -289,28 +374,42 @@ def merge(mentions, analysis):
 def translate(doc, glossary):
     # Only what needs translating — not review_log/issues/style_flags/un_source,
     # which are pure prose or structured evidence the translator doesn't touch
-    # and which would needlessly inflate the prompt.
-    payload = {
-        "overview": doc["overview"],
-        "mentions": [{"id": m["id"], "summary": m["summary"], "tone_note": m["tone_note"]}
-                     for m in doc["mentions"]],
-    }
-    user = json.dumps(payload, ensure_ascii=False)
+    # and which would needlessly inflate the prompt. Batched for the same reason
+    # as the analysis: Mongolian Cyrillic is token-hungry, and one reply covering
+    # sixty summaries does not fit in max_output_tokens.
+    system = translate_system(glossary)
+    done, failed = [], 0
+    first = True
+    for batch in chunked(doc["mentions"], BATCH_SIZE):
+        payload = {
+            "mentions": [{"id": m["id"], "summary": m["summary"], "tone_note": m["tone_note"]}
+                         for m in batch],
+        }
+        if first:                        # the overview rides along with batch one
+            payload["overview"] = doc["overview"]
+        try:
+            mn = call_json(system, json.dumps(payload, ensure_ascii=False),
+                           model=TRANSLATE_MODEL, label="translate")
+        except Exception as e:
+            print(f"  translation batch failed ({type(e).__name__}: {e})")
+            failed += 1
+            first = False
+            continue
+        done.append(mn)
+        first = False
 
-    mn, last_err = None, None
-    try:
-        mn = call_json(translate_system(glossary), user, model=TRANSLATE_MODEL, label="translate")
-    except Exception as e:
-        last_err = e
-
-    if mn is None:
-        print(f"  translation failed after retries ({last_err}); the page will show "
-              f"English in both tabs this week")
+    if failed:
+        print(f"  {failed} translation batch(es) failed; those entries will show English "
+              f"in the Mongolian tab this week")
         doc.setdefault("issues", []).append(
-            "Mongolian translation failed this week ({}); the MN tab currently shows "
-            "English text. Re-run scripts/generate_mentions.py, or translate manually "
-            "in this PR.".format(type(last_err).__name__ if last_err else "unknown error"))
+            "Part of the Mongolian translation failed this week ({} batch(es)); those "
+            "entries currently show English text in the MN tab. Re-run "
+            "scripts/generate_mentions.py, or translate them by hand.".format(failed))
+    if not done:
         return doc
+
+    mn = {"mentions": [m for d in done for m in d.get("mentions", []) or []],
+          "overview": next((d.get("overview") for d in done if d.get("overview")), None)}
 
     by_id = {m.get("id"): m for m in mn.get("mentions", [])}
     for m in doc["mentions"]:
@@ -369,11 +468,11 @@ def main():
         explicit = sum(1 for m in mentions if m["un_source"].get("method") == "explicit_link")
         print(f"  {explicit} matched by direct link, {len(mentions) - explicit} to infer")
 
-        analysis = classify(mentions)
-        analysis, score, log = review_loop(analysis, mentions)
+        analysis, score, log, analysis_issues = analyse(mentions)
         doc["mentions"] = merge(mentions, analysis)
         doc["confidence"] = score
         doc["review_log"] = log
+        doc["issues"] += analysis_issues
         doc["overview"]["en"] = overview(doc["mentions"])
 
     # House style, then translation.
