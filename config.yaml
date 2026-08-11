@@ -251,3 +251,10 @@ media_monitoring:
     - undrr.org
     - unctad.org
     - un.int
+    # Information centres and convention secretariats are also us: unric.org
+    # published the Silk Road Caravan story that reached the page as coverage.
+    - unric.org
+    - unccd.int
+    - unfccc.int
+    - unis.unvienna.org
+    - unmultimedia.org
