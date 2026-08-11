@@ -272,6 +272,17 @@ def about_mongolia(text):
     return any(t in low for t in MONGOLIA_TERMS)
 
 
+def lede(item, chars=1200):
+    """Headline plus the opening of the article — what the story is about.
+
+    Testing the whole downloaded page is useless for relevance: it carries
+    navigation, sidebars and related-story links, so on a Mongolia-focused
+    aggregator every page "mentions Mongolia", and a report on peacekeepers in
+    Lebanon passes. The opening is where a story says what it concerns.
+    """
+    return (item.get("title") or "") + " " + (item.get("body") or "")[:chars]
+
+
 EXCLUDED_TOPICS = [t.lower() for t in MM.get("exclude_topics", [])]
 
 
@@ -567,15 +578,16 @@ def main():
         if not c.get("matched_terms"):
             n_body_no_un += 1
             continue
-        text = c["title"] + " " + (c.get("body") or "")
-        if (MM.get("require_mongolia", True) and not about_mongolia(text)
-                and not mentions_un(text, full_names)):
-            n_body_no_mn += 1
-            continue
+        text = lede(c)
+        if MM.get("require_mongolia", True):
+            # A named official carries the connection on their own.
+            if not (about_mongolia(text) or mentions_un(text, full_names)):
+                n_body_no_mn += 1
+                continue
         keep.append(c)
     if n_body_no_un or n_body_no_mn:
         print(f"  -{n_body_no_un:<4} full text does not mention the United Nations")
-        print(f"  -{n_body_no_mn:<4} full text is not about Mongolia")
+        print(f"  -{n_body_no_mn:<4} full text never links the United Nations to Mongolia")
 
     # Re-apply the window now that the article itself has been read: the date on
     # the feed entry is often absent, and only the page carries the real one.

@@ -313,6 +313,66 @@ def payload_for_model(mentions):
     return out
 
 
+SCREEN_SYSTEM = """You are screening search results for a United Nations office in
+Mongolia. Keep an item only if the article is about the United Nations — any of its
+agencies, funds, programmes, officials or conventions — in connection with Mongolia.
+
+Keep: coverage of our work, programmes, reports, officials and events in Mongolia;
+Mongolia's dealings with United Nations bodies; a conference held in Mongolia; an
+article citing our figures about Mongolia.
+
+Drop: articles about the United Nations somewhere else entirely; articles about
+Mongolia with no United Nations involvement; a passing mention in a list; anything
+where the connection is only that the words appear on the same web page (navigation,
+related links). Inner Mongolia is a region of China, not Mongolia.
+
+Return ONLY JSON: {"keep": ["<id>", ...], "drop": [{"id": "<id>", "why": "<a few words>"}]}
+Every id you were given must appear exactly once, in one list or the other."""
+
+
+def screen(mentions):
+    """Ask the cheap model which results are actually about us in Mongolia.
+
+    Keyword rules cannot make this call: requiring the words near each other let
+    a piece on UNESCO in Beijing through while dropping an ambassador's visit to
+    the COP17 venue in Ulaanbaatar. This costs a fraction of a cent and runs
+    before the expensive analysis, so what it removes is never paid for twice.
+    Fails open — a screening error must not empty the page.
+    """
+    if not mentions:
+        return mentions, []
+    kept, notes = [], []
+    for batch in chunked(mentions, 40):
+        payload = [{"id": m["id"], "outlet": m.get("outlet", ""),
+                    "title": m.get("title", ""),
+                    "opening": (m.get("body") or m.get("snippet") or "")[:300]}
+                   for m in batch]
+        try:
+            verdict = call_json(SCREEN_SYSTEM, json.dumps(payload, ensure_ascii=False),
+                                model=TRANSLATE_MODEL, label="screen")
+        except Exception as e:
+            print(f"  ! screening failed ({type(e).__name__}); keeping this batch as is")
+            kept += batch
+            continue
+        keep_ids = set(verdict.get("keep") or [])
+        dropped = {d.get("id"): d.get("why", "") for d in verdict.get("drop") or []}
+        for m in batch:
+            if m["id"] in keep_ids or m["id"] not in dropped:
+                kept.append(m)
+            else:
+                notes.append(f"{m.get('outlet', '?')}: {m.get('title', '')[:70]} "
+                             f"— {dropped[m['id']]}")
+    removed = len(mentions) - len(kept)
+    if removed:
+        print(f"Screening removed {removed} of {len(mentions)} result(s) as not about "
+              f"the United Nations in Mongolia:")
+        for n in notes[:12]:
+            print(f"    - {n}")
+        if len(notes) > 12:
+            print(f"    ...and {len(notes) - 12} more")
+    return kept, notes
+
+
 def classify(mentions):
     user = ("Analyse these articles. Return one object per article, keeping the ids.\n\n"
             + json.dumps(payload_for_model(mentions), ensure_ascii=False))
@@ -540,6 +600,13 @@ def main():
            "generated_at": dt.datetime.now(dt.timezone.utc).isoformat(),
            "confidence": 0, "overview": {"en": "", "mn": ""},
            "mentions": [], "issues": issues, "style_flags": [], "review_log": []}
+
+    if mentions:
+        mentions, screened_out = screen(mentions)
+        if screened_out:
+            doc["issues"].append(
+                f"{len(screened_out)} collected result(s) were set aside as not being "
+                f"about the United Nations in Mongolia; see the run log for the list.")
 
     if not mentions:
         doc["overview"]["en"] = overview([])
