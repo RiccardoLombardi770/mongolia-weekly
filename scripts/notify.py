@@ -52,6 +52,23 @@ def write_output(key, value):
         f.write(f"{key}={value}\n")
 
 
+def generated_recently(doc, days=2):
+    """Was this file produced by the run we are announcing?
+
+    The email goes out minutes after the pipeline finishes, so anything written
+    in the last couple of days belongs to this run; anything older is last
+    week's file left in place because the media half failed.
+    """
+    stamp = (doc or {}).get("generated_at") or ""
+    try:
+        when = dt.datetime.fromisoformat(stamp.replace("Z", "+00:00"))
+    except Exception:
+        return False        # undated: treat as old rather than claim it is new
+    if when.tzinfo is None:
+        when = when.replace(tzinfo=dt.timezone.utc)
+    return (dt.datetime.now(dt.timezone.utc) - when).days <= days
+
+
 def review_notes():
     """The 'worth a look' section, taken from data/pr_body.md if it exists.
 
@@ -107,8 +124,14 @@ def main():
     # The media page is allowed to fail on its own without taking the report
     # down. When it does, the newest file in mentions/ is an older week, and
     # announcing it as this week's would be plainly wrong.
+    #
+    # Freshness, not the week label, is what settles this. The two scripts date
+    # their output differently — generate.py takes the week from the model, which
+    # names the week just ended, while generate_mentions.py stamps the Monday of
+    # the current week — so the labels never match and comparing them reported a
+    # failure every single week.
     stale_media = None
-    if report and mentions and mentions.get("week_start") != report.get("week_start"):
+    if report and mentions and not generated_recently(mentions):
         stale_media, mentions = mentions, None
 
     week = report or mentions or stale_media

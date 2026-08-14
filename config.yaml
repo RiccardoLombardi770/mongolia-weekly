@@ -8,7 +8,11 @@ site:
   title: "Mongolia Weekly"
   subtitle: "Media and news monitoring — UN Mongolia"
   media_page_title: "In the Media"
-  base_url: "https://riccardolombardi770.github.io/mongolia-weekly"
+  # Must match the GitHub Pages address of whoever owns the repository — it is
+  # what every link in the Monday email is built from. The old owner's address
+  # stopped serving the moment the repository moved; GitHub does not redirect
+  # Pages after a transfer, so a stale value here sends the office to a 404.
+  base_url: "https://dsoyol.github.io/mongolia-weekly"
 
 # ---- Email sent to colleagues as soon as the week is published ----
 notifications:
