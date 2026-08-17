@@ -1,0 +1,211 @@
+{
+  "week_start": "2026-08-10",
+  "week_end": "2026-08-17",
+  "generated_at": "2026-08-17T03:42:36.964164+00:00",
+  "confidence": 68,
+  "insights": [
+    {
+      "en": "Mongolia is set to host the 17th session of the UNCCD Conference of the Parties (COP17) in Ulaanbaatar from 17 to 28 August 2026, placing desertification and land degradation at the centre of a major multilateral gathering.",
+      "mn": "Монгол Улс 2026 оны 8-р сарын 17-28-ны өдрүүдэд Улаанбаатарт НҮБ-ын Ялангуяа сүүлийн үеийн цөмөрсөлт ба газрын доройтлоотой тэмцэх конвенцийн 17-р чуулганы ТОП (COP17) сессийг зохион байгуулахаар төлөвлөгдөж байна. Энэ нь цөмөрсөлт ба газрын доройтлолыг олон улсын хамтын ажиллагааны гол уулзалтын төвөөр шилжүүлэх юм."
+    },
+    {
+      "en": "Political turnover continues, with parliament reported to have selected a new prime minister amid ongoing corruption allegations.",
+      "mn": "Засгийн газрын өөрчлөлт эргээ үргэлжилсээр байна. Парламент авлигаа сэргээж байгаа нөхцөлд шинэ сайд самбарын дарга сонгосон байна."
+    },
+    {
+      "en": "Mining remains the dominant economic story: Oyu Tolgoi has resumed exports after a domestic blockade, and Chinese demand is driving a surge in Mongolian coking coal shipments.",
+      "mn": "Уурхайн үйлдвэл эдийн засгийн гол сэдэв хэвээр байна. Ойү Толгой уурхай дотоодын хаалтаас гаралт сэргээж, Хятадын эрэлтээр Монголын коксжигч нүүрсний тоо баримт цэлгэр өсөж байна."
+    },
+    {
+      "en": "China-linked infrastructure projects continue to advance, including cross-border railway construction and a newly operational wastewater treatment plant in Ulaanbaatar, both bilateral in nature with no stated United Nations role.",
+      "mn": "Хятадтай холбоотой дүрвэгжүүлэлтийн төслүүд үргэлжилсээр байна. Үүнд хил дамнасан төмөр замын барилга болон Улаанбаатарт шинээр ажиллаж эхэлсэн ус цэвэрлэх цеци орно. Эдгээр нь хоёр улсын хоорондох хамтын ажиллагаа бөгөөд Нэгдсэн Үндэстний Байгууллагаас ямар ч оролцоо байна гэж мэдээлээгүй."
+    },
+    {
+      "en": "Diplomatic engagement this period extended beyond Mongolia's two large neighbours, with visits tied to the Republic of Korea and Tajikistan.",
+      "mn": "Энэ үеийн дипломат харилцаа Монголын хоёр том хүрш нууцааруулаар өргөсөж, Өмнөд Солонгос ба Тажикистантай холбоотой айлчлалуудыг хамруулав."
+    },
+    {
+      "en": "Coverage of Social and Humanitarian issues, including dzud impacts, was thin this week; the most substantive recent material predates the current period and is flagged accordingly.",
+      "mn": "Нийгмийн болон хүмүүнлэгийн асуудлууд, үүнд зудын нөлөө орно. Энэхүү долоо хоног дахь мэдээлэл сийрэг байсан. Хамгийн зөв цэцэглэсэн сүүлийн цаг үеийн материалууд одоо байгаа үеийн өмнөх байна."
+    }
+  ],
+  "sections": [
+    {
+      "category": "Economy and Development",
+      "category_mn": "Эдийн засаг ба хөгжил",
+      "items": [
+        {
+          "en": "Rio Tinto's Oyu Tolgoi mine has resumed exports following the resolution of a blockade in Mongolia, according to Mining.com.",
+          "mn": "Rio Tinto-ийн Ойү Толгой уурхай Монголын дотоодын хаалтын сэргэтэл дуусаж, экспортоо сэргээсэн байна. Энэ мэдээ Mining.com-ийн мэдээлэлээс үндэслэн юм.",
+          "source": "Mining.com",
+          "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxPNzZoY0czMzM0MzM1ZUl1V1Zwa3plcmpiS1BIZFpoODFJcUdGblp0Wnlsdzh0ejFzU3NRTTZFLTdfX2hHRndFOWQtVU5zSFhjNXRNZkFNLXp6V2NLMmpyNFFSSEd4ckJqamhBMWZYek4zTjdocnZ1cHJ6dUI4UExWQkxmYkZxYmJZWVI2dzFR?oc=5",
+          "agencies": [],
+          "tags": [
+            "Mining"
+          ]
+        },
+        {
+          "en": "Mongolian coking coal imports into China have surged in 2026 as Chinese authorities tighten domestic coal supply, according to trade data cited by IndexBox.",
+          "mn": "2026 онд Монголын коксжигч нүүрсний Хятадад оруулах хэмжээ нэмэгдсэн байна. Хятадын засгийн газар дотоодын нүүрсний нийлүүлэлтийг хатуужуулсны үр дүнд энэ нь IndexBox-ийн худалдааны мэдээлэлээс харагдаж байна.",
+          "source": "IndexBox",
+          "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNUWNjREgwYnFtcjBhb284SXItTXhINTNnRi1iZEVmRklhc2Q2UlRibjJ2MVJMUEdDeGlwYmt4bjhybmhHcnJlVGdiZUNpM2FCTFB5RXM1ZTYxMjdwQ3hOak5jdVljNnNDY1dSN3R5cm5EUndmd0JzUnNzNkMyNXUzTXZDWGRodkR6YXZqTHU1Q0stZHJ1YVpVRFMzd1RWRkEyMXJXU29XOGdBTUE?oc=5",
+          "agencies": [],
+          "tags": [
+            "Mining",
+            "Trade"
+          ]
+        },
+        {
+          "en": "Construction of a cross-border railway link connecting Mongolia to China is reported to be 70 to 80 per cent complete this year, according to the Mongolian Mining Journal, part of continued infrastructure build-out tied to coal and mineral export capacity.",
+          "mn": "Монгол ба Хятадыг холбосон хил дамнасан төмөр замын барилгын ажил энэ жил 70-80 хувь дууслагдсан байна. Энэ мэдээ Mongolian Mining Journal-аас авсан бөгөөд нүүрс болон ашигт малмалын экспортын сүлжээг нэмэгдүүлэхтэй холбоотой дүрвэгжүүлэлтийн үргэлжлэл юм.",
+          "source": "Mongolian Mining Journal",
+          "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBzSjVwX1F0dHdrU2lvTkhzcERhcHBDc1FPRWRWcVh4cWFJb3hiTGdkX2RZeDdZdTVZcmVsR0pReEVLcm5kckFMZ0E5dUJKLWVUcVlndXV2NjRRZw?oc=5",
+          "agencies": [],
+          "tags": [
+            "Mining",
+            "Trade"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Politics, Governance and Diplomacy",
+      "category_mn": "Улс төрийн байр суурь, засаглал ба дипломат",
+      "items": [
+        {
+          "en": "Mongolia's parliament selected a new prime minister amid ongoing corruption allegations, according to the South China Morning Post, continuing a period of frequent leadership turnover in Ulaanbaatar.",
+          "mn": "Монгол Улсын парламент авлигаа сэргээж байгаа нөхцөлд шинэ сайд самбарын дарга сонгосон байна. Энэ мэдээ South China Morning Post-аас авсан бөгөөд Улаанбаатарт удирдлагын шинэчлэлийн үе байргаа үргэлжилсэн байна.",
+          "source": "South China Morning Post",
+          "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxQcDFmZmVFLUJfN0xlbWU4bzhOd2UwUW5HOEZDWGliX2U2bUlncWNmb1JBUk4ySHhrYkhUYlBtLW14a3o4TFFlaUY3el80bE5iLUtZMXdmcmNFeTJWbWVtMlU4MmhEZ01jMmJZRFMyaE9MX21zOHB5OHJZTUJYUWh6RVhFdkhtVF9OcnI3V2NPbU9xeldkcC00QmRIQnFPVlZSRVB6aTk2RG53VjJ6MkFJSE84MHY1NVFwVkw3NVVUN29zdUJkQVJLS2JzYWjSAcwBQVVfeXFMT3Zjb0Y1S2hwa2Z0MlN4YVpPenpsR013VXlmTzhuOHdlSExvejRnczl5S0JQRGV6QUhnRWI5UVRPR1BOVnpwb2huOGNDREVMTDZ2ZUhmUWd1cnprdGdrakY1QWNfMUV1cjhBUnA5REd6ZFJQSVVnR1M1OWRPWC1vNXFvdTlxYk5vdHJEVUY1ZzJ1SXFjMFBZU0tYMG94c2tRWUJzenZmc2NHVzJwR2lobUttdVJOTVBoUnFVcE02Wmtlc1JzdHBQb1djRXk5?oc=5",
+          "agencies": [],
+          "tags": []
+        },
+        {
+          "en": "The president of the Republic of Korea arrived in Ulaanbaatar for a summit with Mongolia's president, according to the Korea Times, part of Mongolia's continued effort to broaden diplomatic and economic ties with Northeast Asian partners.",
+          "mn": "Өмнөд Солонгосын ерөнхийлөгч Улаанбаатарт ирж Монголын ерөнхийлөгчтэй гоёмтой уулзалт хийсэн байна. Korea Times-ийн мэдээлэлээр энэ нь Монголын Зүүнцэг Ази дахь түншүүдтэй дипломат болон эдийн засгийн холбоог өргөтгөх оролдлогын нэг юм.",
+          "source": "Korea Times",
+          "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxNNzRzdkZZeUNGTjIwRm9VVm1hYXpoRXFIMU9qRlNXQ0VNTUtxMVlKbzRVamhOUnAybE84OFNSMEJwV3JNSEVOUWRsZTlGNkhESHJWQzEzclpZaEMxVWpTTE14OHhGZGdXYTBwQmNzd1EzMW56bHFiU08xanNKMFFnOHFzSG1KTjFpT1lpdkdWNFBXaWZnX3FXV0xPOE80M0tYVkNuXzFxeU5LbW0zdUV5S2ZFYWRMZ9IBuwFBVV95cUxOcDZ0cFRNNzNFNkoyYlVkZHhvdTlvNG5Ud2UxLTMzcFQ3bjZPcEhQV215ZjNYdW5QWnBIT2pvWXR5N2l1WXhIVk11MTJ0VWVNb1dFdWR5ZUhNSzY0R0dNak5QMkNfTjkwd1ljT0hsYzNiR3pxcEN0VzlYOWJyRG5xTHU3Y2pnQTBlY2xHeTBrM0sxdEZzaXFpU1J4MlptODh4eVRKTnJ4dXVRdDdHU0lROWZVM0tvSV9VSzJr?oc=5",
+          "agencies": [],
+          "tags": [
+            "Regional relations"
+          ]
+        },
+        {
+          "en": "Tajikistan's President Emomali Rahmon visited Mongolia as Ulaanbaatar expands its diplomatic outreach to Central Asian states, according to the Times of Central Asia.",
+          "mn": "Тажикистаны ерөнхийлөгч Эмомали Рахмон Монголд айлчилж, Улаанбаатар Төв Азийн улсуудтай дипломат хамтын ажиллагаагаа өргөтгөж байна. Энэ мэдээ Times of Central Asia-аас авсан.",
+          "source": "Times of Central Asia",
+          "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPdlNlN3R2VVRmYkdmYkFBdDRQMGRTRzd2SlJqaEl3RHRGSGNLWmZwbUF2aEJPNk83bGgwUUs2aWxqcFdHdVRWUnRBV2g5N0I3QWVsNDVlcXliVURMVlNHdGVyb1hRTTl0aDdmODloWHYtYlhtZHE0Tk56UDBUUmdHM0tURXppczN1S0VVMHV3YnFSR0QzbDd3LUVXQTNXdGc5MXlITnhXZ1VQbHFHZkxJ?oc=5",
+          "agencies": [],
+          "tags": [
+            "Regional relations"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Environment and Climate Change",
+      "category_mn": "Байгаль орчин ба уур амьсгалын өөрчлөлт",
+      "items": [
+        {
+          "en": "The 17th session of the Conference of the Parties to the United Nations Convention to Combat Desertification (UNCCD COP17), serviced by the UNCCD secretariat, is due to open in Ulaanbaatar on 17 August 2026 and run through 28 August, according to UNRIC. The gathering places Mongolia's land degradation, pasture management and dzud-related vulnerabilities in a prominent multilateral spotlight.",
+          "mn": "Нэгдсэн Үндэстний Байгууллагаас ялангуяа сүүлийн үеийн цөмөрсөлт ба газрын доройтлоотой тэмцэх конвенцийн (ҮНСГДТК) 17-р чуулганы ТОП (COP17) 2026 оны 8-р сарын 17-нөөс 28-ны өдрүүдэд Улаанбаатарт нээгдэнэ. UNRIC-ийн мэдээлэлээр энэ уулзалт Монголын газрын доройтол, ландшафтын менежмент ба зудтай холбоотой эмзэгтэй байдлыг олон улсын хамтын ажиллагааны гол төвөөр шилжүүлнэ.",
+          "source": "UNRIC",
+          "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQMkgtRVc2R0hoSFRwNW9FaTliRnRtSkR4YkRKUVJzQTQ2elo5T0I0MFhTWTJ1YTVrV1lEdWVteFJpQU5YOUR0dTRVeEtiSzdrMTlTaEhTOWRIU19fMVI4Wnd2M2p0d3pYQ1JGQXZHclRpZGw1NVFXcTJQSXZGN2JKbkdMNFFlYXhRV0pUZVRSTnh5MVA0a1E?oc=5",
+          "agencies": [
+            "UNEP",
+            "FAO"
+          ],
+          "tags": [
+            "Dzud"
+          ]
+        },
+        {
+          "en": "The International Institute for Sustainable Development published a Sustainable Asset Valuation (SAVi) assessment on electrifying Ulaanbaatar's public bus fleet, according to IISD. The report examines cost and investment considerations for such a transition in a capital that experiences some of the region's worst winter air pollution.",
+          "mn": "Тогтвортой хөгжлийн олон улсын институт Улаанбаатарын нийтийн аутобусны флотыг цахилгаанаар эрэлтүүлэхэд зориулан Тогтвортой хөрөнгө оруулалтын үнэлгээ (SAVi) хийлээ. IISD-ийн мэдээлэлээр энэ тайлан нь сүүлийн үеийн цөмөрсөлт ба уур амьсгалын өөрчлөлтийн нөлөөнд өртөн байгаа эдийнлэл дээрх хүндрэлийг шалгаж байна. Энэ хөл баруун хэсэг нь бүс нутгийн хамгийн сайн агаарын бохирдолтойг мэдэрч байгаа хот юм.",
+          "source": "International Institute for Sustainable Development",
+          "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxQMWU3SlJSeVFvc21oUlVRRjlzVU1MeVpoSGhsUmUwMzJsQ2pDcXgwY2xnb0xDamVSQnUzMlJ1UFQ0TmVYWVQ5Wm55aWhxN1dtX1RHQWFGVzBNTjZXMWFMdm9LZS1UblRPQTBZeHZhR2JTZTZaV3Z4aWp0TjFqSEItLVE1blUyUQ?oc=5",
+          "agencies": [],
+          "tags": [
+            "Air quality"
+          ]
+        },
+        {
+          "en": "The Ulaanbaatar Central Wastewater Treatment Plant, described by China's Ministry of Foreign Affairs as a major bilateral cooperation project, has officially begun operation. The plant is a Chinese-financed bilateral infrastructure project, with no stated United Nations agency role.",
+          "mn": "Улаанбаатарын төвлөрсөн ус цэвэрлэх цеци Хятадын Гадаад харилцааны яамаас хоёр улсын хоорондох гол хамтын ажиллагааны төслөө гэж тодорхойлж байгаа бөгөөд ажиллаж эхлэсэн байна. Энэ цеци нь Хятадын санхүүгээр дэмжигдсэн хоёр улсын хоорондох дүрвэгжүүлэлтийн төсөл бөгөөд Нэгдсэн Үндэстний Байгууллагаас ямар ч оролцоо байна гэж мэдээлээгүй.",
+          "source": "Ministry of Foreign Affairs of China",
+          "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE82eXBaOS1OTHdDUEM1Sk9fVnVScllMRmtVT3NmY0ZQd1ZsSVVHUzJydDZEajU3TExiSl9XaDFmTkxyMHZUQmlhQWoxZjJtXzUtTFRycUtWanc0NTE1M0FyOF9VZnJISkJZZE5yOW1rb2MwbTl2YzVr?oc=5",
+          "agencies": [],
+          "tags": [
+            "Regional relations"
+          ]
+        }
+      ]
+    }
+  ],
+  "also_noted": [
+    {
+      "en": "An Italian-Mongolian couple cycling from Rome to Ulaanbaatar to raise awareness of air pollution reached Türkiye, according to Anadolu Ajansı.",
+      "mn": "Итали-Монголын гэрлэлт жюнь Ромоос Улаанбаатар хүртэл дугуйланд суув агаарын бохирдлын талаар мэдлэг түгээх үйл ажиллагаа явуулсан байна. Аnadolu Ajansı-ийн мэдээлэлээр тэд Түркүүдэнд хүрсэн байна.",
+      "source": "Anadolu Ajansı",
+      "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxNVFB3SDEyem1ZajFHN2Uya1REYU9aSEFoSG43Y3Q5NktuYS1aTDFPQmp5VVhqaHh0VzFjekZLdXhZZTBzdXVnUGlpQWNhelEwUmlOWVZqWVBjNWdBeG9GZ1dkVm53Q2pYWmtndGtCRDdSczZaZWNsMVVCUHVHVXZSMUNiTENXZUNRbXhVaVJfVFF3Q2tqUFR1SnJLemxwbEJvTmR1OTlCVlA1Nm54Qjl6V2ROMV9vTVVSaU55NFRTbC10NmY4ZHh6eFo3d2wtZkJnS2ZsVmNjaVk5UQ?oc=5",
+      "agencies": [],
+      "tags": [
+        "Air quality"
+      ]
+    },
+    {
+      "en": "A logistics company reported transporting 121 Mongolian horses between Ulaanbaatar and Hanoi, according to Economy Class & Beyond.",
+      "mn": "Нэг логистик компани Улаанбаатараас Ханой хүртэл 121 Монголын морины нүүдэл тээвэрлэж явсан байна. Economy Class & Beyond-ийн мэдээлэлээр энэ мэдээ түгэлээд байна.",
+      "source": "Economy Class & Beyond",
+      "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxOZEpDQXVZbmY4SU40Yk5NNC0zOTh6bGdxeHFGdFZkUHZXOVlsUG5FcVZDMGtsdWFxOEdBVWFCZU9sRWRYOTZpT3lKSWhJbHg2UkQzbFh5d0dZRXlTY1VXVk90QW9VMHFKQzhrcXdCckQtcEFuMkxKRDV5UW9xMnI5aC1WYW41Qi1PazNIb054SlNQTXJKcFJNaG1GaUx3aTlGalY4VHVhaVl3VlRlSjBxWU5lY044dw?oc=5",
+      "agencies": [],
+      "tags": []
+    },
+    {
+      "en": "Hilton announced the signing of a Conrad-branded hotel in Ulaanbaatar, marking its entry into the Mongolian market, according to Hilton's corporate newsroom.",
+      "mn": "Hilton компани Улаанбаатарт Conrad-ын брэндийн зочид буудал нээх гэрээ байгуулж Монголын зах зээлд орж байна. Hilton-ийн корпорацийн мэдээлэлийн өрөөнүүдээс энэ мэдээ авсан.",
+      "source": "Stories From Hilton",
+      "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxNd0oxelRxUFFMelp3cll5ZVIwVzlCVm13ZDhfQ2l1c25nSXR2MVRKTVBFNnB5blhlVmh1UUpGQzVNUmFSWGQ3cTJYaU1mT2loenlHWFlReWZFTjZ2NDFYTWcwV2tLOVlYNnFkT1JSc3U0UC14Wkt6cnM1S2hkbnVPWHN5cElkcmlBS3ZNTGtzQlBORkRZQnZxSA?oc=5",
+      "agencies": [],
+      "tags": []
+    },
+    {
+      "en": "A UNDP feature on desertification restoration efforts in Mongolia's Gobi provides background context ahead of the UNCCD COP17 session in Ulaanbaatar.",
+      "mn": "ХӨСҮТ-ийн Монголын Говьд цөмөрсөлтийн сэргээх ажилтай холбоотой материалыг түгэлээд. Энэ нь ҮНСГДТК-ийн Улаанбаатарт сессийн өмнө нөхцөл байдлыг танилцуулахын үйл ажиллагаа юм.",
+      "source": "United Nations Development Programme",
+      "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxOc2pZMDNwNFRacmpwU0xvancwd1ZXNUd3blBKazEwVjJUSGtPZGozZVZlc2ZkeWhCemlLMlM0dlJLNDlNNVliMDNlc1dWQWFjYjJ6ZzR4NGFjTU5sc2J2UDd6WGlpNmxxYTlLMEpVQ0U0M3Rrd2xlekNXUUNzMUZXdTFoaTdwLW8xNEZycTN2ZnVFanJFbC14TGgydU4zS2hPRTlwMGltMmNoeGpWSWszbg?oc=5",
+      "agencies": [
+        "UNDP"
+      ],
+      "tags": []
+    }
+  ],
+  "style_flags": [],
+  "issues": [],
+  "review_log": [
+    {
+      "pass": 1,
+      "confidence": 74,
+      "issues": [
+        "Agency tags applied inconsistently: UNDP is tagged on the Oyu Tolgoi export resumption, coking coal trade, and railway construction items with no stated UNDP role in the source material — these read as generic/padding tags rather than substantiated agency links; either justify or remove them.",
+        "OHCHR tag on the new-PM/corruption item is not clearly grounded in the source (South China Morning Post); if OHCHR has no cited mandate/statement on this, drop the tag or note the specific governance angle justifying it.",
+        "UNEP/UNDP tags on the China-funded wastewater treatment plant item imply UN involvement in a bilateral China-Mongolia project; clarify whether these agencies are actually connected or remove.",
+        "The Public Services International item on a health workers' strike is included in also_noted despite explicitly flagged timing uncertainty ('timing relative to the current period is unclear') — either confirm it falls within the reporting week or drop it rather than include with a caveat.",
+        "Minor editorializing beyond source support in the coking coal item ('underscores Mongolia's continued dependence on the Chinese market') — should be trimmed to stay strictly descriptive of the cited data.",
+        "Verify country name style: 'Republic of Korea' is correctly used, but confirm 'President Lee' is the accurate leader reference per source, as no full name is given, which could look under-verified."
+      ]
+    },
+    {
+      "pass": 2,
+      "confidence": 68,
+      "issues": [
+        "Agency tag \"UNDP\" on the prime-minister selection item (Politics section) is not supported by the source text (South China Morning Post) and has no stated UN role — remove or justify.",
+        "Agency tags \"UNEP\", \"FAO\", \"UNDP\" on the UNCCD COP17 item are questionable; the lead UN body for this convention is the UNCCD secretariat, which is not tagged, while three unrelated agencies are — replace with the correct convention/agency attribution.",
+        "Agency tags \"UNEP\", \"UNDP\" on the IISD SAVi bus-electrification item are not mentioned or implied in the source and appear invented — verify with the source or remove.",
+        "The clause describing Oyu Tolgoi as \"a cornerstone of Mongolia's export economy and a major source of government revenue\" is not attributed to Mining.com and reads as added editorial characterization beyond the cited input — attribute explicitly or trim.",
+        "Reconsider placement of the Ulaanbaatar wastewater treatment plant item: as an environmental infrastructure story it may fit better under Environment and Climate Change, or the Economy and Development rationale should be made explicit.",
+        "The IISD SAVi item text speculates on 'potential air quality and cost benefits' without citing that the source draws this conclusion — confirm this framing is drawn from the report rather than inferred."
+      ]
+    }
+  ]
+}

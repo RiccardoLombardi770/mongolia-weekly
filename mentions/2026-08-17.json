@@ -1,0 +1,1709 @@
+{
+  "week_start": "2026-08-17",
+  "week_end": "2026-08-23",
+  "generated_at": "2026-08-17T03:48:55.901957+00:00",
+  "confidence": 90,
+  "overview": {
+    "en": "23 mentions recorded across 18 outlets; 23 neutral; the underlying United Nations publication was identified for 2 of them.",
+    "mn": "23 mentions recorded across 18 outlets; 23 neutral; the underlying United Nations publication was identified for 2 of them."
+  },
+  "mentions": [
+    {
+      "id": "m003",
+      "outlet": "Mongolian National Broadcaster",
+      "outlet_domain": "mnb.mn",
+      "known_outlet": true,
+      "language": "mn",
+      "published": "2026-08-17",
+      "title": "НҮБ-ын цөлжилттэ тэмцэх конвенцын талуудын 17 дугаар бага хурал (UNCCD COP17) эхэллээ",
+      "url": "https://www.mnb.mn/i/350772",
+      "summary": {
+        "en": "Mongolian National Broadcaster reports the opening of the 17th Conference of the Parties to the United Nations Convention to Combat Desertification (UNCCD COP17) in Ulaanbaatar, describing the event's theme and scope.",
+        "mn": "Mongolian National Broadcaster reports the opening of the 17th Conference of the Parties to the United Nations Convention to Combat Desertification (UNCCD COP17) in Ulaanbaatar, describing the event's theme and scope."
+      },
+      "tone": "Neutral",
+      "tone_note": {
+        "en": "reports the opening of the conference without evaluative language about the United Nations",
+        "mn": "reports the opening of the conference without evaluative language about the United Nations"
+      },
+      "mention_type": "Event coverage",
+      "prominence": "Headline",
+      "agencies": [
+        "UNCCD"
+      ],
+      "officials": [],
+      "un_source": {
+        "matched": false,
+        "method": "none",
+        "confidence": 10,
+        "title": "",
+        "url": "",
+        "date": "",
+        "agency": "",
+        "evidence": [
+          "shared wording: menu",
+          "shared figures: 08, 09, 17, 2026",
+          "published 3 day(s) before the article"
+        ],
+        "candidates": [
+          {
+            "score": 46,
+            "evidence": [
+              "shared wording: menu",
+              "shared figures: 08, 09, 17, 2026",
+              "published 3 day(s) before the article"
+            ],
+            "title": "17 Goals to Transform Our World",
+            "url": "https://mongolia.un.org/en/320998-17-goals-transform-our-world",
+            "date": "2026-08-14",
+            "agency": "UNRCO"
+          },
+          {
+            "score": 45,
+            "evidence": [
+              "shared figures: 2026, 29",
+              "published 5 day(s) before the article"
+            ],
+            "title": "12 August 2026 Departmental update WHO and Doris Mollel Foundation sign memorandum of understanding",
+            "url": "https://www.who.int/mongolia/news/detail-global/12-08-2026-who-and-doris-mollel-foundation-sign-memorandum-of-understanding",
+            "date": "2026-08-12",
+            "agency": "WHO"
+          },
+          {
+            "score": 37,
+            "evidence": [
+              "shared figures: 2026, 29"
+            ],
+            "title": "29 July 2026 Departmental update WHO launches first global framework to help regulators advance greener pharmaceuticals",
+            "url": "https://www.who.int/mongolia/news/detail-global/29-07-2026-who-launches-first-global-framework-to-help-regulators-advance-greener-pharmaceuticals",
+            "date": "2026-07-29",
+            "agency": "WHO"
+          }
+        ],
+        "reason": "no candidate discusses the conference opening itself; overlaps are only generic shared dates/words"
+      }
+    },
+    {
+      "id": "m004",
+      "outlet": "Mongolian National Broadcaster",
+      "outlet_domain": "mnb.mn",
+      "known_outlet": true,
+      "language": "mn",
+      "published": "2026-08-17",
+      "title": "COP17: Нарантуул, Дүнжингарав орчимд аюултай ачаа тээвэрлэхийг түр хориглоно",
+      "url": "https://www.mnb.mn/i/350763",
+      "summary": {
+        "en": "Mongolian National Broadcaster reports temporary traffic restrictions near Narantuul and Dunjingarav markets in Ulaanbaatar during the UNCCD COP17 conference, citing delegate safety.",
+        "mn": "Mongolian National Broadcaster reports temporary traffic restrictions near Narantuul and Dunjingarav markets in Ulaanbaatar during the UNCCD COP17 conference, citing delegate safety."
+      },
+      "tone": "Neutral",
+      "tone_note": {
+        "en": "reports traffic measures tied to the conference without comment on the United Nations",
+        "mn": "reports traffic measures tied to the conference without comment on the United Nations"
+      },
+      "mention_type": "Event coverage",
+      "prominence": "Headline",
+      "agencies": [
+        "UNCCD"
+      ],
+      "officials": [],
+      "un_source": {
+        "matched": false,
+        "method": "none",
+        "confidence": 10,
+        "title": "",
+        "url": "",
+        "date": "",
+        "agency": "",
+        "evidence": [
+          "shared wording: menu",
+          "shared figures: 07, 08, 17, 2026",
+          "published 3 day(s) before the article"
+        ],
+        "candidates": [
+          {
+            "score": 46,
+            "evidence": [
+              "shared wording: menu",
+              "shared figures: 07, 08, 17, 2026",
+              "published 3 day(s) before the article"
+            ],
+            "title": "17 Goals to Transform Our World",
+            "url": "https://mongolia.un.org/en/320998-17-goals-transform-our-world",
+            "date": "2026-08-14",
+            "agency": "UNRCO"
+          },
+          {
+            "score": 37,
+            "evidence": [
+              "shared figures: 2026, 28"
+            ],
+            "title": "World Hepatitis Day 2026 28 July 2026",
+            "url": "https://www.who.int/westernpacific/newsroom/events/overview/item/2026/07/28/western-pacific-events/world-hepatitis-day-2026",
+            "date": "2026-07-28",
+            "agency": "WHO"
+          },
+          {
+            "score": 37,
+            "evidence": [
+              "shared figures: 16, 2026"
+            ],
+            "title": "23 July 2026 Departmental update Implementing research priorities: webinar explores how global research agendas can lead to meaningful action",
+            "url": "https://www.who.int/mongolia/news/detail-global/23-07-2026-implementing-research-priorities--webinar-explores-how-global-research-agendas-can-lead-to-meaningful-action",
+            "date": "2026-07-23",
+            "agency": "WHO"
+          }
+        ],
+        "reason": "candidates are unrelated WHO health items or a generic SDG page, no factual overlap with the traffic measures"
+      }
+    },
+    {
+      "id": "m005",
+      "outlet": "Mongolian National Broadcaster",
+      "outlet_domain": "mnb.mn",
+      "known_outlet": true,
+      "language": "mn",
+      "published": "2026-08-17",
+      "title": "COP17: Нарантуул, Дүнжингаравын авто зогсоолыг түр хаана",
+      "url": "https://www.mnb.mn/i/350762",
+      "summary": {
+        "en": "Mongolian National Broadcaster reports temporary parking closures near Narantuul and Dunjingarav shopping centres during UNCCD COP17 to ease traffic for conference delegates.",
+        "mn": "Mongolian National Broadcaster reports temporary parking closures near Narantuul and Dunjingarav shopping centres during UNCCD COP17 to ease traffic for conference delegates."
+      },
+      "tone": "Neutral",
+      "tone_note": {
+        "en": "reports logistical arrangements for the conference without evaluative language",
+        "mn": "reports logistical arrangements for the conference without evaluative language"
+      },
+      "mention_type": "Event coverage",
+      "prominence": "Headline",
+      "agencies": [
+        "UNCCD"
+      ],
+      "officials": [],
+      "un_source": {
+        "matched": false,
+        "method": "none",
+        "confidence": 10,
+        "title": "",
+        "url": "",
+        "date": "",
+        "agency": "",
+        "evidence": [
+          "shared wording: menu",
+          "shared figures: 08, 17, 2026",
+          "published 3 day(s) before the article"
+        ],
+        "candidates": [
+          {
+            "score": 46,
+            "evidence": [
+              "shared wording: menu",
+              "shared figures: 08, 17, 2026",
+              "published 3 day(s) before the article"
+            ],
+            "title": "17 Goals to Transform Our World",
+            "url": "https://mongolia.un.org/en/320998-17-goals-transform-our-world",
+            "date": "2026-08-14",
+            "agency": "UNRCO"
+          },
+          {
+            "score": 39,
+            "evidence": [
+              "shared wording: монгол, national",
+              "shared figures: 13, 2026"
+            ],
+            "title": "13 July 2026 Mongolia’s EPI review calls for a roadmap to strengthen immunization programme in Mongolia",
+            "url": "https://www.who.int/mongolia/news/feature-stories/detail-wpro/mongolia-s-epi-review---calls-for-a-roadmap-to-strengthen-immunization-programme-in-mongolia",
+            "date": "2026-07-13",
+            "agency": "WHO"
+          },
+          {
+            "score": 38,
+            "evidence": [
+              "shared wording: монгол",
+              "shared figures: 13, 2026"
+            ],
+            "title": "13 July 2026 Mongolia conducts evaluation for HPV vaccines roll-out",
+            "url": "https://www.who.int/mongolia/news/feature-stories/detail-wpro/mongolia-conducts-evaluation-for-hpv-vaccines-roll-out",
+            "date": "2026-07-13",
+            "agency": "WHO"
+          }
+        ],
+        "reason": "candidates concern unrelated WHO immunization stories, no overlap with the parking closure content"
+      }
+    },
+    {
+      "id": "m009",
+      "outlet": "saudigazette.com.sa",
+      "outlet_domain": "saudigazette.com.sa",
+      "known_outlet": false,
+      "language": "en",
+      "published": "2026-08-10",
+      "title": "Middle East Green Initiative to showcase regional desertification efforts at UNCCD COP17",
+      "url": "https://saudigazette.com.sa/article/663618/saudi-arabia/middle-east-green-initiative-to-showcase-regional-desertification-efforts-at-unccd-cop17",
+      "summary": {
+        "en": "Saudi Gazette reports that the Middle East Green Initiative will participate in UNCCD COP17 in Ulaanbaatar, showcasing regional desertification efforts and partnerships with the UNCCD.",
+        "mn": "Saudi Gazette reports that the Middle East Green Initiative will participate in UNCCD COP17 in Ulaanbaatar, showcasing regional desertification efforts and partnerships with the UNCCD."
+      },
+      "tone": "Neutral",
+      "tone_note": {
+        "en": "describes the initiative's participation and partnership plans without commenting on the United Nations' role",
+        "mn": "describes the initiative's participation and partnership plans without commenting on the United Nations' role"
+      },
+      "mention_type": "Event coverage",
+      "prominence": "Body",
+      "agencies": [
+        "UNCCD"
+      ],
+      "officials": [],
+      "un_source": {
+        "matched": false,
+        "method": "none",
+        "confidence": 10,
+        "title": "",
+        "url": "",
+        "date": "",
+        "agency": "",
+        "evidence": [
+          "shared wording: advancing, regional, august, world",
+          "shared figures: 10, 2026",
+          "published 0 day(s) before the article"
+        ],
+        "candidates": [
+          {
+            "score": 50,
+            "evidence": [
+              "shared wording: advancing, regional, august, world",
+              "shared figures: 10, 2026",
+              "published 0 day(s) before the article"
+            ],
+            "title": "10 August 2026 Departmental update WHO-DG HERA workshop on pooled procurement mechanisms for regional entities",
+            "url": "https://www.who.int/mongolia/news/detail-global/10-08-2026-who-dg-hera-workshop-on-pooled-procurement-mechanisms-for-regional-entities",
+            "date": "2026-08-10",
+            "agency": "WHO"
+          },
+          {
+            "score": 50,
+            "evidence": [
+              "shared wording: million, region, live, action, world",
+              "shared figures: 2026, 28",
+              "published 13 day(s) before the article"
+            ],
+            "title": "World Hepatitis Day 2026 28 July 2026",
+            "url": "https://www.who.int/westernpacific/newsroom/events/overview/item/2026/07/28/western-pacific-events/world-hepatitis-day-2026",
+            "date": "2026-07-28",
+            "agency": "WHO"
+          },
+          {
+            "score": 42,
+            "evidence": [
+              "shared wording: organizations, institutions, among, science, launched, development",
+              "shared figures: 17, 2026"
+            ],
+            "title": "17 June 2026 Joint News Release Mongolia launches Partnership for Science and Research Mongolia’s Ministry of Health and the World Health Organization (WHO) launched the Mongolia Partnership for Science and Research to strengthen collaboration between government, res ...",
+            "url": "https://www.who.int/mongolia/news/detail/17-06-2026-mongolia-launches-partnership-for-science-and-research",
+            "date": "2026-06-17",
+            "agency": "WHO"
+          }
+        ],
+        "reason": "candidates are unrelated WHO items with only superficial word overlap"
+      }
+    },
+    {
+      "id": "m010",
+      "outlet": "globalgovernancenews.com",
+      "outlet_domain": "globalgovernancenews.com",
+      "known_outlet": false,
+      "language": "en",
+      "published": "2026-08-10",
+      "title": "Silk Road Caravan Reaches Mongolia Ahead of UNCCD COP17",
+      "url": "https://globalgovernancenews.com/silk-road-caravan-reaches-mongolia-ahead-of-unccd-cop17/",
+      "summary": {
+        "en": "A brief item notes the Silk Road Caravan's arrival in Mongolia ahead of UNCCD COP17.",
+        "mn": "A brief item notes the Silk Road Caravan's arrival in Mongolia ahead of UNCCD COP17."
+      },
+      "tone": "Neutral",
+      "tone_note": {
+        "en": "headline-only stub with no evaluative content",
+        "mn": "headline-only stub with no evaluative content"
+      },
+      "mention_type": "Passing reference",
+      "prominence": "",
+      "agencies": [
+        "UNCCD"
+      ],
+      "officials": [],
+      "un_source": {
+        "matched": false,
+        "method": "none",
+        "confidence": 5,
+        "title": "",
+        "url": "",
+        "date": "",
+        "agency": "",
+        "evidence": [],
+        "candidates": [
+          {
+            "score": 20,
+            "evidence": [],
+            "title": "12 August 2026 Departmental update WHO and Doris Mollel Foundation sign memorandum of understanding",
+            "url": "https://www.who.int/mongolia/news/detail-global/12-08-2026-who-and-doris-mollel-foundation-sign-memorandum-of-understanding",
+            "date": "2026-08-12",
+            "agency": "WHO"
+          },
+          {
+            "score": 20,
+            "evidence": [],
+            "title": "11 August 2026 Departmental update Strengthening the Bundibugyo virus disease response through community evidence",
+            "url": "https://www.who.int/mongolia/news/detail-global/11-08-2026-strengthening-the-bundibugyo-virus-disease-response-through-community-evidence",
+            "date": "2026-08-11",
+            "agency": "WHO"
+          },
+          {
+            "score": 20,
+            "evidence": [
+              "published 0 day(s) before the article"
+            ],
+            "title": "10 August 2026 Departmental update WHO-DG HERA workshop on pooled procurement mechanisms for regional entities",
+            "url": "https://www.who.int/mongolia/news/detail-global/10-08-2026-who-dg-hera-workshop-on-pooled-procurement-mechanisms-for-regional-entities",
+            "date": "2026-08-10",
+            "agency": "WHO"
+          }
+        ],
+        "reason": "no article text beyond the headline to compare against the unrelated WHO candidates; flagged for human review given minimal content"
+      }
+    },
+    {
+      "id": "m017",
+      "outlet": "Sarkaritel.com",
+      "outlet_domain": "sarkaritel.com",
+      "known_outlet": false,
+      "language": "en",
+      "published": "2026-08-10",
+      "title": "Mongolia Welcomes Silk Road Caravan Ahead Of UNCCD COP17",
+      "url": "https://www.sarkaritel.com/silk-road-caravan-mongolia-unccd-cop17/",
+      "summary": {
+        "en": "Sarkaritel reports on the UNCCD Silk Road Caravan's arrival in Mongolia ahead of COP17, describing rangeland degradation statistics and quoting UNCCD Executive Secretary Yasmine Fouad.",
+        "mn": "Sarkaritel reports on the UNCCD Silk Road Caravan's arrival in Mongolia ahead of COP17, describing rangeland degradation statistics and quoting UNCCD Executive Secretary Yasmine Fouad."
+      },
+      "tone": "Neutral",
+      "tone_note": {
+        "en": "reports statistics and quotes an official without adding evaluative commentary on the United Nations",
+        "mn": "reports statistics and quotes an official without adding evaluative commentary on the United Nations"
+      },
+      "mention_type": "Statement cited",
+      "prominence": "Lead paragraph",
+      "agencies": [
+        "UNCCD"
+      ],
+      "officials": [
+        "Dr. Yasmine Fouad"
+      ],
+      "un_source": {
+        "matched": false,
+        "method": "none",
+        "confidence": 10,
+        "title": "",
+        "url": "",
+        "date": "",
+        "agency": "",
+        "evidence": [
+          "shared wording: million, people, time, world",
+          "shared figures: 2026, 28",
+          "published 13 day(s) before the article"
+        ],
+        "candidates": [
+          {
+            "score": 52,
+            "evidence": [
+              "shared wording: million, people, time, world",
+              "shared figures: 2026, 28",
+              "published 13 day(s) before the article"
+            ],
+            "title": "World Hepatitis Day 2026 28 July 2026",
+            "url": "https://www.who.int/westernpacific/newsroom/events/overview/item/2026/07/28/western-pacific-events/world-hepatitis-day-2026",
+            "date": "2026-07-28",
+            "agency": "WHO"
+          },
+          {
+            "score": 45,
+            "evidence": [
+              "shared wording: during, bringing, change, launched, august, global",
+              "shared figures: 2026",
+              "published 5 day(s) before the article"
+            ],
+            "title": "5 August 2026 Departmental update WHO launches global research priorities on climate, health and migration",
+            "url": "https://www.who.int/mongolia/news/detail-global/05-08-2026-who-launches-global-research-priorities-on-climate--health-and-migration",
+            "date": "2026-08-05",
+            "agency": "WHO"
+          },
+          {
+            "score": 44,
+            "evidence": [
+              "shared wording: china, launched, people, through, august, global",
+              "shared figures: 2026",
+              "published 4 day(s) before the article"
+            ],
+            "title": "6 August 2026 Departmental update WHO and Tsinghua University launch collaboration to strengthen global health emergency preparedness",
+            "url": "https://www.who.int/mongolia/news/detail-global/06-08-2026-who-and-tsinghua-university-launch-collaboration-to-strengthen-global-health-emergency-preparedness",
+            "date": "2026-08-06",
+            "agency": "WHO"
+          }
+        ],
+        "reason": "candidates are unrelated WHO news items with no shared figures or quotations"
+      }
+    },
+    {
+      "id": "m031",
+      "outlet": "www.zms.mn",
+      "outlet_domain": "zms.mn",
+      "known_outlet": false,
+      "language": "en",
+      "published": "2026-08-12",
+      "title": "COP17: From Host Country to Negotiation Leader",
+      "url": "https://www.zms.mn/a/104799",
+      "summary": {
+        "en": "Zuunii Medee describes Mongolia's preparations to chair COP17 negotiations, including a joint training program with the UNCCD Secretariat and quotes from the Minister of Environment and Climate Change.",
+        "mn": "Zuunii Medee describes Mongolia's preparations to chair COP17 negotiations, including a joint training program with the UNCCD Secretariat and quotes from the Minister of Environment and Climate Change."
+      },
+      "tone": "Neutral",
+      "tone_note": {
+        "en": "describes the training program and ministerial statements without evaluative language about the United Nations",
+        "mn": "describes the training program and ministerial statements without evaluative language about the United Nations"
+      },
+      "mention_type": "Event coverage",
+      "prominence": "Body",
+      "agencies": [
+        "UNCCD"
+      ],
+      "officials": [],
+      "un_source": {
+        "matched": false,
+        "method": "none",
+        "confidence": 15,
+        "title": "",
+        "url": "",
+        "date": "",
+        "agency": "",
+        "evidence": [
+          "shared wording: extend, environment, implementation, programme, time, world",
+          "shared figures: 14, 2026"
+        ],
+        "candidates": [
+          {
+            "score": 53,
+            "evidence": [
+              "shared wording: extend, environment, implementation, programme, time, world",
+              "shared figures: 14, 2026"
+            ],
+            "title": "14 August 2026 Departmental update Quadripartite collaboration extends the One Health Joint Plan of Action to 2029",
+            "url": "https://www.who.int/mongolia/news/detail-global/14-08-2026-quadripartite-collaboration-extends-the-one-health-joint-plan-of-action-to-2029",
+            "date": "2026-08-14",
+            "agency": "WHO"
+          },
+          {
+            "score": 52,
+            "evidence": [
+              "shared wording: must, build, environmental, sustainable, including, change",
+              "shared figures: 07, 08, 14, 2026"
+            ],
+            "title": "17 Goals to Transform Our World",
+            "url": "https://mongolia.un.org/en/320998-17-goals-transform-our-world",
+            "date": "2026-08-14",
+            "agency": "UNRCO"
+          },
+          {
+            "score": 51,
+            "evidence": [
+              "shared wording: limited, have, international, many, countries, time",
+              "shared figures: 14, 2026"
+            ],
+            "title": "14 August 2026 News release WHO-Lions Clubs partner to expand mental health services in Jordan and Nepal",
+            "url": "https://www.who.int/mongolia/news/detail-global/14-08-2026-who-lions-clubs-partner-to-expand-mental-health-services-in-jordan-and-nepal",
+            "date": "2026-08-14",
+            "agency": "WHO"
+          }
+        ],
+        "reason": "shared generic wording with the UNRCO SDG page is not specific enough to confirm citation"
+      }
+    },
+    {
+      "id": "m044",
+      "outlet": "World Council of Churches",
+      "outlet_domain": "oikoumene.org",
+      "known_outlet": false,
+      "language": "en",
+      "published": "2026-08-13",
+      "title": "WCC at the UN Convention to Combat Desertification COP17",
+      "url": "https://www.oikoumene.org/events/wcc-at-the-un-convention-to-combat-desertification-cop17",
+      "summary": {
+        "en": "The World Council of Churches outlines its programme of side events and interfaith activities at UNCCD COP17 in Ulaanbaatar, citing a land-degradation figure it attributes to 'the United Nations in Mongolia' (the specific United Nations entity is not identified in the article) alongside a separate UNCCD figure.",
+        "mn": "The World Council of Churches outlines its programme of side events and interfaith activities at UNCCD COP17 in Ulaanbaatar, citing a land-degradation figure it attributes to 'the United Nations in Mongolia' (the specific United Nations entity is not identified in the article) alongside a separate UNCCD figure."
+      },
+      "tone": "Neutral",
+      "tone_note": {
+        "en": "cites figures attributed to the United Nations without evaluative comment",
+        "mn": "cites figures attributed to the United Nations without evaluative comment"
+      },
+      "mention_type": "Data or report cited",
+      "prominence": "Body",
+      "agencies": [
+        "UNCCD"
+      ],
+      "officials": [],
+      "un_source": {
+        "matched": true,
+        "method": "explicit_link",
+        "confidence": 95,
+        "title": "",
+        "url": "https://www.unccd.int/cop17",
+        "date": "",
+        "agency": "unccd.int",
+        "evidence": [
+          "the article links to this United Nations page (not yet in our index)"
+        ],
+        "candidates": []
+      }
+    },
+    {
+      "id": "m045",
+      "outlet": "وكالة الأنباء السعودية",
+      "outlet_domain": "spa.gov.sa",
+      "known_outlet": false,
+      "language": "en",
+      "published": "2026-08-13",
+      "title": "Saudi Arabia to Participate in COP17, Hand over Presidency to Mongolia",
+      "url": "https://www.spa.gov.sa/en/N2652924",
+      "summary": {
+        "en": "A brief news item states that Saudi Arabia will participate in COP17 and hand over the conference presidency to Mongolia.",
+        "mn": "A brief news item states that Saudi Arabia will participate in COP17 and hand over the conference presidency to Mongolia."
+      },
+      "tone": "Neutral",
+      "tone_note": {
+        "en": "headline-only item reporting a procedural handover",
+        "mn": "headline-only item reporting a procedural handover"
+      },
+      "mention_type": "Passing reference",
+      "prominence": "",
+      "agencies": [
+        "UNCCD"
+      ],
+      "officials": [],
+      "un_source": {
+        "matched": false,
+        "method": "none",
+        "confidence": 5,
+        "title": "",
+        "url": "",
+        "date": "",
+        "agency": "",
+        "evidence": [
+          "shared wording: over",
+          "published 8 day(s) before the article"
+        ],
+        "candidates": [
+          {
+            "score": 22,
+            "evidence": [
+              "shared wording: over",
+              "published 8 day(s) before the article"
+            ],
+            "title": "5 August 2026 Departmental update WHO launches global research priorities on climate, health and migration",
+            "url": "https://www.who.int/mongolia/news/detail-global/05-08-2026-who-launches-global-research-priorities-on-climate--health-and-migration",
+            "date": "2026-08-05",
+            "agency": "WHO"
+          },
+          {
+            "score": 21,
+            "evidence": [
+              "shared wording: hand"
+            ],
+            "title": "17 Goals to Transform Our World",
+            "url": "https://mongolia.un.org/en/320998-17-goals-transform-our-world",
+            "date": "2026-08-14",
+            "agency": "UNRCO"
+          },
+          {
+            "score": 20,
+            "evidence": [],
+            "title": "14 August 2026 Departmental update Quadripartite collaboration extends the One Health Joint Plan of Action to 2029",
+            "url": "https://www.who.int/mongolia/news/detail-global/14-08-2026-quadripartite-collaboration-extends-the-one-health-joint-plan-of-action-to-2029",
+            "date": "2026-08-14",
+            "agency": "WHO"
+          }
+        ],
+        "reason": "no article body text to compare beyond the headline, and candidates are unrelated WHO or generic SDG items; flagged for human review given minimal content"
+      }
+    },
+    {
+      "id": "m046",
+      "outlet": "The Namibian -",
+      "outlet_domain": "namibian.com.na",
+      "known_outlet": false,
+      "language": "en",
+      "published": "2026-08-13",
+      "title": "Namibia to be represented at UNCCD COP 17 in Mongolia",
+      "url": "https://www.namibian.com.na/namibia-to-be-represented-at-unccd-cop-17-in-mongolia/",
+      "summary": {
+        "en": "The Namibian reports that Namibia will send a delegation to UNCCD COP17 in Mongolia, citing the UNCCD secretariat and quoting Executive Secretary Yasmine Fouad on the conference's goals.",
+        "mn": "The Namibian reports that Namibia will send a delegation to UNCCD COP17 in Mongolia, citing the UNCCD secretariat and quoting Executive Secretary Yasmine Fouad on the conference's goals."
+      },
+      "tone": "Neutral",
+      "tone_note": {
+        "en": "reports the delegation and quotes the UNCCD executive secretary without added evaluation",
+        "mn": "reports the delegation and quotes the UNCCD executive secretary without added evaluation"
+      },
+      "mention_type": "Statement cited",
+      "prominence": "Body",
+      "agencies": [
+        "UNCCD"
+      ],
+      "officials": [
+        "Yasmine Fouad"
+      ],
+      "un_source": {
+        "matched": false,
+        "method": "none",
+        "confidence": 10,
+        "title": "",
+        "url": "",
+        "date": "",
+        "agency": "",
+        "evidence": [
+          "shared wording: must, environmental, sustainable, change, climate",
+          "shared figures: 17, 2026"
+        ],
+        "candidates": [
+          {
+            "score": 49,
+            "evidence": [
+              "shared wording: must, environmental, sustainable, change, climate",
+              "shared figures: 17, 2026"
+            ],
+            "title": "17 Goals to Transform Our World",
+            "url": "https://mongolia.un.org/en/320998-17-goals-transform-our-world",
+            "date": "2026-08-14",
+            "agency": "UNRCO"
+          },
+          {
+            "score": 41,
+            "evidence": [
+              "shared wording: minister, summit, major, country, august, global",
+              "shared figures: 2026",
+              "published 8 day(s) before the article"
+            ],
+            "title": "5 August 2026 Departmental update Thailand to host Third WHO Global Summit on Traditional Medicine in 2027",
+            "url": "https://www.who.int/mongolia/news/detail-global/05-08-2026-thailand-to-host-third-who-global-summit-on-traditional-medicine-in-2027",
+            "date": "2026-08-05",
+            "agency": "WHO"
+          },
+          {
+            "score": 41,
+            "evidence": [
+              "shared wording: governments, communities, people, content, skip",
+              "shared figures: 000, 2026"
+            ],
+            "title": "23 July 2026 News release WHO launches seven strategies to prevent drowning",
+            "url": "https://www.who.int/mongolia/news/detail-global/23-07-2026-who-launches-seven-strategies-to-prevent-drowning",
+            "date": "2026-07-23",
+            "agency": "WHO"
+          }
+        ],
+        "reason": "candidates are unrelated WHO items with no matching figures or quotations"
+      }
+    },
+    {
+      "id": "m047",
+      "outlet": "open.kg",
+      "outlet_domain": "open.kg",
+      "known_outlet": false,
+      "language": "en",
+      "published": "2026-08-13",
+      "title": "Namibia to Participate in the UNCCD COP17 Climate Conference in Mongolia",
+      "url": "https://open.kg/en/news/in-the-world/115655-namibija-primet-uchastie-v-klimaticheskoj-konferencii-unccd-cop17-v-mongolii.html",
+      "summary": {
+        "en": "open.kg reports that Namibia will participate in UNCCD COP17, describing the conference theme and quoting the UNCCD executive secretary (rendered in the article as 'Yasmin Fuad', elsewhere spelled 'Yasmine Fouad') on the conference's priorities.",
+        "mn": "open.kg reports that Namibia will participate in UNCCD COP17, describing the conference theme and quoting the UNCCD executive secretary (rendered in the article as 'Yasmin Fuad', elsewhere spelled 'Yasmine Fouad') on the conference's priorities."
+      },
+      "tone": "Neutral",
+      "tone_note": {
+        "en": "reports delegation plans and quotes the UNCCD executive secretary without evaluative comment",
+        "mn": "reports delegation plans and quotes the UNCCD executive secretary without evaluative comment"
+      },
+      "mention_type": "Statement cited",
+      "prominence": "Body",
+      "agencies": [
+        "UNCCD"
+      ],
+      "officials": [
+        "Yasmin Fuad"
+      ],
+      "un_source": {
+        "matched": false,
+        "method": "none",
+        "confidence": 10,
+        "title": "",
+        "url": "",
+        "date": "",
+        "agency": "",
+        "evidence": [
+          "shared wording: prosperity, environmental, sustainable, including, change, countries",
+          "shared figures: 17"
+        ],
+        "candidates": [
+          {
+            "score": 38,
+            "evidence": [
+              "shared wording: prosperity, environmental, sustainable, including, change, countries",
+              "shared figures: 17"
+            ],
+            "title": "17 Goals to Transform Our World",
+            "url": "https://mongolia.un.org/en/320998-17-goals-transform-our-world",
+            "date": "2026-08-14",
+            "agency": "UNRCO"
+          },
+          {
+            "score": 30,
+            "evidence": [
+              "shared wording: displacement, during, context, participants, change, countries",
+              "published 8 day(s) before the article"
+            ],
+            "title": "5 August 2026 Departmental update WHO launches global research priorities on climate, health and migration",
+            "url": "https://www.who.int/mongolia/news/detail-global/05-08-2026-who-launches-global-research-priorities-on-climate--health-and-migration",
+            "date": "2026-08-05",
+            "agency": "WHO"
+          },
+          {
+            "score": 27,
+            "evidence": [
+              "shared wording: prevent, people, main",
+              "shared figures: 28"
+            ],
+            "title": "World Hepatitis Day 2026 28 July 2026",
+            "url": "https://www.who.int/westernpacific/newsroom/events/overview/item/2026/07/28/western-pacific-events/world-hepatitis-day-2026",
+            "date": "2026-07-28",
+            "agency": "WHO"
+          }
+        ],
+        "reason": "candidates are unrelated WHO items with no matching content"
+      }
+    },
+    {
+      "id": "m048",
+      "outlet": "open.kg",
+      "outlet_domain": "open.kg",
+      "known_outlet": false,
+      "language": "en",
+      "published": "2026-08-13",
+      "title": "Youth Wave: Over 200 Volunteers Cleaned Up Ulaanbaatar's Main Square Ahead of the COP-17 Summit. Photos",
+      "url": "https://open.kg/en/news/in-the-world/115653-molodezhnaja-volna-bolee-200-volonterov-otmyli-glavnuju-ploschad-ulaanbaatara-pered-sammitom-sor-17-foto.html",
+      "summary": {
+        "en": "open.kg reports on a volunteer clean-up campaign in Ulaanbaatar's main square ahead of COP17, which the article itself labels the 'United Nations World Summit on Combating Desertification' — a description not used elsewhere and not the event's official name — while focusing on youth civic engagement.",
+        "mn": "open.kg reports on a volunteer clean-up campaign in Ulaanbaatar's main square ahead of COP17, which the article itself labels the 'United Nations World Summit on Combating Desertification' — a description not used elsewhere and not the event's official name — while focusing on youth civic engagement."
+      },
+      "tone": "Neutral",
+      "tone_note": {
+        "en": "mentions the conference in passing, using the article's own (non-standard) label, while focusing on the volunteer clean-up effort",
+        "mn": "mentions the conference in passing, using the article's own (non-standard) label, while focusing on the volunteer clean-up effort"
+      },
+      "mention_type": "Passing reference",
+      "prominence": "",
+      "agencies": [
+        "UNCCD"
+      ],
+      "officials": [],
+      "un_source": {
+        "matched": false,
+        "method": "none",
+        "confidence": 10,
+        "title": "",
+        "url": "",
+        "date": "",
+        "agency": "",
+        "evidence": [
+          "shared wording: growth, environmental, social, call, change, action",
+          "shared figures: 17"
+        ],
+        "candidates": [
+          {
+            "score": 42,
+            "evidence": [
+              "shared wording: growth, environmental, social, call, change, action",
+              "shared figures: 17"
+            ],
+            "title": "17 Goals to Transform Our World",
+            "url": "https://mongolia.un.org/en/320998-17-goals-transform-our-world",
+            "date": "2026-08-14",
+            "agency": "UNRCO"
+          },
+          {
+            "score": 39,
+            "evidence": [
+              "shared wording: host, summit, major, third, international, global",
+              "published 8 day(s) before the article"
+            ],
+            "title": "5 August 2026 Departmental update Thailand to host Third WHO Global Summit on Traditional Medicine in 2027",
+            "url": "https://www.who.int/mongolia/news/detail-global/05-08-2026-thailand-to-host-third-who-global-summit-on-traditional-medicine-in-2027",
+            "date": "2026-08-05",
+            "agency": "WHO"
+          },
+          {
+            "score": 38,
+            "evidence": [
+              "shared wording: follow, scale, call, access, community, action",
+              "published 7 day(s) before the article"
+            ],
+            "title": "6 August 2026 Joint News Release Africa CDC and WHO call for urgent, community-led action to contain Ebola in the DRC",
+            "url": "https://www.who.int/mongolia/news/detail-global/06-08-2026-africa-cdc-and-who-call-for-urgent--community-led-action-to-contain-ebola-in-the-drc",
+            "date": "2026-08-06",
+            "agency": "WHO"
+          }
+        ],
+        "reason": "candidates are unrelated WHO or generic SDG items with no substantive overlap"
+      }
+    },
+    {
+      "id": "m049",
+      "outlet": "open.kg",
+      "outlet_domain": "open.kg",
+      "known_outlet": false,
+      "language": "en",
+      "published": "2026-08-13",
+      "title": "Saudi Arabia will participate in COP17 and transfer the chairmanship to Mongolia",
+      "url": "https://open.kg/en/news/in-the-world/115657-saudovskaja-aravija-primet-uchastie-v-cop17-i-peredast-predsedatelstvo-mongolii.html",
+      "summary": {
+        "en": "The article reports that Saudi Arabia will attend COP17 in Mongolia and formally hand over the presidency of the United Nations Convention to Combat Desertification (UNCCD) after its own COP16 term, highlighting Saudi achievements during that period.",
+        "mn": "The article reports that Saudi Arabia will attend COP17 in Mongolia and formally hand over the presidency of the United Nations Convention to Combat Desertification (UNCCD) after its own COP16 term, highlighting Saudi achievements during that period."
+      },
+      "tone": "Neutral",
+      "tone_note": {
+        "en": "reports the presidency transfer and event details without evaluative language about the United Nations",
+        "mn": "reports the presidency transfer and event details without evaluative language about the United Nations"
+      },
+      "mention_type": "Event coverage",
+      "prominence": "Lead paragraph",
+      "agencies": [
+        "UNCCD"
+      ],
+      "officials": [],
+      "un_source": {
+        "matched": false,
+        "method": "none",
+        "confidence": 0,
+        "title": "",
+        "url": "",
+        "date": "",
+        "agency": "",
+        "evidence": [
+          "shared wording: middle, economic, environmental, address, goals, sustainable",
+          "shared figures: 17, 2026"
+        ],
+        "candidates": [
+          {
+            "score": 53,
+            "evidence": [
+              "shared wording: middle, economic, environmental, address, goals, sustainable",
+              "shared figures: 17, 2026"
+            ],
+            "title": "17 Goals to Transform Our World",
+            "url": "https://mongolia.un.org/en/320998-17-goals-transform-our-world",
+            "date": "2026-08-14",
+            "agency": "UNRCO"
+          },
+          {
+            "score": 48,
+            "evidence": [
+              "shared wording: africa, collaboration, august, time",
+              "shared figures: 12, 2026",
+              "published 1 day(s) before the article"
+            ],
+            "title": "12 August 2026 Departmental update WHO and Doris Mollel Foundation sign memorandum of understanding",
+            "url": "https://www.who.int/mongolia/news/detail-global/12-08-2026-who-and-doris-mollel-foundation-sign-memorandum-of-understanding",
+            "date": "2026-08-12",
+            "agency": "WHO"
+          },
+          {
+            "score": 42,
+            "evidence": [
+              "shared wording: between, partnership, today, launch, ministry, development",
+              "shared figures: 17, 2026"
+            ],
+            "title": "17 June 2026 Joint News Release Mongolia launches Partnership for Science and Research Mongolia’s Ministry of Health and the World Health Organization (WHO) launched the Mongolia Partnership for Science and Research to strengthen collaboration between government, res ...",
+            "url": "https://www.who.int/mongolia/news/detail/17-06-2026-mongolia-launches-partnership-for-science-and-research",
+            "date": "2026-06-17",
+            "agency": "WHO"
+          }
+        ],
+        "reason": "no candidate matches the Saudi presidency-transfer content or figures"
+      }
+    },
+    {
+      "id": "m050",
+      "outlet": "Oncodaily",
+      "outlet_domain": "oncodaily.com",
+      "known_outlet": false,
+      "language": "en",
+      "published": "2026-08-13",
+      "title": "WHO Mongolia Receives US$630,000 to Advance Cervical Cancer Elimination in Mongolia",
+      "url": "https://oncodaily.com/voices/who-mongolia-565730",
+      "summary": {
+        "en": "The article reproduces a WHO Mongolia social-media post describing a US$630,000 UNITAID-funded contribution from the Government of Japan to expand HPV-based cervical cancer screening and treatment in Mongolia.",
+        "mn": "The article reproduces a WHO Mongolia social-media post describing a US$630,000 UNITAID-funded contribution from the Government of Japan to expand HPV-based cervical cancer screening and treatment in Mongolia."
+      },
+      "tone": "Neutral",
+      "tone_note": {
+        "en": "reprints WHO Mongolia's own announcement of the funding and equipment handover without added outlet commentary",
+        "mn": "reprints WHO Mongolia's own announcement of the funding and equipment handover without added outlet commentary"
+      },
+      "mention_type": "Statement cited",
+      "prominence": "Headline",
+      "agencies": [
+        "WHO",
+        "UNITAID"
+      ],
+      "officials": [],
+      "un_source": {
+        "matched": false,
+        "method": "none",
+        "confidence": 0,
+        "title": "",
+        "url": "",
+        "date": "",
+        "agency": "",
+        "evidence": [
+          "shared wording: services, expand, need, access, international, care",
+          "shared figures: 14, 2026"
+        ],
+        "candidates": [
+          {
+            "score": 64,
+            "evidence": [
+              "shared wording: services, expand, need, access, international, care",
+              "shared figures: 14, 2026"
+            ],
+            "title": "14 August 2026 News release WHO-Lions Clubs partner to expand mental health services in Jordan and Nepal",
+            "url": "https://www.who.int/mongolia/news/detail-global/14-08-2026-who-lions-clubs-partner-to-expand-mental-health-services-in-jordan-and-nepal",
+            "date": "2026-08-14",
+            "agency": "WHO"
+          },
+          {
+            "score": 64,
+            "evidence": [
+              "shared wording: quality, over, bringing, advance, together, august",
+              "shared figures: 2026, 22",
+              "published 8 day(s) before the article"
+            ],
+            "title": "5 August 2026 Departmental update WHO launches global research priorities on climate, health and migration",
+            "url": "https://www.who.int/mongolia/news/detail-global/05-08-2026-who-launches-global-research-priorities-on-climate--health-and-migration",
+            "date": "2026-08-05",
+            "agency": "WHO"
+          },
+          {
+            "score": 61,
+            "evidence": [
+              "shared wording: received, will, public, strengthening, through, august",
+              "shared figures: 11, 2026",
+              "published 2 day(s) before the article"
+            ],
+            "title": "11 August 2026 Departmental update Strengthening the Bundibugyo virus disease response through community evidence",
+            "url": "https://www.who.int/mongolia/news/detail-global/11-08-2026-strengthening-the-bundibugyo-virus-disease-response-through-community-evidence",
+            "date": "2026-08-11",
+            "agency": "WHO"
+          }
+        ],
+        "reason": "none of the candidate WHO items concern cervical cancer or the US$630,000 figure"
+      }
+    },
+    {
+      "id": "m056",
+      "outlet": "Climate Home News",
+      "outlet_domain": "climatechangenews.com",
+      "known_outlet": false,
+      "language": "en",
+      "published": "2026-08-14",
+      "title": "Will the world’s drying lands get relief from COP17 in Mongolia?",
+      "url": "https://www.climatechangenews.com/2026/08/13/will-the-worlds-drying-lands-get-relief-from-cop17-in-mongolia/",
+      "summary": {
+        "en": "The article previews COP17, the UNCCD summit in Ulaanbaatar, explaining its purpose amid a severe Northern Hemisphere drought and framing it as an underappreciated policy priority.",
+        "mn": "The article previews COP17, the UNCCD summit in Ulaanbaatar, explaining its purpose amid a severe Northern Hemisphere drought and framing it as an underappreciated policy priority."
+      },
+      "tone": "Neutral",
+      "tone_note": {
+        "en": "describes the summit's aims and scale factually, offering context rather than judgement of the United Nations",
+        "mn": "describes the summit's aims and scale factually, offering context rather than judgement of the United Nations"
+      },
+      "mention_type": "Event coverage",
+      "prominence": "Lead paragraph",
+      "agencies": [
+        "UNCCD"
+      ],
+      "officials": [],
+      "un_source": {
+        "matched": false,
+        "method": "none",
+        "confidence": 0,
+        "title": "",
+        "url": "",
+        "date": "",
+        "agency": "",
+        "evidence": [
+          "shared wording: energy, over, change, countries, climate, reading",
+          "published 9 day(s) before the article"
+        ],
+        "candidates": [
+          {
+            "score": 26,
+            "evidence": [
+              "shared wording: energy, over, change, countries, climate, reading",
+              "published 9 day(s) before the article"
+            ],
+            "title": "5 August 2026 Departmental update WHO launches global research priorities on climate, health and migration",
+            "url": "https://www.who.int/mongolia/news/detail-global/05-08-2026-who-launches-global-research-priorities-on-climate--health-and-migration",
+            "date": "2026-08-05",
+            "agency": "WHO"
+          },
+          {
+            "score": 25,
+            "evidence": [
+              "shared wording: print, food, reading, world",
+              "published 0 day(s) before the article"
+            ],
+            "title": "14 August 2026 Departmental update Quadripartite collaboration extends the One Health Joint Plan of Action to 2029",
+            "url": "https://www.who.int/mongolia/news/detail-global/14-08-2026-quadripartite-collaboration-extends-the-one-health-joint-plan-of-action-to-2029",
+            "date": "2026-08-14",
+            "agency": "WHO"
+          },
+          {
+            "score": 25,
+            "evidence": [
+              "shared wording: decisions, into, will, help, reading",
+              "published 3 day(s) before the article"
+            ],
+            "title": "11 August 2026 Departmental update Strengthening the Bundibugyo virus disease response through community evidence",
+            "url": "https://www.who.int/mongolia/news/detail-global/11-08-2026-strengthening-the-bundibugyo-virus-disease-response-through-community-evidence",
+            "date": "2026-08-11",
+            "agency": "WHO"
+          }
+        ],
+        "reason": "no candidate matches this general COP17 explainer content"
+      }
+    },
+    {
+      "id": "m057",
+      "outlet": "International Press Agency",
+      "outlet_domain": "pressenza.com",
+      "known_outlet": false,
+      "language": "en",
+      "published": "2026-08-14",
+      "title": "Food Systems at the Center of a Global Effort to Restore Land and Protect Nature - Pressenza",
+      "url": "https://www.pressenza.com/2026/08/food-systems-at-the-center-of-a-global-effort-to-restore-land-and-protect-nature/",
+      "summary": {
+        "en": "The article covers WWF's call for food-system transformation ahead of UNCCD COP17 in Mongolia, citing WWF figures on emissions and deforestation linked to agriculture.",
+        "mn": "The article covers WWF's call for food-system transformation ahead of UNCCD COP17 in Mongolia, citing WWF figures on emissions and deforestation linked to agriculture."
+      },
+      "tone": "Neutral",
+      "tone_note": {
+        "en": "reports WWF's position and COP17 timing without the outlet assessing the United Nations' role",
+        "mn": "reports WWF's position and COP17 timing without the outlet assessing the United Nations' role"
+      },
+      "mention_type": "Event coverage",
+      "prominence": "Lead paragraph",
+      "agencies": [
+        "UNCCD"
+      ],
+      "officials": [],
+      "un_source": {
+        "matched": false,
+        "method": "none",
+        "confidence": 0,
+        "title": "",
+        "url": "",
+        "date": "",
+        "agency": "",
+        "evidence": [
+          "shared wording: protecting, environmental, address, sustainable, while, action",
+          "shared figures: 17, 2026",
+          "published 0 day(s) before the article"
+        ],
+        "candidates": [
+          {
+            "score": 51,
+            "evidence": [
+              "shared wording: protecting, environmental, address, sustainable, while, action",
+              "shared figures: 17, 2026",
+              "published 0 day(s) before the article"
+            ],
+            "title": "17 Goals to Transform Our World",
+            "url": "https://mongolia.un.org/en/320998-17-goals-transform-our-world",
+            "date": "2026-08-14",
+            "agency": "UNRCO"
+          },
+          {
+            "score": 42,
+            "evidence": [
+              "shared wording: period, agriculture, food, august, action, organization",
+              "shared figures: 2026",
+              "published 0 day(s) before the article"
+            ],
+            "title": "14 August 2026 Departmental update Quadripartite collaboration extends the One Health Joint Plan of Action to 2029",
+            "url": "https://www.who.int/mongolia/news/detail-global/14-08-2026-quadripartite-collaboration-extends-the-one-health-joint-plan-of-action-to-2029",
+            "date": "2026-08-14",
+            "agency": "WHO"
+          },
+          {
+            "score": 40,
+            "evidence": [
+              "shared wording: people, action, world, content, skip",
+              "shared figures: 2026, 28"
+            ],
+            "title": "World Hepatitis Day 2026 28 July 2026",
+            "url": "https://www.who.int/westernpacific/newsroom/events/overview/item/2026/07/28/western-pacific-events/world-hepatitis-day-2026",
+            "date": "2026-07-28",
+            "agency": "WHO"
+          }
+        ],
+        "reason": "no candidate corresponds to the WWF food-systems content described"
+      }
+    },
+    {
+      "id": "m058",
+      "outlet": "African Development Bank Group",
+      "outlet_domain": "afdb.org",
+      "known_outlet": false,
+      "language": "en",
+      "published": "2026-08-14",
+      "title": "African Development Bank Group to advance Africa's land restoration and drought resilience agenda at UNCCD COP17",
+      "url": "https://www.afdb.org/en/news-and-events/events/african-development-bank-group-advance-africas-land-restoration-and-drought-resilience-agenda-unccd-cop17-96126",
+      "summary": {
+        "en": "The article announces the African Development Bank Group's delegation and side-events at UNCCD COP17 in Ulaanbaatar, focused on land restoration and Great Green Wall financing.",
+        "mn": "The article announces the African Development Bank Group's delegation and side-events at UNCCD COP17 in Ulaanbaatar, focused on land restoration and Great Green Wall financing."
+      },
+      "tone": "Neutral",
+      "tone_note": {
+        "en": "lists the Bank's planned engagements at the UNCCD conference without commentary on the United Nations",
+        "mn": "lists the Bank's planned engagements at the UNCCD conference without commentary on the United Nations"
+      },
+      "mention_type": "Event coverage",
+      "prominence": "Lead paragraph",
+      "agencies": [
+        "UNCCD"
+      ],
+      "officials": [],
+      "un_source": {
+        "matched": false,
+        "method": "none",
+        "confidence": 0,
+        "title": "",
+        "url": "",
+        "date": "",
+        "agency": "",
+        "evidence": [
+          "shared wording: implementation, collaboration, august, time, content, skip",
+          "shared figures: 14, 2026",
+          "published 0 day(s) before the article"
+        ],
+        "candidates": [
+          {
+            "score": 61,
+            "evidence": [
+              "shared wording: implementation, collaboration, august, time, content, skip",
+              "shared figures: 14, 2026",
+              "published 0 day(s) before the article"
+            ],
+            "title": "14 August 2026 Departmental update Quadripartite collaboration extends the One Health Joint Plan of Action to 2029",
+            "url": "https://www.who.int/mongolia/news/detail-global/14-08-2026-quadripartite-collaboration-extends-the-one-health-joint-plan-of-action-to-2029",
+            "date": "2026-08-14",
+            "agency": "WHO"
+          },
+          {
+            "score": 61,
+            "evidence": [
+              "shared wording: director, africa, collaboration, strengthen, august, time",
+              "shared figures: 12, 2026",
+              "published 2 day(s) before the article"
+            ],
+            "title": "12 August 2026 Departmental update WHO and Doris Mollel Foundation sign memorandum of understanding",
+            "url": "https://www.who.int/mongolia/news/detail-global/12-08-2026-who-and-doris-mollel-foundation-sign-memorandum-of-understanding",
+            "date": "2026-08-12",
+            "agency": "WHO"
+          },
+          {
+            "score": 59,
+            "evidence": [
+              "shared wording: regional, august, time, content, skip, main",
+              "shared figures: 10, 2026",
+              "published 4 day(s) before the article"
+            ],
+            "title": "10 August 2026 Departmental update WHO-DG HERA workshop on pooled procurement mechanisms for regional entities",
+            "url": "https://www.who.int/mongolia/news/detail-global/10-08-2026-who-dg-hera-workshop-on-pooled-procurement-mechanisms-for-regional-entities",
+            "date": "2026-08-10",
+            "agency": "WHO"
+          }
+        ],
+        "reason": "no candidate matches the AfDB delegation schedule described"
+      }
+    },
+    {
+      "id": "m059",
+      "outlet": "Down To Earth",
+      "outlet_domain": "downtoearth.org.in",
+      "known_outlet": false,
+      "language": "en",
+      "published": "2026-08-14",
+      "title": "As record El Nino peaks, world leaders meet in Mongolia to confront a drying planet",
+      "url": "https://www.downtoearth.org.in/climate-change/as-record-el-nino-peaks-world-leaders-meet-in-mongolia-to-confront-a-drying-planet",
+      "summary": {
+        "en": "The article surveys global drought and land degradation ahead of COP17 in Mongolia, citing UNCCD and FAO statistics on land loss, food dependency on soil, and drought frequency.",
+        "mn": "The article surveys global drought and land degradation ahead of COP17 in Mongolia, citing UNCCD and FAO statistics on land loss, food dependency on soil, and drought frequency."
+      },
+      "tone": "Neutral",
+      "tone_note": {
+        "en": "cites UNCCD and FAO figures on degradation and drought without evaluative language about the agencies",
+        "mn": "cites UNCCD and FAO figures on degradation and drought without evaluative language about the agencies"
+      },
+      "mention_type": "Data or report cited",
+      "prominence": "Lead paragraph",
+      "agencies": [
+        "UNCCD",
+        "FAO"
+      ],
+      "officials": [],
+      "un_source": {
+        "matched": false,
+        "method": "none",
+        "confidence": 0,
+        "title": "",
+        "url": "",
+        "date": "",
+        "agency": "",
+        "evidence": [
+          "shared wording: print, agriculture, food, august, action, organization",
+          "shared figures: 14, 2026",
+          "published 0 day(s) before the article"
+        ],
+        "candidates": [
+          {
+            "score": 59,
+            "evidence": [
+              "shared wording: print, agriculture, food, august, action, organization",
+              "shared figures: 14, 2026",
+              "published 0 day(s) before the article"
+            ],
+            "title": "14 August 2026 Departmental update Quadripartite collaboration extends the One Health Joint Plan of Action to 2029",
+            "url": "https://www.who.int/mongolia/news/detail-global/14-08-2026-quadripartite-collaboration-extends-the-one-health-joint-plan-of-action-to-2029",
+            "date": "2026-08-14",
+            "agency": "WHO"
+          },
+          {
+            "score": 57,
+            "evidence": [
+              "shared wording: need, globally, have, people, countries, august",
+              "shared figures: 14, 2026",
+              "published 0 day(s) before the article"
+            ],
+            "title": "14 August 2026 News release WHO-Lions Clubs partner to expand mental health services in Jordan and Nepal",
+            "url": "https://www.who.int/mongolia/news/detail-global/14-08-2026-who-lions-clubs-partner-to-expand-mental-health-services-in-jordan-and-nepal",
+            "date": "2026-08-14",
+            "agency": "WHO"
+          },
+          {
+            "score": 54,
+            "evidence": [
+              "shared wording: poor, planet, change, countries, action, climate",
+              "shared figures: 14, 17, 2026",
+              "published 0 day(s) before the article"
+            ],
+            "title": "17 Goals to Transform Our World",
+            "url": "https://mongolia.un.org/en/320998-17-goals-transform-our-world",
+            "date": "2026-08-14",
+            "agency": "UNRCO"
+          }
+        ],
+        "reason": "no candidate matches the specific UNCCD/FAO statistics cited"
+      }
+    },
+    {
+      "id": "m060",
+      "outlet": "open.kg",
+      "outlet_domain": "open.kg",
+      "known_outlet": false,
+      "language": "en",
+      "published": "2026-08-14",
+      "title": "About 82% of Mongolia's territory is subject to desertification and land degradation ahead of the UN COP17 summit.",
+      "url": "https://open.kg/en/news/in-the-world/115659-okolo-82-territorii-mongolii-podverzheno-opustynivaniju-i-degradacii-zemel-pered-sammitom-oon-sor17.html",
+      "summary": {
+        "en": "The article reports Mongolia's national assessment showing about 82 per cent of its territory affected by desertification, released ahead of the United Nations's COP17 summit in Ulaanbaatar.",
+        "mn": "The article reports Mongolia's national assessment showing about 82 per cent of its territory affected by desertification, released ahead of the United Nations's COP17 summit in Ulaanbaatar."
+      },
+      "tone": "Neutral",
+      "tone_note": {
+        "en": "reports the ministry's data and the upcoming UN summit as background facts",
+        "mn": "reports the ministry's data and the upcoming UN summit as background facts"
+      },
+      "mention_type": "Data or report cited",
+      "prominence": "Headline",
+      "agencies": [
+        "UNCCD"
+      ],
+      "officials": [],
+      "un_source": {
+        "matched": false,
+        "method": "none",
+        "confidence": 0,
+        "title": "",
+        "url": "",
+        "date": "",
+        "agency": "",
+        "evidence": [
+          "shared wording: strategies, environmental, including, change, countries, climate",
+          "shared figures: 17, 2026",
+          "published 0 day(s) before the article"
+        ],
+        "candidates": [
+          {
+            "score": 50,
+            "evidence": [
+              "shared wording: strategies, environmental, including, change, countries, climate",
+              "shared figures: 17, 2026",
+              "published 0 day(s) before the article"
+            ],
+            "title": "17 Goals to Transform Our World",
+            "url": "https://mongolia.un.org/en/320998-17-goals-transform-our-world",
+            "date": "2026-08-14",
+            "agency": "UNRCO"
+          },
+          {
+            "score": 47,
+            "evidence": [
+              "shared wording: africa, august",
+              "shared figures: 12, 2026",
+              "published 2 day(s) before the article"
+            ],
+            "title": "12 August 2026 Departmental update WHO and Doris Mollel Foundation sign memorandum of understanding",
+            "url": "https://www.who.int/mongolia/news/detail-global/12-08-2026-who-and-doris-mollel-foundation-sign-memorandum-of-understanding",
+            "date": "2026-08-12",
+            "agency": "WHO"
+          },
+          {
+            "score": 40,
+            "evidence": [
+              "shared wording: between, among, today, government, ministry, national",
+              "shared figures: 17, 2026"
+            ],
+            "title": "17 June 2026 Joint News Release Mongolia launches Partnership for Science and Research Mongolia’s Ministry of Health and the World Health Organization (WHO) launched the Mongolia Partnership for Science and Research to strengthen collaboration between government, res ...",
+            "url": "https://www.who.int/mongolia/news/detail/17-06-2026-mongolia-launches-partnership-for-science-and-research",
+            "date": "2026-06-17",
+            "agency": "WHO"
+          }
+        ],
+        "reason": "no candidate matches the Mongolian ministry's degradation statistics"
+      }
+    },
+    {
+      "id": "m062",
+      "outlet": "Whalesbook",
+      "outlet_domain": "whalesbook.com",
+      "known_outlet": false,
+      "language": "en",
+      "published": "2026-08-14",
+      "title": "COP17 UNCCD Summit: Global Leaders Target $278B Funding Gap",
+      "url": "https://www.whalesbook.com/news/English/environment/COP17-UNCCD-Summit-Global-Leaders-Target-dollar278B-Funding-Gap/6a7f1cd26ffbe1e6461c3880",
+      "summary": {
+        "en": "The article outlines the United States$278 billion annual financing gap to be addressed at COP17, citing UNCCD and FAO data on land degradation costs and investment needs.",
+        "mn": "The article outlines the United States$278 billion annual financing gap to be addressed at COP17, citing UNCCD and FAO data on land degradation costs and investment needs."
+      },
+      "tone": "Neutral",
+      "tone_note": {
+        "en": "reports UNCCD financial figures and FAO soil statistics without evaluating the United Nations' performance",
+        "mn": "reports UNCCD financial figures and FAO soil statistics without evaluating the United Nations' performance"
+      },
+      "mention_type": "Data or report cited",
+      "prominence": "Lead paragraph",
+      "agencies": [
+        "UNCCD",
+        "FAO"
+      ],
+      "officials": [],
+      "un_source": {
+        "matched": false,
+        "method": "none",
+        "confidence": 0,
+        "title": "",
+        "url": "",
+        "date": "",
+        "agency": "",
+        "evidence": [
+          "shared wording: needs, economic, environmental, address, sustainable, change",
+          "shared figures: 17, 2026",
+          "published 0 day(s) before the article"
+        ],
+        "candidates": [
+          {
+            "score": 55,
+            "evidence": [
+              "shared wording: needs, economic, environmental, address, sustainable, change",
+              "shared figures: 17, 2026",
+              "published 0 day(s) before the article"
+            ],
+            "title": "17 Goals to Transform Our World",
+            "url": "https://mongolia.un.org/en/320998-17-goals-transform-our-world",
+            "date": "2026-08-14",
+            "agency": "UNRCO"
+          },
+          {
+            "score": 54,
+            "evidence": [
+              "shared wording: over, change, august, global, time, health",
+              "shared figures: 2026, 300",
+              "published 9 day(s) before the article"
+            ],
+            "title": "5 August 2026 Departmental update WHO launches global research priorities on climate, health and migration",
+            "url": "https://www.who.int/mongolia/news/detail-global/05-08-2026-who-launches-global-research-priorities-on-climate--health-and-migration",
+            "date": "2026-08-05",
+            "agency": "WHO"
+          },
+          {
+            "score": 46,
+            "evidence": [
+              "shared wording: remains, nearly, each, organization, time, health",
+              "shared figures: 2026, 300"
+            ],
+            "title": "23 July 2026 News release WHO launches seven strategies to prevent drowning",
+            "url": "https://www.who.int/mongolia/news/detail-global/23-07-2026-who-launches-seven-strategies-to-prevent-drowning",
+            "date": "2026-07-23",
+            "agency": "WHO"
+          }
+        ],
+        "reason": "no candidate matches the $278 billion funding-gap figures cited"
+      }
+    },
+    {
+      "id": "m063",
+      "outlet": "forestsnews.org",
+      "outlet_domain": "forestsnews.org",
+      "known_outlet": false,
+      "language": "en",
+      "published": "2026-08-14",
+      "title": "Steppe, soil and solutions",
+      "url": "https://www.forestsnews.org/162537/unccd-cop17-mongolia-soil-rangelands",
+      "summary": {
+        "en": "The article describes a Landscape Alliance/WWF field trip and rangelands agenda at UNCCD COP17 in Mongolia, including background on the International Year of Rangelands and Pastoralists.",
+        "mn": "The article describes a Landscape Alliance/WWF field trip and rangelands agenda at UNCCD COP17 in Mongolia, including background on the International Year of Rangelands and Pastoralists."
+      },
+      "tone": "Neutral",
+      "tone_note": {
+        "en": "describes COP17 activities and partner initiatives factually, without commentary on the United Nations",
+        "mn": "describes COP17 activities and partner initiatives factually, without commentary on the United Nations"
+      },
+      "mention_type": "Event coverage",
+      "prominence": "Lead paragraph",
+      "agencies": [
+        "UNCCD"
+      ],
+      "officials": [],
+      "un_source": {
+        "matched": true,
+        "method": "explicit_link",
+        "confidence": 95,
+        "title": "",
+        "url": "https://www.fao.org/dryland-forestry/working-group/fourth-session-mongolia/en/",
+        "date": "",
+        "agency": "fao.org",
+        "evidence": [
+          "the article links to this United Nations page (not yet in our index)"
+        ],
+        "candidates": []
+      }
+    },
+    {
+      "id": "m073",
+      "outlet": "Premium Times Nigeria",
+      "outlet_domain": "premiumtimesng.com",
+      "known_outlet": false,
+      "language": "en",
+      "published": "2026-08-16",
+      "title": "PREMIUM TIMES journalist, five others selected for UNCCD COP17 Media Fellowship in Mongolia",
+      "url": "https://www.premiumtimesng.com/news/top-news/903350-premium-times-journalist-five-others-selected-for-unccd-cop17-media-fellowship-in-mongolia.html",
+      "summary": {
+        "en": "The article announces that a Premium Times journalist and five others were selected for a UNCCD COP17 Media Fellowship in Mongolia.",
+        "mn": "The article announces that a Premium Times journalist and five others were selected for a UNCCD COP17 Media Fellowship in Mongolia."
+      },
+      "tone": "Neutral",
+      "tone_note": {
+        "en": "announces the fellowship selection without evaluative language about the United Nations",
+        "mn": "announces the fellowship selection without evaluative language about the United Nations"
+      },
+      "mention_type": "Event coverage",
+      "prominence": "Headline",
+      "agencies": [
+        "UNCCD"
+      ],
+      "officials": [],
+      "un_source": {
+        "matched": false,
+        "method": "none",
+        "confidence": 0,
+        "title": "",
+        "url": "",
+        "date": "",
+        "agency": "",
+        "evidence": [
+          "shared wording: sustainable, social, change, climate, health",
+          "shared figures: 17, 2026",
+          "published 2 day(s) before the article"
+        ],
+        "candidates": [
+          {
+            "score": 48,
+            "evidence": [
+              "shared wording: sustainable, social, change, climate, health",
+              "shared figures: 17, 2026",
+              "published 2 day(s) before the article"
+            ],
+            "title": "17 Goals to Transform Our World",
+            "url": "https://mongolia.un.org/en/320998-17-goals-transform-our-world",
+            "date": "2026-08-14",
+            "agency": "UNRCO"
+          },
+          {
+            "score": 42,
+            "evidence": [
+              "shared wording: rest, media, change, climate, health",
+              "shared figures: 2026, 36"
+            ],
+            "title": "French Polynesia (France)",
+            "url": "https://www.who.int/frenchpolynesia/",
+            "date": "2026-07-22",
+            "agency": "WHO"
+          },
+          {
+            "score": 39,
+            "evidence": [
+              "shared wording: school, health",
+              "shared figures: 2024, 2026"
+            ],
+            "title": "13 July 2026 Mongolia conducts evaluation for HPV vaccines roll-out",
+            "url": "https://www.who.int/mongolia/news/feature-stories/detail-wpro/mongolia-conducts-evaluation-for-hpv-vaccines-roll-out",
+            "date": "2026-07-13",
+            "agency": "WHO"
+          }
+        ],
+        "reason": "no candidate publication concerns the COP17 media fellowship"
+      }
+    },
+    {
+      "id": "m077",
+      "outlet": "Yeni Safak English",
+      "outlet_domain": "en.yenisafak.com",
+      "known_outlet": false,
+      "language": "en",
+      "published": "2026-08-16",
+      "title": "COP17 opens in Mongolia to tackle global land degradation",
+      "url": "https://en.yenisafak.com/world/cop17-opens-in-mongolia-to-tackle-global-land-degradation-3721954",
+      "summary": {
+        "en": "The article reports the opening of COP17 in Ulaanbaatar, covering negotiating disputes over a drought protocol and citing UNCCD figures on land degradation, displacement risk and financing needs.",
+        "mn": "The article reports the opening of COP17 in Ulaanbaatar, covering negotiating disputes over a drought protocol and citing UNCCD figures on land degradation, displacement risk and financing needs."
+      },
+      "tone": "Neutral",
+      "tone_note": {
+        "en": "reports UNCCD estimates and negotiating positions factually, without the outlet passing judgement on the United Nations",
+        "mn": "reports UNCCD estimates and negotiating positions factually, without the outlet passing judgement on the United Nations"
+      },
+      "mention_type": "Data or report cited",
+      "prominence": "Headline",
+      "agencies": [
+        "UNCCD"
+      ],
+      "officials": [],
+      "un_source": {
+        "matched": false,
+        "method": "none",
+        "confidence": 0,
+        "title": "",
+        "url": "",
+        "date": "",
+        "agency": "",
+        "evidence": [
+          "shared wording: protection, planet, environmental, while, development, countries",
+          "shared figures: 07, 08, 2026",
+          "published 2 day(s) before the article"
+        ],
+        "candidates": [
+          {
+            "score": 54,
+            "evidence": [
+              "shared wording: protection, planet, environmental, while, development, countries",
+              "shared figures: 07, 08, 2026",
+              "published 2 day(s) before the article"
+            ],
+            "title": "17 Goals to Transform Our World",
+            "url": "https://mongolia.un.org/en/320998-17-goals-transform-our-world",
+            "date": "2026-08-14",
+            "agency": "UNRCO"
+          },
+          {
+            "score": 52,
+            "evidence": [
+              "shared wording: small, africa, update, time",
+              "shared figures: 12, 2026",
+              "published 4 day(s) before the article"
+            ],
+            "title": "12 August 2026 Departmental update WHO and Doris Mollel Foundation sign memorandum of understanding",
+            "url": "https://www.who.int/mongolia/news/detail-global/12-08-2026-who-and-doris-mollel-foundation-sign-memorandum-of-understanding",
+            "date": "2026-08-12",
+            "agency": "WHO"
+          },
+          {
+            "score": 48,
+            "evidence": [
+              "shared wording: agenda, often, third, countries, global, update",
+              "shared figures: 16, 2026"
+            ],
+            "title": "23 July 2026 Departmental update Implementing research priorities: webinar explores how global research agendas can lead to meaningful action",
+            "url": "https://www.who.int/mongolia/news/detail-global/23-07-2026-implementing-research-priorities--webinar-explores-how-global-research-agendas-can-lead-to-meaningful-action",
+            "date": "2026-07-23",
+            "agency": "WHO"
+          }
+        ],
+        "reason": "no candidate matches the specific UNCCD degradation and financing figures cited"
+      }
+    }
+  ],
+  "issues": [
+    "[fetch] could not read https://globalgovernancenews.com/silk-road-caravan-reaches-mongolia-ahead-of-unccd-cop17/",
+    "[fetch] could not read https://tenngrand.com/beyond-cs2-mobile-legends-pubg-mobile-mongolias-growing-competitive-gaming-scene/",
+    "[fetch] could not read https://ommcomnews.com/world-news/mongolian-pm-thanks-india-for-facilitating-construction-of-strategic-oil-refinery-project/",
+    "[fetch] could not read https://weddings.lavenderhotels.co.uk/india-built-oil-refinery-project-mongolia-changes-everything",
+    "[fetch] could not read https://asiarussia.ru/news/51919/",
+    "59 collected result(s) were set aside as not being about the United Nations in Mongolia; see the run log for the list."
+  ],
+  "style_flags": [],
+  "review_log": [
+    {
+      "pass": 1,
+      "confidence": 88,
+      "issues": [
+        "m047: official name is spelled 'Yasmine Fouad' elsewhere (m017, m046) but rendered 'Yasmin Fuad' here — verify correct spelling for consistency and accuracy.",
+        "m048: the event is referred to as the 'United Nations World Summit on Combating Desertification,' which does not match the official name (UNCCD COP17) used in all other mentions — verify this is the source's actual wording or correct it to avoid propagating a misnomer.",
+        "m044: the phrase 'attributed to the United Nations in Mongolia' is ambiguous — clarify whether this refers to the UN Resident Coordinator's Office or another specific UN entity, per Editorial Manual naming conventions.",
+        "m010 and m045: summaries are headline-only stubs with very low source_confidence (5) and minimal content; confirm these still meet the bar for inclusion as verifiable mentions before passing to a human reviewer."
+      ],
+      "batch": 1
+    },
+    {
+      "pass": 2,
+      "confidence": 90,
+      "issues": [
+        "m046 and m047 render the same UNCCD Executive Secretary's name differently ('Yasmine Fouad' vs 'Yasmin Fuad'); normalize the officials field to the correct spelling (Yasmine Fouad) while noting the source's variant spelling only in the tone_note/summary text, not in the structured officials field."
+      ],
+      "batch": 1
+    },
+    {
+      "pass": 1,
+      "confidence": 93,
+      "issues": [],
+      "batch": 2
+    }
+  ]
+}
